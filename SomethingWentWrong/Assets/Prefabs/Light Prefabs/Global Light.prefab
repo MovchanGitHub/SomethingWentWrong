@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4812061632095218440}
   - component: {fileID: 7497569244370812051}
+  - component: {fileID: 11712503}
   m_Layer: 0
   m_Name: Global Light
   m_TagString: Untagged
@@ -49,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 1
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000556b821c
@@ -111,3 +112,22 @@ MonoBehaviour:
   - {x: 0.5, y: -0.5, z: 0}
   - {x: 0.5, y: 0.5, z: 0}
   - {x: -0.5, y: 0.5, z: 0}
+--- !u!114 &11712503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9021259468881233533}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2081c461d701b42bb8cae4af2e646fd1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentTime: 0
+  cycleDuration: 10
+  sunrise: {r: 0.6775098, g: 0.8116114, b: 0.8207547, a: 0}
+  day: {r: 1, g: 1, b: 1, a: 0}
+  sunset: {r: 0.48905307, g: 0.59140265, b: 0.6603774, a: 0}
+  night: {r: 0.41220188, g: 0.49382037, b: 0.5566038, a: 0}
+  midnight: {r: 0.3088844, g: 0.29837132, b: 0.4245283, a: 0}
