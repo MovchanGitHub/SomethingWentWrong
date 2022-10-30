@@ -202,6 +202,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e122f37f3817bb4e84054d8d57b9df8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &4848401119255199828
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6052453565137795375}
+  m_Layer: 0
+  m_Name: Attack Point
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6052453565137795375
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4848401119255199828}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -0.2, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6369232760984217070}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &7132474006594583877
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,6 +244,7 @@ GameObject:
   - component: {fileID: 6369232760984217070}
   - component: {fileID: 223057553}
   - component: {fileID: 223057552}
+  - component: {fileID: 6321090710449174826}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -234,6 +266,7 @@ Transform:
   m_Children:
   - {fileID: 878174198}
   - {fileID: 519420032}
+  - {fileID: 6052453565137795375}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -271,3 +304,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeedInit: 4
+--- !u!114 &6321090710449174826
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7132474006594583877}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f5ffad961818b14b823dd6c31481cf9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  attackPoint: {fileID: 6052453565137795375}
+  attackRange: 0.5
+  damage: 5
+  damagableLayers:
+    serializedVersion: 2
+    m_Bits: 64
