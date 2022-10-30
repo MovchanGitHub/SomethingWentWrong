@@ -43,7 +43,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
         
         //Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
         CalculateIsometricMovement();
-        
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
         Vector2 movement = inputVector * movementSpeed;
         Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
