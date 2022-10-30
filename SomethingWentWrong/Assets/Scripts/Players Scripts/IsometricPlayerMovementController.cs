@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
+    public static bool IsAbleToMove = true;
+
     [SerializeField]
     private float movementSpeedInit = 1f;
     private float movementSpeed;
@@ -37,18 +39,19 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 currentPos = rbody.position;
-        verticalInput = Input.GetAxis("Vertical");
-        horizontalInput = Input.GetAxis("Horizontal");
-        
-        //Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        CalculateIsometricMovement();
-        
-        inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * movementSpeed;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-        isoRenderer.SetDirection(movement);
-        rbody.MovePosition(newPos);
+        if (IsAbleToMove)
+        {
+            Vector2 currentPos = rbody.position;
+            verticalInput = Input.GetAxis("Vertical");
+            horizontalInput = Input.GetAxis("Horizontal");
+
+            Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
+            inputVector = Vector2.ClampMagnitude(inputVector, 1);
+            Vector2 movement = inputVector * movementSpeed;
+            Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+            isoRenderer.SetDirection(movement);
+            rbody.MovePosition(newPos);
+        }
     }
 
     private void CalculateIsometricMovement()
