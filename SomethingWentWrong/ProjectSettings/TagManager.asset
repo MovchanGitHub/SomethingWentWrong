@@ -6,6 +6,14 @@ TagManager:
   tags:
   - InGameMenu
   - SettingsMenu
+  - incline-max-W
+  - incline-max-E
+  - incline-max-SW
+  - incline-max-SE
+  - incline-mid-W
+  - incline-mid-E
+  - incline-mid-SW
+  - incline-mid-SE
   layers:
   - Default
   - TransparentFX
