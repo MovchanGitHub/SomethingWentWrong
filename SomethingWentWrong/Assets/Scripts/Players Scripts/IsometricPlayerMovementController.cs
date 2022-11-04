@@ -18,9 +18,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
-    private float a11 = 1f, a12 = 0f;
-    private float a21 = 0f, a22 = 1f;
-    
+    [HideInInspector] public int a11 = 1, a12 = 0;
+    [HideInInspector] public int a21 = 0, a22 = 1;
     
     private void Awake()
     {
@@ -58,64 +57,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
             Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
             isoRenderer.SetDirection(movement);
             rbody.MovePosition(newPos);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D col)
-    {
-        switch (col.tag)
-        {
-            case "incline-max-W":
-                a11 = 4f; a12 = 0f;
-                a21 = 3f; a22 = 1f;
-                break;
-            case "incline-max-E":
-                a11 = 4f;  a12 = 0f;
-                a21 = -3f; a22 = 1f;
-                break;
-            case "incline-max-SW":
-                a11 = 2f; a12 = -2f;
-                a21 = 3f; a22 = 1f;
-                break;
-            case "incline-max-SE":
-                a11 = 2f;  a12 = 2f;
-                a21 = -3f; a22 = 1f;
-                break;
-            case "incline-mid-W":
-                a11 = 2f; a12 = 0f;
-                a21 = 1f; a22 = 1f;
-                break;
-            case "incline-mid-E":
-                a11 = 2f; a12 = 0f;
-                a21 = -1f; a22 = 1f;
-                break;
-            case "incline-mid-SW":
-                a11 = 1f; a12 = -2f;
-                a21 = 1f; a22 = 1f;
-                break;
-            case "incline-mid-SE":
-                a11 = 1f; a12 = 2f;
-                a21 = -1f; a22 = 1f;
-                break;
-        }
-    }
-    
-    
-    private void OnTriggerExit2D(Collider2D col)
-    {
-        switch (col.tag)
-        {
-            case "incline-max-W":
-            case "incline-max-E":
-            case "incline-max-SW":
-            case "incline-max-SE":            
-            case "incline-mid-W":            
-            case "incline-mid-E":
-            case "incline-mid-SW":            
-            case "incline-mid-SE":
-                a11 = 1f; a12 = 0f;
-                a21 = 0f; a22 = 1f;
-                break;
         }
     }
 

@@ -49,4 +49,9 @@ public class IsometricCharacterRenderer : MonoBehaviour
         float stepCount = angle / step;
         return Mathf.FloorToInt(stepCount);
     }
+
+    public void ChangeSpriteOrder(int new_order)
+    {
+        transform.GetComponent<SpriteRenderer>().sortingOrder = new_order;
+    }
 }
