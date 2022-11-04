@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum ItemType {NoItem, Weapon, Food};
+public enum ItemType {NoItem, Weapon, Food, Resource};
 
 public class ItemsBase : ScriptableObject
 {
