@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class GameManagerScript : MonoBehaviour
 {
-    public static GameManagerScript instance;
+    public static GameManagerScript instance { get; private set; }
+
+    public GameObject player;
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(this.gameObject);
+            return;
+        }
+
+        Destroy(this.gameObject);
     }
-    public GameObject player;
 }

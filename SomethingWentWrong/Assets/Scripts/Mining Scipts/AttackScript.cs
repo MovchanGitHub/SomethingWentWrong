@@ -33,7 +33,7 @@ public class AttackScript : MonoBehaviour
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.GetComponent<DamagableScript.Damagable>().doDamage(damage);
+            hitObject.GetComponent<Damagable>().doDamage(damage);
         }
     }
 

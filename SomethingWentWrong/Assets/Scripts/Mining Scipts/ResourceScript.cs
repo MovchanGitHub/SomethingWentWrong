@@ -2,11 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ResourceScript : MonoBehaviour, DamagableScript.Damagable
+public class ResourceScript : MonoBehaviour, Damagable
 {
     [SerializeField] private int hp;
     [SerializeField] private GameObject drop;
-    [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
 
     public void doDamage(int damage)

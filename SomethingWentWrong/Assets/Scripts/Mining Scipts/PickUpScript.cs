@@ -37,8 +37,7 @@ public class PickUpScript : MonoBehaviour
 
     private void PickUp()
     {
-        //RockItem rock = new RockItem();
-        //InventoryTest.Instance.Add(rock);
+
         Destroy(gameObject);
     }
 }
