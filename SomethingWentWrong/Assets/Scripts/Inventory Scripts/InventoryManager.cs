@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
     public GameObject InventoryPanel;
     private GameObject AlreadyChosenCell = null;
     private bool isOpened;
+    private GameObject onMouseObject;
 
     private void Awake()
     {
@@ -50,6 +51,8 @@ public class InventoryManager : MonoBehaviour
             if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem != ItemType.NoItem)
             {
                 AlreadyChosenCell = CurrentCell;
+                onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().dragAndDropElement, transform);
+                onMouseObject.transform.position = Input.mousePosition;
             }
         }
         //Если первый объект (ячейку) для Swap-а уже выбрали
@@ -60,12 +63,15 @@ public class InventoryManager : MonoBehaviour
             AlreadyChosenCell.GetComponent<InventoryCell>().item = CurrentCell.GetComponent<InventoryCell>().item;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = CurrentCell.GetComponent<InventoryCell>().amount;
             AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = CurrentCell.GetComponent<InventoryCell>().item.image;
+            AlreadyChosenCell.GetComponent<InventoryCell>().dragAndDropElement = CurrentCell.GetComponent<InventoryCell>().dragAndDropElement;
 
             CurrentCell.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
             CurrentCell.GetComponent<InventoryCell>().amount = temporary.GetComponent<InventoryCell>().amount;
             CurrentCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
+            CurrentCell.GetComponent<InventoryCell>().dragAndDropElement = temporary.GetComponent<InventoryCell>().dragAndDropElement;
 
             Destroy(temporary);
+            Destroy(onMouseObject);
             AlreadyChosenCell = null;
         }
     }
@@ -78,6 +84,7 @@ public class InventoryManager : MonoBehaviour
             AlreadyChosenCell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = 0;
             AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = AlreadyChosenCell.GetComponent<InventoryCell>().item.image;
+            Destroy(onMouseObject);
             AlreadyChosenCell = null;
         }
     }
@@ -91,6 +98,7 @@ public class InventoryManager : MonoBehaviour
                 cell.GetComponent<InventoryCell>().item = newItem;
                 cell.GetComponent<InventoryCell>().amount = 0;
                 cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = newItem.image;
+                cell.GetComponent<InventoryCell>().dragAndDropElement = newItem.dragAndDropElement;
                 return;
             }
         }

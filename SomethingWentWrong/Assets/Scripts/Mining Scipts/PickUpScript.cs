@@ -10,7 +10,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] float despawnTime = 10f;
     [SerializeField] ItemsBase itemToInventory;
 
-    private void Awake()
+    private void Start()
     {
         player = GameManagerScript.instance.player.transform;
     }

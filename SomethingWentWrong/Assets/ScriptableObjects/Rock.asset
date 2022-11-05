@@ -17,3 +17,4 @@ MonoBehaviour:
   itemDescription: Piece of rock
   TypeOfThisItem: 3
   image: {fileID: 21300000, guid: 2dbdf7f682f9a2a46ae8c25dca7bfecd, type: 3}
+  dragAndDropElement: {fileID: 6292192641967264462, guid: 11a79ea9cc70c0b4791b03df050f88a6, type: 3}
