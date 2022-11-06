@@ -39,6 +39,11 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             IsometricPlayerMovementController.IsAbleToMove = !IsometricPlayerMovementController.IsAbleToMove;
+            AlreadyChosenCell = null;
+            if (onMouseObject != null)
+            {
+                Destroy(onMouseObject);
+            }
         }
     }
 
@@ -72,6 +77,7 @@ public class InventoryManager : MonoBehaviour
 
             Destroy(temporary);
             Destroy(onMouseObject);
+            onMouseObject = null;
             AlreadyChosenCell = null;
         }
     }
