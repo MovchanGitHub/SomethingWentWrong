@@ -7,6 +7,7 @@ public class ResourceScript : MonoBehaviour, Damagable
     [SerializeField] private int hp;
     [SerializeField] private GameObject drop;
     [SerializeField] private float spread = 2f;
+    [SerializeField] private float dropSpeed = 5f;
 
     public void doDamage(int damage)
     {
@@ -25,7 +26,7 @@ public class ResourceScript : MonoBehaviour, Damagable
         pos.y += spread * UnityEngine.Random.value - spread / 2;
         GameObject dropObject = Instantiate(drop);
         dropObject.transform.position = transform.position;
-        StartCoroutine(MoveDropRoutine(dropObject.transform, pos, 5));
+        StartCoroutine(MoveDropRoutine(dropObject.transform, pos, dropSpeed));
     }
 
     private IEnumerator MoveDropRoutine(Transform transform, Vector3 to, float speed)
