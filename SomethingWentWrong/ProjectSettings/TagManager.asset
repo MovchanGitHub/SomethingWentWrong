@@ -6,6 +6,19 @@ TagManager:
   tags:
   - InGameMenu
   - SettingsMenu
+  - incline-max-W
+  - incline-max-E
+  - incline-max-SW
+  - incline-max-SE
+  - incline-mid-W
+  - incline-mid-E
+  - incline-mid-SW
+  - incline-mid-SE
+  - level-2
+  - incline-min-W
+  - incline-min-E
+  - incline-min-SW
+  - incline-min-SE
   - Resource
   layers:
   - Default

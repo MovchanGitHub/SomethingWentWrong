@@ -17,6 +17,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private Vector2 inputVector;
     private float verticalInput;
     private float horizontalInput;
+
+    [HideInInspector] public int a11 = 1, a12 = 0;
+    [HideInInspector] public int a21 = 0, a22 = 1;
     
     private void Awake()
     {
@@ -31,10 +34,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        /*if (Input.GetKeyDown(KeyCode.LeftShift))
             MaximizeSpeed();
         if (Input.GetKeyUp(KeyCode.LeftShift))
-            MinimizeSpeed();
+            MinimizeSpeed();*/
     }
 
     private void FixedUpdate()
@@ -45,21 +48,16 @@ public class IsometricPlayerMovementController : MonoBehaviour
             verticalInput = Input.GetAxis("Vertical");
             horizontalInput = Input.GetAxis("Horizontal");
 
-            Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
+            inputVector = new Vector2(
+                a11 * horizontalInput + a12 * verticalInput, 
+                a21 * horizontalInput + a22 * verticalInput);
+            
             inputVector = Vector2.ClampMagnitude(inputVector, 1);
             Vector2 movement = inputVector * movementSpeed;
             Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
             isoRenderer.SetDirection(movement);
             rbody.MovePosition(newPos);
         }
-    }
-
-    private void CalculateIsometricMovement()
-    {
-        //Vector2 inputVector = new Vector2(horizontalInput, verticalInput);
-        inputVector = new Vector2(
-            horizontalInput + verticalInput, 
-            horizontalInput * -0.5f + 0.5f * verticalInput);
     }
 
     private void MaximizeSpeed()
