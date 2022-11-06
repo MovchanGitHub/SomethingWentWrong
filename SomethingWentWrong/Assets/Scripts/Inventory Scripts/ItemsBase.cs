@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public enum ItemType {NoItem, Weapon, Food};
+public enum ItemType {NoItem, Weapon, Food, Resource};
 
 public class ItemsBase : ScriptableObject
 {
@@ -13,4 +13,5 @@ public class ItemsBase : ScriptableObject
     public string itemDescription;
     public ItemType TypeOfThisItem;
     public Sprite image;
+    public GameObject dragAndDropElement;
 }

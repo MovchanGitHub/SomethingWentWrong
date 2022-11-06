@@ -29,11 +29,12 @@ public class AttackScript : MonoBehaviour
     {
         //Запуск анимации нужен тут
 
+
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.GetComponent<DamagableScript.Damagable>().doDamage(damage);
+            hitObject.GetComponent<Damagable>().doDamage(damage);
         }
     }
 

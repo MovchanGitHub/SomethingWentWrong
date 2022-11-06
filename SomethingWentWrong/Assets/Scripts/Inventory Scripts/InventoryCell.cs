@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.EventSystems;
 
 public class InventoryCell : MonoBehaviour
 {
     public ItemsBase item;
     public int amount;
     public GameObject icon;
+    public GameObject dragAndDropElement;
 
-    
     private void Start()
     {
         icon.GetComponent<Image>().sprite = item.image;
