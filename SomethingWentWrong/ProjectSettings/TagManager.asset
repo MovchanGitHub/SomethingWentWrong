@@ -6,6 +6,7 @@ TagManager:
   tags:
   - InGameMenu
   - SettingsMenu
+  - Resource
   layers:
   - Default
   - TransparentFX
