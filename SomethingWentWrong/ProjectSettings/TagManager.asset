@@ -19,6 +19,7 @@ TagManager:
   - incline-min-E
   - incline-min-SW
   - incline-min-SE
+  - Resource
   layers:
   - Default
   - TransparentFX

@@ -17,6 +17,7 @@ MonoBehaviour:
   itemDescription: Chocolate bar with "Dickers" written on it
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: c767ff59aee33974892b67d502cb227e, type: 3}
+  dragAndDropElement: {fileID: 3110146729833892629, guid: a6b2c60dd0b01484d82f09a2a445fd28, type: 3}
   satiationEffect: 15
   slakingOfThirstEffect: -10
   healEffect: 4

@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8122592b865804abdfd0a4cd05ac5e, type: 3}
+  m_Name: Plevaka
+  m_EditorClassIdentifier: 
+  name: Plevaka
+  description: I don`t know what it is, but it expectorate me with something very
+    poisonous just after seeing me
+  typeOfThisCreature: 1
+  imageSmall: {fileID: 21300000, guid: fd328b2a6c2e32f408758d599e11edde, type: 3}
+  imageBig: {fileID: 21300000, guid: da9d773d00cb98747b8811e357549809, type: 3}
+  healthPoints: 23
+  damagePoints: 6
+  listOfSpecialAbilities:
+  - {fileID: 21300000, guid: 7fd55d1eb6a543f4d99b869f0712d6b2, type: 3}
+  - {fileID: 21300000, guid: 9511f98a04b296544945d261757a6801, type: 3}

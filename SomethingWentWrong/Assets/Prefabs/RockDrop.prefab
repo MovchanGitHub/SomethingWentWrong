@@ -132,3 +132,4 @@ MonoBehaviour:
   speed: 4
   pickUpDistance: 2.5
   despawnTime: 10
+  itemToInventory: {fileID: 11400000, guid: 5ca3459315b309642a05bcc2eae8f7bb, type: 2}
