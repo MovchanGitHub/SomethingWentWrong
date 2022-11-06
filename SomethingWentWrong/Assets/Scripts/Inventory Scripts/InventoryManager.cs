@@ -60,7 +60,7 @@ public class InventoryManager : MonoBehaviour
     {
         if (AlreadyChosenCell != null)
         {
-            AlreadyChosenCell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
+            AlreadyChosenCell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = 0;
             AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = AlreadyChosenCell.GetComponent<InventoryCell>().item.image;
             AlreadyChosenCell = null;
