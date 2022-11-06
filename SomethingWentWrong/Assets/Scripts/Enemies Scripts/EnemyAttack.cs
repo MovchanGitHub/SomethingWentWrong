@@ -41,7 +41,7 @@ public class EnemyAttack : MonoBehaviour
 
             foreach (Collider2D hitObject in hitObjects)
             {
-                hitObject.GetComponent<DamagableScript.Damagable>().doDamage(5);
+                hitObject.GetComponent<Damagable>().doDamage(5);
             } 
         }
     }
