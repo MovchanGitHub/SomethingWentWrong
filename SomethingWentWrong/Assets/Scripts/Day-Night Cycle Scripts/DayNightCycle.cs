@@ -12,7 +12,7 @@ public class DayNightCycle : MonoBehaviour
     private Light2D globalLight;
     public float currentTime;
     public float cycleDuration = 10;
-    private DayTime dayCycle;
+    [HideInInspector] public DayTime dayCycle;
 
     public Color sunrise;
     public Color day;
