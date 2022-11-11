@@ -9,9 +9,11 @@ public class InventoryManager : MonoBehaviour
 
     public static InventoryManager instance { get; private set; }
     [SerializeField] private GameObject[] inventoryCells;
+    [SerializeField] private GameObject emptyCell;
 
     public GameObject InventoryPanel;
     private GameObject AlreadyChosenCell = null;
+    private Sprite tempCellImage;
     private bool isOpened;
     private GameObject onMouseObject;
 
@@ -29,7 +31,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Start()
     {
-        isOpened = false;
+        isOpened = false; 
     }
 
     private void Update()
@@ -39,6 +41,10 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             IsometricPlayerMovementController.IsAbleToMove = !IsometricPlayerMovementController.IsAbleToMove;
+            if (AlreadyChosenCell != null)
+            {
+                AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = tempCellImage;
+            }
             AlreadyChosenCell = null;
             if (onMouseObject != null)
             {
@@ -58,7 +64,13 @@ public class InventoryManager : MonoBehaviour
                 AlreadyChosenCell = CurrentCell;
                 onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().dragAndDropElement, transform);
                 onMouseObject.transform.position = Input.mousePosition;
+
+                tempCellImage = AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
+                AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
+
             }
+
+         
         }
         //Если первый объект (ячейку) для Swap-а уже выбрали
         else
