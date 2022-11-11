@@ -101,9 +101,9 @@ public class InventoryManager : MonoBehaviour
 
         if (AlreadyChosenCell != null)
         {
-
-            Vector3 randomPosition = Random.onUnitSphere * 3f;
-            GameObject dropObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dropObject, playerTransform.position + randomPosition, Quaternion.identity) as GameObject;
+            GameObject dropObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dropObject);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dropObject.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
             AlreadyChosenCell.GetComponent<InventoryCell>().item = emptyCell.GetComponent<InventoryCell>().item;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = 0;
