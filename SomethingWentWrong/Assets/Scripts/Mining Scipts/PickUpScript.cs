@@ -60,7 +60,5 @@ public class PickUpScript : MonoBehaviour
         }
 
         transform.position = to;
-        Debug.Log(transform.position);
-        Debug.Log(to);
     }
 }
