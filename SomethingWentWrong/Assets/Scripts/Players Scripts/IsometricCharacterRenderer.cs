@@ -6,36 +6,28 @@ using UnityEngine;
 
 public class IsometricCharacterRenderer : MonoBehaviour
 {
-    public static readonly string[] idleDirections = { "idle N", "idle W", "idle S", "idle E" };
-    public static readonly string[] runDirections = { "run N", "run W", "run S", "run E" };
-
     private Animator _animator;
-    private int lastDirection;
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
 
-    public void SetDirection(Vector2 direction)
+    public void SetDirection(float x, float y)
     {
-        string[] directionArray = null;
+        _animator.SetFloat("HorizontalMovement", x);
+        _animator.SetFloat("VerticalMovement", y);
 
-        if (direction.magnitude < .01f)
+        if (x != 0 || y != 0)
         {
-            directionArray = idleDirections;
+            _animator.SetFloat("LastHorizontal", x);
+            _animator.SetFloat("LastVertical", y);
+            _animator.SetBool("IsMoving", true);
         }
         else
         {
-            directionArray = runDirections;
-            lastDirection = DirectionToIndex(direction, 4);
+            _animator.SetBool("IsMoving", false);
         }
-        
-        //_animator.Play(directionArray[lastDirection]);
-        if (direction.x < 0)
-            transform.localScale = new Vector3(-1, 1, 1);
-        else
-            transform.localScale = new Vector3(1, 1, 1);
     }
 
     public static int DirectionToIndex(Vector2 dir, int sliceCount)
