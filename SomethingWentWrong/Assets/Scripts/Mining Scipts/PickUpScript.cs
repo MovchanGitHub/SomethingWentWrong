@@ -42,6 +42,11 @@ public class PickUpScript : MonoBehaviour
         Destroy(gameObject);
     }
 
+    public void StartMove(Vector3 to, float speed)
+    {
+        StartCoroutine(MoveDropRoutine(to, speed));
+    }
+
     public IEnumerator MoveDropRoutine(Vector3 to, float speed)
     {
         Vector3 from = transform.position;
@@ -55,5 +60,7 @@ public class PickUpScript : MonoBehaviour
         }
 
         transform.position = to;
+        Debug.Log(transform.position);
+        Debug.Log(to);
     }
 }
