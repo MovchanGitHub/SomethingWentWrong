@@ -58,13 +58,10 @@ sysinfo.txt
 # Crashlytics generated file
 crashlytics-build.properties
 
-.DS_Store
-.DS_Store
-SomethingWentWrong/.DS_Store
-SomethingWentWrong/.DS_Store
-SomethingWentWrong/Assets/.DS_Store
-SomethingWentWrong/Assets/TextMesh Pro/.DS_Store
-.DS_Store
-SomethingWentWrong/Assets/.DS_Store
-SomethingWentWrong/.DS_Store
-.DS_Store
+# Something Went Wrong Special
+*.DS_Store
+SomethingWentWrong/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+SomethingWentWrong/ProjectSettings/ProjectSettings.asset
+SomethingWentWrong/UserSettings/EditorUserSettings.asset
+SomethingWentWrong/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+SomethingWentWrong/UserSettings/Layouts/default-2021.dwlt
