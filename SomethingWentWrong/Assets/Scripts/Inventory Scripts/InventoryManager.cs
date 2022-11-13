@@ -11,8 +11,6 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject[] inventoryCells;
     [SerializeField] private GameObject emptyCell;
 
-    public GameObject InventoryPanel;
-    private GameObject AlreadyChosenCell = null;
     private Sprite tempCellImage;
     [SerializeField] private GameObject ContextMenu;
     [SerializeField] private GameObject SurvivalManager;
@@ -84,12 +82,6 @@ public class InventoryManager : MonoBehaviour
         {
             if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem != ItemType.NoItem)
             {
-                AlreadyChosenCell = CurrentCell;
-                onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
-                onMouseObject.transform.position = Input.mousePosition;
-
-                tempCellImage = AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
-                AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
 
                 //Ïðè íàæàòèè íà ïðàâóþ êíîïêó ìûøè âûñâå÷èâàåòñÿ êîíòåêñòíîå ìåíþ
                 if (Input.GetMouseButtonUp(1))
@@ -101,8 +93,10 @@ public class InventoryManager : MonoBehaviour
                 else
                 {
                     AlreadyChosenCell = CurrentCell;
-                    onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().dragAndDropElement, transform);
+                    onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
                     onMouseObject.transform.position = Input.mousePosition;
+                    tempCellImage = AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
+                    AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
                 }
             }
 
