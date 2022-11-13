@@ -7,9 +7,9 @@ public class BulletStats : MonoBehaviour
     public float speed;
     public float lifeTime;
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D col)
     {
-        if(collision.tag == "enemy")
+        if(col.tag == "enemy")
         {
             Destroy(gameObject);
         }
