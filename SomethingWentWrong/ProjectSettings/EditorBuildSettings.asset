@@ -11,4 +11,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu.unity
     guid: 640fffc2c04db4d0592dfaed3e148237
+  - enabled: 1
+    path: Assets/Scenes/Sanok.unity
+    guid: cad8930af30ab764eb9a68e3f4cee5e0
   m_configObjects: {}
