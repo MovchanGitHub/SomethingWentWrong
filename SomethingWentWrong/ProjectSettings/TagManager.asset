@@ -20,6 +20,7 @@ TagManager:
   - incline-min-SW
   - incline-min-SE
   - Resource
+  - enemy
   layers:
   - Default
   - TransparentFX
@@ -28,7 +29,7 @@ TagManager:
   - Water
   - UI
   - Minable Objects
-  - 
+  - Solid
   - 
   - 
   - 
