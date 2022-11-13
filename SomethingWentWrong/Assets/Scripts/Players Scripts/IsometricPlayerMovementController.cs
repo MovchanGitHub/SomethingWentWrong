@@ -18,8 +18,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
-    [HideInInspector] public int a11 = 1, a12 = 0;
-    [HideInInspector] public int a21 = 0, a22 = 1;
+    public int a11 = 1, a12 = 0;
+    public int a21 = 0, a22 = 1;
     
     private void Awake()
     {
