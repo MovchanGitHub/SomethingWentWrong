@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ce595c3874917734c9392b7817702e9d, type: 3}
+  m_Name: Agua Berry
+  m_EditorClassIdentifier: 
+  itemName: "\u042F\u0433\u043E\u0434\u0430 \u0410\u0433\u0443\u0430"
+  maximumAmount: 0
+  itemDescription: "\u0411\u043E\u043B\u044C\u0448\u0430\u044F \u0441\u0438\u043D\u044F\u044F
+    \u0441\u0444\u0435\u0440\u0430 \u0441 \u043E\u0447\u0435\u043D\u044C \u0442\u043E\u043D\u043A\u0438\u043C\u0438
+    \u0441\u0442\u0435\u043D\u043A\u0430\u043C\u0438, \u043A\u043E\u0442\u043E\u0440\u044B\u0435
+    \u043B\u043E\u043F\u0430\u044E\u0442\u0441\u044F \u043E\u0442 \u043C\u0430\u043B\u0435\u0439\u0448\u0435\u0433\u043E
+    \u0434\u0430\u0432\u043B\u0435\u043D\u0438\u044F. \u0412\u043D\u0443\u0442\u0440\u0438
+    \u0445\u0440\u0430\u043D\u0438\u0442\u0441\u044F \u043C\u043D\u043E\u0433\u043E
+    \u0432\u043A\u0443\u0441\u043D\u043E\u0439 \u0436\u0438\u0434\u043A\u043E\u0441\u0442\u0438"
+  TypeOfThisItem: 2
+  image: {fileID: 21300000, guid: 7ade657c500ee2a4a905bf25a949156e, type: 3}
+  dragAndDropElement: {fileID: 0}
+  satiationEffect: 2
+  slakingOfThirstEffect: 25
+  healEffect: 1

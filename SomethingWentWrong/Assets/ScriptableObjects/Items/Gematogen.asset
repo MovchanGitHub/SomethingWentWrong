@@ -10,14 +10,15 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ce595c3874917734c9392b7817702e9d, type: 3}
-  m_Name: Beluga
+  m_Name: Gematogen
   m_EditorClassIdentifier: 
-  itemName: "\u041A\u043E\u043D\u0441\u0435\u0440\u0432\u0430 \u0431\u0435\u043B\u0443\u0433\u0438"
+  itemName: Gematogen
   maximumAmount: 0
-  itemDescription: "\u041F\u0430\u0445\u043D\u0435\u0442 \u0434\u043E\u043C\u043E\u043C"
+  itemDescription: "\u041B\u044E\u0431\u0438\u043C\u043E\u0435 \u043B\u0430\u043A\u043E\u043C\u0441\u0442\u0432\u043E
+    \u0433\u043B\u0430\u0432\u043D\u043E\u0433\u043E \u0433\u0435\u0440\u043E\u044F"
   TypeOfThisItem: 2
-  image: {fileID: 21300000, guid: 519a0fa39ae22104ca2828080ece17c9, type: 3}
+  image: {fileID: 0}
   dragAndDropElement: {fileID: 0}
-  satiationEffect: 50
-  slakingOfThirstEffect: -10
-  healEffect: 0
+  satiationEffect: 20
+  slakingOfThirstEffect: -3
+  healEffect: 10
