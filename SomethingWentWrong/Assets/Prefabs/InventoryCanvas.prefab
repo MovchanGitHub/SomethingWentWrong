@@ -240,6 +240,7 @@ MonoBehaviour:
   - {fileID: 3453387558017862988}
   emptyCell: {fileID: 2939424167956016078, guid: 4963444ac1cf9d240861d27ac417b433, type: 3}
   ContextMenu: {fileID: 1938288613450049260}
+  SurvivalManager: {fileID: 0}
   InventoryPanel: {fileID: 8691865678400560393}
 --- !u!1 &915402555855295702
 GameObject:
@@ -521,10 +522,10 @@ PrefabInstance:
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 98b47f2a7b0986d48bc24bd99f742005, type: 2}
+      objectReference: {fileID: 11400000, guid: 91da7d9e92dd3d744927d5c0e6cf81c6, type: 2}
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: amount
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365073182403308880, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: m_Name
@@ -1425,10 +1426,10 @@ PrefabInstance:
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 54ef6efdb411eb44fa302f5a2ed08584, type: 2}
+      objectReference: {fileID: 11400000, guid: 91da7d9e92dd3d744927d5c0e6cf81c6, type: 2}
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: amount
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365073182403308880, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: m_Name
@@ -2099,10 +2100,10 @@ PrefabInstance:
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: item
       value: 
-      objectReference: {fileID: 11400000, guid: 390bc960020a12543b1167073df8616f, type: 2}
+      objectReference: {fileID: 11400000, guid: 91da7d9e92dd3d744927d5c0e6cf81c6, type: 2}
     - target: {fileID: 3799260999283221316, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: amount
-      value: 5
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4365073182403308880, guid: 619fdc69cb362b2468ebfbdfba470a3b, type: 3}
       propertyPath: m_Name
