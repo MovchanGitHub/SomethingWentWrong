@@ -41,4 +41,26 @@ public class PickUpScript : MonoBehaviour
         InventoryManager.instance.AddItem(itemToInventory);
         Destroy(gameObject);
     }
+
+    public void StartMove(Vector3 to, float speed)
+    {
+        StartCoroutine(MoveDropRoutine(to, speed));
+    }
+
+    public IEnumerator MoveDropRoutine(Vector3 to, float speed)
+    {
+        Vector3 from = transform.position;
+        float distance = Vector3.Distance(from, to);
+        float rate = speed / distance;
+
+        for (float t = 0; t < 1; t += rate * Time.deltaTime)
+        {
+            transform.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, t));
+            yield return null;
+        }
+
+        transform.position = to;
+        Debug.Log(transform.position);
+        Debug.Log(to);
+    }
 }

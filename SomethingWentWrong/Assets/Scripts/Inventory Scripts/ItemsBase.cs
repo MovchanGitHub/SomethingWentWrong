@@ -14,4 +14,5 @@ public class ItemsBase : ScriptableObject
     public ItemType TypeOfThisItem;
     public Sprite image;
     public GameObject dragAndDropElement;
+    public GameObject dropObject;
 }

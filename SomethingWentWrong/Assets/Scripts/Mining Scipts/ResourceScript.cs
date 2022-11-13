@@ -6,6 +6,7 @@ public class ResourceScript : MonoBehaviour, Damagable
 {
     [SerializeField] private int hp;
     [SerializeField] private GameObject drop;
+    [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
 
@@ -21,26 +22,16 @@ public class ResourceScript : MonoBehaviour, Damagable
 
     private void DropItem()
     {
-        Vector3 pos = transform.position;
-        pos.x += spread * UnityEngine.Random.value - spread / 2;
-        pos.y += spread * UnityEngine.Random.value - spread / 2;
-        GameObject dropObject = Instantiate(drop);
-        dropObject.transform.position = transform.position;
-        StartCoroutine(MoveDropRoutine(dropObject.transform, pos, dropSpeed));
-    }
-
-    private IEnumerator MoveDropRoutine(Transform transform, Vector3 to, float speed)
-    {
-        Vector3 from = transform.position;
-        float distance = Vector3.Distance(from, to);
-        float rate = speed / distance;
-
-        for (float t = 0; t < 1; t += rate * Time.deltaTime)
+        int amountOfDrop = dropCount;
+        while (amountOfDrop > 0)
         {
-            transform.position = Vector3.Lerp(from, to, Mathf.SmoothStep(0f, 1f, t));
-            yield return null;
+            amountOfDrop--;
+            Vector3 pos = transform.position;
+            pos.x += spread * UnityEngine.Random.value - spread / 2;
+            pos.y += spread * UnityEngine.Random.value - spread / 2;
+            GameObject dropObject = Instantiate(drop);
+            dropObject.transform.position = transform.position;
+            dropObject.GetComponent<PickUpScript>().StartMove(pos, dropSpeed);
         }
-
-        transform.position = to;
     }
 }

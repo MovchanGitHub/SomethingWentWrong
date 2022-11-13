@@ -22,6 +22,8 @@ TagManager:
   - Resource
   - incline-min-NE
   - incline-min-NW
+  - enemy
+  - Bomb
   layers:
   - Default
   - TransparentFX
@@ -30,7 +32,7 @@ TagManager:
   - Water
   - UI
   - Minable Objects
-  - 
+  - Solid
   - 
   - 
   - 
@@ -61,4 +63,7 @@ TagManager:
     locked: 0
   - name: InteractionObjects
     uniqueID: 478309205
+    locked: 0
+  - name: UI
+    uniqueID: 3872064595
     locked: 0
