@@ -625,8 +625,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1023123601}
   - component: {fileID: 1023123600}
+  - component: {fileID: 1023123603}
   m_Layer: 0
-  m_Name: AudioPlayer
+  m_Name: MenuMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -643,7 +644,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 24300002, guid: ab5ad1d1c0b534dad94fd0f3702a95d4, type: 2}
   m_audioClip: {fileID: 8300000, guid: f436d144284074d11824693578213d22, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -743,6 +744,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1023123603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1023123599}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7f74259535949ee96266b5dcd7063d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1101695741
 GameObject:
   m_ObjectHideFlags: 0
@@ -1196,7 +1209,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: Level One
+          m_StringArgument: Sanok
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1406693064

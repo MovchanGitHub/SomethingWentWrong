@@ -18,8 +18,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private float verticalInput;
     private float horizontalInput;
 
-    [HideInInspector] public int a11 = 1, a12 = 0;
-    [HideInInspector] public int a21 = 0, a22 = 1;
+    public int a11 = 1, a12 = 0;
+    public int a21 = 0, a22 = 1;
     
     private void Awake()
     {
@@ -30,23 +30,28 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private void Start()
     {
         movementSpeed = movementSpeedInit;
+        if (GameManagerScript.instance != null)
+        {
+            GameManagerScript.instance.player = gameObject;
+        }
     }
 
-    private void Update()
+    /*private void Update()
     {
         /*if (Input.GetKeyDown(KeyCode.LeftShift))
             MaximizeSpeed();
         if (Input.GetKeyUp(KeyCode.LeftShift))
-            MinimizeSpeed();*/
-    }
+            MinimizeSpeed();#1#
+    }*/
 
     private void FixedUpdate()
     {
         if (IsAbleToMove)
         {
             Vector2 currentPos = rbody.position;
-            verticalInput = Input.GetAxis("Vertical");
-            horizontalInput = Input.GetAxis("Horizontal");
+            horizontalInput = Input.GetAxisRaw("Horizontal");
+            verticalInput = Input.GetAxisRaw("Vertical");
+            isoRenderer.SetDirection(horizontalInput, verticalInput);
 
             inputVector = new Vector2(
                 a11 * horizontalInput + a12 * verticalInput, 
@@ -55,11 +60,11 @@ public class IsometricPlayerMovementController : MonoBehaviour
             inputVector = Vector2.ClampMagnitude(inputVector, 1);
             Vector2 movement = inputVector * movementSpeed;
             Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-            isoRenderer.SetDirection(movement);
             rbody.MovePosition(newPos);
         }
     }
 
+    /*
     private void MaximizeSpeed()
     {
         movementSpeed = 2 * movementSpeedInit;
@@ -68,5 +73,5 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private void MinimizeSpeed()
     {
         movementSpeed = movementSpeedInit;
-    }
+    }*/
 }
