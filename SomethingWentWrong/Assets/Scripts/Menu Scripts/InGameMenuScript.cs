@@ -7,12 +7,14 @@ using UnityEngine.UIElements;
 public class InGameMenuScript : MonoBehaviour
 {
     public GameObject InGameMenuPanel;
+    public GameObject Background;
     [SerializeField]
     private bool isOpened = false;
     
     private void Awake()
     {
         InGameMenuPanel.SetActive(false);
+        Background.SetActive(false);
     }
     private void Update()
     {
@@ -24,6 +26,7 @@ public class InGameMenuScript : MonoBehaviour
     {
         isOpened = !isOpened;
         InGameMenuPanel.GameObject().SetActive(isOpened);
+        Background.GameObject().SetActive(isOpened);
     }
 }
 
