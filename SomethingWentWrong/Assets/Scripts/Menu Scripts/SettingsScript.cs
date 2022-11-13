@@ -9,11 +9,15 @@ public class SettingsScript : MonoBehaviour
 {
 
     public GameObject Settings;
+    public GameObject Backgound;
     [SerializeField] private bool isOpened = false;
+    [SerializeField] private int musicVolume;
+    [SerializeField] private int soundsVolume;
 
     private void Awake()
     {
         Settings.SetActive(false);
+        Backgound.SetActive(false);
     }
 
     private void Update()
@@ -25,11 +29,17 @@ public class SettingsScript : MonoBehaviour
     {
         isOpened = !isOpened;
         Settings.GameObject().SetActive(isOpened);
+        Backgound.GameObject().SetActive(isOpened);
     }
 
-    public void SetVolume(double value)
+    public void SetMusicVolume(int value)
     {
-        
+        musicVolume = value;
+    }
+    public void SetSoundsVolume(int value)
+    {
+        soundsVolume = value;
+
     }
     public void SetResolution(int value)
     {
