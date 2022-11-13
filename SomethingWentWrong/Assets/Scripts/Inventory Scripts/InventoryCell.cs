@@ -9,7 +9,6 @@ public class InventoryCell : MonoBehaviour
     public ItemsBase item;
     public int amount;
     public GameObject icon;
-    public GameObject dragAndDropElement;
 
     private void Start()
     {

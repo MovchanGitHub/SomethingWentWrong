@@ -9,6 +9,11 @@ public class InventoryManager : MonoBehaviour
 
     public static InventoryManager instance { get; private set; }
     [SerializeField] private GameObject[] inventoryCells;
+    [SerializeField] private GameObject emptyCell;
+
+    public GameObject InventoryPanel;
+    private GameObject AlreadyChosenCell = null;
+    private Sprite tempCellImage;
     [SerializeField] private GameObject ContextMenu;
     [SerializeField] private GameObject SurvivalManager;
 
@@ -17,6 +22,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject ChosenCellExtra = null;
     private bool isOpened;
     private GameObject onMouseObject;
+    private Transform playerTransform;
 
     private void Awake()
     {
@@ -33,6 +39,8 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         isOpened = false;
+
+        playerTransform = GameManagerScript.instance.player.transform;
     }
 
     private void Update()
@@ -42,6 +50,10 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             IsometricPlayerMovementController.IsAbleToMove = !IsometricPlayerMovementController.IsAbleToMove;
+            if (AlreadyChosenCell != null)
+            {
+                AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = tempCellImage;
+            }
             AlreadyChosenCell = null;
             if (onMouseObject != null)
             {
@@ -64,15 +76,22 @@ public class InventoryManager : MonoBehaviour
         ContextMenu.SetActive(false);
     }
 
-    //Перемещение предметов по инвентарю
+    //ГЏГҐГ°ГҐГ¬ГҐГ№ГҐГ­ГЁГҐ ГЇГ°ГҐГ¤Г¬ГҐГІГ®Гў ГЇГ® ГЁГ­ГўГҐГ­ГІГ Г°Гѕ
     public void OnCellClick(GameObject CurrentCell)
     {
-        //Если первый объект (ячейку) для Swap-а ещё не выбрали
+        //Г…Г±Г«ГЁ ГЇГҐГ°ГўГ»Г© Г®ГЎГєГҐГЄГІ (ГїГ·ГҐГ©ГЄГі) Г¤Г«Гї Swap-Г  ГҐГ№Вё Г­ГҐ ГўГ»ГЎГ°Г Г«ГЁ
         if (AlreadyChosenCell == null)
         {
             if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem != ItemType.NoItem)
             {
-                //При нажатии на правую кнопку мыши высвечивается контекстное меню
+                AlreadyChosenCell = CurrentCell;
+                onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
+                onMouseObject.transform.position = Input.mousePosition;
+
+                tempCellImage = AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
+                AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite;
+
+                //ГЏГ°ГЁ Г­Г Г¦Г ГІГЁГЁ Г­Г  ГЇГ°Г ГўГіГѕ ГЄГ­Г®ГЇГЄГі Г¬Г»ГёГЁ ГўГ»Г±ГўГҐГ·ГЁГўГ ГҐГІГ±Гї ГЄГ®Г­ГІГҐГЄГ±ГІГ­Г®ГҐ Г¬ГҐГ­Гѕ
                 if (Input.GetMouseButtonUp(1))
                 {
                     ChosenCellExtra = CurrentCell;
@@ -86,8 +105,10 @@ public class InventoryManager : MonoBehaviour
                     onMouseObject.transform.position = Input.mousePosition;
                 }
             }
+
+         
         }
-        //Если первый объект (ячейку) для Swap-а уже выбрали
+        //Г…Г±Г«ГЁ ГЇГҐГ°ГўГ»Г© Г®ГЎГєГҐГЄГІ (ГїГ·ГҐГ©ГЄГі) Г¤Г«Гї Swap-Г  ГіГ¦ГҐ ГўГ»ГЎГ°Г Г«ГЁ
         else
         {
             GameObject temporary = Instantiate(AlreadyChosenCell);
@@ -95,12 +116,10 @@ public class InventoryManager : MonoBehaviour
             AlreadyChosenCell.GetComponent<InventoryCell>().item = CurrentCell.GetComponent<InventoryCell>().item;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = CurrentCell.GetComponent<InventoryCell>().amount;
             AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = CurrentCell.GetComponent<InventoryCell>().item.image;
-            AlreadyChosenCell.GetComponent<InventoryCell>().dragAndDropElement = CurrentCell.GetComponent<InventoryCell>().dragAndDropElement;
 
             CurrentCell.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
             CurrentCell.GetComponent<InventoryCell>().amount = temporary.GetComponent<InventoryCell>().amount;
             CurrentCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
-            CurrentCell.GetComponent<InventoryCell>().dragAndDropElement = temporary.GetComponent<InventoryCell>().dragAndDropElement;
 
             Destroy(temporary);
             Destroy(onMouseObject);
@@ -109,17 +128,24 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    //Выбрасывание предметов из инвентаря
+    //Г‚Г»ГЎГ°Г Г±Г»ГўГ Г­ГЁГҐ ГЇГ°ГҐГ¤Г¬ГҐГІГ®Гў ГЁГ§ ГЁГ­ГўГҐГ­ГІГ Г°Гї
     public void OnDropZoneSpaceClick()
     {
+
         if (AlreadyChosenCell != null)
         {
-            AlreadyChosenCell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
+            GameObject dropObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dropObject);
+            Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            dropObject.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
+
+            AlreadyChosenCell.GetComponent<InventoryCell>().item = emptyCell.GetComponent<InventoryCell>().item;
             AlreadyChosenCell.GetComponent<InventoryCell>().amount = 0;
-            AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = AlreadyChosenCell.GetComponent<InventoryCell>().item.image;
+            AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().item.image;
             Destroy(onMouseObject);
             AlreadyChosenCell = null;
         }
+
+
     }
 
     public void AddItem(ItemsBase newItem)
@@ -131,7 +157,6 @@ public class InventoryManager : MonoBehaviour
                 cell.GetComponent<InventoryCell>().item = newItem;
                 cell.GetComponent<InventoryCell>().amount = 0;
                 cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = newItem.image;
-                cell.GetComponent<InventoryCell>().dragAndDropElement = newItem.dragAndDropElement;
                 return;
             }
         }

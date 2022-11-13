@@ -30,6 +30,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private void Start()
     {
         movementSpeed = movementSpeedInit;
+        if (GameManagerScript.instance != null)
+        {
+            GameManagerScript.instance.player = gameObject;
+        }
     }
 
     private void Update()
@@ -68,5 +72,5 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private void MinimizeSpeed()
     {
         movementSpeed = movementSpeedInit;
-    }
+    }  
 }
