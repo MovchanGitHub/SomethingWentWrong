@@ -48,7 +48,10 @@ public class AttackPoint : MonoBehaviour
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.GetComponent<Damagable>().doDamage(damage);
+            if (hitObject.GetComponent<IDamagable>() != null)
+            {
+                hitObject.GetComponent<IDamagable>().GetDamage(damage);
+            }
         }
     }
 

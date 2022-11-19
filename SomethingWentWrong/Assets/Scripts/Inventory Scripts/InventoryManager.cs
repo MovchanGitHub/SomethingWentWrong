@@ -130,10 +130,10 @@ public class InventoryManager : MonoBehaviour
                 tempCell = AlreadyChosenCell.transform.gameObject;
                 onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
                 onMouseObject.transform.position = Input.mousePosition;
-            }      
+            }
         }
         //Åñëè ïåðâûé îáúåêò (ÿ÷åéêó) äëÿ Swap-à óæå âûáðàëè
-        else
+        else if (AlreadyChosenCell != null)
         {
             InventoryCell alreadyChosenCell = AlreadyChosenCell.GetComponent<InventoryCell>();
 
