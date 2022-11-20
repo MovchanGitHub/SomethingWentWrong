@@ -1621,6 +1621,7 @@ MonoBehaviour:
   InGameMenuPanel: {fileID: 2291034796167367688}
   Background: {fileID: 8417941887800286677}
   isOpened: 0
+  isMainMenu: 0
 --- !u!114 &2159322542572342920
 MonoBehaviour:
   m_ObjectHideFlags: 0
