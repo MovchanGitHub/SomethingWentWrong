@@ -18,6 +18,7 @@ public class Buttons : MonoBehaviour
     
     public void OnButtonLoadScene(string sceneName)
     {
+        Debug.Log($"Loading scene {sceneName}");
         SceneManager.LoadScene(sceneName);
     }
     
@@ -28,17 +29,18 @@ public class Buttons : MonoBehaviour
     
     public void OnButtonExit()
     {
+        Debug.Log("Quit application");
         Application.Quit();
     }
 
     public void OnButtonSettings()
     {
-        settings.ShowHideMenu();
+        settings.ShowHideSettings();
         pause.ShowHideMenu();
     }
     public void OnButtonBack()
     {
-        settings.ShowHideMenu();
+        settings.ShowHideSettings();
         pause.ShowHideMenu();
     }
 
