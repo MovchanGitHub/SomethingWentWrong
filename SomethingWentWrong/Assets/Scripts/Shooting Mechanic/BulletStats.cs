@@ -6,11 +6,13 @@ public class BulletStats : MonoBehaviour
 {
     public float speed;
     public float lifeTime;
+    public float damageAmount = 1;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if(col.tag == "enemy")
+        if (col.GetComponent<IDamagable>() != null && col.gameObject.transform.parent.tag != "Player") 
         {
+            col.GetComponent<IDamagable>().GetDamage(damageAmount);
             Destroy(gameObject);
         }
     }

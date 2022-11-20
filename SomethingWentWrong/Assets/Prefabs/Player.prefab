@@ -251,7 +251,7 @@ MonoBehaviour:
   damage: 5
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 320
   attackRate: 2
 --- !u!1 &7132474006594583877
 GameObject:

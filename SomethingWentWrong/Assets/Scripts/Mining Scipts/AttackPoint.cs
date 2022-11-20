@@ -24,7 +24,7 @@ public class AttackPoint : MonoBehaviour
         {
             transform.localPosition = new Vector3(0.25f, startPosition.y + 1 * Mathf.Sign(Input.GetAxis("Vertical")), startPosition.z);
         }
-        else
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
         {
             transform.localPosition = new Vector3(0.25f + startPosition.x * Mathf.Sign(Input.GetAxis("Horizontal")), startPosition.y, startPosition.z);
         }
@@ -48,7 +48,10 @@ public class AttackPoint : MonoBehaviour
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.GetComponent<Damagable>().doDamage(damage);
+            if (hitObject.GetComponent<IDamagable>() != null)
+            {
+                hitObject.GetComponent<IDamagable>().GetDamage(damage);
+            }
         }
     }
 
