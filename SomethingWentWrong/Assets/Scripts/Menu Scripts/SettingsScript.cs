@@ -10,9 +10,9 @@ public class SettingsScript : MonoBehaviour
 
     public GameObject Settings;
     public GameObject Backgound;
-    [SerializeField] private bool isOpened = false;
-    [SerializeField] private int musicVolume;
-    [SerializeField] private int soundsVolume;
+    [SerializeField] private bool isOpened;
+    [SerializeField] public int musicVolume;
+    [SerializeField] public int soundsVolume;
 
     private void Awake()
     {
@@ -39,7 +39,6 @@ public class SettingsScript : MonoBehaviour
     public void SetSoundsVolume(int value)
     {
         soundsVolume = value;
-
     }
     public void SetResolution(int value)
     {
