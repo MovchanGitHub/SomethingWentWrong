@@ -8,8 +8,8 @@ public class InGameMenuScript : MonoBehaviour
 {
     public GameObject InGameMenuPanel;
     public GameObject Background;
-    [SerializeField] private bool isOpened;
-    [SerializeField] private bool isMainMenu;
+    [SerializeField] public bool isOpened;
+    [SerializeField] public bool isMainMenu;
 
     
     private void Awake()

@@ -35,12 +35,12 @@ public class Buttons : MonoBehaviour
 
     public void OnButtonSettings()
     {
-        settings.ShowHideMenu();
+        settings.ShowHideSettings();
         pause.ShowHideMenu();
     }
     public void OnButtonBack()
     {
-        settings.ShowHideMenu();
+        settings.ShowHideSettings();
         pause.ShowHideMenu();
     }
 

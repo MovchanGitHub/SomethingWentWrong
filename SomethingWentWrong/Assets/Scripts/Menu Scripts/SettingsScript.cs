@@ -23,9 +23,12 @@ public class SettingsScript : MonoBehaviour
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
-            ShowHideMenu();
+        {
+            ShowHideSettings();
+            GetComponentInParent<InGameMenuScript>().ShowHideMenu();
+        }
     }
-    public void ShowHideMenu()
+    public void ShowHideSettings()
     {
         isOpened = !isOpened;
         Settings.GameObject().SetActive(isOpened);
