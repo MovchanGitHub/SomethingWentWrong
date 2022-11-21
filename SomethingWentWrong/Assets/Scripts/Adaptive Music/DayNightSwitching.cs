@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class DayNightSwitching : MusicFaderScript
 {
@@ -15,16 +16,18 @@ public class DayNightSwitching : MusicFaderScript
     public GameObject adaptiveParameter;
     private DayTime _dayCycle;
     private bool _inCombat;
+    public AudioMixer intenseMixer;
+    public float intenseMixerVol;
 
     private void CombatStarts()
     {
         if (_inCombat)
         {
-            MusicVolumeUpRoot(_intenseAudio, TransTime, ref _intenseVolume);
+            MusicVolumeUpSqr(_intenseAudio, TransTime, ref _intenseVolume);
         }
         else
         {
-            MusicVolumeDownSqr(_intenseAudio, TransTime, ref _intenseVolume);
+            MusicVolumeDownRoot(_intenseAudio, TransTime / 5, ref _intenseVolume);
         }
     }
     
@@ -44,13 +47,14 @@ public class DayNightSwitching : MusicFaderScript
 
     private void Update()
     {
+        intenseMixer.SetFloat("intenseMusicVol", _dayAudio.volume * intenseMixerVol - intenseMixerVol * 2);
         if (Input.GetKeyDown(KeyCode.P)) _inCombat = !_inCombat;
 
         _dayCycle = adaptiveParameter.GetComponent<DayNightCycle>().dayCycle;
 
         if (_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night)
         {
-            MusicVolumeDownRoot(_dayAudio, TransTime, ref _dayVolume);
+            MusicVolumeDownRoot(_dayAudio, TransTime / 2, ref _dayVolume);
             if (_dayAudio.volume < 0.001f)
             {
                 _dayAudio.Stop();
@@ -62,8 +66,10 @@ public class DayNightSwitching : MusicFaderScript
 
             if (_intenseVolume > 0.001f)
             {
-                MusicVolumeDownRoot(_intenseAudio, TransTime, ref _intenseVolume);
+                MusicVolumeDownRoot(_intenseAudio, TransTime / 2, ref _intenseVolume);
             }
+
+            if (_inCombat) _inCombat = !_inCombat;
         }
         else
         {
@@ -73,7 +79,7 @@ public class DayNightSwitching : MusicFaderScript
                 _intenseAudio.Play();
             }
             
-            MusicVolumeDownRoot(_nightAudio, TransTime, ref _nightVolume);
+            MusicVolumeDownRoot(_nightAudio, TransTime / 2, ref _nightVolume);
             if (_nightAudio.volume < 0.001f)
             {
                 _nightAudio.Stop();
