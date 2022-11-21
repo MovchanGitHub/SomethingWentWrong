@@ -51,7 +51,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
             Vector2 currentPos = rbody.position;
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
-            isoRenderer.SetDirection(horizontalInput, verticalInput);
+            //isoRenderer.SetDirection(horizontalInput, verticalInput);
 
             inputVector = new Vector2(
                 a11 * horizontalInput + a12 * verticalInput, 

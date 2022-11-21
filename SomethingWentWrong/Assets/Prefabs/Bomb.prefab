@@ -179,8 +179,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ded59a0620cc646844ac10d952d7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _collider2D: {fileID: 5945951737930541641}
+  _area: {fileID: 5943138957055596174}
   lifeTime: 1
-  damageAmount: 10
+  damageAmount: 5
+  damagableLayers:
+    serializedVersion: 2
+    m_Bits: 2147483647
 --- !u!1 &6499335139566498530
 GameObject:
   m_ObjectHideFlags: 0

@@ -8,17 +8,18 @@ public class InGameMenuScript : MonoBehaviour
 {
     public GameObject InGameMenuPanel;
     public GameObject Background;
-    [SerializeField]
-    private bool isOpened = false;
+    [SerializeField] public bool isOpened;
+    [SerializeField] public bool isMainMenu;
+
     
     private void Awake()
     {
-        InGameMenuPanel.SetActive(false);
-        Background.SetActive(false);
+        InGameMenuPanel.SetActive(isOpened);
+        Background.SetActive(isOpened);
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape))
+        if (Input.GetKeyDown(KeyCode.Escape) && !isMainMenu)
             ShowHideMenu();
     }
     

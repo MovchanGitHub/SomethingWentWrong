@@ -1610,6 +1610,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5748654366946018296, guid: 3909027b58949ba459502a20bf3c3c74, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.4257812
+      objectReference: {fileID: 0}
     - target: {fileID: 7968360577424859928, guid: 3909027b58949ba459502a20bf3c3c74, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
@@ -2001,6 +2005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   adaptiveParameter: {fileID: 564423362}
+  intenseMixer: {fileID: 24100000, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
+  intenseMixerVol: 12
 --- !u!82 &686236443
 AudioSource:
   m_ObjectHideFlags: 0
@@ -2311,6 +2317,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3127322585884400094, guid: 6a420d8ea7a884926b2cd6f869575ef3, type: 3}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 4791128734819706366, guid: 6a420d8ea7a884926b2cd6f869575ef3, type: 3}
+      propertyPath: m_RootOrder
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5243858191827648727, guid: 6a420d8ea7a884926b2cd6f869575ef3, type: 3}
+      propertyPath: m_RootOrder
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 6382607494377445897, guid: 6a420d8ea7a884926b2cd6f869575ef3, type: 3}
       propertyPath: m_Name
       value: Canvas
@@ -7102,7 +7120,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 11712503, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
       propertyPath: cycleDuration
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4812061632095218440, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
       propertyPath: m_RootOrder

@@ -37,6 +37,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
             sprite.color = Color.white;
     }
 
+    /*
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.tag == "Bomb")
@@ -48,6 +49,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
             GetDamage((1f - magnitude * magnitude) * bomb.damageAmount);
         }
     }
+    */
 
     private void Die()
     {

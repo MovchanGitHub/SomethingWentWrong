@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Rock
   m_EditorClassIdentifier: 
   itemName: Rock
-  maximumAmount: 64
+  maximumAmount: 3
   itemDescription: Piece of rock
   TypeOfThisItem: 3
   image: {fileID: 21300000, guid: 2dbdf7f682f9a2a46ae8c25dca7bfecd, type: 3}

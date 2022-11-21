@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 819197557132720297}
   - component: {fileID: 819197557132720299}
   - component: {fileID: 819197557132720298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyCollider
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -86,7 +86,7 @@ GameObject:
   m_Component:
   - component: {fileID: 819197557229691555}
   - component: {fileID: 819197557229691556}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 819197557735736611}
   - component: {fileID: 819197557735736612}
   - component: {fileID: 819197557735736615}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: LookAt
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -234,7 +234,7 @@ GameObject:
   - component: {fileID: 819197558646750935}
   - component: {fileID: 74431507}
   - component: {fileID: 2111622919}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SampleEnemy
   m_TagString: enemy
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   - component: {fileID: 4518771967143615462}
   - component: {fileID: 7142521595494424341}
   - component: {fileID: 8475053302361529581}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyDamageLogic
   m_TagString: Untagged
   m_Icon: {fileID: 0}

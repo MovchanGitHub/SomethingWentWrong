@@ -34,7 +34,7 @@ public class MenuMusicTransition : MusicFaderScript
                 Destroy(gameObject);
             } */
             
-            MusicVolumeDownRoot(_audioSource, TransTime, ref _volume);
+            MusicVolumeDownRoot(_audioSource, TransTime / 5, ref _volume);
             if (MathF.Sqrt(_volume) < 0.001f)
             {
                 Destroy(gameObject);

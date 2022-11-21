@@ -28,7 +28,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (isPatrolling)
         {
-            Patrol();
+            //Patrol();
         }
         else if (canMove)
         {
@@ -51,6 +51,7 @@ public class EnemyMovement : MonoBehaviour
     
     private void Patrol()
     {
+        if (patrolPoints == null) return;
         if (Vector2.Distance(transform.position, patrolPoints[currentPointIndex].position) > 0.1)
         {
             transform.position = Vector2.MoveTowards(transform.position,
