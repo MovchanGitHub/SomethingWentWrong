@@ -13,6 +13,7 @@ public class InventoryManager : MonoBehaviour
 
     private Sprite tempCellImage;
     [SerializeField] private GameObject ContextMenu;
+    [SerializeField] private GameObject tipPanel;
     [SerializeField] private GameObject SurvivalManager;
 
     public GameObject InventoryPanel;
@@ -87,8 +88,7 @@ public class InventoryManager : MonoBehaviour
                 if (Input.GetMouseButtonUp(1))
                 {
                     ChosenCellExtra = CurrentCell;
-                    Debug.Log("ContextMenuHere");
-                    ShowContextMenu(CurrentCell);
+                    ShowContextMenu();
                 }
                 else
                 {
@@ -105,20 +105,20 @@ public class InventoryManager : MonoBehaviour
         //Åñëè ïåðâûé îáúåêò (ÿ÷åéêó) äëÿ Swap-à óæå âûáðàëè
         else
         {
-            GameObject temporary = Instantiate(AlreadyChosenCell);
+             GameObject temporary = Instantiate(AlreadyChosenCell);
 
-            AlreadyChosenCell.GetComponent<InventoryCell>().item = CurrentCell.GetComponent<InventoryCell>().item;
-            AlreadyChosenCell.GetComponent<InventoryCell>().amount = CurrentCell.GetComponent<InventoryCell>().amount;
-            AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = CurrentCell.GetComponent<InventoryCell>().item.image;
+             AlreadyChosenCell.GetComponent<InventoryCell>().item = CurrentCell.GetComponent<InventoryCell>().item;
+             AlreadyChosenCell.GetComponent<InventoryCell>().amount = CurrentCell.GetComponent<InventoryCell>().amount;
+             AlreadyChosenCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = CurrentCell.GetComponent<InventoryCell>().item.image;
 
-            CurrentCell.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
-            CurrentCell.GetComponent<InventoryCell>().amount = temporary.GetComponent<InventoryCell>().amount;
-            CurrentCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
+             CurrentCell.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
+             CurrentCell.GetComponent<InventoryCell>().amount = temporary.GetComponent<InventoryCell>().amount;
+             CurrentCell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
 
-            Destroy(temporary);
-            Destroy(onMouseObject);
-            onMouseObject = null;
-            AlreadyChosenCell = null;
+             Destroy(temporary);
+             Destroy(onMouseObject);
+             onMouseObject = null;
+             AlreadyChosenCell = null;
         }
     }
 
@@ -168,15 +168,15 @@ public class InventoryManager : MonoBehaviour
         return true;
     }
 
-    private void ShowContextMenu(GameObject CurrentCell)
+    private void ShowContextMenu()
     {
         ContextMenu.transform.position = new Vector2(Input.mousePosition.x + ContextMenu.GetComponent<RectTransform>().rect.width / 2, Input.mousePosition.y - ContextMenu.GetComponent<RectTransform>().rect.height / 2);
         ContextMenu.SetActive(true);
     }
 
-    public void UseItem() /*(GameObject CurrentCell)*/
+    public void UseItem() 
     {
-        if(ChosenCellExtra.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food)
+        if((!Input.GetMouseButtonUp(1)) && (ChosenCellExtra.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
         {
             ItemTypeFood temporary = ChosenCellExtra.GetComponent<InventoryCell>().item as ItemTypeFood;
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishHunger(temporary.satiationEffect);
@@ -185,10 +185,48 @@ public class InventoryManager : MonoBehaviour
         }
     }
 
-    public void DeleteItem()/*(GameObject CurrentCell)*/
+    public void DeleteItem()
     {
-        ChosenCellExtra.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
-        ChosenCellExtra.GetComponent<InventoryCell>().amount = 0;
-        ChosenCellExtra.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = ChosenCellExtra.GetComponent<InventoryCell>().item.image;
+        if (!Input.GetMouseButtonUp(1))
+        {
+            ChosenCellExtra.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
+            ChosenCellExtra.GetComponent<InventoryCell>().amount = 0;
+            ChosenCellExtra.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = ChosenCellExtra.GetComponent<InventoryCell>().item.image;
+        }
     }
+
+    public void ShowTipPanel(GameObject CurrentCell)
+    {
+        StartCoroutine(CoroutineShowTipPanel(CurrentCell));
+    }
+
+    IEnumerator CoroutineShowTipPanel(GameObject CurrentCell)
+    {
+        Debug.Log("Start");
+        yield return new WaitForSeconds(1.0f);
+        Debug.Log("End");
+        if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food)
+        {
+            ItemTypeFood temporary = CurrentCell.GetComponent<InventoryCell>().item as ItemTypeFood;
+            tipPanel.transform.GetChild(0).GetComponent<Text>().text = temporary.satiationEffect.ToString();
+            tipPanel.transform.GetChild(1).GetComponent<Text>().text = temporary.slakingOfThirstEffect.ToString();
+            //tipPanel.transform.GetChild(2).GetComponent<Text>().text = temporary.oxigenEffect.ToString();
+            tipPanel.transform.GetChild(3).GetComponent<Text>().text = temporary.healEffect.ToString();
+            tipPanel.SetActive(true);
+        }
+    }
+
+    public void OnCursorExit()
+    {
+        Debug.Log("Exit");
+
+        tipPanel.SetActive(false);
+        tipPanel.transform.GetChild(0).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(1).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(2).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(3).GetComponent<Text>().text = "0";
+        StopCoroutine("CoroutineShowTipPanel");
+    }
+
+
 }
