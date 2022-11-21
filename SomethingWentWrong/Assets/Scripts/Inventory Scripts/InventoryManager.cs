@@ -106,7 +106,7 @@ public class InventoryManager : MonoBehaviour
             if (Input.GetMouseButtonUp(1))
             {
                 ChosenCellExtra = CurrentCell;
-                ShowContextMenu(CurrentCell);
+                ShowContextMenu();
             }
             else
             {
