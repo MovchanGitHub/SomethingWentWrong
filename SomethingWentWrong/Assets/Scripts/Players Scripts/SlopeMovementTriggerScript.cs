@@ -27,10 +27,12 @@ public class SlopeMovementTriggerScript : MonoBehaviour
             case "incline-max-SW"://
                 controller.a11 =  2; //controller.a12 = -2;
                 controller.a21 =  3; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;//
             case "incline-max-SE"://
                 controller.a11 =  2; //controller.a12 =  2;
                 controller.a21 = -3; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;//
             case "incline-mid-W"://
                 controller.a11 =  2; //controller.a12 =  0;
@@ -43,10 +45,12 @@ public class SlopeMovementTriggerScript : MonoBehaviour
             case "incline-mid-SW"://
                 controller.a11 =  1; //controller.a12 = -2;
                 controller.a21 =  1; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;//
             case "incline-mid-SE"://
                 controller.a11 =  1; //controller.a12 =  2;
                 controller.a21 = -1; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;//
             case "incline-min-W"://
                 controller.a11 =  3; //controller.a12 =  0;
@@ -59,18 +63,22 @@ public class SlopeMovementTriggerScript : MonoBehaviour
             case "incline-min-SW"://
                 controller.a11 =  5; //controller.a12 = -2;
                 controller.a21 =  4; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;//
             case "incline-min-SE"://
                 controller.a11 =  5; //controller.a12 =  2;
                 controller.a21 = -4; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;
             case "incline-min-NE":
                 controller.a11 = 4; //controller.a12 =  2;
                 controller.a21 = 1; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;
             case "incline-min-NW":
                 controller.a11 = 4; //controller.a12 =  2;
                 controller.a21 = -1; //controller.a22 =  1;
+                controller.ignoreVerticalInput = true;
                 break;
         }
     }
@@ -95,6 +103,7 @@ public class SlopeMovementTriggerScript : MonoBehaviour
             case "incline-min-NW":
                 controller.a11 = 1; //controller.a12 = 0;
                 controller.a21 = 0; //controller.a22 = 1;
+                controller.ignoreVerticalInput = false;
                 break;
         }
     }

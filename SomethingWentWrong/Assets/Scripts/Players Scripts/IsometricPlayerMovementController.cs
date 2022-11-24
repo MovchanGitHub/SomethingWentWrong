@@ -20,6 +20,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public int a11 = 1, a12 = 0;
     public int a21 = 0, a22 = 1;
+
+    public bool ignoreVerticalInput;
     
     private void Awake()
     {
@@ -50,7 +52,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             Vector2 currentPos = rbody.position;
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = Input.GetAxisRaw("Vertical");
+            if (!ignoreVerticalInput || Math.Abs(horizontalInput) < float.Epsilon)
+                verticalInput = Input.GetAxisRaw("Vertical");
             isoRenderer.SetDirection(horizontalInput, verticalInput);
 
             inputVector = new Vector2(
