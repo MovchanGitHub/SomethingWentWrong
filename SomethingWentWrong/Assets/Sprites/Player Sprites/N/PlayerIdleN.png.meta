@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 36
+  spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerIdleBackward_0
+      name: PlayerIdleN_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35c2fda88b903ae459616f4cca04a68c
-      internalID: -2131635854
+      spriteID: d8ff6305c96f8fc4fbedd58f9413e29b
+      internalID: 1664462463
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerIdleBackward_1
+      name: PlayerIdleN_1
       rect:
         serializedVersion: 2
         x: 48
@@ -176,8 +176,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1550133f1bd5d0e49bb1b08b749f57fd
-      internalID: 967878406
+      spriteID: 55fa43048598bbb4f949b3ae12165cf5
+      internalID: 1706594499
       vertices: []
       indices: 
       edges: []
@@ -193,8 +193,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerIdleBackward_1: 967878406
-      PlayerIdleBackward_0: -2131635854
+      PlayerIdleN_0: 1664462463
+      PlayerIdleN_1: 1706594499
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

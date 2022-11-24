@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d2e52baedf82f3d4e95d37a42a5149c8
+guid: 22f8c1bf058c40345b18ce07cbc652ed
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -101,47 +101,11 @@ TextureImporter:
     overridden: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: Android
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: iPhone
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 3
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: PlayerWalkingN_0
+      name: PlayerIdleNW_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 962e7c55b67de9044bbec166b0230f64
-      internalID: 437621729
+      spriteID: e6c08a2ff07afaa4292ebd8d21e8d8a3
+      internalID: 585608057
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: PlayerWalkingN_1
+      name: PlayerIdleNW_1
       rect:
         serializedVersion: 2
         x: 48
@@ -176,50 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ed445ad1ba6dac247a4d0e38c97f4088
-      internalID: 939143114
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerWalkingN_2
-      rect:
-        serializedVersion: 2
-        x: 96
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: f67e3d57d5812c34b8826eebd77b1362
-      internalID: -693812492
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: PlayerWalkingN_3
-      rect:
-        serializedVersion: 2
-        x: 144
-        y: 0
-        width: 48
-        height: 48
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 64ddce5e7435a3440b70afe7d40b7a0b
-      internalID: -847306356
+      spriteID: b36d83594fba085419a23e74760b5def
+      internalID: 1807724001
       vertices: []
       indices: 
       edges: []
@@ -235,10 +157,8 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlayerWalkingN_1: 939143114
-      PlayerWalkingN_3: -847306356
-      PlayerWalkingN_0: 437621729
-      PlayerWalkingN_2: -693812492
+      PlayerIdleNW_0: 585608057
+      PlayerIdleNW_1: 1807724001
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
