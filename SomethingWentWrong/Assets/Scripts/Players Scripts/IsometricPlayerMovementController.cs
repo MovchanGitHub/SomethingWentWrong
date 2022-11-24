@@ -15,13 +15,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private Rigidbody2D rbody;
     
     private Vector2 inputVector;
-    private float verticalInput;
-    private float horizontalInput;
 
     public int a11 = 1, a12 = 0;
     public int a21 = 0, a22 = 1;
 
     public bool ignoreVerticalInput;
+    public bool normalMovement = true;
     
     private void Awake()
     {
@@ -50,15 +49,37 @@ public class IsometricPlayerMovementController : MonoBehaviour
     {
         if (IsAbleToMove)
         {
+            float verticalInput; 
+            float horizontalInput;
+            
             Vector2 currentPos = rbody.position;
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            if (!ignoreVerticalInput || Math.Abs(horizontalInput) < float.Epsilon)
+            if (normalMovement || Math.Abs(horizontalInput) < float.Epsilon)
+            {
                 verticalInput = Input.GetAxisRaw("Vertical");
+            }
+            else
+            {
+                verticalInput = 0;
+            }
+
+            if (normalMovement)
+            {
+                if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
+                {
+                    horizontalInput *= 2;
+                }
+            }
+            else
+            {
+                float tempInput = horizontalInput;
+                horizontalInput = a11 * horizontalInput + a12 * verticalInput;
+                verticalInput = a21 * tempInput + a22 * verticalInput;
+            }
+            
             isoRenderer.SetDirection(horizontalInput, verticalInput);
 
-            inputVector = new Vector2(
-                a11 * horizontalInput + a12 * verticalInput, 
-                a21 * horizontalInput + a22 * verticalInput);
+            inputVector = new Vector2(horizontalInput, verticalInput);
             
             inputVector = Vector2.ClampMagnitude(inputVector, 1);
             Vector2 movement = inputVector * movementSpeed;

@@ -12,9 +12,14 @@ public class AttackPoint : MonoBehaviour
     [SerializeField] private float attackRate = 2f;
     private float attackTimer = 0f;
 
+    private Animator anim;
+
+    private bool attackWithRightHand = true;
+    
     void Awake()
     {
         startPosition = transform.localPosition;
+        anim = transform.parent.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -41,9 +46,10 @@ public class AttackPoint : MonoBehaviour
 
     private void Attack()
     {
-        //Запуск анимации нужен тут
-
-
+        anim.SetTrigger("Attack");
+        anim.SetBool("RightHand", attackWithRightHand);
+        attackWithRightHand = !attackWithRightHand;
+        
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, attackRange, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
