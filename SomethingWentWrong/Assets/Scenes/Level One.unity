@@ -2656,6 +2656,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5480212214129357061, guid: c7b711ed6fd31e348b52add9c9c52a16, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1630774849}
+    - target: {fileID: 5480212214129357061, guid: c7b711ed6fd31e348b52add9c9c52a16, type: 3}
+      propertyPath: maxStamina
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 5480212214129357062, guid: c7b711ed6fd31e348b52add9c9c52a16, type: 3}
       propertyPath: m_RootOrder
       value: 7
@@ -85194,6 +85202,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 223057552, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+      propertyPath: movementSpeedMax
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 223057552, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+      propertyPath: movementSpeedMin
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 5071924728269610294, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: attackRate
       value: 2.3

@@ -38,12 +38,37 @@ public class SurvivalManager : MonoBehaviour
     [Header("Player References")] 
     [SerializeField] private GameObject player;
 
+    private IsometricPlayerMovementController playerController;
+
+    private static SurvivalManager instance;
+
+    public bool canRun() => currentStamina > 0f;
+
+    public static SurvivalManager Instance
+    {
+        get { return instance; }
+    }
+    
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        {
+            Destroy(instance);
+            instance = this;
+        }
+    }
+
     private void Start()
     {
         currentHunger = maxHunger;
         currentThirst = maxThirst;
         currentAnoxaemia = maxAnoxaemia;
         currentStamina = maxStamina;
+        playerController = player.GetComponent<IsometricPlayerMovementController>();
     }
 
     private void Update()
@@ -61,21 +86,20 @@ public class SurvivalManager : MonoBehaviour
         }
 
         //if player runs
-        if (false)
+        if (playerController.IsRunning)
         {
             currentStamina   -= staminaDepletionRate   * Time.deltaTime;
             currentStaminaDelayCounter = 0;
         }
         
         //if player runs and...
-        if (false && currentStamina < maxStamina)
+        if (!playerController.IsRunning && currentStamina < maxStamina)
         {
             if (currentStaminaDelayCounter < staminaRechargeDelay)
             {
                 currentStaminaDelayCounter += Time.deltaTime;
             }
-
-            if (currentStaminaDelayCounter >= staminaRechargeDelay)
+            else
             {
                 currentStamina += staminaRechargeRate * Time.deltaTime;
                 if (currentStamina > maxStamina)

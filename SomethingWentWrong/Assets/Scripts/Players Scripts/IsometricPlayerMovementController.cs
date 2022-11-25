@@ -8,7 +8,16 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public static bool IsAbleToMove = true;
 
     [SerializeField]
-    private float movementSpeedInit = 1f;
+    private float movementSpeedMin = 1f;
+    [SerializeField]
+    private float movementSpeedMax = 2f;
+    [SerializeField]
+    private float walkingAnimationSpeed = 1f;
+    [SerializeField]
+    private float runningAnimationSpeed = 1.65f;
+
+    private bool isRunning;
+    
     private float movementSpeed;
     private IsometricCharacterRenderer isoRenderer;
 
@@ -29,20 +38,20 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void Start()
     {
-        movementSpeed = movementSpeedInit;
+        movementSpeed = movementSpeedMin;
         if (GameManagerScript.instance != null)
         {
             GameManagerScript.instance.player = gameObject;
         }
     }
 
-    /*private void Update()
+    private void Update()
     {
-        /*if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun())
             MaximizeSpeed();
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            MinimizeSpeed();#1#
-    }*/
+        if (Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.canRun())
+            MinimizeSpeed();
+    }
 
     private void FixedUpdate()
     {
@@ -53,15 +62,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
             
             Vector2 currentPos = rbody.position;
             horizontalInput = Input.GetAxisRaw("Horizontal");
-            if (normalMovement || Math.Abs(horizontalInput) < float.Epsilon)
+            verticalInput = Input.GetAxisRaw("Vertical");
+            
+            /*if (normalMovement || Math.Abs(horizontalInput) < float.Epsilon)
             {
                 verticalInput = Input.GetAxisRaw("Vertical");
             }
             else
             {
                 verticalInput = 0;
-            }
-            verticalInput = Input.GetAxisRaw("Vertical");
+            }*/
+            
             
             if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
             {
@@ -85,14 +96,22 @@ public class IsometricPlayerMovementController : MonoBehaviour
         }
     }
 
-    /*
     private void MaximizeSpeed()
     {
-        movementSpeed = 2 * movementSpeedInit;
+        movementSpeed = movementSpeedMax;
+        isoRenderer.SetAnimationsSpeed(runningAnimationSpeed);
+        isRunning = true;
     }
     
     private void MinimizeSpeed()
     {
-        movementSpeed = movementSpeedInit;
-    }*/
+        movementSpeed = movementSpeedMin;        
+        isoRenderer.SetAnimationsSpeed(walkingAnimationSpeed);
+        isRunning = false;
+    }
+
+    public bool IsRunning
+    {
+        get { return isRunning; }
+    }
 }
