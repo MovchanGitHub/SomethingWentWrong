@@ -85194,6 +85194,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 5071924728269610294, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+      propertyPath: attackRate
+      value: 2.3
+      objectReference: {fileID: 0}
     - target: {fileID: 6369232760984217070, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: m_RootOrder
       value: 16

@@ -120,8 +120,9 @@ public class SlopeMovementTriggerScript : MonoBehaviour
             case "incline-min-SE":            
             case "incline-min-NE":            
             case "incline-min-NW":
+                controller.a11 = 1;
+                controller.a21 = 0;
                 controller.normalMovement = true;
-
                 break;
         }
     }

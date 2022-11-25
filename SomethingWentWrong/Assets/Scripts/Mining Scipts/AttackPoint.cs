@@ -38,18 +38,21 @@ public class AttackPoint : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Attack();
+                StartCoroutine(Attack());
                 attackTimer = Time.time + 1f / attackRate;
             }
         }
     }
 
-    private void Attack()
+    private IEnumerator Attack()
     {
         anim.SetTrigger("Attack");
         anim.SetBool("RightHand", attackWithRightHand);
+        IsometricPlayerMovementController.IsAbleToMove = false;
         attackWithRightHand = !attackWithRightHand;
-        
+
+        yield return new WaitForSeconds(0.3f);
+
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, attackRange, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
@@ -59,6 +62,9 @@ public class AttackPoint : MonoBehaviour
                 hitObject.GetComponent<IDamagable>().GetDamage(damage);
             }
         }
+        
+        yield return new WaitForSeconds(0.4f);
+        IsometricPlayerMovementController.IsAbleToMove = true;
     }
 
     private void OnDrawGizmosSelected()
