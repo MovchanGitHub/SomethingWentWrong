@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2986688f6a2cdc458d5d239ffcfbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootDropBarrier: 5
   hp: 20
   drop: {fileID: 1035229123515589464, guid: 718d054ec9426374e8a8831ae202f2f3, type: 3}
   dropCount: 1

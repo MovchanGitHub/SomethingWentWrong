@@ -4,7 +4,31 @@ using UnityEngine;
 
 public class ResourceScript : MonoBehaviour, IDamagable
 {
+    [SerializeField] private float lootDropBarrier = 5;
     [SerializeField] private float hp;
+    private float currentDamage;
+    private float Health
+    {
+        set
+        {
+            if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
+            {
+                DropItem((int)((hp - value + currentDamage) / lootDropBarrier) * dropCount);
+                currentDamage = (hp - value + currentDamage) - lootDropBarrier * (int)((hp - value + currentDamage) / lootDropBarrier);
+            }
+            else
+            {
+                currentDamage += hp - value;
+            }
+            Debug.Log(currentDamage);
+            hp = value;
+        }
+        get
+        {
+            return hp;
+        }
+    }
+
     [SerializeField] private GameObject drop;
     [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
@@ -17,15 +41,14 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     public void GetDamage(float damage)
     {
-        hp -= damage;
-        DropItem();
+        Health -=  damage;
         if (hp <= 0)
         {
             Destroy(gameObject);
         }
     }
 
-    private void DropItem()
+    private void DropItem(int dropCount)
     {
         int amountOfDrop = dropCount;
         while (amountOfDrop > 0)
