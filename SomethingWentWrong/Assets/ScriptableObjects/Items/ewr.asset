@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: "\u0413\u0435\u0440\u043C\u0435\u0442\u0438\u0447\u043D\u044B\u0439 \u043F\u0430\u043A\u0435\u0442
     \u0441 \u0432\u043E\u0434\u043E\u0439"
-  maximumAmount: 0
+  maximumAmount: 1
   itemDescription: "\u0422\u0430\u043A\u0438\u043C\u0438 \u043F\u043E\u043B\u044C\u0437\u0443\u044E\u0442\u0441\u044F
     \u043A\u043E\u0441\u043C\u043E\u043D\u0430\u0432\u0442\u044B"
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: ab059400cc4269f4085de03864ee7600, type: 3}
   dragAndDropElement: {fileID: 3110146729833892629, guid: a6b2c60dd0b01484d82f09a2a445fd28, type: 3}
+  dropObject: {fileID: 0}
   satiationEffect: 0
   slakingOfThirstEffect: 70
   healEffect: 1

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEditor;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
@@ -112,6 +113,7 @@ public class InventoryManager : MonoBehaviour
             {
                 AlreadyChosenCell = Instantiate(CurrentCell);
                 CurrentCellRef = CurrentCell;
+                tempCell = AlreadyChosenCell.transform.gameObject;
 
                 if (shiftPressed)
                 {
@@ -127,7 +129,6 @@ public class InventoryManager : MonoBehaviour
                     MakeCellEmpty(currentCell);
                 }
 
-                tempCell = AlreadyChosenCell.transform.gameObject;
                 onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
                 onMouseObject.transform.position = Input.mousePosition;
             }
@@ -151,12 +152,27 @@ public class InventoryManager : MonoBehaviour
                     CurrentCellRef.GetComponent<InventoryCell>().amount -= currentCell.amount - tempAmount;
                     CurrentCellRef.GetComponent<InventoryCell>().item = tempCell.GetComponent<InventoryCell>().item;
                     CurrentCellRef.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = tempCell.GetComponent<InventoryCell>().item.image;
-
+                    UpdateCounterText(CurrentCellRef);
                 }
 
                 alreadyChosenCell.amount -= currentCell.amount - tempAmount;
                 alreadyChosenCell.item = tempCell.GetComponent<InventoryCell>().item;
                 alreadyChosenCell.icon.GetComponent<Image>().sprite = tempCell.GetComponent<InventoryCell>().item.image;
+            }
+            else if (currentCell.item.TypeOfThisItem != ItemType.NoItem)
+            {
+                GameObject temporary = Instantiate(AlreadyChosenCell);
+
+                alreadyChosenCell.item = currentCell.item;
+                alreadyChosenCell.amount = currentCell.amount;
+                alreadyChosenCell.icon.GetComponent<Image>().sprite = currentCell.item.image;
+
+                CurrentCellRef.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
+                CurrentCellRef.GetComponent<InventoryCell>().amount += temporary.GetComponent<InventoryCell>().amount;
+                CurrentCellRef.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
+                UpdateCounterText(CurrentCellRef);
+
+                Destroy(temporary);
             }
             else
             {
@@ -169,13 +185,13 @@ public class InventoryManager : MonoBehaviour
                 currentCell.item = temporary.GetComponent<InventoryCell>().item;
                 currentCell.amount = temporary.GetComponent<InventoryCell>().amount;
                 currentCell.icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
-
                 Destroy(temporary);
             }
 
             Destroy(onMouseObject);
             AlreadyChosenCell = null;
         }
+        UpdateCounterText(CurrentCell);
     }
 
 
@@ -214,6 +230,7 @@ public class InventoryManager : MonoBehaviour
         {
             cellToAdd.GetComponent<InventoryCell>().amount += 1;
         }
+        UpdateCounterText(cellToAdd);
     }
 
 
@@ -262,6 +279,18 @@ public class InventoryManager : MonoBehaviour
         cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().item.image;
     }
 
+    private void UpdateCounterText(GameObject cell)
+    {
+        if (cell.GetComponent<InventoryCell>().amount == 0)
+        {
+            cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
+        }
+        else
+        {
+            cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "" + cell.GetComponent<InventoryCell>().amount;
+        }
+    }
+
     private void ShowContextMenu()
     {
         ContextMenu.transform.position = new Vector2(Input.mousePosition.x + ContextMenu.GetComponent<RectTransform>().rect.width / 2, Input.mousePosition.y - ContextMenu.GetComponent<RectTransform>().rect.height / 2);
@@ -296,9 +325,9 @@ public class InventoryManager : MonoBehaviour
 
     IEnumerator CoroutineShowTipPanel(GameObject CurrentCell)
     {
-        Debug.Log("Start");
+        //Debug.Log("Start");
         yield return new WaitForSeconds(1.0f);
-        Debug.Log("End");
+        //Debug.Log("End");
         if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food)
         {
             ItemTypeFood temporary = CurrentCell.GetComponent<InventoryCell>().item as ItemTypeFood;
@@ -312,7 +341,7 @@ public class InventoryManager : MonoBehaviour
 
     public void OnCursorExit()
     {
-        Debug.Log("Exit");
+        //Debug.Log("Exit");
 
         tipPanel.SetActive(false);
         tipPanel.transform.GetChild(0).GetComponent<Text>().text = "0";

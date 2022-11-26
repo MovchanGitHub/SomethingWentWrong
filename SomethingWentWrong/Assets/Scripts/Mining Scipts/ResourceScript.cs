@@ -20,7 +20,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
             {
                 currentDamage += hp - value;
             }
-            Debug.Log(currentDamage);
             hp = value;
         }
         get
