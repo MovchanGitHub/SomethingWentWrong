@@ -20,7 +20,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject ChosenCellExtra = null;
     private Transform playerTransform;
 
-    private bool isOpened;
+    public bool isOpened;
     private bool shiftPressed;
 
     private GameObject CurrentCellRef;

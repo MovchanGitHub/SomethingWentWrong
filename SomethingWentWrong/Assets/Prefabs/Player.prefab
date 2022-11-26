@@ -561,7 +561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4848401119255199828}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1, y: 0.6, z: 0}
+  m_LocalPosition: {x: 0, y: 0.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -668,6 +668,8 @@ MonoBehaviour:
   a12: 0
   a21: 0
   a22: 1
+  ignoreVerticalInput: 0
+  attackPoint: {fileID: 4848401119255199828}
 --- !u!61 &1800723574
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -22,11 +22,15 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public int a21 = 0, a22 = 1;
 
     public bool ignoreVerticalInput;
-    
+
+    [SerializeField] private GameObject attackPoint;
+    private Vector3 startPosition;
+
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
         isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
+        startPosition = attackPoint.transform.localPosition;
     }
 
     private void Start()
@@ -55,6 +59,13 @@ public class IsometricPlayerMovementController : MonoBehaviour
             if (!ignoreVerticalInput || Math.Abs(horizontalInput) < float.Epsilon)
                 verticalInput = Input.GetAxisRaw("Vertical");
             isoRenderer.SetDirection(horizontalInput, verticalInput);
+
+            if (horizontalInput != 0 || verticalInput != 0)
+            {
+                Vector3 newAttackPointPosition = new Vector3(startPosition.x + 1 * horizontalInput, startPosition.y + 1 * verticalInput, startPosition.z);
+                newAttackPointPosition = Vector3.ClampMagnitude(newAttackPointPosition, 1);
+                attackPoint.transform.localPosition = newAttackPointPosition;
+            }
 
             inputVector = new Vector2(
                 a11 * horizontalInput + a12 * verticalInput, 
