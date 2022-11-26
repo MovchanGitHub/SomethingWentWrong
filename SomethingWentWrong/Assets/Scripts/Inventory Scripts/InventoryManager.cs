@@ -281,12 +281,12 @@ public class InventoryManager : MonoBehaviour
 
     public void DeleteItem()
     {
-        if (!Input.GetMouseButtonUp(1))
-        {
-            ChosenCellExtra.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
-            ChosenCellExtra.GetComponent<InventoryCell>().amount = 0;
-            ChosenCellExtra.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = ChosenCellExtra.GetComponent<InventoryCell>().item.image;
-        }
+        // if (!Input.GetMouseButtonUp(1))
+        // {
+        //     ChosenCellExtra.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
+        //     ChosenCellExtra.GetComponent<InventoryCell>().amount = 0;
+        //     ChosenCellExtra.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = ChosenCellExtra.GetComponent<InventoryCell>().item.image;
+        // }
     }
 
     public void ShowTipPanel(GameObject CurrentCell)
