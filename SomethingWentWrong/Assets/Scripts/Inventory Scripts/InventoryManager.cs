@@ -130,6 +130,10 @@ public class InventoryManager : MonoBehaviour
                 }
 
                 onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
+                if (AlreadyChosenCell.GetComponent<InventoryCell>().amount > 1)
+                {
+                    onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + AlreadyChosenCell.GetComponent<InventoryCell>().amount;
+                }
                 onMouseObject.transform.position = Input.mousePosition;
             }
         }
@@ -206,6 +210,15 @@ public class InventoryManager : MonoBehaviour
             dropObject.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
             AlreadyChosenCell.GetComponent<InventoryCell>().amount -= 1;
+            if (AlreadyChosenCell.GetComponent<InventoryCell>().amount > 1)
+            {
+                onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + AlreadyChosenCell.GetComponent<InventoryCell>().amount;
+            }
+            else
+            {
+                onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
+            }
+
             if (AlreadyChosenCell.GetComponent<InventoryCell>().amount < 1)
             {
                 Destroy(onMouseObject);
@@ -281,7 +294,7 @@ public class InventoryManager : MonoBehaviour
 
     private void UpdateCounterText(GameObject cell)
     {
-        if (cell.GetComponent<InventoryCell>().amount == 0)
+        if (cell.GetComponent<InventoryCell>().amount <= 1)
         {
             cell.transform.GetChild(1).GetComponent<TextMeshProUGUI>().text = "";
         }
@@ -306,6 +319,7 @@ public class InventoryManager : MonoBehaviour
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishThirst(temporary.slakingOfThirstEffect);
             DeleteItem();
         }
+        UpdateCounterText(ChosenCellExtra);
     }
 
     public void DeleteItem()

@@ -24,6 +24,7 @@ TagManager:
   - incline-min-NW
   - enemy
   - Bomb
+  - Building
   layers:
   - Default
   - TransparentFX
