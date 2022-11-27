@@ -46,4 +46,9 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         transform.GetComponent<SpriteRenderer>().sortingOrder = new_order;
     }
+
+    public void SetAnimationsSpeed(float newSpeed)
+    {
+        _animator.speed = newSpeed;
+    }
 }

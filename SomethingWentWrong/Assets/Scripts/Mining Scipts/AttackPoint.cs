@@ -12,9 +12,14 @@ public class AttackPoint : MonoBehaviour
     [SerializeField] private float attackRate = 2f;
     private float attackTimer = 0f;
 
+    private Animator anim;
+
+    private bool attackWithRightHand = true;
+    
     void Awake()
     {
         startPosition = transform.localPosition;
+        anim = transform.parent.GetComponentInChildren<Animator>();
     }
 
     void Update()
@@ -23,16 +28,20 @@ public class AttackPoint : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Attack();
+                StartCoroutine(Attack());
                 attackTimer = Time.time + 1f / attackRate;
             }
         }
     }
 
-    private void Attack()
+    private IEnumerator Attack()
     {
-        //Запуск анимации нужен тут
+        anim.SetTrigger("Attack");
+        anim.SetBool("RightHand", attackWithRightHand);
+        IsometricPlayerMovementController.IsAbleToMove = false;
+        attackWithRightHand = !attackWithRightHand;
 
+        yield return new WaitForSeconds(0.3f);
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, attackRange, damagableLayers);
 
@@ -43,6 +52,9 @@ public class AttackPoint : MonoBehaviour
                 hitObject.GetComponent<IDamagable>().GetDamage(damage);
             }
         }
+        
+        yield return new WaitForSeconds(0.4f);
+        IsometricPlayerMovementController.IsAbleToMove = true;
     }
 
     private void OnDrawGizmosSelected()
