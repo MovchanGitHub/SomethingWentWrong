@@ -15,6 +15,8 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject ContextMenu;
     [SerializeField] private GameObject tipPanel;
     [SerializeField] private GameObject SurvivalManager;
+    [SerializeField] private GameObject BombSpawner;
+    [SerializeField] private GameObject BulletSpawner;
 
     public GameObject InventoryPanel;
     private GameObject AlreadyChosenCell = null;
@@ -47,6 +49,8 @@ public class InventoryManager : MonoBehaviour
         isOpened = false;
 
         playerTransform = GameManagerScript.instance.player.transform;
+
+        CountOneTimeWeapon(PlayerBombSpawnerScript.bombName, BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs);
     }
 
 
@@ -243,6 +247,12 @@ public class InventoryManager : MonoBehaviour
         {
             cellToAdd.GetComponent<InventoryCell>().amount += 1;
         }
+        
+        if (newItem.name == PlayerBombSpawnerScript.bombName)
+            BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs(BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs() + 1);
+        if (newItem.name == Bullet.bulletName)
+            BulletSpawner.GetComponent<Bullet>().SetAmountBullets(BulletSpawner.GetComponent<Bullet>().GetAmountBullets() + 1);
+            
         UpdateCounterText(cellToAdd);
     }
 
@@ -310,34 +320,31 @@ public class InventoryManager : MonoBehaviour
         ContextMenu.SetActive(true);
     }
 
-    public void UseItem() 
+    public void UseItem(GameObject Cell) 
     {
-        if ((!Input.GetMouseButtonUp(1)) && (ChosenCellExtra.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
+        if((!Input.GetMouseButtonUp(1)) && (Cell.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
         {
-            ItemTypeFood temporary = ChosenCellExtra.GetComponent<InventoryCell>().item as ItemTypeFood;
+            ItemTypeFood temporary = Cell.GetComponent<InventoryCell>().item as ItemTypeFood;
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishHunger(temporary.satiationEffect);
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishThirst(temporary.slakingOfThirstEffect);
-
-            if (ChosenCellExtra.GetComponent<InventoryCell>().amount > 1)
-            {
-                ChosenCellExtra.GetComponent<InventoryCell>().amount -= 1;
-            }
-            else
-            {
-                DeleteItem();
-            }
         }
-        UpdateCounterText(ChosenCellExtra);
+        
+        Cell.GetComponent<InventoryCell>().amount--;
+        if (Cell.GetComponent<InventoryCell>().amount <= 0)
+            DeleteItem(Cell);
+        }
+        
+        UpdateCounterText(Cell);
     }
 
-    public void DeleteItem()
+    public void DeleteItem(GameObject Cell)
     {
-        // if (!Input.GetMouseButtonUp(1))
-        // {
-        //     ChosenCellExtra.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
-        //     ChosenCellExtra.GetComponent<InventoryCell>().amount = 0;
-        //     ChosenCellExtra.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = ChosenCellExtra.GetComponent<InventoryCell>().item.image;
-        // }
+        if (!Input.GetMouseButtonUp(1))
+        {
+            Cell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
+            Cell.GetComponent<InventoryCell>().amount = 0;
+            Cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = Cell.GetComponent<InventoryCell>().item.image;
+        }
     }
 
     public void ShowTipPanel(GameObject CurrentCell)
@@ -353,10 +360,27 @@ public class InventoryManager : MonoBehaviour
         if (CurrentCell.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food)
         {
             ItemTypeFood temporary = CurrentCell.GetComponent<InventoryCell>().item as ItemTypeFood;
+
+            if (temporary.satiationEffect > 0)
+                tipPanel.transform.GetChild(0).GetComponent<Text>().color = Color.green;
+            else if (temporary.satiationEffect < 0)
+                tipPanel.transform.GetChild(0).GetComponent<Text>().color = Color.red;
             tipPanel.transform.GetChild(0).GetComponent<Text>().text = temporary.satiationEffect.ToString();
+
+            if (temporary.slakingOfThirstEffect > 0)
+                tipPanel.transform.GetChild(1).GetComponent<Text>().color = Color.green;
+            else if (temporary.slakingOfThirstEffect < 0)
+                tipPanel.transform.GetChild(1).GetComponent<Text>().color = Color.red;
             tipPanel.transform.GetChild(1).GetComponent<Text>().text = temporary.slakingOfThirstEffect.ToString();
+
             //tipPanel.transform.GetChild(2).GetComponent<Text>().text = temporary.oxigenEffect.ToString();
+
+            if (temporary.healEffect > 0)
+                tipPanel.transform.GetChild(3).GetComponent<Text>().color = Color.green;
+            else if (temporary.healEffect < 0)
+                tipPanel.transform.GetChild(3).GetComponent<Text>().color = Color.red;
             tipPanel.transform.GetChild(3).GetComponent<Text>().text = temporary.healEffect.ToString();
+
             tipPanel.SetActive(true);
         }
     }
@@ -373,5 +397,27 @@ public class InventoryManager : MonoBehaviour
         StopCoroutine("CoroutineShowTipPanel");
     }
 
+    public void CountOneTimeWeapon(string nameOfWeapon, System.Action<int> setter)
+    {
+        int newAmount = BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs();
+        for (int i = 0; i < 16; i++)
+        {
+            if (inventoryCells[i].GetComponent<InventoryCell>().item.name == nameOfWeapon)
+                newAmount += inventoryCells[i].GetComponent<InventoryCell>().amount;
+        }
+        BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs(newAmount);
+    }
 
+
+    public void UseOneTimeWeapon(string nameOfWeapon)
+    {
+        for (int i = 0; i < 16; i++)
+        {
+            if (inventoryCells[i].GetComponent<InventoryCell>().item.name == nameOfWeapon)
+            {
+                UseItem(inventoryCells[i]);
+                return;
+            }
+        }
+    }
 }
