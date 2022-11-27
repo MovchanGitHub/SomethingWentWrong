@@ -31,19 +31,19 @@ public class EncyclopediaManager : MonoBehaviour
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
         //Debug.Log("Start");
-        for (int i = 0; i < notesOfCreatures.transform.childCount; i++)
-        {
-            //Debug.Log(i);
-            if (notesOfCreatures.transform.GetChild(i).GetComponent<NotesManager>().creature == AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Creatures/Some unknown thing.asset", typeof(CreaturesBase)))
-            {
-                //Debug.Log("Contact");
-                GameObject CurrentNote = notesOfCreatures.transform.GetChild(i).gameObject;
-                CurrentNote.GetComponent<NotesManager>().creature = openedCreature;
-                CurrentNote.GetComponent<NotesManager>().nameHeader.GetComponent<Text>().text = openedCreature.name;
-                CurrentNote.GetComponent<NotesManager>().icon.GetComponent<Image>().sprite = openedCreature.imageSmall;
-                break;
-            }
-        }
+        // for (int i = 0; i < notesOfCreatures.transform.childCount; i++)
+        // {
+        //     //Debug.Log(i);
+        //     if (notesOfCreatures.transform.GetChild(i).GetComponent<NotesManager>().creature == AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Creatures/Some unknown thing.asset", typeof(CreaturesBase)))
+        //     {
+        //         //Debug.Log("Contact");
+        //         GameObject CurrentNote = notesOfCreatures.transform.GetChild(i).gameObject;
+        //         CurrentNote.GetComponent<NotesManager>().creature = openedCreature;
+        //         CurrentNote.GetComponent<NotesManager>().nameHeader.GetComponent<Text>().text = openedCreature.name;
+        //         CurrentNote.GetComponent<NotesManager>().icon.GetComponent<Image>().sprite = openedCreature.imageSmall;
+        //         break;
+        //     }
+        // }
     }
 
     public void OpenExtraInfo(GameObject ChosenNote)

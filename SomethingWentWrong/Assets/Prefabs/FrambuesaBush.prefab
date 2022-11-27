@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1063313851006980717}
   m_Layer: 6
   m_Name: FrambuesaBush
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2986688f6a2cdc458d5d239ffcfbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootDropBarrier: 5
   hp: 20
   drop: {fileID: 6620836872203537301, guid: 43e16a4b581dcb746928c6651cd5bea4, type: 3}
   dropCount: 1

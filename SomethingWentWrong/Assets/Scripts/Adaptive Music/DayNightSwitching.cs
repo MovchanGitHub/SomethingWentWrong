@@ -12,7 +12,9 @@ public class DayNightSwitching : MusicFaderScript
     private float _nightVolume;
     private AudioSource _intenseAudio;
     private float _intenseVolume;
+    
     private const int TransTime = 500;
+    
     public GameObject adaptiveParameter;
     private DayTime _dayCycle;
     private bool _inCombat;
@@ -23,11 +25,11 @@ public class DayNightSwitching : MusicFaderScript
     {
         if (_inCombat)
         {
-            MusicVolumeUpSqr(_intenseAudio, TransTime, ref _intenseVolume);
+            MusicVolumeUpRoot(_intenseAudio, TransTime / 10, ref _intenseVolume);
         }
         else
         {
-            MusicVolumeDownRoot(_intenseAudio, TransTime / 5, ref _intenseVolume);
+            MusicVolumeDownLinear(_intenseAudio, TransTime * 2, ref _intenseVolume);
         }
     }
     
@@ -62,7 +64,7 @@ public class DayNightSwitching : MusicFaderScript
             }
             
             if (_nightAudio.isPlaying == false) _nightAudio.Play();
-            MusicVolumeUpRoot(_nightAudio, TransTime, ref _nightVolume);
+            MusicVolumeUpRoot(_nightAudio, TransTime / 2, ref _nightVolume);
 
             if (_intenseVolume > 0.001f)
             {

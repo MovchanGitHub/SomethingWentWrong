@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Root of Manfrang
   m_EditorClassIdentifier: 
   itemName: "\u041A\u043E\u0440\u0435\u043D\u044C \u043C\u0430\u043D\u0444\u0440\u0430\u043D\u0433\u0430"
-  maximumAmount: 0
+  maximumAmount: 4
   itemDescription: "\u041E\u0447\u0435\u043D\u044C \u043D\u0435\u0432\u043A\u0443\u0441\u043D\u044B\u0439,
     \u043E\u0447\u0435\u043D\u044C \u0441\u0443\u0448\u0430\u0449\u0438\u0439 \u0433\u043E\u0440\u043B\u043E.
     \u041D\u043E \u0441\u0443\u0434\u044F \u043F\u043E \u0432\u0441\u0435\u043C\u0443
@@ -22,6 +22,7 @@ MonoBehaviour:
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: 3ee6049f1eed8d4439a268dadb9c18c0, type: 3}
   dragAndDropElement: {fileID: 0}
+  dropObject: {fileID: 0}
   satiationEffect: 0
   slakingOfThirstEffect: -15
   healEffect: 20

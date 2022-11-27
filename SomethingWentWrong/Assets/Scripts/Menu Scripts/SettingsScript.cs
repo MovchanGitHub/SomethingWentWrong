@@ -13,6 +13,7 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] private bool isOpened;
     [SerializeField] public int musicVolume;
     [SerializeField] public int soundsVolume;
+    [SerializeField] public bool isFullScreen;
 
     private void Awake()
     {
@@ -47,11 +48,18 @@ public class SettingsScript : MonoBehaviour
     {
         switch (value)
         {
-            case 0: Screen.SetResolution(1280, 720, false); Debug.Log("heheheh"); break;
-            case 1: Screen.SetResolution(1920, 1080, false); break;
-            case 2: Screen.SetResolution(2560, 1440, false); break;
-            case 3: Screen.SetResolution(3840, 2160, false); break;
+            case 0: Screen.SetResolution(1280, 720, Screen.fullScreen); break;
+            case 1: Screen.SetResolution(1920, 1080, Screen.fullScreen); break;
+            case 2: Screen.SetResolution(2560, 1440, Screen.fullScreen); break;
+            case 3: Screen.SetResolution(3840, 2160, Screen.fullScreen); break;
                 
         }
     }
+
+    public void SetFullscreen(bool is_fullscreen)
+    {
+        Screen.SetResolution(Screen.width, Screen.height, is_fullscreen);
+        Debug.Log($"Is full screen - {is_fullscreen}");
+    }
+
 }
