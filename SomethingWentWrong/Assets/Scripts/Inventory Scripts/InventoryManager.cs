@@ -332,7 +332,6 @@ public class InventoryManager : MonoBehaviour
         Cell.GetComponent<InventoryCell>().amount--;
         if (Cell.GetComponent<InventoryCell>().amount <= 0)
             DeleteItem(Cell);
-        }
         
         UpdateCounterText(Cell);
     }

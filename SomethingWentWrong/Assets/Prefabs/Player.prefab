@@ -267,7 +267,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!95 &1140038418
 Animator:
   serializedVersion: 4
@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3159d2dfd9b8a44a85c35e9dfa71a94, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InventoryCanvas: {fileID: 0}
   offset: -90
   BulletSample: {fileID: 1717934181467405371, guid: 62793888dcb18e74aa18f72dcca109e2, type: 3}
   shotpoint: {fileID: 1323788387}
@@ -586,7 +587,7 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 320
-  attackRate: 2
+  attackRate: 2.3
 --- !u!1 &7132474006594583877
 GameObject:
   m_ObjectHideFlags: 0
@@ -663,12 +664,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a985e0f16c6f0c54aae3c29b6f92ed93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  movementSpeedInit: 4
+  movementSpeedMin: 4
+  movementSpeedMax: 6
+  walkingAnimationSpeed: 1
+  runningAnimationSpeed: 1.65
   a11: 1
   a12: 0
   a21: 0
   a22: 1
-  ignoreVerticalInput: 0
+  normalMovement: 1
   attackPoint: {fileID: 4848401119255199828}
 --- !u!61 &1800723574
 BoxCollider2D:

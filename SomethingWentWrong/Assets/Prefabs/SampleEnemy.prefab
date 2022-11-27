@@ -77,7 +77,7 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 576
-  coolDown: 0.5
+  coolDown: 2
 --- !u!1 &819197557229691554
 GameObject:
   m_ObjectHideFlags: 0
