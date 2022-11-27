@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
-    public static bool IsAbleToMove = true;
+public static bool IsAbleToMove = true;
 
     [SerializeField]
     private float movementSpeedMin = 1f;
@@ -28,7 +28,11 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public int a11 = 1, a12 = 0;
     public int a21 = 0, a22 = 1;
 
-    public bool normalMovement = true;
+    public bool normalMovement = true; 
+
+    [SerializeField] private GameObject attackPoint;
+    private Vector3 startPosition;
+
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -57,6 +61,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     {
         if (IsAbleToMove)
         {
+            
             float verticalInput; 
             float horizontalInput;
             
@@ -93,6 +98,13 @@ public class IsometricPlayerMovementController : MonoBehaviour
             Vector2 movement = inputVector * movementSpeed;
             Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
             rbody.MovePosition(newPos);
+
+            if (horizontalInput != 0 || verticalInput != 0)
+            {
+                Vector3 newAttackPointPosition = new Vector3(startPosition.x + 1 * horizontalInput, startPosition.y + 1 * verticalInput, startPosition.z);
+                newAttackPointPosition = Vector3.ClampMagnitude(newAttackPointPosition, 1);
+                attackPoint.transform.localPosition = newAttackPointPosition;
+            }
         }
     }
 
@@ -115,3 +127,4 @@ public class IsometricPlayerMovementController : MonoBehaviour
         get { return isRunning; }
     }
 }
+

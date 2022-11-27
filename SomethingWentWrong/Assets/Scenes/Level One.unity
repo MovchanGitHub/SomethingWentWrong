@@ -39216,6 +39216,67 @@ PolygonCollider2D:
       - {x: 0.3371911, y: 0.52286935}
       - {x: 0.8126323, y: 0.10554516}
       - {x: 1.2696958, y: 0.34439325}
+--- !u!1001 &562864395
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6282623205285367892, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: adaptiveParameter
+      value: 
+      objectReference: {fileID: 1353670124}
+    - target: {fileID: 6282623205285367893, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_Name
+      value: DayNight Music
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_RootOrder
+      value: 17
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6282623205285367896, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
 --- !u!1 &569624534
 GameObject:
   m_ObjectHideFlags: 0
@@ -41781,6 +41842,11 @@ PolygonCollider2D:
       - {x: -0.66562986, y: 0.008444965}
       - {x: -0.20724702, y: -0.39390337}
       - {x: 1.2584586, y: 0.36686754}
+--- !u!1 &1353670124 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 9021259468881233533, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
+  m_PrefabInstance: {fileID: 2138243011}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1371180172
 GameObject:
   m_ObjectHideFlags: 0
@@ -94057,11 +94123,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6369232760984217070, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.93
+      value: 0.7
       objectReference: {fileID: 0}
     - target: {fileID: 6369232760984217070, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 7.52
+      value: -1.4
       objectReference: {fileID: 0}
     - target: {fileID: 6369232760984217070, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: m_LocalPosition.z
@@ -94171,7 +94237,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 11712503, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
       propertyPath: cycleDuration
-      value: 3
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 4812061632095218440, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
       propertyPath: m_RootOrder
