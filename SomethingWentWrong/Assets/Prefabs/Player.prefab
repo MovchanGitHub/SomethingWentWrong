@@ -348,7 +348,7 @@ MonoBehaviour:
   offset: -90
   BulletSample: {fileID: 1717934181467405371, guid: 62793888dcb18e74aa18f72dcca109e2, type: 3}
   shotpoint: {fileID: 1323788387}
-  damageAmount: 1
+  damageAmount: 3
   startTimeBtwShots: 2
 --- !u!1 &1323788386
 GameObject:

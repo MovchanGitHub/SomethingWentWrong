@@ -7,6 +7,7 @@ public class EnemyAttack : MonoBehaviour
 {
     public string resourceTag;
     public string playerTag;
+    public string buildingTag;
     public LayerMask damagableLayers;
     private EnemyMovement enemyLogic;
     public float coolDown;
@@ -18,7 +19,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == resourceTag || col.tag == playerTag)
+        if (col.tag == resourceTag || col.tag == playerTag || col.tag == buildingTag)
         {
             StartCoroutine(Attack());
         }
@@ -26,7 +27,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == resourceTag || other.tag == playerTag)
+        if (other.tag == resourceTag || other.tag == playerTag || other.tag == buildingTag)
         {
             enemyLogic.canMove = true;
         }

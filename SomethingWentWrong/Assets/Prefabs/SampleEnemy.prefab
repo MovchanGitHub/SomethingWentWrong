@@ -73,6 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resourceTag: Resource
   playerTag: Player
+  buildingTag: Building
   damagableLayers:
     serializedVersion: 2
     m_Bits: 576

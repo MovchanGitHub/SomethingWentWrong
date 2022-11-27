@@ -5,6 +5,15 @@ using UnityEngine;
 public class LightHouse : MonoBehaviour, IDamagable
 {
     [SerializeField] private float hp;
+    public bool active = false;
+
+    private void Start()
+    {
+        if (GameManagerScript.instance != null)
+        {
+            GameManagerScript.instance.lightHouse = gameObject;
+        }
+    }
 
     public float HP()
     {
@@ -26,5 +35,4 @@ public class LightHouse : MonoBehaviour, IDamagable
 
         Destroy(gameObject);
     }
-
 }
