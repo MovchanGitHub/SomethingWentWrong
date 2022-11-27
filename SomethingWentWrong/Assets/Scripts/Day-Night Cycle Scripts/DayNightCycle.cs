@@ -14,6 +14,8 @@ public class DayNightCycle : MonoBehaviour
     public float cycleDuration = 10;
     [HideInInspector] public DayTime dayCycle;
 
+    private int dayCount;
+
     public Color sunrise;
     public Color day;
     public Color sunset;
@@ -30,6 +32,8 @@ public class DayNightCycle : MonoBehaviour
         currentTime = 0;
         dayCycle = DayTime.Day;
         globalLight.color = sunrise;
+
+        dayCount = -1;
     }
 
      void Update()
@@ -55,6 +59,9 @@ public class DayNightCycle : MonoBehaviour
             
             case DayTime.Day:
                 globalLight.color = Color.Lerp(day, sunset, percent);
+                dayCount++;
+                //if (dayCount == 3)
+                    //SetActive победное окно
                 break;
             
             case DayTime.Sunset:

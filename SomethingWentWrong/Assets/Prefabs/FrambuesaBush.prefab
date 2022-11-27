@@ -179,7 +179,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
-  drop: {fileID: 1035229123515589464, guid: 718d054ec9426374e8a8831ae202f2f3, type: 3}
+  drop: {fileID: 6620836872203537301, guid: 43e16a4b581dcb746928c6651cd5bea4, type: 3}
   dropCount: 1
   spread: 2
   dropSpeed: 5

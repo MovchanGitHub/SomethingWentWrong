@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3266eca772aad05429a6da0908fa4435, type: 3}
+  m_Name: Bomb Fruit
+  m_EditorClassIdentifier: 
+  itemName: "\u0411\u043E\u043C\u0431\u0430\u043B\u0438\u043A\u0430"
+  maximumAmount: 5
+  itemDescription: 
+  TypeOfThisItem: 1
+  image: {fileID: 21300000, guid: 5bcd15a11d8547742983789dd8424d59, type: 3}
+  dragAndDropElement: {fileID: 3828294531006617850, guid: 685688e4e323f384f8306bb1e21b7fa8, type: 3}
+  dropObject: {fileID: 6328004980852509893, guid: f9bd3cb45b743674e860695df86f4d2a, type: 3}
+  Damage: 5
+  Range: 10
