@@ -9,7 +9,7 @@ public class MusicFaderScript : MonoBehaviour
     {
         audioIn.volume = MathF.Sqrt(volumeAuIn);
         volumeAuIn -= volumeAuIn / transTime;
-        if (MathF.Sqrt(volumeAuIn) < 0.01f)
+        if (MathF.Sqrt(volumeAuIn) < 0.001f)
         {
             audioIn.volume = 0;
             volumeAuIn = 0;
