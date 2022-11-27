@@ -10,7 +10,7 @@ public class BulletStats : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.GetComponent<IDamagable>() != null && col.gameObject.transform.parent.tag != "Player") 
+        if (col.GetComponent<IDamagable>() != null && col.tag != "Player") 
         {
             col.GetComponent<IDamagable>().GetDamage(damageAmount);
             Destroy(gameObject);

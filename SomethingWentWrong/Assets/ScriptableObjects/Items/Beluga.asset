@@ -13,11 +13,12 @@ MonoBehaviour:
   m_Name: Beluga
   m_EditorClassIdentifier: 
   itemName: "\u041A\u043E\u043D\u0441\u0435\u0440\u0432\u0430 \u0431\u0435\u043B\u0443\u0433\u0438"
-  maximumAmount: 0
+  maximumAmount: 2
   itemDescription: "\u041F\u0430\u0445\u043D\u0435\u0442 \u0434\u043E\u043C\u043E\u043C"
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: 519a0fa39ae22104ca2828080ece17c9, type: 3}
   dragAndDropElement: {fileID: 0}
+  dropObject: {fileID: 0}
   satiationEffect: 50
   slakingOfThirstEffect: -10
   healEffect: 0

@@ -13,12 +13,13 @@ MonoBehaviour:
   m_Name: Gematogen
   m_EditorClassIdentifier: 
   itemName: Gematogen
-  maximumAmount: 0
+  maximumAmount: 2
   itemDescription: "\u041B\u044E\u0431\u0438\u043C\u043E\u0435 \u043B\u0430\u043A\u043E\u043C\u0441\u0442\u0432\u043E
     \u0433\u043B\u0430\u0432\u043D\u043E\u0433\u043E \u0433\u0435\u0440\u043E\u044F"
   TypeOfThisItem: 2
   image: {fileID: 0}
   dragAndDropElement: {fileID: 0}
+  dropObject: {fileID: 0}
   satiationEffect: 20
   slakingOfThirstEffect: -3
   healEffect: 10

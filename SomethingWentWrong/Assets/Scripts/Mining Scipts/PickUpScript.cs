@@ -5,7 +5,7 @@ using UnityEngine;
 public class PickUpScript : MonoBehaviour
 {
     Transform player;
-    [SerializeField] float speed = 4f;
+    [SerializeField] float speed = 6f;
     [SerializeField] float pickUpDistance = 2.5f;
     [SerializeField] float despawnTime = 10f;
     [SerializeField] ItemsBase itemToInventory;

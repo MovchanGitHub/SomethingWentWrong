@@ -13,10 +13,12 @@ MonoBehaviour:
   m_Name: BottleOfWater
   m_EditorClassIdentifier: 
   itemName: Bottle Of Water
-  maximumAmount: 32
+  maximumAmount: 2
   itemDescription: Just water
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: 1720ffbfa0d65854d9fa299962ae907b, type: 3}
+  dragAndDropElement: {fileID: 0}
+  dropObject: {fileID: 0}
   satiationEffect: 0
   slakingOfThirstEffect: 40
   healEffect: 1
