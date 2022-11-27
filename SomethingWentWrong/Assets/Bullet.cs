@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public const string bulletName = "Shoot Fruit";
+    private int amountBullets;
+    [SerializeField] GameObject InventoryCanvas;
+
     public float offset;
     public GameObject BulletSample;
     public Transform shotpoint;
@@ -20,16 +24,26 @@ public class Bullet : MonoBehaviour
 
         if (timeBtwShots <= 0)
         {
-            if (Input.GetMouseButton(0) && !InventoryManager.instance.isOpened)
+            if (Input.GetMouseButton(0) && amountBullets > 0)
             {
                 GameObject bullet = Instantiate(BulletSample, shotpoint.position, transform.rotation);
                 bullet.GetComponent<BulletStats>().damageAmount = damageAmount;
                 timeBtwShots = startTimeBtwShots;
+                InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
+                amountBullets--;
             }
         }
         else
         {
             timeBtwShots -= Time.deltaTime;
         }
+    }
+    public int GetAmountBullets()
+    {
+        return amountBullets;
+    }
+    public void SetAmountBullets(int a)
+    {
+        amountBullets = a;
     }
 }

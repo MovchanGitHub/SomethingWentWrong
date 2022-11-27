@@ -96,7 +96,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lootDropBarrier: 5
   hp: 5
-  drop: {fileID: 4946809947513512011, guid: ca65c6d6e81fee34abeb46f554073cea, type: 3}
+  drop: {fileID: 1889222699780510610, guid: f3308b9aaaa6f784e904b21acc6b6290, type: 3}
   dropCount: 3
   spread: 2
   dropSpeed: 5
