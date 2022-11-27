@@ -20,7 +20,7 @@ public class Bullet : MonoBehaviour
 
         if (timeBtwShots <= 0)
         {
-            if (Input.GetMouseButton(0))
+            if (Input.GetMouseButton(0) && !InventoryManager.instance.isOpened)
             {
                 GameObject bullet = Instantiate(BulletSample, shotpoint.position, transform.rotation);
                 bullet.GetComponent<BulletStats>().damageAmount = damageAmount;

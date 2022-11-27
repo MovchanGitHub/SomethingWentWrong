@@ -45,7 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 080a268e53db94248b041c6072e6dfa4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 6
   pickUpDistance: 2.5
   despawnTime: 10
   itemToInventory: {fileID: 11400000, guid: 2721a115fb24915409b8e12a922e0829, type: 2}
