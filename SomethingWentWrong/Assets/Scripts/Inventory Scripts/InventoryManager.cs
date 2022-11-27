@@ -312,12 +312,20 @@ public class InventoryManager : MonoBehaviour
 
     public void UseItem() 
     {
-        if((!Input.GetMouseButtonUp(1)) && (ChosenCellExtra.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
+        if ((!Input.GetMouseButtonUp(1)) && (ChosenCellExtra.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
         {
             ItemTypeFood temporary = ChosenCellExtra.GetComponent<InventoryCell>().item as ItemTypeFood;
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishHunger(temporary.satiationEffect);
             SurvivalManager.GetComponent<SurvivalManager>().ReplenishThirst(temporary.slakingOfThirstEffect);
-            DeleteItem();
+
+            if (ChosenCellExtra.GetComponent<InventoryCell>().amount > 1)
+            {
+                ChosenCellExtra.GetComponent<InventoryCell>().amount -= 1;
+            }
+            else
+            {
+                DeleteItem();
+            }
         }
         UpdateCounterText(ChosenCellExtra);
     }
