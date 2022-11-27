@@ -72,9 +72,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   resourceTag: Resource
+  playerTag: Player
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 576
   coolDown: 0.5
 --- !u!1 &819197557229691554
 GameObject:

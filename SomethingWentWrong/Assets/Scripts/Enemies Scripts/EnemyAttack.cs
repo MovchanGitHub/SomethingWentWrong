@@ -6,6 +6,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour
 {
     public string resourceTag;
+    public string playerTag;
     public LayerMask damagableLayers;
     private EnemyMovement enemyLogic;
     public float coolDown;
@@ -17,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == resourceTag)
+        if (col.tag == resourceTag || col.tag == playerTag)
         {
             StartCoroutine(Attack());
         }
@@ -25,7 +26,7 @@ public class EnemyAttack : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == resourceTag)
+        if (other.tag == resourceTag || other.tag == playerTag)
         {
             enemyLogic.canMove = true;
         }
@@ -37,7 +38,7 @@ public class EnemyAttack : MonoBehaviour
         while (!enemyLogic.canMove)
         {
             yield return new WaitForSeconds(coolDown);
-            Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1f, damagableLayers);
+            Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1.5f, damagableLayers);
 
             foreach (Collider2D hitObject in hitObjects)
             {

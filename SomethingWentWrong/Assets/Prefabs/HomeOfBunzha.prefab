@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2937467222241951416}
   m_Layer: 6
   m_Name: HomeOfBunzha
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

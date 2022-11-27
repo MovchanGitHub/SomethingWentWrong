@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 390130993}
   - component: {fileID: 390130994}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Light 2D
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - component: {fileID: 542139645}
   - component: {fileID: 542139647}
   - component: {fileID: 542139646}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Order in Layer Trigger
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 878174199}
   - component: {fileID: 1140038418}
   - component: {fileID: 1140038417}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -310,7 +310,7 @@ GameObject:
   m_Component:
   - component: {fileID: 895893634}
   - component: {fileID: 895893635}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Basic Shooter Mechanic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -359,7 +359,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1323788387}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: shotpoint
   m_TagString: Untagged
   m_Icon: {fileID: 1206586993520771344, guid: 0000000000000000d000000000000000, type: 0}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 2043770412}
   - component: {fileID: 2043770414}
   - component: {fileID: 2043770413}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Slope Movement Trigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -462,7 +462,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4161914376176736180}
   - component: {fileID: 3905800250001233385}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -546,7 +546,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6052453565137795375}
   - component: {fileID: 5071924728269610294}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Attack Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -600,7 +600,7 @@ GameObject:
   - component: {fileID: 223057552}
   - component: {fileID: 1800723574}
   - component: {fileID: 1335954241954304732}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -777,6 +777,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombSpawner
       objectReference: {fileID: 0}
+    - target: {fileID: 2332557217919224245, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
 --- !u!4 &1105538746 stripped
@@ -794,6 +798,10 @@ PrefabInstance:
     - target: {fileID: 5892254637738493112, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
       propertyPath: m_Name
       value: PlayerDamageLogic
+      objectReference: {fileID: 0}
+    - target: {fileID: 5892254637738493112, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 5892254637738493112, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
       propertyPath: m_IsActive

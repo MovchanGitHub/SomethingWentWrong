@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1063313851006980717}
   m_Layer: 6
   m_Name: FrambuesaBush
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
