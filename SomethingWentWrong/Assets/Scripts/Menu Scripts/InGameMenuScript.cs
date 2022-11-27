@@ -8,6 +8,8 @@ public class InGameMenuScript : MonoBehaviour
 {
     public GameObject InGameMenuPanel;
     public GameObject Background;
+    public GameObject DeathScreen;
+    public GameObject WinScreen;
     [SerializeField] public bool isOpened;
     [SerializeField] public bool isMainMenu;
 
@@ -16,6 +18,8 @@ public class InGameMenuScript : MonoBehaviour
     {
         InGameMenuPanel.SetActive(isOpened);
         Background.SetActive(isOpened);
+        DeathScreen.SetActive(false);
+        WinScreen.SetActive(false);
     }
     private void Update()
     {

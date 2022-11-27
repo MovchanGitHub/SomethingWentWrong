@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 2937467222241951416}
   m_Layer: 6
   m_Name: HomeOfBunzha
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2986688f6a2cdc458d5d239ffcfbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootDropBarrier: 5
   hp: 10
   drop: {fileID: 255519697402481620, guid: 6dfecc7d745242a4fba0b12f7c89d1a0, type: 3}
   dropCount: 1

@@ -29,11 +29,11 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public int a21 = 0, a22 = 1;
 
     public bool normalMovement = true;
-    
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
         isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
+        startPosition = attackPoint.transform.localPosition;
     }
 
     private void Start()

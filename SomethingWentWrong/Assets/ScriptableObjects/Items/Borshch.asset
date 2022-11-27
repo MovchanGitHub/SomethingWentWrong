@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Borshch
   m_EditorClassIdentifier: 
   itemName: "\u0411\u043E\u0440\u0448\u0447"
-  maximumAmount: 0
+  maximumAmount: 2
   itemDescription: "\u041A\u043B\u0430\u0441\u0441\u0438\u0447\u0435\u0441\u043A\u043E\u0435
     \u0431\u043B\u044E\u0434\u043E, \u0437\u0430\u0432\u043E\u0435\u0432\u0430\u0432\u0448\u0435\u0435
     \u043B\u044E\u0431\u043E\u0432\u044C \u043A\u0430\u043A \u043D\u0430 \u0417\u0435\u043C\u043B\u0435,
@@ -21,6 +21,7 @@ MonoBehaviour:
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: ee9ba81f86a25874da33838b9618bb2f, type: 3}
   dragAndDropElement: {fileID: 3110146729833892629, guid: a6b2c60dd0b01484d82f09a2a445fd28, type: 3}
+  dropObject: {fileID: 0}
   satiationEffect: 30
   slakingOfThirstEffect: 10
   healEffect: 5

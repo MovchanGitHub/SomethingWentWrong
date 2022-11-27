@@ -98,7 +98,7 @@ GameObject:
   - component: {fileID: 1085709915593089789}
   m_Layer: 6
   m_Name: Rock
-  m_TagString: Untagged
+  m_TagString: Resource
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2986688f6a2cdc458d5d239ffcfbfd2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lootDropBarrier: 5
   hp: 20
   drop: {fileID: 4379616651046690924, guid: 17003d9771368e04782c9209e6cd1f8d, type: 3}
   dropCount: 1
