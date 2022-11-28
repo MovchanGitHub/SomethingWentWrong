@@ -19,7 +19,7 @@ public class PauseEffect : MonoBehaviour
 
     void Update()
     {
-        if (GetComponent<InGameMenuScript>().isOpened)
+        if (GetComponent<InGameMenuScript>().isOpened | GetComponent<SettingsScript>().isOpened | GetComponent<DeathScreen>().isOpened | GetComponent<WinScreen>().isOpened)
         {
             if (_cutoffValue > 460f) _cutoffValue -= (_cutoffValue - 452f) / (TransitionTime * 2);
             else _cutoffValue = 452f;

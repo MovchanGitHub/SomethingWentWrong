@@ -39429,7 +39429,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6282623205285367892, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
       propertyPath: intenseMixerVol
-      value: 9
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 6282623205285367892, guid: 87d3bd22cb01b47eeaff34ea06b578ac, type: 3}
       propertyPath: adaptiveParameter
