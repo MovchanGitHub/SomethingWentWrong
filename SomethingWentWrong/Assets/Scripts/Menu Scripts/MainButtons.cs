@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -10,18 +11,21 @@ public class MainButtons : MonoBehaviour
 {
     private MainMenuScript mainMenu;
     private MainSettingsScript settings;
+    private Button[] buttons;
+    public Animator backAnimator;
     
+
      
     private void Start()
     {
         mainMenu = GetComponentInParent<MainMenuScript>();
         settings = GetComponentInParent<MainSettingsScript>();
+        buttons = GetComponentsInChildren<Button>();
     }
     
     public void OnButtonLoadScene(string sceneName)
     {
         Debug.Log($"Loading scene {sceneName}");
-        // SceneManager.LoadScene(sceneName);
         StartCoroutine(LoadAsync(sceneName));
     }
 
@@ -41,11 +45,17 @@ public class MainButtons : MonoBehaviour
 
     public void OnButtonSettings()
     {
+        foreach (var button in buttons)
+        {
+            button.animator.Update(1);
+        }
+        
         settings.ShowHideSettings();
         mainMenu.ShowHideMenu();
     }
     public void OnButtonBack()
     {
+        backAnimator.Update(1);
         settings.ShowHideSettings();
         mainMenu.ShowHideMenu();
     }
@@ -65,7 +75,7 @@ public class MainButtons : MonoBehaviour
         {
             float progress = Mathf.Clamp01(oper.progress / .9f);
             slider.value = progress;
-            progressText.text = progress * 100f + "%";
+            progressText.text = (int)progress * 100 + "%";
             
             yield return null;
         }

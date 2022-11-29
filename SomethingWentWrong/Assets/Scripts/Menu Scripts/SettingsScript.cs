@@ -32,8 +32,10 @@ public class SettingsScript : MonoBehaviour
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
+        // Time.timeScale = isOpened ? 0 : 1;
         Settings.GameObject().SetActive(isOpened);
         Backgound.GameObject().SetActive(isOpened);
+        
     }
 
     public void SetMusicVolume(int value)

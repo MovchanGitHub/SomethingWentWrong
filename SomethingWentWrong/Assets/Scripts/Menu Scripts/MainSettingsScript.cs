@@ -32,6 +32,7 @@ public class MainSettingsScript : MonoBehaviour
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
+        // Settings.GameObject().layer = isOpened ? 0 : -1;
         Settings.GameObject().SetActive(isOpened);
         Backgound.GameObject().SetActive(isOpened);
     }

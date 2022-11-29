@@ -30,6 +30,7 @@ public class InGameMenuScript : MonoBehaviour
     public void ShowHideMenu()
     {
         isOpened = !isOpened;
+        // Time.timeScale = isOpened ? 0 : 1;
         InGameMenuPanel.GameObject().SetActive(isOpened);
         Background.GameObject().SetActive(isOpened);
     }
