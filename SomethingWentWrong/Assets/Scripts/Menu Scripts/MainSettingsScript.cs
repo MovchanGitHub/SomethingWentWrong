@@ -11,8 +11,8 @@ public class MainSettingsScript : MonoBehaviour
     public GameObject Settings;
     public GameObject Backgound;
     [SerializeField] private bool isOpened;
-    [SerializeField] public int musicVolume;
-    [SerializeField] public int soundsVolume;
+    [SerializeField] public double musicVolume;
+    [SerializeField] public double soundsVolume;
     [SerializeField] public bool isFullScreen;
 
     private void Awake()
@@ -37,11 +37,11 @@ public class MainSettingsScript : MonoBehaviour
         Backgound.GameObject().SetActive(isOpened);
     }
 
-    public void SetMusicVolume(int value)
+    public void SetMusicVolume(double value)
     {
         musicVolume = value;
     }
-    public void SetSoundsVolume(int value)
+    public void SetSoundsVolume(double value)
     {
         soundsVolume = value;
     }

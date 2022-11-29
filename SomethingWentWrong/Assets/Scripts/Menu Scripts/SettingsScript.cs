@@ -11,8 +11,8 @@ public class SettingsScript : MonoBehaviour
     public GameObject Settings;
     public GameObject Backgound;
     [SerializeField] private bool isOpened;
-    [SerializeField] public int musicVolume;
-    [SerializeField] public int soundsVolume;
+    [SerializeField] public float musicVolume;
+    [SerializeField] public float soundsVolume;
     [SerializeField] public bool isFullScreen;
 
     private void Awake()
@@ -38,13 +38,14 @@ public class SettingsScript : MonoBehaviour
         
     }
 
-    public void SetMusicVolume(int value)
+    public void SetMusicVolume(float value)
     {
         musicVolume = value;
     }
-    public void SetSoundsVolume(int value)
+    public void SetSoundsVolume(float value)
     {
         soundsVolume = value;
+
     }
     public void SetResolution(int value)
     {
