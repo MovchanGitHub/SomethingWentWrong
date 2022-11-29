@@ -22,7 +22,6 @@ public class Buttons : MonoBehaviour
     
     public void OnButtonLoadScene(string sceneName)
     {
-        pause.ShowHideMenu();
         Debug.Log($"Loading scene {sceneName}");
         StartCoroutine(LoadAsync(sceneName));
     }
