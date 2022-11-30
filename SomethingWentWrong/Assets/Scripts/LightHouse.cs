@@ -31,7 +31,7 @@ public class LightHouse : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        Debug.Log("GameOver!!!");
+        GameManagerScript.instance.GameOver();
 
         Destroy(gameObject);
     }

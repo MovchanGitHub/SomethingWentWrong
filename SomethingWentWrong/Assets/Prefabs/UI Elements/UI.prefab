@@ -2459,6 +2459,7 @@ GameObject:
   - component: {fileID: 8697992721554134625}
   - component: {fileID: 8456363667202471680}
   - component: {fileID: 2827769154885365193}
+  - component: {fileID: 3046103747311450753}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -2567,6 +2568,7 @@ MonoBehaviour:
   DeathScreen: {fileID: 1167549872713557439}
   WinScreen: {fileID: 508686463488207102}
   ControlKeysWindow: {fileID: 6618786055352193967}
+  isOpened: 0
 --- !u!114 &2159322542572342920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2635,6 +2637,18 @@ MonoBehaviour:
   loadingScreen: {fileID: 8040372685133097201}
   slider: {fileID: 3288254740924071748}
   progressText: {fileID: 959003109605036508}
+--- !u!114 &3046103747311450753
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2159322542572342926}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0861b45fe9f4b924ca49baecd0d414e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2159322542632652203
 GameObject:
   m_ObjectHideFlags: 0

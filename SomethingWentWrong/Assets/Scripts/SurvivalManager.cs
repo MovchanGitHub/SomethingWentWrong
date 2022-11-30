@@ -83,6 +83,8 @@ public class SurvivalManager : MonoBehaviour
             currentHunger = 0;
             currentThirst = 0;
             currentAnoxaemia = 0;
+            GameManagerScript.instance.GameOver();
+            //transform.gameObject.SetActive(false);
         }
 
         //if player runs

@@ -23,6 +23,8 @@ public class Buttons : MonoBehaviour
     public void OnButtonLoadScene(string sceneName)
     {
         Debug.Log($"Loading scene {sceneName}");
+        IsometricPlayerMovementController.IsAbleToMove = true;
+        GameManagerScript.instance.isUIOpened = false;
         StartCoroutine(LoadAsync(sceneName));
     }
     
