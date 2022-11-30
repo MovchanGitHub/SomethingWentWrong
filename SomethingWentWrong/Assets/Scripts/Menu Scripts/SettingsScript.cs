@@ -10,7 +10,8 @@ public class SettingsScript : MonoBehaviour
 
     public GameObject Settings;
     public GameObject Backgound;
-    [SerializeField] private bool isOpened;
+	
+    public bool isOpened;
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
     [SerializeField] public bool isFullScreen;
