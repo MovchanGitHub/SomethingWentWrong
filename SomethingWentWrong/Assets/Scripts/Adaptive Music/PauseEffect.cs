@@ -10,16 +10,26 @@ public class PauseEffect : MonoBehaviour
     private float _dryValue = 0;
     private float _wetValue = -10000;
     private const int TransitionTime = 500;
+
+    private InGameMenuScript _inGameMenuScript;
+    private SettingsScript _settingsScript;
+    private DeathScreen _deathScreen;
+    private WinScreen _winScreen;
     void Start()
     {
         audioMixer.SetFloat("Cutoff", _cutoffValue);
         audioMixer.SetFloat("DryVol", _dryValue);
         audioMixer.SetFloat("WetVol", _wetValue);
+
+        _inGameMenuScript = GetComponent<InGameMenuScript>();
+        _settingsScript = GetComponent<SettingsScript>();
+        _deathScreen = GetComponent<DeathScreen>();
+        _winScreen = GetComponent<WinScreen>();
     }
 
     void Update()
     {
-        if (GetComponent<InGameMenuScript>().isOpened | GetComponent<SettingsScript>().isOpened | GetComponent<DeathScreen>().isOpened | GetComponent<WinScreen>().isOpened)
+        if (_inGameMenuScript.isOpened || _settingsScript.isOpened || _deathScreen.isOpened || _winScreen.isOpened)
         {
             if (_cutoffValue > 460f) _cutoffValue -= (_cutoffValue - 452f) / (TransitionTime * 2);
             else _cutoffValue = 452f;

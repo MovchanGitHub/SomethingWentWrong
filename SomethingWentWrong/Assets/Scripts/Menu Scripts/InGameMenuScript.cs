@@ -11,7 +11,7 @@ public class InGameMenuScript : MonoBehaviour
     public GameObject DeathScreen;
     public GameObject WinScreen;
     public GameObject ControlKeysWindow;
-    private bool isOpened;
+    public bool isOpened;
 
     
     private void Awake()
