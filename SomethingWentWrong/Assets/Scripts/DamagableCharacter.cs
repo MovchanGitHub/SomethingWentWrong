@@ -53,6 +53,6 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        gameObject.transform.parent.gameObject.SetActive(false);
+        GameManagerScript.instance.GameOver();
     }
 }

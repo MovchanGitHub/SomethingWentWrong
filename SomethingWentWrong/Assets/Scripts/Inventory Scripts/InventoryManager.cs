@@ -25,6 +25,7 @@ public class InventoryManager : MonoBehaviour
 
     public bool isOpened;
     private bool shiftPressed;
+    public bool canBeOpened = true;
 
     private GameObject CurrentCellRef;
     private GameObject tempCell;
@@ -61,6 +62,7 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             IsometricPlayerMovementController.IsAbleToMove = !IsometricPlayerMovementController.IsAbleToMove;
+            GameManagerScript.instance.isUIOpened = !GameManagerScript.instance.isUIOpened;
             if (AlreadyChosenCell != null)
             {
                 MakeCellEmpty(CurrentCellRef.GetComponent<InventoryCell>());
