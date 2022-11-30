@@ -1,23 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class Buttons : MonoBehaviour
+public class MainButtons : MonoBehaviour
 {
-    private InGameMenuScript pause;
-    private SettingsScript settings;
-    public Button[] buttons;
+    private MainMenuScript mainMenu;
+    private MainSettingsScript settings;
+    private Button[] buttons;
+    public Animator backAnimator;
     
-    
+
+     
     private void Start()
     {
-        pause = GetComponentInParent<InGameMenuScript>();
-        settings = GetComponentInParent<SettingsScript>();
+        mainMenu = GetComponentInParent<MainMenuScript>();
+        settings = GetComponentInParent<MainSettingsScript>();
+        buttons = GetComponentsInChildren<Button>();
     }
     
     public void OnButtonLoadScene(string sceneName)
@@ -25,11 +28,13 @@ public class Buttons : MonoBehaviour
         Debug.Log($"Loading scene {sceneName}");
         StartCoroutine(LoadAsync(sceneName));
     }
+
+   
     
     public void OnContinueButton()
     {
-        RefreshAnimation();
-        pause.ShowHideMenu();
+        StartCoroutine(LoadAsync("Level One"));
+
     }
     
     public void OnButtonExit()
@@ -40,34 +45,26 @@ public class Buttons : MonoBehaviour
 
     public void OnButtonSettings()
     {
-        RefreshAnimation();
-        settings.ShowHideSettings();
-        pause.ShowHideMenu();
-    }
-    
-    public void OnButtonControlKeys()
-    {
-        RefreshAnimation();
-        pause.ShowHideMenu();
-        pause.ControlKeysWindow.SetActive(true);
+        foreach (var button in buttons)
+        {
+            button.animator.Update(1);
+        }
         
+        settings.ShowHideSettings();
+        mainMenu.ShowHideMenu();
     }
     public void OnButtonBack()
     {
+        backAnimator.Update(1);
         settings.ShowHideSettings();
-        pause.ShowHideMenu();
+        mainMenu.ShowHideMenu();
     }
-    
-    public void OnButtonControlBack()
-    {
-        RefreshAnimation();
-        pause.ControlKeysWindow.SetActive(false);
-        pause.ShowHideMenu();
-    }
-    
+
+
     public GameObject loadingScreen;
     public Slider slider;
     public TextMeshProUGUI progressText;
+    
     
     IEnumerator LoadAsync(string sceneName)
     {
@@ -83,13 +80,6 @@ public class Buttons : MonoBehaviour
             yield return null;
         }
     }
-
-    private void RefreshAnimation()
-    {
-        foreach (var button in buttons)
-        {
-            button.animator.Update(1);
-        }
-    }
-
+    
+    
 }

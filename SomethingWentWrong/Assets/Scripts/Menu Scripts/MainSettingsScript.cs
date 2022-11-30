@@ -5,15 +5,14 @@ using UnityEngine;
 
 
 
-public class SettingsScript : MonoBehaviour
+public class MainSettingsScript : MonoBehaviour
 {
 
     public GameObject Settings;
     public GameObject Backgound;
-	
-    public bool isOpened;
-    [SerializeField] public float musicVolume;
-    [SerializeField] public float soundsVolume;
+    [SerializeField] private bool isOpened;
+    [SerializeField] public double musicVolume;
+    [SerializeField] public double soundsVolume;
     [SerializeField] public bool isFullScreen;
 
     private void Awake()
@@ -27,26 +26,24 @@ public class SettingsScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
         {
             ShowHideSettings();
-            GetComponentInParent<InGameMenuScript>().ShowHideMenu();
+            GetComponentInParent<MainMenuScript>().ShowHideMenu();
         }
     }
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
-        // Time.timeScale = isOpened ? 0 : 1;
+        // Settings.GameObject().layer = isOpened ? 0 : -1;
         Settings.GameObject().SetActive(isOpened);
         Backgound.GameObject().SetActive(isOpened);
-        
     }
 
-    public void SetMusicVolume(float value)
+    public void SetMusicVolume(double value)
     {
         musicVolume = value;
     }
-    public void SetSoundsVolume(float value)
+    public void SetSoundsVolume(double value)
     {
         soundsVolume = value;
-
     }
     public void SetResolution(int value)
     {
