@@ -17,8 +17,8 @@ MonoBehaviour:
   itemDescription: "\u041F\u0430\u0445\u043D\u0435\u0442 \u0434\u043E\u043C\u043E\u043C"
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: 519a0fa39ae22104ca2828080ece17c9, type: 3}
-  dragAndDropElement: {fileID: 0}
-  dropObject: {fileID: 0}
+  dragAndDropElement: {fileID: 3547450308693811337, guid: c160225f9d3534349b7658378506e7da, type: 3}
+  dropObject: {fileID: 8222411469451397227, guid: b8a93c24b3bef204ebcceeff6e660618, type: 3}
   satiationEffect: 50
   slakingOfThirstEffect: -10
   healEffect: 0
