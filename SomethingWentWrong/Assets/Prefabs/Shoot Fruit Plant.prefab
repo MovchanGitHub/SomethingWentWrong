@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: drop
       value: 
       objectReference: {fileID: 7345124791087543121, guid: 455062e1b3f07534fbff3451b220bcf0, type: 3}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.20826244
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.3679291
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.016252995
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.17716193
+      objectReference: {fileID: 0}
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
       value: Shoot Fruit Plant

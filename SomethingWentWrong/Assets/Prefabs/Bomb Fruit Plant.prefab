@@ -55,6 +55,22 @@ PrefabInstance:
       propertyPath: drop
       value: 
       objectReference: {fileID: 6328004980852509893, guid: f9bd3cb45b743674e860695df86f4d2a, type: 3}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6804795
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Size.y
+      value: 0.5022883
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.027240515
+      objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.25621274
+      objectReference: {fileID: 0}
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
       value: Bomb Fruit Plant

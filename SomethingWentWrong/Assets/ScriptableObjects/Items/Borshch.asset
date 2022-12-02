@@ -20,8 +20,8 @@ MonoBehaviour:
     \u0442\u0430\u043A \u0438 \u0432 \u043A\u043E\u0441\u043C\u043E\u0441\u0435"
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: ee9ba81f86a25874da33838b9618bb2f, type: 3}
-  dragAndDropElement: {fileID: 3110146729833892629, guid: a6b2c60dd0b01484d82f09a2a445fd28, type: 3}
-  dropObject: {fileID: 0}
+  dragAndDropElement: {fileID: 8072926988471300202, guid: 389b534c30e970245852aa9b7195f13a, type: 3}
+  dropObject: {fileID: 8642717926485319127, guid: c0c2c71b7b9e1024f89b8c4e1343d31f, type: 3}
   satiationEffect: 30
   slakingOfThirstEffect: 10
   healEffect: 5
