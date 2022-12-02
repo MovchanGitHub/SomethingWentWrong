@@ -19,8 +19,8 @@ MonoBehaviour:
     \u043A\u043E\u0441\u043C\u043E\u043D\u0430\u0432\u0442\u044B"
   TypeOfThisItem: 2
   image: {fileID: 21300000, guid: ab059400cc4269f4085de03864ee7600, type: 3}
-  dragAndDropElement: {fileID: 3110146729833892629, guid: a6b2c60dd0b01484d82f09a2a445fd28, type: 3}
-  dropObject: {fileID: 0}
+  dragAndDropElement: {fileID: 6768799312771501825, guid: 041399b75db736f438de927a7e7cd3e2, type: 3}
+  dropObject: {fileID: 7583881875524302019, guid: 6d8a2abaa2ef25b41b9eecb14abdfe8f, type: 3}
   satiationEffect: 0
   slakingOfThirstEffect: 70
   healEffect: 1

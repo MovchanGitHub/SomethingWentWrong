@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 public class MenuMusicTransition : MusicFaderScript
@@ -10,6 +11,7 @@ public class MenuMusicTransition : MusicFaderScript
     private Scene _menuScene;
     private float _volume;
     private const int TransTime = 500;
+    public AudioMixer audioMixer;
     
     private void Awake()
     {
@@ -19,6 +21,13 @@ public class MenuMusicTransition : MusicFaderScript
         _audioSource.volume = _volume;
         _audioSource.Play();
         _menuScene = SceneManager.GetActiveScene();
+    }
+
+    private void Start()
+    {
+        audioMixer.SetFloat("Cutoff", 22000f);
+        audioMixer.SetFloat("DryVol", 0f);
+        audioMixer.SetFloat("WetVol", -10000f);
     }
 
     private void Update()
@@ -34,7 +43,7 @@ public class MenuMusicTransition : MusicFaderScript
                 Destroy(gameObject);
             } */
             
-            MusicVolumeDownRoot(_audioSource, TransTime / 5, ref _volume);
+            MusicVolumeDownRoot(_audioSource, TransTime / 3, ref _volume);
             if (MathF.Sqrt(_volume) < 0.001f)
             {
                 Destroy(gameObject);

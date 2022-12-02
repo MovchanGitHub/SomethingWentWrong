@@ -11,6 +11,8 @@ public class EnemyMovement : MonoBehaviour
     private int currentPointIndex;
     public Transform target;
     public float minDistance;
+    public bool isEnemyNight = false;
+    public bool moveToLightHouse = false;
 
     public bool isPatrolling;
     private bool isWaiting;
@@ -36,17 +38,21 @@ public class EnemyMovement : MonoBehaviour
         }
     }
 
-    private void GoToTarget()
+    public void GoToTarget()
     {
-        if (Vector2.Distance(transform.position, target.position) > minDistance)
+        if (Vector2.Distance(transform.position, target.position) > minDistance && !moveToLightHouse)
         {
-            transform.position = Vector2.MoveTowards(transform.position, 
+            transform.position = Vector2.MoveTowards(transform.position,
                 target.position, speed * Time.deltaTime);
         }
-        else
+        if (moveToLightHouse)
         {
-            //attack code
-        } 
+            if (GameManagerScript.instance.lightHouse)
+            {
+                GameObject lightHouse = GameManagerScript.instance.lightHouse;
+                transform.position = Vector2.MoveTowards(transform.position, lightHouse.transform.position, speed * Time.deltaTime);
+            }
+        }
     }
     
     private void Patrol()

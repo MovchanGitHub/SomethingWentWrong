@@ -21,14 +21,22 @@ public class EnemyNoticeTarget : MonoBehaviour
         if (col.tag == targetTag)
         {
             enemyLogic.isPatrolling = false;
+            if (enemyLogic.isEnemyNight)
+            {
+                enemyLogic.moveToLightHouse = false;
+            }
         }
     }
     
     private void OnTriggerExit2D(Collider2D col)
     {
-        if (col.tag == targetTag)
+        if (!enemyLogic.isEnemyNight)
         {
             enemyLogic.isPatrolling = true;
+        }
+        if (enemyLogic.isEnemyNight)
+        {
+            enemyLogic.moveToLightHouse = true;
         }
     }
 

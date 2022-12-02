@@ -22,7 +22,7 @@ public class Bullet : MonoBehaviour
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
 
-        if (timeBtwShots <= 0)
+        if (!GameManagerScript.instance.isUIOpened && timeBtwShots <= 0)
         {
             if (Input.GetMouseButton(0) && amountBullets > 0)
             {

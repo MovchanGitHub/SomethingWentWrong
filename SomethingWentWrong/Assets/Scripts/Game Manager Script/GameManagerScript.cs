@@ -10,7 +10,9 @@ public class GameManagerScript : MonoBehaviour
 
     public GameObject lightHouse;
 
-    //private bool isLightHouseActive;
+    public GameObject UI;
+
+    public bool isUIOpened;
 
     private void Awake()
     {
@@ -42,5 +44,20 @@ public class GameManagerScript : MonoBehaviour
     {
         //isLightHouseActive = false;
         lightHouse.GetComponent<LightHouse>().active = false;
+    }
+
+    public void GameOver()
+    {
+        UI.GetComponent<DeathScreen>().ShowHideDeathScreen();
+
+        IsometricPlayerMovementController.IsAbleToMove = false;
+
+        InventoryManager.instance.canBeOpened = false;
+
+        SurvivalManager.Instance.transform.gameObject.SetActive(false);
+
+        player.gameObject.SetActive(false);
+
+        instance.isUIOpened = true;
     }
 }

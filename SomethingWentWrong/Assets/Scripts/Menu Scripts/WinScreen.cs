@@ -6,7 +6,7 @@ using UnityEngine;
 public class WinScreen : MonoBehaviour
 {
     public GameObject screen;
-    [SerializeField] private bool isOpened;
+    [SerializeField] public bool isOpened;
 
     // Update is called once per frame
     void Update()

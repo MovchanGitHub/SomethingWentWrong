@@ -11,10 +11,14 @@ public class InventoryManager : MonoBehaviour
     public static InventoryManager instance { get; private set; }
     [SerializeField] private GameObject[] inventoryCells;
     [SerializeField] private GameObject emptyCell;
+    private InventoryCell emptyCellCode;
 
     [SerializeField] private GameObject ContextMenu;
+    private float contextMenuWidthDiv2;
+    private float contextMenuHeightDiv2;
     [SerializeField] private GameObject tipPanel;
     [SerializeField] private GameObject SurvivalManager;
+    private SurvivalManager SurvivalManagerCode;
     [SerializeField] private GameObject BombSpawner;
     [SerializeField] private GameObject BulletSpawner;
 
@@ -25,10 +29,13 @@ public class InventoryManager : MonoBehaviour
 
     public bool isOpened;
     private bool shiftPressed;
+    public bool canBeOpened = true;
 
     private GameObject CurrentCellRef;
     private GameObject tempCell;
     private GameObject onMouseObject;
+    private PlayerBombSpawnerScript BombSpawnerCode;
+    private Bullet BulletSpawnerCode;
 
 
     private void Awake()
@@ -49,6 +56,12 @@ public class InventoryManager : MonoBehaviour
         isOpened = false;
 
         playerTransform = GameManagerScript.instance.player.transform;
+        BombSpawnerCode = BombSpawner.GetComponent<PlayerBombSpawnerScript>();
+        BulletSpawnerCode = BulletSpawner.GetComponent<Bullet>();
+        emptyCellCode = emptyCell.GetComponent<InventoryCell>();
+        contextMenuWidthDiv2 = ContextMenu.GetComponent<RectTransform>().rect.width / 2;
+        contextMenuHeightDiv2 = ContextMenu.GetComponent<RectTransform>().rect.height / 2;
+        SurvivalManagerCode = SurvivalManager.GetComponent<SurvivalManager>();
 
         CountOneTimeWeapon(PlayerBombSpawnerScript.bombName, BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs);
     }
@@ -61,6 +74,7 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             IsometricPlayerMovementController.IsAbleToMove = !IsometricPlayerMovementController.IsAbleToMove;
+            GameManagerScript.instance.isUIOpened = !GameManagerScript.instance.isUIOpened;
             if (AlreadyChosenCell != null)
             {
                 MakeCellEmpty(CurrentCellRef.GetComponent<InventoryCell>());
@@ -102,10 +116,10 @@ public class InventoryManager : MonoBehaviour
     //Ïåðåìåùåíèå ïðåäìåòîâ ïî èíâåíòàðþ
     public void OnCellClick(GameObject CurrentCell)
     {
-        InventoryCell currentCell = CurrentCell.GetComponent<InventoryCell>();
+        InventoryCell currentCellCode = CurrentCell.GetComponent<InventoryCell>();
 
         //Åñëè ïåðâûé îáúåêò (ÿ÷åéêó) äëÿ Swap-à åù¸ íå âûáðàëè
-        if (AlreadyChosenCell == null && currentCell.item.TypeOfThisItem != ItemType.NoItem)
+        if (AlreadyChosenCell == null && currentCellCode.item.TypeOfThisItem != ItemType.NoItem)
         {
             //Ïðè íàæàòèè íà ïðàâóþ êíîïêó ìûøè âûñâå÷èâàåòñÿ êîíòåêñòíîå ìåíþ
             if (Input.GetMouseButtonUp(1))
@@ -116,27 +130,28 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 AlreadyChosenCell = Instantiate(CurrentCell);
+                InventoryCell alreadyChosenCell = AlreadyChosenCell.GetComponent<InventoryCell>();
                 CurrentCellRef = CurrentCell;
                 tempCell = AlreadyChosenCell.transform.gameObject;
 
                 if (shiftPressed)
                 {
-                    AlreadyChosenCell.GetComponent<InventoryCell>().amount = 1;
-                    currentCell.amount -= 1;
-                    if (currentCell.amount < 1)
+                    alreadyChosenCell.amount = 1;
+                    currentCellCode.amount -= 1;
+                    if (currentCellCode.amount < 1)
                     {
-                        MakeCellEmpty(currentCell);
+                        MakeCellEmpty(currentCellCode);
                     }
                 }
                 else
                 {
-                    MakeCellEmpty(currentCell);
+                    MakeCellEmpty(currentCellCode);
                 }
 
-                onMouseObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dragAndDropElement, transform);
-                if (AlreadyChosenCell.GetComponent<InventoryCell>().amount > 1)
+                onMouseObject = Instantiate(alreadyChosenCell.item.dragAndDropElement, transform);
+                if (alreadyChosenCell.amount > 1)
                 {
-                    onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + AlreadyChosenCell.GetComponent<InventoryCell>().amount;
+                    onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + alreadyChosenCell.amount;
                 }
                 onMouseObject.transform.position = Input.mousePosition;
             }
@@ -145,39 +160,42 @@ public class InventoryManager : MonoBehaviour
         else if (AlreadyChosenCell != null)
         {
             InventoryCell alreadyChosenCell = AlreadyChosenCell.GetComponent<InventoryCell>();
+            InventoryCell сurrentCellRefCode = CurrentCellRef.GetComponent<InventoryCell>();
+            InventoryCell tempCellCode = tempCell.GetComponent<InventoryCell>();
 
-            if (alreadyChosenCell.item == currentCell.item && currentCell.amount <= currentCell.item.maximumAmount)
+            if (alreadyChosenCell.item == currentCellCode.item && currentCellCode.amount <= currentCellCode.item.maximumAmount)
             {
-                currentCell.amount += alreadyChosenCell.amount;
+                currentCellCode.amount += alreadyChosenCell.amount;
                 int tempAmount = 0;
 
-                if (currentCell.amount > currentCell.item.maximumAmount)
+                if (currentCellCode.amount > currentCellCode.item.maximumAmount)
                 {
 
-                    tempAmount = CurrentCell.GetComponent<InventoryCell>().amount;
-                    currentCell.amount = currentCell.item.maximumAmount;
+                    tempAmount = currentCellCode.amount;
+                    currentCellCode.amount = currentCellCode.item.maximumAmount;
 
-                    CurrentCellRef.GetComponent<InventoryCell>().amount -= currentCell.amount - tempAmount;
-                    CurrentCellRef.GetComponent<InventoryCell>().item = tempCell.GetComponent<InventoryCell>().item;
-                    CurrentCellRef.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = tempCell.GetComponent<InventoryCell>().item.image;
+                    сurrentCellRefCode.amount -= currentCellCode.amount - tempAmount;
+                    сurrentCellRefCode.item = tempCellCode.item;
+                    сurrentCellRefCode.icon.GetComponent<Image>().sprite = tempCellCode.item.image;
                     UpdateCounterText(CurrentCellRef);
                 }
 
-                alreadyChosenCell.amount -= currentCell.amount - tempAmount;
-                alreadyChosenCell.item = tempCell.GetComponent<InventoryCell>().item;
-                alreadyChosenCell.icon.GetComponent<Image>().sprite = tempCell.GetComponent<InventoryCell>().item.image;
+                alreadyChosenCell.amount -= currentCellCode.amount - tempAmount;
+                alreadyChosenCell.item = tempCellCode.item;
+                alreadyChosenCell.icon.GetComponent<Image>().sprite = tempCellCode.item.image;
             }
-            else if (currentCell.item.TypeOfThisItem != ItemType.NoItem)
+            else if (currentCellCode.item.TypeOfThisItem != ItemType.NoItem)
             {
                 GameObject temporary = Instantiate(AlreadyChosenCell);
+                InventoryCell temporaryCode = temporary.GetComponent<InventoryCell>();
 
-                alreadyChosenCell.item = currentCell.item;
-                alreadyChosenCell.amount = currentCell.amount;
-                alreadyChosenCell.icon.GetComponent<Image>().sprite = currentCell.item.image;
+                alreadyChosenCell.item = currentCellCode.item;
+                alreadyChosenCell.amount = currentCellCode.amount;
+                alreadyChosenCell.icon.GetComponent<Image>().sprite = currentCellCode.item.image;
 
-                CurrentCellRef.GetComponent<InventoryCell>().item = temporary.GetComponent<InventoryCell>().item;
-                CurrentCellRef.GetComponent<InventoryCell>().amount += temporary.GetComponent<InventoryCell>().amount;
-                CurrentCellRef.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
+                сurrentCellRefCode.item = temporaryCode.item;
+                сurrentCellRefCode.amount += temporaryCode.amount;
+                сurrentCellRefCode.icon.GetComponent<Image>().sprite = temporaryCode.item.image;
                 UpdateCounterText(CurrentCellRef);
 
                 Destroy(temporary);
@@ -185,14 +203,15 @@ public class InventoryManager : MonoBehaviour
             else
             {
                 GameObject temporary = Instantiate(AlreadyChosenCell);
+                InventoryCell temporaryCode = temporary.GetComponent<InventoryCell>();
 
-                alreadyChosenCell.item = currentCell.item;
-                alreadyChosenCell.amount = currentCell.amount;
-                alreadyChosenCell.icon.GetComponent<Image>().sprite = currentCell.item.image;
+                alreadyChosenCell.item = currentCellCode.item;
+                alreadyChosenCell.amount = currentCellCode.amount;
+                alreadyChosenCell.icon.GetComponent<Image>().sprite = currentCellCode.item.image;
 
-                currentCell.item = temporary.GetComponent<InventoryCell>().item;
-                currentCell.amount = temporary.GetComponent<InventoryCell>().amount;
-                currentCell.icon.GetComponent<Image>().sprite = temporary.GetComponent<InventoryCell>().item.image;
+                currentCellCode.item = temporaryCode.item;
+                currentCellCode.amount = temporaryCode.amount;
+                currentCellCode.icon.GetComponent<Image>().sprite = temporaryCode.item.image;
                 Destroy(temporary);
             }
 
@@ -209,21 +228,22 @@ public class InventoryManager : MonoBehaviour
 
         if (AlreadyChosenCell != null)
         {
-            GameObject dropObject = Instantiate(AlreadyChosenCell.GetComponent<InventoryCell>().item.dropObject);
+            InventoryCell AlreadyChosenCellCode = AlreadyChosenCell.GetComponent<InventoryCell>();
+            GameObject dropObject = Instantiate(AlreadyChosenCellCode.item.dropObject);
             Vector3 mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             dropObject.transform.position = new Vector3(mousePos.x, mousePos.y, 0);
 
-            AlreadyChosenCell.GetComponent<InventoryCell>().amount -= 1;
-            if (AlreadyChosenCell.GetComponent<InventoryCell>().amount > 1)
+            AlreadyChosenCellCode.amount -= 1;
+            if (AlreadyChosenCellCode.amount > 1)
             {
-                onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + AlreadyChosenCell.GetComponent<InventoryCell>().amount;
+                onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "" + AlreadyChosenCellCode.amount;
             }
             else
             {
                 onMouseObject.transform.GetChild(0).GetComponent<TextMeshProUGUI>().text = "";
             }
 
-            if (AlreadyChosenCell.GetComponent<InventoryCell>().amount < 1)
+            if (AlreadyChosenCellCode.amount < 1)
             {
                 Destroy(onMouseObject);
                 AlreadyChosenCell = null;
@@ -237,21 +257,22 @@ public class InventoryManager : MonoBehaviour
     public void AddItem(ItemsBase newItem)
     {
         GameObject cellToAdd = FindCellToAdd(newItem);
-        if (cellToAdd.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.NoItem)
+        InventoryCell cellToAddCode = cellToAdd.GetComponent<InventoryCell>();
+        if (cellToAddCode.item.TypeOfThisItem == ItemType.NoItem)
         {
-            cellToAdd.GetComponent<InventoryCell>().item = newItem;
-            cellToAdd.GetComponent<InventoryCell>().amount = 1;
-            cellToAdd.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = newItem.image;
+            cellToAddCode.item = newItem;
+            cellToAddCode.amount = 1;
+            cellToAddCode.icon.GetComponent<Image>().sprite = newItem.image;
         }
         else
         {
-            cellToAdd.GetComponent<InventoryCell>().amount += 1;
+            cellToAddCode.amount += 1;
         }
         
         if (newItem.name == PlayerBombSpawnerScript.bombName)
-            BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs(BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs() + 1);
+            BombSpawnerCode.SetAmountBombs(BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs() + 1);
         if (newItem.name == Bullet.bulletName)
-            BulletSpawner.GetComponent<Bullet>().SetAmountBullets(BulletSpawner.GetComponent<Bullet>().GetAmountBullets() + 1);
+            BulletSpawnerCode.SetAmountBullets(BulletSpawner.GetComponent<Bullet>().GetAmountBullets() + 1);
             
         UpdateCounterText(cellToAdd);
     }
@@ -297,9 +318,10 @@ public class InventoryManager : MonoBehaviour
 
     private void MakeCellEmpty(InventoryCell cell)
     {
-        cell.GetComponent<InventoryCell>().item = emptyCell.GetComponent<InventoryCell>().item;
-        cell.GetComponent<InventoryCell>().amount = emptyCell.GetComponent<InventoryCell>().amount;
-        cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = emptyCell.GetComponent<InventoryCell>().item.image;
+        //InventoryCell cellCode = cell.GetComponent<InventoryCell>();
+        cell.item = emptyCellCode.item;
+        cell.amount = emptyCellCode.amount;
+        cell.icon.GetComponent<Image>().sprite = emptyCellCode.item.image;
     }
 
     private void UpdateCounterText(GameObject cell)
@@ -316,21 +338,24 @@ public class InventoryManager : MonoBehaviour
 
     private void ShowContextMenu()
     {
-        ContextMenu.transform.position = new Vector2(Input.mousePosition.x + ContextMenu.GetComponent<RectTransform>().rect.width / 2, Input.mousePosition.y - ContextMenu.GetComponent<RectTransform>().rect.height / 2);
+        ContextMenu.transform.position = new Vector2(Input.mousePosition.x + contextMenuWidthDiv2, Input.mousePosition.y - contextMenuHeightDiv2);
         ContextMenu.SetActive(true);
     }
 
     public void UseItem(GameObject Cell) 
     {
-        if((!Input.GetMouseButtonUp(1)) && (Cell.GetComponent<InventoryCell>().item.TypeOfThisItem == ItemType.Food))
+        if (Cell == ContextMenu)
+            Cell = ChosenCellExtra;
+        InventoryCell CellCode = Cell.GetComponent<InventoryCell>();
+        if ((!Input.GetMouseButtonUp(1)) && (CellCode.item.TypeOfThisItem == ItemType.Food))
         {
-            ItemTypeFood temporary = Cell.GetComponent<InventoryCell>().item as ItemTypeFood;
-            SurvivalManager.GetComponent<SurvivalManager>().ReplenishHunger(temporary.satiationEffect);
-            SurvivalManager.GetComponent<SurvivalManager>().ReplenishThirst(temporary.slakingOfThirstEffect);
+            ItemTypeFood temporary = CellCode.item as ItemTypeFood;
+            SurvivalManagerCode.ReplenishHunger(temporary.satiationEffect);
+            SurvivalManagerCode.ReplenishThirst(temporary.slakingOfThirstEffect);
         }
-        
-        Cell.GetComponent<InventoryCell>().amount--;
-        if (Cell.GetComponent<InventoryCell>().amount <= 0)
+
+        CellCode.amount--;
+        if (CellCode.amount <= 0)
             DeleteItem(Cell);
         
         UpdateCounterText(Cell);
@@ -338,11 +363,14 @@ public class InventoryManager : MonoBehaviour
 
     public void DeleteItem(GameObject Cell)
     {
+        if (Cell == ContextMenu)
+            Cell = ChosenCellExtra;
+        InventoryCell cellCode = Cell.GetComponent<InventoryCell>();
         if (!Input.GetMouseButtonUp(1))
         {
-            Cell.GetComponent<InventoryCell>().item = AssetDatabase.LoadAssetAtPath("Assets/ScriptableObjects/Items/EmtyCell.asset", typeof(ItemsBase)) as ItemsBase;
-            Cell.GetComponent<InventoryCell>().amount = 0;
-            Cell.GetComponent<InventoryCell>().icon.GetComponent<Image>().sprite = Cell.GetComponent<InventoryCell>().item.image;
+            cellCode.item = emptyCellCode.item;
+            cellCode.amount = emptyCellCode.amount;
+            cellCode.icon.GetComponent<Image>().sprite = emptyCellCode.item.image;
         }
     }
 
