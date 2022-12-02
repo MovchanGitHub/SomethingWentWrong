@@ -93,11 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108118163179626165, guid: 81378648c08dc764e8aec3024cb47061, type: 3}
       propertyPath: m_Name
-      value: Bomb Fruit
+      value: BombFruiDragAndDropt
       objectReference: {fileID: 0}
     - target: {fileID: 108118163179626187, guid: 81378648c08dc764e8aec3024cb47061, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 5bcd15a11d8547742983789dd8424d59, type: 3}
+      objectReference: {fileID: 21300000, guid: 12373a539fae58f45b85ce01a7edc2e6, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81378648c08dc764e8aec3024cb47061, type: 3}

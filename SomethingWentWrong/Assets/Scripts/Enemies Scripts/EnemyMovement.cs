@@ -30,7 +30,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (isPatrolling)
         {
-            //Patrol();
+            Patrol();
         }
         else if (canMove)
         {

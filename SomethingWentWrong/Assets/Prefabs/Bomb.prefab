@@ -74,7 +74,7 @@ SpriteRenderer:
   m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.8584906, g: 0.1972944, b: 0.124724075, a: 0.15686275}
+  m_Color: {r: 0.18039216, g: 0.427451, b: 0.5411765, a: 0.15686275}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -179,8 +179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 51ded59a0620cc646844ac10d952d7d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _collider2D: {fileID: 5945951737930541641}
-  _area: {fileID: 5943138957055596174}
   lifeTime: 1
   damageAmount: 5
   damagableLayers:
@@ -212,7 +210,7 @@ Transform:
   m_GameObject: {fileID: 6499335139566498530}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6499335138008150737}
@@ -259,7 +257,7 @@ SpriteRenderer:
   m_SortingLayerID: 478309205
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 5bcd15a11d8547742983789dd8424d59, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 12373a539fae58f45b85ce01a7edc2e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0

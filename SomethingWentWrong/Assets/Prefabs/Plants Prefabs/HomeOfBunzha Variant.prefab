@@ -75,6 +75,18 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.8000001
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.10588236
+      objectReference: {fileID: 0}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: drop
       value: 
@@ -99,6 +111,10 @@ PrefabInstance:
       propertyPath: m_IsTrigger
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5568479370104070074, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
       value: HomeOfBunzha Variant
@@ -106,7 +122,7 @@ PrefabInstance:
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 940f1e6aca2a1a64ab2cb732c17e3070, type: 3}
+      objectReference: {fileID: 21300000, guid: f7764e87e72df514aa14a5f2405afa83, type: 3}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

@@ -17,6 +17,8 @@ public class DayNightCycle : MonoBehaviour
 
     private int dayCount;
 
+    public GameObject winMenu;
+    
     public Color sunrise;
     public Color day;
     public Color sunset;
@@ -33,8 +35,7 @@ public class DayNightCycle : MonoBehaviour
         currentTime = 0;
         dayCycle = DayTime.Day;
         globalLight.color = sunrise;
-
-        dayCount = -1;
+        
         if (GameManagerScript.instance.lightHouse)
         {
             spawnSystem = GameManagerScript.instance.lightHouse.transform.GetComponentInChildren<SpawnSystem>();
@@ -45,8 +46,9 @@ public class DayNightCycle : MonoBehaviour
      {
         currentTime += Time.deltaTime;
 
-        if (currentTime >= cycleDuration) 
+        if (currentTime >= cycleDuration)
         {
+            dayCount++;
             currentTime = 0;
             dayCycle++;
         }
@@ -65,10 +67,9 @@ public class DayNightCycle : MonoBehaviour
 
             case DayTime.Day:
                 globalLight.color = Color.Lerp(day, sunset, percent);
-                dayCount++;
                 spawnSystem.spawnEnabled = false;
-                //if (dayCount == 3)
-                //SetActive победное окно
+                if (dayCount == 15)
+                    winMenu.SetActive(true);
                 break;
 
             case DayTime.Sunset:

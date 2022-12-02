@@ -18,8 +18,10 @@ public class EnemyNoticeTarget : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == targetTag)
+        if (col.tag == "Player")
         {
+            DayNightSwitching.Instance.EnemiesInCombat += 1;
+
             enemyLogic.isPatrolling = false;
             if (enemyLogic.isEnemyNight)
             {
@@ -30,6 +32,11 @@ public class EnemyNoticeTarget : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D col)
     {
+        if (col.tag == "Player")
+        {
+            DayNightSwitching.Instance.EnemiesInCombat -= 1;
+        }
+
         if (!enemyLogic.isEnemyNight)
         {
             enemyLogic.isPatrolling = true;

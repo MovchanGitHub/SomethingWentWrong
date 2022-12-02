@@ -13,11 +13,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1271668339195737552, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -5.97
       objectReference: {fileID: 0}
     - target: {fileID: 1271668339195737552, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 0.89
       objectReference: {fileID: 0}
     - target: {fileID: 1271668339195737552, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_LocalPosition.z
@@ -53,19 +53,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
-      value: 0.72466946
+      value: 0.76119375
       objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.y
-      value: 0.23443806
+      value: 0.2742827
       objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Offset.x
-      value: 0.011162281
+      value: -0.007099867
       objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Offset.y
-      value: 0.12323254
+      value: 0.14315486
       objectReference: {fileID: 0}
     - target: {fileID: 2715591283272857700, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_LocalScale.x
@@ -82,6 +82,18 @@ PrefabInstance:
     - target: {fileID: 2715591283272857700, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.b
+      value: 0.9176471
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.g
+      value: 0.56078434
+      objectReference: {fileID: 0}
+    - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.81568635
       objectReference: {fileID: 0}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: hp
@@ -111,9 +123,13 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.28509828
       objectReference: {fileID: 0}
+    - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
-      value: Bubble Plant
+      value: Bubble Plant Variant
       objectReference: {fileID: 0}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite
