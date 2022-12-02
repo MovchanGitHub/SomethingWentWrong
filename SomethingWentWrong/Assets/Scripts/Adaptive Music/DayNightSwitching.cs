@@ -12,14 +12,33 @@ public class DayNightSwitching : MusicFaderScript
     private float _nightVolume;
     private AudioSource _intenseAudio;
     private float _intenseVolume;
-    
+
     private const int TransTime = 500;
-    
+
     public GameObject adaptiveParameter;
     private DayTime _dayCycle;
     private bool _inCombat;
     public AudioMixer intenseMixer;
     public float intenseMixerVol;
+
+    private static DayNightSwitching instance;
+
+    public static DayNightSwitching Instance
+    {
+        get => instance;
+    }
+
+    private int enemiesInCombat = 0;
+
+    public int EnemiesInCombat
+    {
+        get => enemiesInCombat;
+        set
+        {
+            enemiesInCombat = value;
+            _inCombat = enemiesInCombat != 0;
+        }
+    }
 
     private void CombatStarts()
     {
@@ -35,6 +54,15 @@ public class DayNightSwitching : MusicFaderScript
     
     private void Awake()
     {
+        if (instance != null && instance != this)
+        {
+            Destroy(this.gameObject);
+        }
+        else
+        {
+            instance = this;
+        }
+        
         _dayAudio = GetComponents<AudioSource>()[0];
         _dayAudio.Play();
         _dayAudio.loop = true;
