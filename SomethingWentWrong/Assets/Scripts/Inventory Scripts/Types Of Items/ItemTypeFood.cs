@@ -9,6 +9,7 @@ public class ItemTypeFood : ItemsBase
     public int satiationEffect;
     public int slakingOfThirstEffect;
     public int healEffect;
+    public int oxygenRecovery;
     
     private void Start()
     {

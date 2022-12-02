@@ -352,6 +352,7 @@ public class InventoryManager : MonoBehaviour
             ItemTypeFood temporary = CellCode.item as ItemTypeFood;
             SurvivalManagerCode.ReplenishHunger(temporary.satiationEffect);
             SurvivalManagerCode.ReplenishThirst(temporary.slakingOfThirstEffect);
+            SurvivalManagerCode.ReplenishAnoxaemia(temporary.oxygenRecovery);
         }
 
         CellCode.amount--;
@@ -400,7 +401,11 @@ public class InventoryManager : MonoBehaviour
                 tipPanel.transform.GetChild(1).GetComponent<Text>().color = Color.red;
             tipPanel.transform.GetChild(1).GetComponent<Text>().text = temporary.slakingOfThirstEffect.ToString();
 
-            //tipPanel.transform.GetChild(2).GetComponent<Text>().text = temporary.oxigenEffect.ToString();
+            if (temporary.oxygenRecovery > 0)
+                tipPanel.transform.GetChild(2).GetComponent<Text>().color = Color.green;
+            else if (temporary.oxygenRecovery < 0)
+                tipPanel.transform.GetChild(2).GetComponent<Text>().color = Color.red;
+            tipPanel.transform.GetChild(2).GetComponent<Text>().text = temporary.oxygenRecovery.ToString();
 
             if (temporary.healEffect > 0)
                 tipPanel.transform.GetChild(3).GetComponent<Text>().color = Color.green;
@@ -418,9 +423,13 @@ public class InventoryManager : MonoBehaviour
 
         tipPanel.SetActive(false);
         tipPanel.transform.GetChild(0).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(0).GetComponent<Text>().color = Color.black;
         tipPanel.transform.GetChild(1).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(1).GetComponent<Text>().color = Color.black;
         tipPanel.transform.GetChild(2).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(2).GetComponent<Text>().color = Color.black;
         tipPanel.transform.GetChild(3).GetComponent<Text>().text = "0";
+        tipPanel.transform.GetChild(3).GetComponent<Text>().color = Color.black;
         StopCoroutine("CoroutineShowTipPanel");
     }
 
