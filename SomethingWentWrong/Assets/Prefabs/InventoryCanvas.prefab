@@ -242,12 +242,17 @@ MonoBehaviour:
   emptyCell: {fileID: 2939424167956016078, guid: 4963444ac1cf9d240861d27ac417b433, type: 3}
   ContextMenu: {fileID: 4107327492680800163}
   tipPanel: {fileID: 4957023827986158117}
-  SurvivalManager: {fileID: 0}
   BombSpawner: {fileID: 0}
   BulletSpawner: {fileID: 0}
+  bulletsAmount: 0
+  bombsAmount: 0
   InventoryPanel: {fileID: 8691865678400560393}
   isOpened: 0
   canBeOpened: 1
+  StandartBorsch: {fileID: 8642717926485319127, guid: c0c2c71b7b9e1024f89b8c4e1343d31f, type: 3}
+  StandartEWR: {fileID: 7583881875524302019, guid: 6d8a2abaa2ef25b41b9eecb14abdfe8f, type: 3}
+  StandartBeluga: {fileID: 8222411469451397227, guid: b8a93c24b3bef204ebcceeff6e660618, type: 3}
+  StandartGematogen: {fileID: 3042265973239088268, guid: c07e1bf98cd10d6409eef0ee0827eebb, type: 3}
 --- !u!1 &915402555855295702
 GameObject:
   m_ObjectHideFlags: 0

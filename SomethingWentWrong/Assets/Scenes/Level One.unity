@@ -184,6 +184,11 @@ PolygonCollider2D:
       - {x: -0.16499758, y: 0.32698798}
       - {x: -0.16690636, y: -0.10072124}
       - {x: 0.30728555, y: -0.22749901}
+--- !u!1 &11609511 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7967764145440109482, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+  m_PrefabInstance: {fileID: 1289165998}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &11697596
 GameObject:
   m_ObjectHideFlags: 0
@@ -44801,6 +44806,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 305593999, guid: c7b711ed6fd31e348b52add9c9c52a16, type: 3}
+      propertyPath: SurvivalBar
+      value: 
+      objectReference: {fileID: 11609511}
     - target: {fileID: 305593999, guid: c7b711ed6fd31e348b52add9c9c52a16, type: 3}
       propertyPath: _hungerMeter
       value: 

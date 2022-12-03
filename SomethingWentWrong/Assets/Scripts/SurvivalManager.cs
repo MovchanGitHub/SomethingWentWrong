@@ -47,19 +47,20 @@ public class SurvivalManager : MonoBehaviour
     public static SurvivalManager Instance
     {
         get { return instance; }
+
+        private set { instance = value; }
     }
-    
+
     private void Awake()
     {
         if (instance == null)
         {
             instance = this;
+            DontDestroyOnLoad(gameObject);
+            return;
         }
-        else
-        {
-            Destroy(instance);
-            instance = this;
-        }
+
+        Destroy(gameObject);
     }
 
     private void Start()
@@ -108,6 +109,14 @@ public class SurvivalManager : MonoBehaviour
                     currentStamina = maxStamina;
             }
         }
+    }
+
+    public void SetDefault()
+    {
+        currentHunger = maxHunger;
+        currentStamina = maxStamina;
+        currentThirst = maxThirst;
+        currentAnoxaemia = maxAnoxaemia;
     }
 
     public void ReplenishHunger(float hungerAmount)

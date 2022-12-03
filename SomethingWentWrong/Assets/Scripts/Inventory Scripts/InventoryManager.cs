@@ -17,10 +17,12 @@ public class InventoryManager : MonoBehaviour
     private float contextMenuWidthDiv2;
     private float contextMenuHeightDiv2;
     [SerializeField] private GameObject tipPanel;
-    [SerializeField] private GameObject SurvivalManager;
+    //[SerializeField] private GameObject SurvivalManager;
     private SurvivalManager SurvivalManagerCode;
-    [SerializeField] private GameObject BombSpawner;
-    [SerializeField] private GameObject BulletSpawner;
+    public GameObject BombSpawner;
+    public GameObject BulletSpawner;
+    public int bulletsAmount = 0;
+    public int bombsAmount = 0;
 
     public GameObject InventoryPanel;
     private GameObject AlreadyChosenCell = null;
@@ -36,6 +38,11 @@ public class InventoryManager : MonoBehaviour
     private GameObject onMouseObject;
     private PlayerBombSpawnerScript BombSpawnerCode;
     private Bullet BulletSpawnerCode;
+
+    [SerializeField] private GameObject StandartBorsch;
+    [SerializeField] private GameObject StandartEWR;
+    [SerializeField] private GameObject StandartBeluga;
+    [SerializeField] private GameObject StandartGematogen;
 
 
     private void Awake()
@@ -61,7 +68,7 @@ public class InventoryManager : MonoBehaviour
         emptyCellCode = emptyCell.GetComponent<InventoryCell>();
         contextMenuWidthDiv2 = ContextMenu.GetComponent<RectTransform>().rect.width / 2;
         contextMenuHeightDiv2 = ContextMenu.GetComponent<RectTransform>().rect.height / 2;
-        SurvivalManagerCode = SurvivalManager.GetComponent<SurvivalManager>();
+        SurvivalManagerCode = SurvivalManager.Instance;
 
         CountOneTimeWeapon(PlayerBombSpawnerScript.bombName, BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs);
     }
@@ -102,6 +109,20 @@ public class InventoryManager : MonoBehaviour
         {
             shiftPressed = false;
         }
+    }
+
+    public void SetDefault()
+    {
+        foreach (var cell in inventoryCells)
+        {
+            MakeCellEmpty(cell.GetComponent<InventoryCell>());
+            UpdateCounterText(cell);
+        }
+
+        AddItem(StandartBorsch.GetComponent<PickUpScript>().itemToInventory);
+        AddItem(StandartEWR.GetComponent<PickUpScript>().itemToInventory);
+        AddItem(StandartBeluga.GetComponent<PickUpScript>().itemToInventory);
+        AddItem(StandartGematogen.GetComponent<PickUpScript>().itemToInventory);
     }
 
 
@@ -270,9 +291,9 @@ public class InventoryManager : MonoBehaviour
         }
         
         if (newItem.name == PlayerBombSpawnerScript.bombName)
-            BombSpawnerCode.SetAmountBombs(BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs() + 1);
+            bombsAmount++;
         if (newItem.name == Bullet.bulletName)
-            BulletSpawnerCode.SetAmountBullets(BulletSpawner.GetComponent<Bullet>().GetAmountBullets() + 1);
+            bulletsAmount++;
             
         UpdateCounterText(cellToAdd);
     }
@@ -435,13 +456,13 @@ public class InventoryManager : MonoBehaviour
 
     public void CountOneTimeWeapon(string nameOfWeapon, System.Action<int> setter)
     {
-        int newAmount = BombSpawner.GetComponent<PlayerBombSpawnerScript>().GetAmountBombs();
+        int newAmount = bombsAmount;
         for (int i = 0; i < 16; i++)
         {
             if (inventoryCells[i].GetComponent<InventoryCell>().item.name == nameOfWeapon)
                 newAmount += inventoryCells[i].GetComponent<InventoryCell>().amount;
         }
-        BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs(newAmount);
+        bombsAmount = newAmount;
     }
 
 
