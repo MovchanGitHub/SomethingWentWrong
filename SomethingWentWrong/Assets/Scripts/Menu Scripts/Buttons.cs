@@ -24,6 +24,8 @@ public class Buttons : MonoBehaviour
     {
         Debug.Log($"Loading scene {sceneName}");
         IsometricPlayerMovementController.IsAbleToMove = true;
+        InventoryManager.instance.SetDefault();
+        SurvivalManager.Instance.SetDefault();
         GameManagerScript.instance.isUIOpened = false;
         StartCoroutine(LoadAsync(sceneName));
     }

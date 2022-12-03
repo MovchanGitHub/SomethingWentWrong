@@ -8,7 +8,7 @@ public class PickUpScript : MonoBehaviour
     [SerializeField] float speed = 6f;
     [SerializeField] float pickUpDistance = 2.5f;
     [SerializeField] float despawnTime = 10f;
-    [SerializeField] ItemsBase itemToInventory;
+    public ItemsBase itemToInventory;
 
     private void Start()
     {

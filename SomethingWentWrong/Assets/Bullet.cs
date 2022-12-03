@@ -5,8 +5,8 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     public const string bulletName = "Shoot Fruit";
-    private int amountBullets;
-    [SerializeField] GameObject InventoryCanvas;
+    //public int amountBullets;
+    private GameObject InventoryCanvas;
 
     public float offset;
     public GameObject BulletSample;
@@ -16,6 +16,15 @@ public class Bullet : MonoBehaviour
     private float timeBtwShots;
     public float startTimeBtwShots;
 
+    private void Start()
+    {
+        if (InventoryManager.instance != null)
+        {
+            InventoryManager.instance.BulletSpawner = gameObject;
+        }
+        InventoryCanvas = InventoryManager.instance.gameObject;
+    }
+
     void Update()
     {
         Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
@@ -24,13 +33,14 @@ public class Bullet : MonoBehaviour
 
         if (!GameManagerScript.instance.isUIOpened && timeBtwShots <= 0)
         {
-            if (Input.GetMouseButton(0) && amountBullets > 0)
+            if (Input.GetMouseButton(0) && InventoryManager.instance.bulletsAmount > 0)
             {
+                Debug.Log(!GameManagerScript.instance.isUIOpened);
                 GameObject bullet = Instantiate(BulletSample, shotpoint.position, transform.rotation);
                 bullet.GetComponent<BulletStats>().damageAmount = damageAmount;
                 timeBtwShots = startTimeBtwShots;
                 InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
-                amountBullets--;
+                InventoryManager.instance.bulletsAmount--;
             }
         }
         else
@@ -38,12 +48,13 @@ public class Bullet : MonoBehaviour
             timeBtwShots -= Time.deltaTime;
         }
     }
+
     public int GetAmountBullets()
     {
-        return amountBullets;
+        return InventoryManager.instance.bulletsAmount;
     }
     public void SetAmountBullets(int a)
     {
-        amountBullets = a;
+        InventoryManager.instance.bulletsAmount = a;
     }
 }

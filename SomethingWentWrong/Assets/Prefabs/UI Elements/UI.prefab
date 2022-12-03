@@ -7461,6 +7461,7 @@ GameObject:
   - component: {fileID: 5361677977601177875}
   - component: {fileID: 7020299919925965424}
   - component: {fileID: 8180992184187288904}
+  - component: {fileID: 6543047153913253432}
   m_Layer: 0
   m_Name: SurvivalBar
   m_TagString: Untagged
@@ -7530,6 +7531,18 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 5
+--- !u!114 &6543047153913253432
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7967764145440109482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4beb26a68753754881bb63b9949c8dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8040372685133097201
 GameObject:
   m_ObjectHideFlags: 0
