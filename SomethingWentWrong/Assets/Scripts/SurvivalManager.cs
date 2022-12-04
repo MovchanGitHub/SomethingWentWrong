@@ -36,9 +36,9 @@ public class SurvivalManager : MonoBehaviour
     public float StaminaPercent => currentStamina / maxStamina;
 
     [Header("Player References")] 
-    [SerializeField] private GameObject player;
+    public GameObject player;
 
-    private IsometricPlayerMovementController playerController;
+    public IsometricPlayerMovementController playerController;
 
     private static SurvivalManager instance;
 
@@ -94,7 +94,7 @@ public class SurvivalManager : MonoBehaviour
             currentStamina   -= staminaDepletionRate   * Time.deltaTime;
             currentStaminaDelayCounter = 0;
         }
-        
+
         //if player runs and...
         if (!playerController.IsRunning && currentStamina < maxStamina)
         {
