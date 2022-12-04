@@ -47,6 +47,12 @@ public static bool IsAbleToMove = true;
         {
             GameManagerScript.instance.player = gameObject;
         }
+
+        if (SurvivalManager.Instance != null)
+        {
+            SurvivalManager.Instance.player = gameObject;
+            SurvivalManager.Instance.playerController = this;
+        }
     }
 
     private void Update()
