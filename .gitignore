@@ -60,9 +60,7 @@ crashlytics-build.properties
 
 # Something Went Wrong Special
 *.DS_Store
-SomethingWentWrong/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
+*.dwlt
 SomethingWentWrong/ProjectSettings/ProjectSettings.asset
 SomethingWentWrong/UserSettings/EditorUserSettings.asset
-SomethingWentWrong/UserSettings/Layouts/CurrentMaximizeLayout.dwlt
-SomethingWentWrong/UserSettings/Layouts/default-2021.dwlt
 *.icloud
