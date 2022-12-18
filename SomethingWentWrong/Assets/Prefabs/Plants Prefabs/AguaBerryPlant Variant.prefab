@@ -104,6 +104,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1889222699780510610, guid: f3308b9aaaa6f784e904b21acc6b6290, type: 3}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: d0445bcf0a2208a4f93e9bf7b4c70fb8, type: 2}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: dropCount
       value: 3
       objectReference: {fileID: 0}

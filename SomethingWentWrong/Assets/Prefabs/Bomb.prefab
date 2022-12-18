@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 1
-  damageAmount: 5
+  damageAmount: 20
   damagableLayers:
     serializedVersion: 2
     m_Bits: 2147483647

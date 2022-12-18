@@ -382,6 +382,7 @@ MonoBehaviour:
   sprite: {fileID: 819197557229691556}
   redTime: 0.1
   hp: 20
+  creature: {fileID: 11400000, guid: 96ffd4bd8d4377f41a5833e7bf0a1103, type: 2}
 --- !u!61 &8475053302361529581
 BoxCollider2D:
   m_ObjectHideFlags: 0

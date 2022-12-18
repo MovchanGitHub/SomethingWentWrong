@@ -167,6 +167,10 @@ PrefabInstance:
       propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7142521595494424341, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: 16ea524ae14d40c448748dd25a75549b, type: 2}
     - target: {fileID: 8475053302361529581, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Size.x
       value: 1.9011555

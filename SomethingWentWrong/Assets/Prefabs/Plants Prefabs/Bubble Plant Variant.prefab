@@ -104,6 +104,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7405288313941647067, guid: c67e3550865fa114a9f5d8b481471959, type: 3}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: a115348c0435d734ca79025201fd011f, type: 2}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: lootDropBarrier
       value: 20
       objectReference: {fileID: 0}

@@ -6,6 +6,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 {
     [SerializeField] private float lootDropBarrier = 5;
     [SerializeField] private float hp;
+    [SerializeField] private CreaturesBase creature;
     private float currentDamage;
     private float Health
     {
@@ -43,6 +44,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
         Health -=  damage;
         if (hp <= 0)
         {
+            if (!creature.isOpenedInEcnyclopedia)
+            {
+                EncyclopediaManager.OpenNewCreature(creature);
+            }
             Destroy(gameObject);
         }
     }
