@@ -8,6 +8,9 @@ public enum ItemType {NoItem, Weapon, Food, Resource};
 
 public class ItemsBase : ScriptableObject
 {
+    public int width = 1;
+    public int height = 1;
+
     public string itemName;
     public int maximumAmount;
     public string itemDescription;
