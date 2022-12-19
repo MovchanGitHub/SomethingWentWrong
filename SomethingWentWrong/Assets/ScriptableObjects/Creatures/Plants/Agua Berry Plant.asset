@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e30b4f5d2e4344da589e0a49e47896, type: 3}
+  m_Name: Agua Berry Plant
+  m_EditorClassIdentifier: 
+  name: "\u0420\u0430\u0441\u0442\u0435\u043D\u0438\u0435 \u044F\u0433\u043E\u0434
+    \u0410\u0433\u0443\u0430"
+  description: "\u0421\u0442\u0440\u0430\u043D\u043D\u0430\u044F \u043F\u043E\u0440\u043E\u0441\u043B\u044C
+    \u0441 \u043E\u0433\u0440\u043E\u043C\u043D\u044B\u043C\u0438 \u0438 \u0441\u043E\u0447\u043D\u044B\u043C\u0438
+    \u043F\u043B\u043E\u0434\u0430\u043C\u0438"
+  typeOfThisCreature: 2
+  imageSmall: {fileID: 21300000, guid: db86c43e64bcc4148ad3a5b85d015ff5, type: 3}
+  imageBig: {fileID: 21300000, guid: db86c43e64bcc4148ad3a5b85d015ff5, type: 3}
+  isOpenedInEcnyclopedia: 1
+  lootSprites:
+  - {fileID: 21300000, guid: 7ade657c500ee2a4a905bf25a949156e, type: 3}
+  lootAmount: 03000000

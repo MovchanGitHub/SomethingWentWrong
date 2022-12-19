@@ -11,6 +11,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
     public float redTime;
     private int damageNumber = 0;
     [SerializeField] private float hp;
+    public CreaturesBase creature;
 
     public float HP()
     {
@@ -23,6 +24,10 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         StartCoroutine(BecomeRed());
         if (hp <= 0)
         {
+            if (!creature.isOpenedInEcnyclopedia)
+            {
+                EncyclopediaManager.OpenNewCreature(creature);
+            }
             Die();
         }
     }

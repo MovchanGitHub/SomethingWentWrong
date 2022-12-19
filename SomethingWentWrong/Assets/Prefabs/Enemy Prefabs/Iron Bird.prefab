@@ -23,6 +23,10 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.44173312
       objectReference: {fileID: 0}
+    - target: {fileID: 3387399304733391120, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e97eae3ef53fac408d59f0964b5c17b, type: 2}
     - target: {fileID: 4143399787372952296, guid: a9f332496d5833744883ca08bf118e95, type: 3}
       propertyPath: m_Size.x
       value: 1.0222168

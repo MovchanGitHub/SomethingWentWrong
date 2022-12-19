@@ -11,4 +11,13 @@ public class CreaturesBase : ScriptableObject
     public creatureType typeOfThisCreature;
     public Sprite imageSmall;
     public Sprite imageBig;
+    public bool isOpenedInEcnyclopedia;
+
+
+    //start наследуется от MonoBehaviour
+    //private void Start()
+    //{
+    //    isOpenedInEcnyclopedia = false;
+    //    Debug.Log(name);
+    //}
 }

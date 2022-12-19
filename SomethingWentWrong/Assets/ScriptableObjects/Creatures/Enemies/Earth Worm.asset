@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be8122592b865804abdfd0a4cd05ac5e, type: 3}
+  m_Name: Earth Worm
+  m_EditorClassIdentifier: 
+  name: "\u0417\u0435\u043C\u043B\u044F\u043D\u043D\u043E\u0439 \u0447\u0435\u0440\u0432\u044C"
+  description: "\u041F\u0440\u043E\u0433\u0440\u044B\u0437\u0430\u0435\u0442 \u043F\u0443\u0442\u044C
+    \u0441\u043A\u0432\u043E\u0437\u044C \u0442\u0432\u0435\u0440\u0434\u044C \u0437\u0435\u043C\u043B\u0438
+    right in your ass"
+  typeOfThisCreature: 1
+  imageSmall: {fileID: 21300000, guid: 6bddd381d66a6b74a8ffea58b499ca33, type: 3}
+  imageBig: {fileID: 21300000, guid: 6bddd381d66a6b74a8ffea58b499ca33, type: 3}
+  isOpenedInEcnyclopedia: 0
+  healthPoints: 20
+  damagePoints: 5
+  listOfSpecialAbilities: []

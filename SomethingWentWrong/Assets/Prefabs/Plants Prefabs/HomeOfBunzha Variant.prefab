@@ -91,6 +91,10 @@ PrefabInstance:
       propertyPath: drop
       value: 
       objectReference: {fileID: 7100003431661896806, guid: 08d431091882a7040a7eee07cebc42cf, type: 3}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: e7dda06b5f7d17a4e97bf41fff75f3a6, type: 2}
     - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
       value: 0.37877464
