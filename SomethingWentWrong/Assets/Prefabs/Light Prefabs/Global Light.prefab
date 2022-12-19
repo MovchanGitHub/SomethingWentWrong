@@ -50,7 +50,7 @@ MonoBehaviour:
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.5
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 1
+  m_Intensity: 0.5
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 00000000556b821c
@@ -125,9 +125,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: 0
-  cycleDuration: 10
-  sunrise: {r: 0.6775098, g: 0.8116114, b: 0.8207547, a: 0}
-  day: {r: 1, g: 1, b: 1, a: 0}
-  sunset: {r: 0.48905307, g: 0.59140265, b: 0.6603774, a: 0}
-  night: {r: 0.41220188, g: 0.49382037, b: 0.5566038, a: 0}
-  midnight: {r: 0.3088844, g: 0.29837132, b: 0.4245283, a: 0}
+  cycleDuration: 15
+  dayCycle: 0
+  winMenu: {fileID: 0}
+  sunriseColor: {r: 0.6775098, g: 0.8116114, b: 0.8207547, a: 0}
+  dayColor: {r: 1, g: 1, b: 1, a: 0}
+  sunsetColor: {r: 0.48905307, g: 0.59140265, b: 0.6603774, a: 0}
+  nightColor: {r: 0.41220188, g: 0.49382037, b: 0.5566038, a: 0}
+  midnightColor: {r: 0.3088844, g: 0.29837132, b: 0.4245283, a: 0}
+  sunriseIntensity: 0
+  dayIntensity: 0
+  sunsetIntensity: 0
+  nightIntensity: 0
+  midnightIntensity: 0
