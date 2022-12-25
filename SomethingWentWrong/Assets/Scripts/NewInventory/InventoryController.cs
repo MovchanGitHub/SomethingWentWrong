@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class InventoryController : MonoBehaviour
 {
+    public ItemGrid standartItemGrid;
     [HideInInspector] private ItemGrid selectedItemGrid;
     public ItemGrid SelectedItemGrid { 
         get => selectedItemGrid; 
@@ -26,6 +27,7 @@ public class InventoryController : MonoBehaviour
     Vector2Int oldPosition;
     InventoryHighlight inventoryHighlight;
     InventoryItem itemToHighlight;
+    private bool isCanvasActive = false;
 
     public static InventoryController instance { get; private set; }
 
@@ -47,15 +49,19 @@ public class InventoryController : MonoBehaviour
     {
         dragItemIcon();
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        
+        if (Input.GetKeyDown(KeyCode.E))
         {
-            createRandomItem();
+            isCanvasActive = !isCanvasActive;
+            canvasTransform.gameObject.SetActive(isCanvasActive);
         }
 
+        /*
         if (Input.GetKeyDown(KeyCode.R))
         {
             insertRandomItem();
         }
+        */
 
         if (selectedItemGrid == null)
         {
@@ -102,6 +108,7 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    /*
     private void createRandomItem()
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
@@ -113,7 +120,20 @@ public class InventoryController : MonoBehaviour
         int selectedItemID = UnityEngine.Random.Range(0, items.Count);
         inventoryItem.Set(items[selectedItemID]);
     }
+    */
 
+    private void createItem(ItemsBase item)
+    {
+        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
+        selectedItem = inventoryItem;
+
+        rectTransform = inventoryItem.GetComponent<RectTransform>();
+        rectTransform.SetParent(canvasTransform);
+
+        inventoryItem.Set(item);
+    }
+
+    /*
     private void insertRandomItem()
     {
         createRandomItem();
@@ -121,9 +141,14 @@ public class InventoryController : MonoBehaviour
         selectedItem = null;
         insertItem(itemToInsert);
     }
+    */
 
-    private void insertItem(InventoryItem itemToInsert)
+    public void insertItem(ItemsBase item)
     {
+        createItem(item);
+        InventoryItem itemToInsert = selectedItem;
+        selectedItem = null;
+
         Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
 
         if (posOnGrid == null)
