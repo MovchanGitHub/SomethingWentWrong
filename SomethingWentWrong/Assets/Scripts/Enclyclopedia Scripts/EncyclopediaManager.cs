@@ -148,10 +148,10 @@ public class EncyclopediaManager : MonoBehaviour
     {
         newNoteNotification.transform.GetChild(1).GetComponent<Image>().sprite = openedCreature.imageSmall;
         newNoteNotification.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = openedCreature.name;
-        Debug.Log(newNoteNotification.transform.position);
-        newNoteNotification.transform.position = new Vector2(952, 450);
+        //newNoteNotification.transform.position = new Vector2(952, 450);
         newNoteNotification.SetActive(true);
-        MonBehaviour.StartCoroutine(WaitForNewNoteDissapear());
+        newNoteNotification.GetComponent<Animator>().Play("EncyclopediaNotificatonShowUp");
+        //MonBehaviour.StartCoroutine(WaitForNewNoteDissapear());
         //newNoteNotification.transform.position = Vector2.MoveTowards(new Vector2(1262, 450), new Vector2(952, 450), 0.0001f);
     }
 
