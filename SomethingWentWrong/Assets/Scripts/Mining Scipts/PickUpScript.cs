@@ -39,6 +39,7 @@ public class PickUpScript : MonoBehaviour
     private void PickUp()
     {
         InventoryManager.instance.AddItem(itemToInventory);
+        //InventoryController.instance.insertItem(itemToInventory);
         Destroy(gameObject);
     }
 

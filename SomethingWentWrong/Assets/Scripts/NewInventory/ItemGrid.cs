@@ -38,8 +38,8 @@ public class ItemGrid : MonoBehaviour
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 
-        tileGridPosition.x = (int)(positionOnTheGrid.x / tileWidth);
-        tileGridPosition.y = (int)(positionOnTheGrid.y / tileHeight);
+        tileGridPosition.x = Mathf.Clamp((int)(positionOnTheGrid.x / tileWidth), 0, gridSizeWidth - 1);
+        tileGridPosition.y = Mathf.Clamp((int)(positionOnTheGrid.y / tileHeight), 0, gridSizeHeight - 1);
 
         if (tileGridPosition.x > gridSizeWidth - 1)
         {
