@@ -6,32 +6,23 @@ using UnityEditor;
 
 public class EncyclopediaManager : MonoBehaviour
 {
-    [SerializeField] private static MonoBehaviour MonBehaviour;
-    [SerializeField] private MonoBehaviour MonBehaviourNotStatic;
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject panelWithExtraInfo;
     [SerializeField] private GameObject extraInfoEnemyPanel;
     [SerializeField] private GameObject extraInfoPlantPanel;
     [SerializeField] private GameObject notesOfCreatures;
-    private static GameObject notesOfCreaturesStatic;
     private static int amountOfNotes;
     [SerializeField] private GameObject iconOfSpecialAbility;
     [SerializeField] private GameObject LootIcon;
-    [SerializeField] private CreaturesBase noCreatureNotStatic;
-    [SerializeField] private GameObject newNoteNotificationNotStatic;
-    private static GameObject newNoteNotification;
-    private static CreaturesBase noCreature;
+    [SerializeField] private CreaturesBase noCreature;
+    [SerializeField] private GameObject newNoteNotification;
 
     private bool isOpened;
 
     private void Start()
     {
         isOpened = false;
-        notesOfCreaturesStatic = notesOfCreatures;
         amountOfNotes = notesOfCreatures.transform.childCount;
-        noCreature = noCreatureNotStatic;
-        newNoteNotification = newNoteNotificationNotStatic;
-        MonBehaviour = MonBehaviourNotStatic;
     }
 
     private void Update()
@@ -43,15 +34,19 @@ public class EncyclopediaManager : MonoBehaviour
         }
     }
 
-    public static void OpenNewCreature(CreaturesBase openedCreature)
+    public void OpenNewCreature(CreaturesBase openedCreature)
     {
         Debug.Log("start");
+        //Debug.Log(amountOfNotes);
+        //Debug.Log(openedCreature);
         for (int i = 0; i < amountOfNotes; i++)
         {
-            if (notesOfCreaturesStatic.transform.GetChild(i).GetComponent<NotesManager>().creature == noCreature)
+            //Debug.Log(notesOfCreatures.transform.GetChild(i).GetComponent<NotesManager>().creature);
+            Debug.Log(noCreature);
+            if (notesOfCreatures.transform.GetChild(i).GetComponent<NotesManager>().creature == noCreature)
             {
                 Debug.Log("Contact");
-                GameObject currentNote = notesOfCreaturesStatic.transform.GetChild(i).gameObject;
+                GameObject currentNote = notesOfCreatures.transform.GetChild(i).gameObject;
                 NotesManager notesManagerCode = currentNote.GetComponent<NotesManager>();
                 notesManagerCode.creature = openedCreature;
                 notesManagerCode.nameHeader.GetComponent<Text>().text = openedCreature.name;
@@ -144,40 +139,12 @@ public class EncyclopediaManager : MonoBehaviour
         }
     }
 
-    private static void ShowNewNoteNotification(CreaturesBase openedCreature)
+    private void ShowNewNoteNotification(CreaturesBase openedCreature)
     {
         newNoteNotification.transform.GetChild(1).GetComponent<Image>().sprite = openedCreature.imageSmall;
         newNoteNotification.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = openedCreature.name;
-        Debug.Log(newNoteNotification.transform.position);
-        newNoteNotification.transform.position = new Vector2(952, 450);
         newNoteNotification.SetActive(true);
-        MonBehaviour.StartCoroutine(WaitForNewNoteDissapear());
-        //newNoteNotification.transform.position = Vector2.MoveTowards(new Vector2(1262, 450), new Vector2(952, 450), 0.0001f);
-    }
-
-    //static IEnumerator ShowNewNoteNotification(CreaturesBase openedCreature)
-    //{
-    //    Debug.Log('f');
-    //    newNoteNotification.transform.GetChild(1).GetComponent<Image>().sprite = openedCreature.imageSmall;
-    //    newNoteNotification.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = openedCreature.name;
-    //    Debug.Log(newNoteNotification.transform.position);
-    //    //newNoteNotification.transform.position = new Vector2(952, 450);
-    //    newNoteNotification.SetActive(true);
-    //    while (newNoteNotification.transform.position != new Vector3(952, 450))
-    //    {
-    //        newNoteNotification.transform.position = Vector2.MoveTowards(new Vector2(1262, 450), new Vector2(952, 450), 0.1f);
-    //        yield return new WaitForSeconds(0.05f);
-    //    }
-    //    MonBehaviour.StartCoroutine(WaitForNewNoteDissapear());
-    //    //newNoteNotification.transform.position = new Vector2(952, 450);
-    //}
-
-    static IEnumerator WaitForNewNoteDissapear()
-    {
-        Debug.Log("End");
-        yield return new WaitForSeconds(4.0f);
-        Debug.Log("End");
-        newNoteNotification.SetActive(false);
+        newNoteNotification.GetComponent<Animator>().Play("EncyclopediaNotificatonShowUp");
     }
 
 }
