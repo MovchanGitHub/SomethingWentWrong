@@ -9,16 +9,10 @@ using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
-    private InGameMenuScript pause;
-    private SettingsScript settings;
+    public InGameMenuScript pause;
+    public SettingsScript settings;
     public Button[] buttons;
     
-    
-    private void Start()
-    {
-        pause = GetComponentInParent<InGameMenuScript>();
-        settings = GetComponentInParent<SettingsScript>();
-    }
     
     public void OnButtonLoadScene(string sceneName)
     {
