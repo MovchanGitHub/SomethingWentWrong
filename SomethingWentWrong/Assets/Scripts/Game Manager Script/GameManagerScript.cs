@@ -48,7 +48,7 @@ public class GameManagerScript : MonoBehaviour
 
     public void GameOver()
     {
-        UI.GetComponent<DeathScreen>().ShowHideDeathScreen();
+        UI.GetComponent<DeathScreen>().ShowDeathScreen();
 
         IsometricPlayerMovementController.IsAbleToMove = false;
 

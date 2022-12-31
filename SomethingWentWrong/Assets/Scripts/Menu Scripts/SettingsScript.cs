@@ -8,35 +8,34 @@ using UnityEngine;
 public class SettingsScript : MonoBehaviour
 {
 
-    public GameObject Settings;
-    public GameObject Backgound;
+    public GameObject settings;
+    public InGameMenuScript pause;
 	
-    public bool isOpened;
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
-    [SerializeField] public bool isFullScreen;
+    public bool isOpened;
 
     private void Awake()
     {
-        Settings.SetActive(false);
-        Backgound.SetActive(false);
+        settings.SetActive(false);
     }
-
-    private void Update()
+    
+    public void HideSettings()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
-        {
-            ShowHideSettings();
-            GetComponentInParent<InGameMenuScript>().ShowHideMenu();
-        }
+        settings.SetActive(false);
+        pause.ShowMenu();
+        isOpened = false;
+    }
+    public void ShowSettings()
+    {
+        isOpened = true;
+        settings.SetActive(true);
+        pause.HideMenu();
     }
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
-        // Time.timeScale = isOpened ? 0 : 1;
-        Settings.GameObject().SetActive(isOpened);
-        Backgound.GameObject().SetActive(isOpened);
-        
+        settings.GameObject().SetActive(isOpened);
     }
 
     public void SetMusicVolume(float value)

@@ -9,20 +9,15 @@ using UnityEngine.UI;
 
 public class Buttons : MonoBehaviour
 {
-    private InGameMenuScript pause;
-    private SettingsScript settings;
+    public InGameMenuScript pause;
+    public SettingsScript settings;
     public Button[] buttons;
     
-    
-    private void Start()
-    {
-        pause = GetComponentInParent<InGameMenuScript>();
-        settings = GetComponentInParent<SettingsScript>();
-    }
     
     public void OnButtonLoadScene(string sceneName)
     {
         Debug.Log($"Loading scene {sceneName}");
+        pause.PauseGame(false);
         IsometricPlayerMovementController.IsAbleToMove = true;
         InventoryManager.instance.SetDefault();
         SurvivalManager.Instance.transform.gameObject.SetActive(true);
@@ -34,7 +29,8 @@ public class Buttons : MonoBehaviour
     public void OnContinueButton()
     {
         RefreshAnimation();
-        pause.ShowHideMenu();
+        pause.HideMenu();
+        pause.PauseGame(false);
     }
     
     public void OnButtonExit()
@@ -46,27 +42,27 @@ public class Buttons : MonoBehaviour
     public void OnButtonSettings()
     {
         RefreshAnimation();
-        settings.ShowHideSettings();
-        pause.ShowHideMenu();
+        settings.ShowSettings();
+        pause.HideMenu();
     }
     
     public void OnButtonControlKeys()
     {
         RefreshAnimation();
         pause.ShowHideMenu();
-        pause.ControlKeysWindow.SetActive(true);
+        pause.controls.SetActive(true);
         
     }
     public void OnButtonBack()
     {
-        settings.ShowHideSettings();
-        pause.ShowHideMenu();
+        settings.HideSettings();
+        pause.ShowMenu();
     }
     
     public void OnButtonControlBack()
     {
         RefreshAnimation();
-        pause.ControlKeysWindow.SetActive(false);
+        pause.controls.SetActive(false);
         pause.ShowHideMenu();
     }
     
