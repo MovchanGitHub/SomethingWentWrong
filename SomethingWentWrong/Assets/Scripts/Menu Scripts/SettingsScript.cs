@@ -11,33 +11,30 @@ public class SettingsScript : MonoBehaviour
     public GameObject settings;
     public InGameMenuScript pause;
 	
-    public bool isOpened;
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
+    public bool isOpened;
 
     private void Awake()
     {
         settings.SetActive(false);
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
-        {
-            ShowHideSettings();
-            pause.ShowHideMenu();
-        }
-    }
-
+    
     public void HideSettings()
     {
-        isOpened = false;
         settings.SetActive(false);
+        pause.ShowMenu();
+        isOpened = false;
+    }
+    public void ShowSettings()
+    {
+        isOpened = true;
+        settings.SetActive(true);
+        pause.HideMenu();
     }
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
-        // Time.timeScale = isOpened ? 0 : 1;
         settings.GameObject().SetActive(isOpened);
     }
 

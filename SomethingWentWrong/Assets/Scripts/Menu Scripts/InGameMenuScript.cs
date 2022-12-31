@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class InGameMenuScript : MonoBehaviour
 {
     public GameObject pause;
+    public SettingsScript settings;
     public GameObject deathScreen;
     public GameObject winScreen;
     public GameObject controls;
@@ -24,23 +25,47 @@ public class InGameMenuScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            ShowHideMenu();
-            if (controls.activeSelf)
-                controls.SetActive(false);
+            if (settings.isOpened)
+            {
+                settings.HideSettings();
+                ShowMenu();
+            }
+            else
+                if (isOpened)
+                {
+                    HideMenu();
+                    PauseGame(false);
+                }
+                else
+                {
+                    PauseGame(true);
+                    ShowMenu();
+                }
         }
         
     }
 
+    public void PauseGame(bool state)
+    {
+        Time.timeScale = state ? 0 : 1;
+    }
+    
     public void HideMenu()
     {
         isOpened = false;
         pause.SetActive(false);
     }
+
+    public void ShowMenu()
+    {
+        isOpened = true;
+        pause.SetActive(true);
+    }
     public void ShowHideMenu()
     {
         isOpened = !isOpened;
-        // Time.timeScale = isOpened ? 0 : 1;
         pause.SetActive(isOpened);
     }
+    
 }
 

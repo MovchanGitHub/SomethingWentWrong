@@ -28,7 +28,8 @@ public class Buttons : MonoBehaviour
     public void OnContinueButton()
     {
         RefreshAnimation();
-        pause.ShowHideMenu();
+        pause.HideMenu();
+        pause.PauseGame(false);
     }
     
     public void OnButtonExit()
@@ -40,8 +41,8 @@ public class Buttons : MonoBehaviour
     public void OnButtonSettings()
     {
         RefreshAnimation();
-        settings.ShowHideSettings();
-        pause.ShowHideMenu();
+        settings.ShowSettings();
+        pause.HideMenu();
     }
     
     public void OnButtonControlKeys()
@@ -53,8 +54,8 @@ public class Buttons : MonoBehaviour
     }
     public void OnButtonBack()
     {
-        settings.ShowHideSettings();
-        pause.ShowHideMenu();
+        settings.HideSettings();
+        pause.ShowMenu();
     }
     
     public void OnButtonControlBack()

@@ -439,7 +439,7 @@ GameObject:
   m_Layer: 0
   m_Name: WinScreen
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: ad7bedf7a7c3e5b45a74488e76644d79, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -1234,7 +1234,7 @@ GameObject:
   m_Layer: 0
   m_Name: DeathScreen
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
@@ -2464,7 +2464,7 @@ GameObject:
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 5bcd15a11d8547742983789dd8424d59, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -2565,6 +2565,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pause: {fileID: 2291034796167367688}
+  settings: {fileID: 2159322542572342920}
   deathScreen: {fileID: 1167549872713557439}
   winScreen: {fileID: 508686463488207102}
   controls: {fileID: 6618786055352193967}
@@ -2582,10 +2583,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   settings: {fileID: 5612050823921614103}
-  pause: {fileID: 2291034796167367688}
-  isOpened: 0
+  pause: {fileID: 2159322542572342921}
   musicVolume: 1
   soundsVolume: 100
+  isOpened: 0
 --- !u!114 &8697992721554134625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6532,7 +6533,7 @@ GameObject:
   m_Layer: 0
   m_Name: Settings
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 10ef3b6936b86e74d935d9d885ba52a9, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
@@ -7078,7 +7079,7 @@ GameObject:
   m_Layer: 0
   m_Name: Control
   m_TagString: Untagged
-  m_Icon: {fileID: 0}
+  m_Icon: {fileID: 2800000, guid: 874d8401331ede14087e8d8d486ddda6, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 0
