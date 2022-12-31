@@ -44,6 +44,7 @@ public class InventoryManager : MonoBehaviour
     [SerializeField] private GameObject StandartBeluga;
     [SerializeField] private GameObject StandartGematogen;
 
+    public InGameMenuScript pause;
 
     private void Awake()
     {
@@ -61,7 +62,7 @@ public class InventoryManager : MonoBehaviour
     private void Start()
     {
         isOpened = false;
-
+        
         playerTransform = GameManagerScript.instance.player.transform;
         BombSpawnerCode = BombSpawner.GetComponent<PlayerBombSpawnerScript>();
         BulletSpawnerCode = BulletSpawner.GetComponent<Bullet>();
@@ -76,7 +77,7 @@ public class InventoryManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) && !pause.isPaused)
         {
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);

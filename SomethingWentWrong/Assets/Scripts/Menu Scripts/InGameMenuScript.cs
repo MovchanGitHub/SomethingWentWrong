@@ -8,10 +8,12 @@ public class InGameMenuScript : MonoBehaviour
 {
     public GameObject pause;
     public SettingsScript settings;
+    public InventoryManager inventory;
     public GameObject deathScreen;
     public GameObject winScreen;
     public GameObject controls;
     public bool isOpened;
+    public bool isPaused;
 
     
     private void Awake()
@@ -25,6 +27,9 @@ public class InGameMenuScript : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            // if (inventory.isOpened)
+            //     inventory.gameObject.SetActive(false);
+            // else 
             if (settings.isOpened)
             {
                 settings.HideSettings();
@@ -47,6 +52,7 @@ public class InGameMenuScript : MonoBehaviour
 
     public void PauseGame(bool state)
     {
+        isPaused = state;
         Time.timeScale = state ? 0 : 1;
     }
     

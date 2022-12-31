@@ -253,6 +253,7 @@ MonoBehaviour:
   StandartEWR: {fileID: 7583881875524302019, guid: 6d8a2abaa2ef25b41b9eecb14abdfe8f, type: 3}
   StandartBeluga: {fileID: 8222411469451397227, guid: b8a93c24b3bef204ebcceeff6e660618, type: 3}
   StandartGematogen: {fileID: 3042265973239088268, guid: c07e1bf98cd10d6409eef0ee0827eebb, type: 3}
+  ui: {fileID: 0}
 --- !u!1 &915402555855295702
 GameObject:
   m_ObjectHideFlags: 0

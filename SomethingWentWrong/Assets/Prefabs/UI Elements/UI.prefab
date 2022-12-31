@@ -2570,6 +2570,7 @@ MonoBehaviour:
   winScreen: {fileID: 508686463488207102}
   controls: {fileID: 6618786055352193967}
   isOpened: 0
+  isPaused: 0
 --- !u!114 &2159322542572342920
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2601,6 +2602,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   screen: {fileID: 1167549872713557439}
   isOpened: 0
+  pause: {fileID: 2159322542572342921}
+  windows:
+  - {fileID: 2291034796167367688}
+  - {fileID: 5612050823921614103}
+  - {fileID: 6618786055352193967}
+  - {fileID: 508686463488207102}
+  - {fileID: 508686463488207102}
 --- !u!114 &8456363667202471680
 MonoBehaviour:
   m_ObjectHideFlags: 0
