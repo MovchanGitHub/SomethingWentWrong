@@ -48,7 +48,7 @@ public class Buttons : MonoBehaviour
     {
         RefreshAnimation();
         pause.ShowHideMenu();
-        pause.ControlKeysWindow.SetActive(true);
+        pause.controls.SetActive(true);
         
     }
     public void OnButtonBack()
@@ -60,7 +60,7 @@ public class Buttons : MonoBehaviour
     public void OnButtonControlBack()
     {
         RefreshAnimation();
-        pause.ControlKeysWindow.SetActive(false);
+        pause.controls.SetActive(false);
         pause.ShowHideMenu();
     }
     

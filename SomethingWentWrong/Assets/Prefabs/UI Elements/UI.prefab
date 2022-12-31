@@ -2564,11 +2564,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d99a66b181834f78909f9cf3c7ae6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InGameMenuPanel: {fileID: 2291034796167367688}
-  Background: {fileID: 8417941887800286677}
-  DeathScreen: {fileID: 1167549872713557439}
-  WinScreen: {fileID: 508686463488207102}
-  ControlKeysWindow: {fileID: 6618786055352193967}
+  pause: {fileID: 2291034796167367688}
+  deathScreen: {fileID: 1167549872713557439}
+  winScreen: {fileID: 508686463488207102}
+  controls: {fileID: 6618786055352193967}
   isOpened: 0
 --- !u!114 &2159322542572342920
 MonoBehaviour:
@@ -2582,12 +2581,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2f640065e764dea968fa65b948089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Settings: {fileID: 5612050823921614103}
-  Backgound: {fileID: 4464930492571100915}
+  settings: {fileID: 5612050823921614103}
+  pause: {fileID: 2291034796167367688}
   isOpened: 0
   musicVolume: 1
   soundsVolume: 100
-  isFullScreen: 0
 --- !u!114 &8697992721554134625
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8105,7 +8103,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 2
+  m_PixelsPerUnitMultiplier: 1
 --- !u!1 &8451701972057545480
 GameObject:
   m_ObjectHideFlags: 0
