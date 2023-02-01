@@ -16,6 +16,8 @@ public class EncyclopediaManager : MonoBehaviour
     [SerializeField] private GameObject LootIcon;
     [SerializeField] private CreaturesBase noCreature;
     [SerializeField] private GameObject newNoteNotification;
+    [SerializeField] private GameObject plantTab;
+    [SerializeField] private GameObject enemiesTab;
 
     private bool isOpened;
 
@@ -147,4 +149,15 @@ public class EncyclopediaManager : MonoBehaviour
         newNoteNotification.GetComponent<Animator>().Play("EncyclopediaNotificatonShowUp");
     }
 
+    public void OpenPlantsTab()
+    {
+        plantTab.SetActive(true);
+        enemiesTab.SetActive(false);
+    }
+
+    public void OpenEnemiesTab()
+    {
+        plantTab.SetActive(false);
+        enemiesTab.SetActive(true);
+    }
 }
