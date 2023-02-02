@@ -34,8 +34,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
 
-    [SerializeField] private GameObject encyclopedia;
-
     public float HP()
     {
         return hp;
@@ -48,7 +46,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         {
             if (!creature.isOpenedInEcnyclopedia)
             {
-                encyclopedia.GetComponent<EncyclopediaManager>().OpenNewCreature(creature);
+                EncyclopediaManager.Instance.OpenNewCreature(creature);
             }
             Destroy(gameObject);
         }
