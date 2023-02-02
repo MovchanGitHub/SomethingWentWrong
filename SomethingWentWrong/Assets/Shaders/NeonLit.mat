@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NeonSignboardMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: 3a140e94291001844aa5dd529ba5e695, type: 3}
+  m_Name: NeonLit
+  m_Shader: {fileID: -6465566751694194690, guid: 9f183e0427bd46e4783431210e52ccb9, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,11 +20,11 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Emission1:
+    - _Emission_1:
         m_Texture: {fileID: 2800000, guid: 17382ec5a1c8a4c428bf4d829f94de83, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Emission2:
+    - _Emission_2:
         m_Texture: {fileID: 2800000, guid: d744f81bd852a254196b36f32cc506a8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
@@ -45,8 +45,23 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats: []
+    m_Floats:
+    - _QueueControl: 0
+    - _QueueOffset: 0
     m_Colors:
-    - _ColorEmission1: {r: 47.937256, g: 0, b: 41.411766, a: 1}
-    - _ColorEmission2: {r: 0, g: 37.64706, b: 47.937256, a: 1}
+    - _ColorEmission_1: {r: 23.96863, g: 0, b: 7.529412, a: 1}
+    - _ColorEmission_2: {r: 0, g: 17.19216, b: 23.96863, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &7872732683558535658
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
