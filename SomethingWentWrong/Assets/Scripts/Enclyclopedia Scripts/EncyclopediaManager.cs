@@ -17,6 +17,9 @@ public class EncyclopediaManager : MonoBehaviour
     [SerializeField] private GameObject enemiesTab;
     [SerializeField] private GameObject plantsTabHeader;
     [SerializeField] private GameObject enemiesTabHeader;
+
+    private Animator newNoteNotificationAnimator;
+
     private Color32 selectedTab;
     private Color32 nonSelectedTab;
 
@@ -46,6 +49,7 @@ public class EncyclopediaManager : MonoBehaviour
         InitializeEncyclopedia();
         selectedTab = new Color32(89, 137, 0, 255);
         nonSelectedTab = new Color32(124, 192, 0, 255);
+        newNoteNotificationAnimator = newNoteNotification.GetComponent<Animator>();
     }
 
     private void Update()
@@ -107,7 +111,7 @@ public class EncyclopediaManager : MonoBehaviour
                 Debug.Log(openedCreature.name);
                 notesManagerCode.icon.GetComponent<Image>().sprite = openedCreature.imageSmall;
 
-                //ShowNewNoteNotification(openedCreature);
+                ShowNewNoteNotification(openedCreature);
                 break;
             }
         }
@@ -213,8 +217,7 @@ public class EncyclopediaManager : MonoBehaviour
     {
         newNoteNotification.transform.GetChild(1).GetComponent<Image>().sprite = openedCreature.imageSmall;
         newNoteNotification.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = openedCreature.name;
-        newNoteNotification.SetActive(true);
-        newNoteNotification.GetComponent<Animator>().Play("EncyclopediaNotificatonShowUp");
+        newNoteNotificationAnimator.SetBool("showingNewNotification", true);
     }
 
     public void OpenPlantsTab()
