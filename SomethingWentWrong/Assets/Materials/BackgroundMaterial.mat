@@ -7,11 +7,11 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NeonLit
-  m_Shader: {fileID: -6465566751694194690, guid: 9f183e0427bd46e4783431210e52ccb9, type: 3}
+  m_Name: BackgroundMaterial
+  m_Shader: {fileID: -6465566751694194690, guid: 83e4fb1420c51054ab85c65f8c24ac6b, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 2
+  m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -20,16 +20,20 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _Emission_1:
-        m_Texture: {fileID: 2800000, guid: 17382ec5a1c8a4c428bf4d829f94de83, type: 3}
+    - _Emission1:
+        m_Texture: {fileID: 2800000, guid: a774690a38acd184db01c3e9e46b27e8, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
-    - _Emission_2:
-        m_Texture: {fileID: 2800000, guid: d744f81bd852a254196b36f32cc506a8, type: 3}
+    - _Emission2:
+        m_Texture: {fileID: 2800000, guid: be997900a36cf534bb93d3c0f7a48829, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Emission3:
+        m_Texture: {fileID: 2800000, guid: be484cd2e2a6fe14d80353ed8cf0945b, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
-        m_Texture: {fileID: 2800000, guid: 8e40bde21573d984f8811695529edb00, type: 3}
+        m_Texture: {fileID: 2800000, guid: 2a9d402d8a0dc65469b5d912f3eaf28c, type: 3}
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
@@ -45,23 +49,9 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Ints: []
-    m_Floats:
-    - _QueueControl: 0
-    - _QueueOffset: 0
+    m_Floats: []
     m_Colors:
-    - _ColorEmission_1: {r: 23.96863, g: 0, b: 7.529412, a: 1}
-    - _ColorEmission_2: {r: 0, g: 17.19216, b: 23.96863, a: 1}
+    - _EmissionColor1: {r: 0, g: 59.231373, b: 52.956863, a: 0}
+    - _EmissionColor2: {r: 256, g: 1.0039216, b: 119.46667, a: 0}
+    - _EmissionColor3: {r: 29.992157, g: 31.37255, b: 31.121569, a: 0}
   m_BuildTextureStacks: []
---- !u!114 &7872732683558535658
-MonoBehaviour:
-  m_ObjectHideFlags: 11
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  version: 5
