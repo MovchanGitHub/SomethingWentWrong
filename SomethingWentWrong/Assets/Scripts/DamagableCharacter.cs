@@ -8,7 +8,6 @@ using UnityEngine;
 public class DamagableCharacter : MonoBehaviour, IDamagable
 {
     public SpriteRenderer sprite;
-    [SerializeField] private GameObject encyclopedia;
     public float redTime;
     private int damageNumber = 0;
     [SerializeField] private float hp;
@@ -28,7 +27,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         {
             if (!creature.isOpenedInEcnyclopedia)
             {
-                encyclopedia.GetComponent<EncyclopediaManager>().OpenNewCreature(creature);
+                EncyclopediaManager.Instance.OpenNewCreature(creature);
             }
             Die();
         }

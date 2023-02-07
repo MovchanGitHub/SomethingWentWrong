@@ -18,7 +18,7 @@ public class EncyclopediaManager : MonoBehaviour
     [SerializeField] private GameObject plantsTabHeader;
     [SerializeField] private GameObject enemiesTabHeader;
 
-    private Animator newNoteNotificationAnimator;
+    private Vector2 newNoteNotificationInitialPos;
 
     private Color32 selectedTab;
     private Color32 nonSelectedTab;
@@ -49,7 +49,9 @@ public class EncyclopediaManager : MonoBehaviour
         InitializeEncyclopedia();
         selectedTab = new Color32(89, 137, 0, 255);
         nonSelectedTab = new Color32(124, 192, 0, 255);
-        newNoteNotificationAnimator = newNoteNotification.GetComponent<Animator>();
+        newNoteNotificationInitialPos = transform.TransformPoint(GetComponent<RectTransform>().rect.xMax - newNoteNotification.GetComponent<RectTransform>().rect.width, GetComponent<RectTransform>().rect.yMax + newNoteNotification.GetComponent<RectTransform>().rect.height / 2, 0);
+        Debug.Log(newNoteNotification.GetComponent<RectTransform>().rect.height / 2);
+        Debug.Log(-newNoteNotification.GetComponent<RectTransform>().rect.width);
     }
 
     private void Update()
@@ -58,6 +60,7 @@ public class EncyclopediaManager : MonoBehaviour
         {
             OpenCloseEncyclopedia();
         }
+        
     }
 
     private void InitializeEncyclopedia()
@@ -215,9 +218,9 @@ public class EncyclopediaManager : MonoBehaviour
 
     private void ShowNewNoteNotification(CreaturesBase openedCreature)
     {
-        newNoteNotification.transform.GetChild(1).GetComponent<Image>().sprite = openedCreature.imageSmall;
-        newNoteNotification.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>().text = openedCreature.name;
-        newNoteNotificationAnimator.SetBool("showingNewNotification", true);
+        GameObject notification = Instantiate(newNoteNotification, transform);
+        notification.transform.GetComponentInChildren<TMPro.TextMeshProUGUI>().text = openedCreature.name;
+        notification.transform.GetComponentsInChildren<Image>()[1].sprite = openedCreature.imageSmall;
     }
 
     public void OpenPlantsTab()

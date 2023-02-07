@@ -100074,6 +100074,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1374252906}
     m_Modifications:
+    - target: {fileID: 66605840, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 776749103, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6558930595366591831, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -100158,10 +100166,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6558930595366591849, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6558930595366591851, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
       propertyPath: m_Name
       value: Encyclopedia
       objectReference: {fileID: 0}
+    - target: {fileID: 6558930595642330381, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6558930596043457950, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8847036506589092633, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+      propertyPath: newNoteNotification
+      value: 
+      objectReference: {fileID: 225016413669591149, guid: 3ca340702a484ad48a5a2d4db8c41f37, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
 --- !u!1 &1630774849 stripped
