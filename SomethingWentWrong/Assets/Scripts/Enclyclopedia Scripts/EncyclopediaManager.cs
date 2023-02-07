@@ -18,13 +18,13 @@ public class EncyclopediaManager : MonoBehaviour
     [SerializeField] private GameObject plantsTabHeader;
     [SerializeField] private GameObject enemiesTabHeader;
 
-    private Vector2 newNoteNotificationInitialPos;
+    private Dictionary<string, GameObject> notes;
 
     private Color32 selectedTab;
     private Color32 nonSelectedTab;
 
-    [SerializeField] private List<NotesManager> enemiesNotes;
-    [SerializeField] private List<NotesManager> plantsNotes;
+    //[SerializeField] private List<NotesManager> enemiesNotes;
+    //[SerializeField] private List<NotesManager> plantsNotes;
 
     private static EncyclopediaManager instance;
 
@@ -46,12 +46,10 @@ public class EncyclopediaManager : MonoBehaviour
     private void Start()
     {
         isOpened = false;
+        notes = new Dictionary<string, GameObject>();
         InitializeEncyclopedia();
         selectedTab = new Color32(89, 137, 0, 255);
         nonSelectedTab = new Color32(124, 192, 0, 255);
-        newNoteNotificationInitialPos = transform.TransformPoint(GetComponent<RectTransform>().rect.xMax - newNoteNotification.GetComponent<RectTransform>().rect.width, GetComponent<RectTransform>().rect.yMax + newNoteNotification.GetComponent<RectTransform>().rect.height / 2, 0);
-        Debug.Log(newNoteNotification.GetComponent<RectTransform>().rect.height / 2);
-        Debug.Log(-newNoteNotification.GetComponent<RectTransform>().rect.width);
     }
 
     private void Update()
@@ -65,59 +63,48 @@ public class EncyclopediaManager : MonoBehaviour
 
     private void InitializeEncyclopedia()
     {
-        foreach (var notes in new List<List<NotesManager>> { enemiesNotes, plantsNotes })
-            foreach (var note in notes)
+        int childrenCount = enemiesTab.transform.childCount;
+        for (int i = 0; i < childrenCount; i++)
+        {
+            NotesManager curChild = enemiesTab.transform.GetChild(i).GetComponent<NotesManager>();
+            notes.Add(curChild.GetComponent<NotesManager>().creature.name, curChild.gameObject);
+            if (curChild.creature.isOpenedInEcnyclopedia)
             {
-                if (note.creature.isOpenedInEcnyclopedia)
-                {
-                    //Debug.Log("1");
-                    note.nameHeader.GetComponent<Text>().text = note.creature.name;
-                    note.icon.GetComponent<Image>().sprite = note.creature.imageSmall;
-                }
-                else
-                {
-                    //Debug.Log("2");
-                    note.nameHeader.GetComponent<Text>().text = "Unknown";
-                    note.icon.GetComponent<Image>().sprite = note.creature.imageUnknown;
-                }
+                curChild.GetComponentInChildren<Text>().text = curChild.creature.name;
+                curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageSmall;
             }
+            else
+            {
+                curChild.GetComponentInChildren<Text>().text = "Неизвестно";
+                curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
+            }
+        }
+        childrenCount = plantsTab.transform.childCount;
+        for (int i = 0; i < childrenCount; i++)
+        {
+            NotesManager curChild = plantsTab.transform.GetChild(i).GetComponent<NotesManager>();
+            notes.Add(curChild.creature.name, curChild.gameObject);
+            if (curChild.creature.isOpenedInEcnyclopedia)
+            {
+                curChild.GetComponentInChildren<Text>().text = curChild.creature.name;
+                curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageSmall;
+            }
+            else
+            {
+                curChild.GetComponentInChildren<Text>().text = "Неизвестно";
+                curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
+            }
+
+        }
     }
 
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
-        Debug.Log("start");
         openedCreature.isOpenedInEcnyclopedia = true;
-        GameObject notesWhereToSearch;
-        int amountOfNotes;
-        if (openedCreature.typeOfThisCreature == creatureType.Enemy)
-        {
-            notesWhereToSearch = enemiesTab;
-            amountOfNotes = enemiesNotes.Count;
-        }
-        else
-        {
-            notesWhereToSearch = plantsTab;
-            amountOfNotes = plantsNotes.Count;
-        }
-
-        string openedCreatureName = openedCreature.name;
-        for (int i = 0; i < amountOfNotes; i++)
-        {
-            //Debug.Log(notesOfCreatures.transform.GetChild(i).GetComponent<NotesManager>().creature);
-            if (notesWhereToSearch.transform.GetChild(i).GetComponent<NotesManager>().creature.name == openedCreatureName)
-            {
-                NotesManager notesManagerCode =  notesWhereToSearch.transform.GetChild(i).GetComponent<NotesManager>();
-                Debug.Log(notesManagerCode.creature.name);
-                Debug.Log(i);
-                notesManagerCode.nameHeader.GetComponent<Text>().text = openedCreature.name;
-                Debug.Log(notesManagerCode.nameHeader.GetComponent<Text>().text);
-                Debug.Log(openedCreature.name);
-                notesManagerCode.icon.GetComponent<Image>().sprite = openedCreature.imageSmall;
-
-                ShowNewNoteNotification(openedCreature);
-                break;
-            }
-        }
+        NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
+        curNoteCode.nameHeader.GetComponent<Text>().text = openedCreature.name;
+        curNoteCode.icon.GetComponent<Image>().sprite = openedCreature.imageSmall;
+        ShowNewNoteNotification(openedCreature);
     }
 
     public void OpenExtraInfo(GameObject ChosenNote)
@@ -159,7 +146,7 @@ public class EncyclopediaManager : MonoBehaviour
             {
                 extraInfoPlantPanel.SetActive(false);
                 extraInfoEnemyPanel.SetActive(false);
-                panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Unknown";
+                panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Неизвестно";
                 panelWithExtraInfo.transform.GetChild(4).gameObject.GetComponent<Text>().text = "???";
                 panelWithExtraInfo.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = curCreature.imageUnknown;
             }

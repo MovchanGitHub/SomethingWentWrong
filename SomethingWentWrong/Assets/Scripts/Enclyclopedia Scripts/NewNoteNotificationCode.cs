@@ -15,18 +15,6 @@ public class NewNoteNotificationCode : MonoBehaviour
     {
         coordinatesInitial = transform.localPosition;
         coordinatesToStay = new Vector2 (transform.parent.GetComponent<RectTransform>().rect.xMax - GetComponent<RectTransform>().rect.width / 2 - SPACE_FROM_RIGHT_SCREEN_BORDER, transform.localPosition.y);
-        Debug.Log(GetComponent<RectTransform>().rect.width / 2);
-        Debug.Log(transform.parent.GetComponent<RectTransform>().rect.xMax);
-        Debug.Log(transform.parent.GetComponent<RectTransform>().rect.width);
-        Debug.Log(transform.parent.GetComponent<RectTransform>().rect.center);
-        //Debug.Log(transform.parent.GetComponent<RectTransform>().rect.xMax);
-        //Debug.Log(GetComponent<RectTransform>().rect.xMin);
-        //Debug.Log(transform.position.x);
-        //Debug.Log(transform.localPosition.y);
-        //Debug.Log(transform.position.y);
-        Debug.Log(coordinatesToStay);
-        Debug.Log(transform.localPosition);
-        //Debug.Log(transform.position);
         StartCoroutine(ShowNewNoteNotificationEnum());
     }
 
@@ -34,16 +22,13 @@ public class NewNoteNotificationCode : MonoBehaviour
     {
 
         float timeElapsed = 0;
-        Debug.Log("Coroutine started");
         while (Mathf.Abs(transform.localPosition.x - coordinatesToStay.x) > 0.01f)
         {
             transform.localPosition= Vector2.Lerp(coordinatesInitial, coordinatesToStay, timeElapsed);
             timeElapsed += Time.deltaTime / TIME_TO_APPEAR;
             yield return null;
         }
-        Debug.Log("Coroutine 1st step ended");
         yield return new WaitForSeconds(4f);
-        Debug.Log("Coroutine 2nd step ended");
         timeElapsed = 0;
         while (transform.localPosition.x != coordinatesInitial.x)
         {
@@ -51,7 +36,6 @@ public class NewNoteNotificationCode : MonoBehaviour
             timeElapsed += Time.deltaTime / TIME_TO_DISAPPEAR;
             yield return null;
         }
-        Debug.Log("Coroutine ended");
         Destroy(gameObject);
     }
 }

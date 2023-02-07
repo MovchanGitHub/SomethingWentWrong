@@ -18,7 +18,7 @@ MonoBehaviour:
   imageSmall: {fileID: 21300000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   imageBig: {fileID: 21300000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
-  isOpenedInEcnyclopedia: 1
+  isOpenedInEcnyclopedia: 0
   healthPoints: 20
   damagePoints: 5
   listOfSpecialAbilities: []
