@@ -11,6 +11,7 @@ public class CreaturesBase : ScriptableObject
     public creatureType typeOfThisCreature;
     public Sprite imageSmall;
     public Sprite imageBig;
+    public Sprite imageUnknown;
     public bool isOpenedInEcnyclopedia;
 
 

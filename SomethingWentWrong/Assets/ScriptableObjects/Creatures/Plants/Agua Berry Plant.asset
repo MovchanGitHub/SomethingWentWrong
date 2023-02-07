@@ -20,6 +20,7 @@ MonoBehaviour:
   typeOfThisCreature: 2
   imageSmall: {fileID: 21300000, guid: db86c43e64bcc4148ad3a5b85d015ff5, type: 3}
   imageBig: {fileID: 21300000, guid: db86c43e64bcc4148ad3a5b85d015ff5, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 1
   lootSprites:
   - {fileID: 21300000, guid: 7ade657c500ee2a4a905bf25a949156e, type: 3}

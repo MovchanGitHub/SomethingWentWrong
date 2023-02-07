@@ -9,10 +9,10 @@ public class NotesManager : MonoBehaviour
     public GameObject nameHeader;
     public GameObject icon;
     
-    private void Start()
-    {
-        nameHeader.GetComponent<Text>().text = creature.name;
-        icon.GetComponent<Image>().sprite = creature.imageSmall;
-    }
+    //private void Start()
+    //{
+    //    nameHeader.GetComponent<Text>().text = creature.name;
+    //    icon.GetComponent<Image>().sprite = creature.imageSmall;
+    //}
     
 }
