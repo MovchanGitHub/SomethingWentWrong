@@ -16,7 +16,16 @@ public static bool IsAbleToMove = true;
     [SerializeField]
     private float runningAnimationSpeed = 1.65f;
 
-    private bool isRunning;
+    public bool isRunning;
+
+    public bool isShooting;
+
+    static private IsometricPlayerMovementController instance;
+
+    static public IsometricPlayerMovementController Instance
+    {
+        get { return instance;  }
+    }
     
     private float movementSpeed;
     private IsometricCharacterRenderer isoRenderer;
@@ -38,6 +47,8 @@ public static bool IsAbleToMove = true;
         rbody = GetComponent<Rigidbody2D>();
         isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
         startPosition = attackPoint.transform.localPosition;
+
+        instance = this;
     }
 
     private void Start()
@@ -57,7 +68,7 @@ public static bool IsAbleToMove = true;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun())
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun() && !isShooting)
             MaximizeSpeed();
         if (Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.canRun())
             MinimizeSpeed();
@@ -74,16 +85,6 @@ public static bool IsAbleToMove = true;
             Vector2 currentPos = rbody.position;
             horizontalInput = Input.GetAxisRaw("Horizontal");
             verticalInput = Input.GetAxisRaw("Vertical");
-            
-            /*if (normalMovement || Math.Abs(horizontalInput) < float.Epsilon)
-            {
-                verticalInput = Input.GetAxisRaw("Vertical");
-            }
-            else
-            {
-                verticalInput = 0;
-            }*/
-            
             
             if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
             {
@@ -121,7 +122,7 @@ public static bool IsAbleToMove = true;
         isRunning = true;
     }
     
-    private void MinimizeSpeed()
+    public void MinimizeSpeed()
     {
         movementSpeed = movementSpeedMin;        
         isoRenderer.SetAnimationsSpeed(walkingAnimationSpeed);

@@ -14,7 +14,7 @@ public class Laser : MonoBehaviour
     void Start()
     {
         DisableLaser();
-        mask = LayerMask.GetMask("LaserBlocker");
+        mask = LayerMask.GetMask("Minable Objects");
     }
     
     void Update()
@@ -35,6 +35,8 @@ public class Laser : MonoBehaviour
     
     void EnableLaser()
     {
+        IsometricPlayerMovementController.Instance.isShooting = true;
+        IsometricPlayerMovementController.Instance.MinimizeSpeed();
         lineRenderer.enabled = true;
         UpdateLaser();
     }
@@ -51,11 +53,15 @@ public class Laser : MonoBehaviour
         if (hit)
         {
             lineRenderer.SetPosition(1, hit.point);
+            ResourceScript res = hit.transform.GetComponent<ResourceScript>();
+            res.GetDamage(1);
+            //Destroy(hit.transform.gameObject);
         }
     }
 
     void DisableLaser()
     {
+        IsometricPlayerMovementController.Instance.isShooting = false;
         lineRenderer.enabled = false;
     }
 }

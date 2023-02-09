@@ -8,38 +8,38 @@ public class IsometricCharacterRenderer : MonoBehaviour
 {
     private Animator _animator;
 
+    private float screenCenterX;
+    private float screenCenterY;
     private void Awake()
     {
         _animator = GetComponent<Animator>();
     }
+    
+    private void Start()
+    {
+        screenCenterX = Screen.width * 0.5f;
+        screenCenterY = Screen.height * 0.5f;
+    }
 
     public void SetDirection(float x, float y)
     {
-        _animator.SetFloat("HorizontalMovement", x);
-        _animator.SetFloat("VerticalMovement", y);
-
-        if (x != 0 || y != 0)
+        _animator.SetBool("IsMoving", x != 0 || y != 0);
+        
+        if (IsometricPlayerMovementController.Instance.isShooting)
         {
-            _animator.SetFloat("LastHorizontal", x);
-            _animator.SetFloat("LastVertical", y);
-            _animator.SetBool("IsMoving", true);
+            SetDirectionToMouse();
         }
-        else
+        else if (x != 0 || y != 0)
         {
-            _animator.SetBool("IsMoving", false);
+            _animator.SetFloat("MouseX", x);
+            _animator.SetFloat("MouseY", y);
         }
     }
 
-    public static int DirectionToIndex(Vector2 dir, int sliceCount)
+    private void SetDirectionToMouse()
     {
-        Vector2 normDir = dir.normalized;
-        float step = 360f / sliceCount;
-        float halfstep = step / 2;
-        float angle = Vector2.SignedAngle(Vector2.up, normDir);
-        angle += halfstep;
-        if (angle < 0) angle += 360;
-        float stepCount = angle / step;
-        return Mathf.FloorToInt(stepCount);
+        _animator.SetFloat("MouseX", Input.mousePosition.x - Screen.width * 0.5f);
+        _animator.SetFloat("MouseY", Input.mousePosition.y - Screen.height * 0.5f);
     }
 
     public void ChangeSpriteOrder(int new_order)
