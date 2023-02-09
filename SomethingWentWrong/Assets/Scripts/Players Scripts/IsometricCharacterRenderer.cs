@@ -10,6 +10,7 @@ public class IsometricCharacterRenderer : MonoBehaviour
 
     private float screenCenterX;
     private float screenCenterY;
+    
     private void Awake()
     {
         _animator = GetComponent<Animator>();
