@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: EnemyMaterial
-  m_Shader: {fileID: -6465566751694194690, guid: ae6f23b7c951c4f4ca15406cf72fd266, type: 3}
+  m_Name: Laser
+  m_Shader: {fileID: -6465566751694194690, guid: 7229863af6698ee4a8792530f8a71f15, type: 3}
   m_ValidKeywords: []
   m_InvalidKeywords: []
   m_LightmapFlags: 4
@@ -20,18 +20,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - _MainTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _MaskTex:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
-    - _NormalMap:
-        m_Texture: {fileID: 0}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -46,11 +34,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _BordersWidth: 0.047
-    - _Fade: 1
-    - _NoiseScale: 30
-    - _NormalStrength: 1.5
-    - _Pixels: 24
+    - _EdgeSmoothness: 8
+    - _LaserThickness: 2.75
+    - _Speed: 1.05
+    - _Thickness: 15
     m_Colors:
-    - _BorderColor: {r: 37.90996, g: 0, b: 23.1659, a: 0}
+    - _Color: {r: 8, g: 8, b: 8, a: 0.011764706}
   m_BuildTextureStacks: []
