@@ -37,6 +37,16 @@ public class IsometricCharacterRenderer : MonoBehaviour
         }
     }
 
+    public void PlayUseLaserAnim()
+    {
+        _animator.SetTrigger("UseLaser");
+    }
+    
+    public void PlayStopLaserAnim()
+    {
+        _animator.SetTrigger("StopLaser");
+    }
+    
     private void SetDirectionToMouse()
     {
         _animator.SetFloat("MouseX", Input.mousePosition.x - Screen.width * 0.5f);

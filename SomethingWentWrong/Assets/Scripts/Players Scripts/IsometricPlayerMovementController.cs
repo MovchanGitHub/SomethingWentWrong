@@ -28,7 +28,7 @@ public static bool IsAbleToMove = true;
     }
     
     private float movementSpeed;
-    private IsometricCharacterRenderer isoRenderer;
+    public IsometricCharacterRenderer isoRenderer;
 
     private Rigidbody2D rbody;
     

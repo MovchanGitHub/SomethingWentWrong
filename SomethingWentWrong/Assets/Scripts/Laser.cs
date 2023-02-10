@@ -11,9 +11,12 @@ public class Laser : MonoBehaviour
 
     private LayerMask mask;
 
+    private bool isShooting;
+
+    [SerializeField] private float laserDamageSpeed;
+
     void Start()
     {
-        DisableLaser();
         mask = LayerMask.GetMask("Minable Objects");
     }
     
@@ -21,11 +24,7 @@ public class Laser : MonoBehaviour
     {
         if (Input.GetButtonDown("Fire1"))
         {
-            EnableLaser();
-        }
-        else if (Input.GetButton("Fire1"))
-        {
-            UpdateLaser();
+            StartCoroutine(EnableLaser());
         }
         else if (Input.GetButtonUp("Fire1"))
         {
@@ -33,34 +32,67 @@ public class Laser : MonoBehaviour
         }
     }
     
-    void EnableLaser()
+    IEnumerator EnableLaser()
     {
+        Debug.Log("EnableLaser");
+        isShooting = true;
+        IsometricPlayerMovementController.Instance.isoRenderer.PlayUseLaserAnim();
+            
+        yield return new WaitForSeconds(0.2f);
         IsometricPlayerMovementController.Instance.isShooting = true;
         IsometricPlayerMovementController.Instance.MinimizeSpeed();
         lineRenderer.enabled = true;
-        UpdateLaser();
+        
+        StartCoroutine(UpdateLaser());
     }
 
-    void UpdateLaser()
+    IEnumerator UpdateLaser()
     {
-        Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
-        lineRenderer.SetPosition(0, firePoint.position);
-        lineRenderer.SetPosition(1, mousePos);
+        Debug.Log("UpdateLaser");
 
-        Vector2 direction = mousePos - (Vector2)transform.position;
-        RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, mask);
-
-        if (hit)
+        if (!isShooting)
         {
-            lineRenderer.SetPosition(1, hit.point);
-            ResourceScript res = hit.transform.GetComponent<ResourceScript>();
-            res.GetDamage(1);
-            //Destroy(hit.transform.gameObject);
+            DisableLaser();
+        }
+
+        float timeToDamage = laserDamageSpeed;
+        
+        while (isShooting)
+        {
+            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            lineRenderer.SetPosition(0, firePoint.position);
+            lineRenderer.SetPosition(1, mousePos);
+
+            Vector2 direction = mousePos - (Vector2)transform.position;
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, mask);
+
+            timeToDamage -= Time.deltaTime;
+            
+            if (hit)
+            {
+                lineRenderer.SetPosition(1, hit.point);
+
+                if (timeToDamage < 0)
+                {
+                    ResourceScript res = hit.transform.GetComponent<ResourceScript>();
+                    res.GetDamage(3);
+                    timeToDamage = laserDamageSpeed;
+                }
+            }
+
+            yield return new WaitForEndOfFrame();
         }
     }
 
     void DisableLaser()
     {
+        Debug.Log("DisableLaser");
+
+        if (isShooting)
+            IsometricPlayerMovementController.Instance.isoRenderer.PlayStopLaserAnim();
+        
+        isShooting = false;
+        
         IsometricPlayerMovementController.Instance.isShooting = false;
         lineRenderer.enabled = false;
     }
