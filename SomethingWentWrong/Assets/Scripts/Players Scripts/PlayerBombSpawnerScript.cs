@@ -42,7 +42,7 @@ public class PlayerBombSpawnerScript : MonoBehaviour
         {
             Instantiate(bombPrefab, transform.position, quaternion.identity);
             timeAfterLastUse = 0f;
-            inventory.UseOneTimeWeapon(bombName);
+            InventoryManager.instance.UseOneTimeWeapon(bombName);
             InventoryManager.instance.bombsAmount--;
         }
         else if (Input.GetKeyDown(KeyCode.B))

@@ -3,8 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Laser : MonoBehaviour
+public class Laser : MonoBehaviour, IWeaponable
 {
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Laser;
+    
+    public WeaponType Type { get { return type; } }
+
+    private int damage = 3;
+
+    public int Damage { get { return damage; } }
+    
+    
+    // Laser's unique values
     public Camera cam;
     public LineRenderer lineRenderer;
     public Transform firePoint;
@@ -12,6 +23,7 @@ public class Laser : MonoBehaviour
     private LayerMask mask;
 
     private bool isShooting;
+
 
     [SerializeField] private float laserDamageSpeed;
 
@@ -34,7 +46,6 @@ public class Laser : MonoBehaviour
     
     IEnumerator EnableLaser()
     {
-        Debug.Log("EnableLaser");
         isShooting = true;
         IsometricPlayerMovementController.Instance.isoRenderer.PlayUseLaserAnim();
             
@@ -48,8 +59,6 @@ public class Laser : MonoBehaviour
 
     IEnumerator UpdateLaser()
     {
-        Debug.Log("UpdateLaser");
-
         if (!isShooting)
         {
             DisableLaser();
@@ -74,8 +83,8 @@ public class Laser : MonoBehaviour
 
                 if (timeToDamage < 0)
                 {
-                    ResourceScript res = hit.transform.GetComponent<ResourceScript>();
-                    res.GetDamage(3);
+                    IDamagable target = hit.transform.GetComponent<IDamagable>();
+                    target.GetDamage(this);
                     timeToDamage = laserDamageSpeed;
                 }
             }
@@ -86,12 +95,12 @@ public class Laser : MonoBehaviour
 
     void DisableLaser()
     {
-        Debug.Log("DisableLaser");
-
         if (isShooting)
+        {
+            isShooting = false;
             IsometricPlayerMovementController.Instance.isoRenderer.PlayStopLaserAnim();
+        }
         
-        isShooting = false;
         
         IsometricPlayerMovementController.Instance.isShooting = false;
         lineRenderer.enabled = false;

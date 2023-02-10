@@ -1,12 +1,23 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using UnityEngine;
 
-public class Bomb : MonoBehaviour
+public class Bomb : MonoBehaviour, IWeaponable
 {
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Bomb;
+    
+    public WeaponType Type { get { return type; } }
+
+    private int damage = 3;
+
+    public int Damage { get { return damage; } }
+    
+    
+    // Bomb's unique values
     public float lifeTime;
-    public float damageAmount;
     public LayerMask damagableLayers;
     private GameObject _collider2D;
     private GameObject _area;
@@ -27,20 +38,17 @@ public class Bomb : MonoBehaviour
         yield return new WaitForSeconds(lifeTime);
         _collider2D.SetActive(true);        
         yield return new WaitForSeconds(0.05f);
-        Boom();
+        Explode();
     }
 
-    private void Boom()
+    private void Explode()
     {
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, _area.transform.localScale.y / 2, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            if (hitObject.GetComponent<IDamagable>() != null)
-            {
-                hitObject.GetComponent<IDamagable>().GetDamage(damageAmount);
-            }
+            hitObject.GetComponent<IDamagable>()?.GetDamage(this);
         }
 
         Destroy(gameObject);

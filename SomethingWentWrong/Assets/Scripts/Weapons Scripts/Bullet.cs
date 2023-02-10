@@ -11,7 +11,6 @@ public class Bullet : MonoBehaviour
     public float offset;
     public GameObject BulletSample;
     public Transform shotpoint;
-    public float damageAmount;
 
     private float timeBtwShots;
     public float startTimeBtwShots;
@@ -35,9 +34,7 @@ public class Bullet : MonoBehaviour
         {
             if (Input.GetMouseButton(0) && InventoryManager.instance.bulletsAmount > 0)
             {
-                Debug.Log(!GameManagerScript.instance.isUIOpened);
                 GameObject bullet = Instantiate(BulletSample, shotpoint.position, transform.rotation);
-                bullet.GetComponent<BulletStats>().damageAmount = damageAmount;
                 timeBtwShots = startTimeBtwShots;
                 InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
                 InventoryManager.instance.bulletsAmount--;

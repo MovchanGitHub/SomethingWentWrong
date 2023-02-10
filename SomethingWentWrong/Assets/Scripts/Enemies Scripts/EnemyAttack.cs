@@ -3,8 +3,19 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyAttack : MonoBehaviour
+public class EnemyAttack : MonoBehaviour, IWeaponable
 {
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Enemy;
+    
+    public WeaponType Type { get { return type; } }
+
+    private int damage = 5;
+
+    public int Damage { get { return damage; } }
+    
+    
+    // EnemyAttack's unique values
     public string resourceTag;
     public string playerTag;
     public string buildingTag;
@@ -45,7 +56,7 @@ public class EnemyAttack : MonoBehaviour
             {
                 if (hitObject.GetComponent<IDamagable>() != null)
                 {
-                    hitObject.GetComponent<IDamagable>().GetDamage(5);
+                    hitObject.GetComponent<IDamagable>().GetDamage(this);
                 }
             } 
         }

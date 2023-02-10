@@ -4,54 +4,48 @@ using UnityEngine;
 
 public class ResourceScript : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float lootDropBarrier = 5;
-    [SerializeField] private float hp;
-    [SerializeField] private CreaturesBase creature;
-    private float currentDamage;
-    private float Health
+    // IDamagable's implementation
+    [SerializeField] private int hp;
+    
+    public int HP
     {
+        get { return hp; }
         set
         {
+            // здесь добавить обновление полоски хп
             if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
             {
-                DropItem((int)((hp - value + currentDamage) / lootDropBarrier) * dropCount);
-                currentDamage = (hp - value + currentDamage) - lootDropBarrier * (int)((hp - value + currentDamage) / lootDropBarrier);
+                DropItem(((hp - value + currentDamage) / lootDropBarrier) * dropCount);
+                currentDamage = (hp - value + currentDamage) - lootDropBarrier * ((hp - value + currentDamage) / lootDropBarrier);
             }
             else
             {
                 currentDamage += hp - value;
             }
-            hp = value;
-        }
-        get
-        {
-            return hp;
+            
+            if (value > 0)
+                hp = value;
+            else
+                Die();
         }
     }
+    
+    public void GetDamage(IWeaponable weapon)
+    {
+        HP -=  weapon.Damage;
+    }
+    
+    
+    // Resource unique methods
+    [SerializeField] private int lootDropBarrier = 5;
+    [SerializeField] private CreaturesBase creature;
+    private int currentDamage;
 
     [SerializeField] private GameObject drop;
     [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
-
-    public float HP()
-    {
-        return hp;
-    }
-
-    public void GetDamage(float damage)
-    {
-        Health -=  damage;
-        if (hp <= 0)
-        {
-            if (!creature.isOpenedInEcnyclopedia)
-            {
-                EncyclopediaManager.Instance.OpenNewCreature(creature);
-            }
-            Destroy(gameObject);
-        }
-    }
-
+    
     private void DropItem(int dropCount)
     {
         int amountOfDrop = dropCount;
@@ -65,5 +59,14 @@ public class ResourceScript : MonoBehaviour, IDamagable
             dropObject.transform.position = transform.position;
             dropObject.GetComponent<PickUpScript>().StartMove(pos, dropSpeed);
         }
+    }
+
+    private void Die()
+    {
+        if (!creature.isOpenedInEcnyclopedia)
+        {
+            EncyclopediaManager.Instance.OpenNewCreature(creature);
+        }
+        Destroy(gameObject);
     }
 }
