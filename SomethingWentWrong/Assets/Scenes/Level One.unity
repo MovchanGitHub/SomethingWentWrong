@@ -48547,6 +48547,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5538207182880970325, guid: a5caa55863e660c42bc65f5471e812cd, type: 3}
   m_PrefabInstance: {fileID: 305558386}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1406974503 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 542578764439005493, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+  m_PrefabInstance: {fileID: 2130876769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd57185281ab4ca4a96aec5fe653ddeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1412100701
 GameObject:
   m_ObjectHideFlags: 0
@@ -99561,6 +99572,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1105538747, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
   m_PrefabInstance: {fileID: 2130876769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1580619864 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1105538745, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+  m_PrefabInstance: {fileID: 2130876769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1580619862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbd72a718eef6c4694a3ea9cc1c0c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1586769155 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1925099775391925270, guid: 0a7fe4174547f0c49929d59a9a3fa82e, type: 3}
@@ -99880,6 +99902,17 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 895893633, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
   m_PrefabInstance: {fileID: 2130876769}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1682175981 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 895893635, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+  m_PrefabInstance: {fileID: 2130876769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1682175979}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3159d2dfd9b8a44a85c35e9dfa71a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1690938072
 GameObject:
   m_ObjectHideFlags: 0
@@ -101301,6 +101334,27 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 508686463488207102, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
   m_PrefabInstance: {fileID: 1289165998}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2000184763 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4174462778273100978, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+  m_PrefabInstance: {fileID: 2130876769}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2000184765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2000184763}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac02856eb2d2c24c8fe014245637a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLogics:
+  - {fileID: 1406974503}
+  - {fileID: 1580619864}
+  - {fileID: 1682175981}
 --- !u!1001 &2040541410
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -101753,18 +101807,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 66338847, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
-      propertyPath: maxY
-      value: 16
-      objectReference: {fileID: 0}
-    - target: {fileID: 66338847, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
-      propertyPath: timeToInc
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 1011968336132563267, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
-      propertyPath: cam
+    - target: {fileID: 1105538745, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+      propertyPath: projectileSample
       value: 
-      objectReference: {fileID: 2045551315}
+      objectReference: {fileID: 6499335138008150702, guid: 459f053d5d9078346842603e0e06f73e, type: 3}
     - target: {fileID: 6369232760984217070, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: m_RootOrder
       value: 8

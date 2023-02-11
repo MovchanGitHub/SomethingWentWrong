@@ -7,11 +7,11 @@ using UnityEngine;
 public class Bomb : MonoBehaviour, IWeaponable
 {
     // IWeaponable's implementation
-    private WeaponType type = WeaponType.Bomb;
+    [SerializeField] private WeaponType type;
     
     public WeaponType Type { get { return type; } }
 
-    private int damage = 3;
+    [SerializeField] private int damage;
 
     public int Damage { get { return damage; } }
     
@@ -44,11 +44,11 @@ public class Bomb : MonoBehaviour, IWeaponable
     private void Explode()
     {
 
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, _area.transform.localScale.y / 2, damagableLayers);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, _area.transform.localScale.y, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.GetComponent<IDamagable>()?.GetDamage(this);
+            hitObject.GetComponentInParent<IDamagable>()?.GetDamage(this);
         }
 
         Destroy(gameObject);
@@ -56,6 +56,6 @@ public class Bomb : MonoBehaviour, IWeaponable
 
     private void OnDrawGizmosSelected()
     {
-        Gizmos.DrawWireSphere(_area.transform.position, _area.transform.localScale.y / 2);
+        Gizmos.DrawWireSphere(_area.transform.position, _area.transform.localScale.y);
     }
 }

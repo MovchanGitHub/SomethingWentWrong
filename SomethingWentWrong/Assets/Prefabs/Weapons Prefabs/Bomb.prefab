@@ -182,7 +182,7 @@ MonoBehaviour:
   lifeTime: 1
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 832
 --- !u!1 &6499335139566498530
 GameObject:
   m_ObjectHideFlags: 0

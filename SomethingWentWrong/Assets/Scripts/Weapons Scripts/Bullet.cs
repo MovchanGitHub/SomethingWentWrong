@@ -2,56 +2,44 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class Bullet : MonoBehaviour, IWeaponable
 {
-    public const string bulletName = "Shoot Fruit";
-    //public int amountBullets;
-    private GameObject InventoryCanvas;
+    // IWeaponable's implementation
+    [SerializeField] private WeaponType type;
+    
+    public WeaponType Type { get { return type; } }
 
-    public float offset;
-    public GameObject BulletSample;
-    public Transform shotpoint;
+    [SerializeField] private int damage;
 
-    private float timeBtwShots;
-    public float startTimeBtwShots;
+    public int Damage { get { return damage; } }
+    
+    
+    // Bullet's unique methods
+    public float speed;
+    public float lifeTime;
 
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (col.GetComponent<IDamagable>() != null && col.tag != "Player") 
+        {
+            col.GetComponent<IDamagable>().GetDamage(this);
+            Destroy(gameObject);
+        }
+    }
+    
+    IEnumerator LifeTime()
+    {
+        yield return new WaitForSeconds(lifeTime);
+        Destroy(gameObject);
+    }
+    
     private void Start()
     {
-        if (InventoryManager.instance != null)
-        {
-            InventoryManager.instance.BulletSpawner = gameObject;
-        }
-        InventoryCanvas = InventoryManager.instance.gameObject;
+        StartCoroutine(LifeTime());
     }
-
-    void Update()
+    
+    private void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
-        float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
-        transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
-
-        if (!GameManagerScript.instance.isUIOpened && timeBtwShots <= 0)
-        {
-            if (Input.GetMouseButton(0) && InventoryManager.instance.bulletsAmount > 0)
-            {
-                GameObject bullet = Instantiate(BulletSample, shotpoint.position, transform.rotation);
-                timeBtwShots = startTimeBtwShots;
-                InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
-                InventoryManager.instance.bulletsAmount--;
-            }
-        }
-        else
-        {
-            timeBtwShots -= Time.deltaTime;
-        }
-    }
-
-    public int GetAmountBullets()
-    {
-        return InventoryManager.instance.bulletsAmount;
-    }
-    public void SetAmountBullets(int a)
-    {
-        InventoryManager.instance.bulletsAmount = a;
+        transform.Translate(Vector2.up * speed * Time.deltaTime);
     }
 }
