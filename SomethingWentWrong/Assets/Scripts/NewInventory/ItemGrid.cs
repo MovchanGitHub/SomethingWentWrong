@@ -17,13 +17,14 @@ public class ItemGrid : MonoBehaviour
 
     InventoryItem[,] inventoryItemSlots;
 
-    [SerializeField] int gridSizeWidth = 10;
-    [SerializeField] int gridSizeHeight = 5;
+    [HideInInspector] int gridSizeWidth = 10;
+    [HideInInspector] int gridSizeHeight = 5;
 
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
         InitializeGrid(gridSizeWidth, gridSizeHeight);
+        this.gameObject.transform.parent.gameObject.SetActive(false);
     }
 
     private void InitializeGrid(int width, int height)
@@ -138,7 +139,7 @@ public class ItemGrid : MonoBehaviour
         rectTransform.localPosition = pos;
     }
 
-    private void cleanGridRef(InventoryItem item)
+    public void cleanGridRef(InventoryItem item)
     {
         for (int i = 0; i < item.itemData.width; i++)
         {
@@ -223,5 +224,21 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
+    public bool checkAmmo()
+    {
+        for (int i = 0; i < gridSizeWidth; i++)
+        {
+            for (int j = 0; j < gridSizeHeight; j++)
+            {
+                if (inventoryItemSlots[i,j] && inventoryItemSlots[i,j].itemData.itemName == "Стрельника")
+                {
+                    Destroy(inventoryItemSlots[i, j].gameObject);
+                    cleanGridRef(inventoryItemSlots[i, j]);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
 
