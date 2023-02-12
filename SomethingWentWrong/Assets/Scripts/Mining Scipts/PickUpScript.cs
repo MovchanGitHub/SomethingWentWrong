@@ -25,7 +25,7 @@ public class PickUpScript : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= pickUpDistance && !InventoryManager.instance.IsInventoryFull())
+        if (distance <= pickUpDistance && /*!InventoryManager.instance.IsInventoryFull()*/ InventoryController.instance.checkSpaceInInventory(itemToInventory))
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (distance < 0.1f)
@@ -38,8 +38,8 @@ public class PickUpScript : MonoBehaviour
 
     private void PickUp()
     {
-        InventoryManager.instance.AddItem(itemToInventory);
-        //InventoryController.instance.insertItem(itemToInventory);
+        //InventoryManager.instance.AddItem(itemToInventory);
+        InventoryController.instance.insertItem(itemToInventory);
         Destroy(gameObject);
     }
 

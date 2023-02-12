@@ -6,9 +6,9 @@ using UnityEngine;
 public class InventoryController : MonoBehaviour
 {
     public ItemGrid standartItemGrid;
-    [HideInInspector] private ItemGrid selectedItemGrid;
-    public ItemGrid SelectedItemGrid { 
-        get => selectedItemGrid; 
+    [SerializeField] private ItemGrid selectedItemGrid;
+    public ItemGrid SelectedItemGrid {
+        get => selectedItemGrid;
         set
         {
             selectedItemGrid = value;
@@ -49,19 +49,13 @@ public class InventoryController : MonoBehaviour
     {
         dragItemIcon();
 
-        
+
         if (Input.GetKeyDown(KeyCode.E))
         {
             isCanvasActive = !isCanvasActive;
+            GameManagerScript.instance.isUIOpened = isCanvasActive;
             canvasTransform.gameObject.SetActive(isCanvasActive);
         }
-
-        /*
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            insertRandomItem();
-        }
-        */
 
         if (selectedItemGrid == null)
         {
@@ -69,11 +63,19 @@ public class InventoryController : MonoBehaviour
             return;
         }
 
-        handleHighlight();
+        if (isCanvasActive)
+        {
+            handleHighlight();
+        }
 
         if (Input.GetMouseButtonDown(0))
         {
             onPressLeftMouseButton();
+        }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            onPressRightMouseButton();
         }
     }
 
@@ -108,20 +110,6 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    /*
-    private void createRandomItem()
-    {
-        InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
-        selectedItem = inventoryItem;
-
-        rectTransform = inventoryItem.GetComponent<RectTransform>();
-        rectTransform.SetParent(canvasTransform);
-
-        int selectedItemID = UnityEngine.Random.Range(0, items.Count);
-        inventoryItem.Set(items[selectedItemID]);
-    }
-    */
-
     private void createItem(ItemsBase item)
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
@@ -133,15 +121,25 @@ public class InventoryController : MonoBehaviour
         inventoryItem.Set(item);
     }
 
-    /*
-    private void insertRandomItem()
+    public bool checkSpaceInInventory(ItemsBase item)
     {
-        createRandomItem();
+        createItem(item);
         InventoryItem itemToInsert = selectedItem;
         selectedItem = null;
-        insertItem(itemToInsert);
+
+        Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
+        Destroy(itemToInsert.gameObject);
+        selectedItem = null;
+
+        if (posOnGrid == null)
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+        }
     }
-    */
 
     public void insertItem(ItemsBase item)
     {
@@ -175,6 +173,16 @@ public class InventoryController : MonoBehaviour
         }
     }
 
+    private void onPressRightMouseButton()
+    {
+        Vector2Int tileGridPosition = getTileGridPosition();
+
+        if (selectedItem == null)
+        {
+            UseItem(tileGridPosition);
+        }
+    }
+
     private Vector2Int getTileGridPosition()
     {
         Vector2 pos = Input.mousePosition;
@@ -201,6 +209,7 @@ public class InventoryController : MonoBehaviour
                 rectTransform = selectedItem.GetComponent<RectTransform>();
             }
         }
+        
     }
 
     private void PickUpItem(Vector2Int tileGridPosition)
@@ -217,6 +226,27 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform.position = Input.mousePosition;
+        }
+    }
+
+    private void UseItem(Vector2Int tileGridPosition)
+    {
+        InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
+        if (item.itemData.TypeOfThisItem == ItemType.Food)
+        {
+            if (item != null)
+            {
+                ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
+                SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
+                SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+                SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            }
+            Destroy(item.gameObject);
+            SelectedItemGrid.cleanGridRef(item);
+        }
+        else 
+        {
+            SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
         }
     }
 }
