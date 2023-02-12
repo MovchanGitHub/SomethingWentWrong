@@ -36,7 +36,7 @@ public class InventoryManager : MonoBehaviour
     private GameObject CurrentCellRef;
     private GameObject tempCell;
     private GameObject onMouseObject;
-    private PlayerBombSpawnerScript BombSpawnerCode;
+    private BombLogic BombSpawnerCode;
     private Bullet BulletSpawnerCode;
 
     [SerializeField] private GameObject StandartBorsch;
@@ -64,20 +64,20 @@ public class InventoryManager : MonoBehaviour
         isOpened = false;
         
         playerTransform = GameManagerScript.instance.player.transform;
-        BombSpawnerCode = BombSpawner.GetComponent<PlayerBombSpawnerScript>();
+        BombSpawnerCode = BombSpawner.GetComponent<BombLogic>();
         BulletSpawnerCode = BulletSpawner.GetComponent<Bullet>();
         emptyCellCode = emptyCell.GetComponent<InventoryCell>();
         contextMenuWidthDiv2 = ContextMenu.GetComponent<RectTransform>().rect.width / 2;
         contextMenuHeightDiv2 = ContextMenu.GetComponent<RectTransform>().rect.height / 2;
         SurvivalManagerCode = SurvivalManager.Instance;
 
-        CountOneTimeWeapon(PlayerBombSpawnerScript.bombName, BombSpawner.GetComponent<PlayerBombSpawnerScript>().SetAmountBombs);
+        CountOneTimeWeapon(BombLogic.bombName, BombSpawner.GetComponent<BombLogic>().SetAmountBombs);
     }
 
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E) && !pause.isPaused)
+        if (Input.GetKeyDown(KeyCode.Tab) && !pause.isPaused)
         {
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
@@ -291,9 +291,9 @@ public class InventoryManager : MonoBehaviour
             cellToAddCode.amount += 1;
         }
         
-        if (newItem.name == PlayerBombSpawnerScript.bombName)
+        if (newItem.name == BombLogic.bombName)
             bombsAmount++;
-        if (newItem.name == Bullet.bulletName)
+        if (newItem.name == BulletLogic.bulletName)
             bulletsAmount++;
             
         UpdateCounterText(cellToAdd);

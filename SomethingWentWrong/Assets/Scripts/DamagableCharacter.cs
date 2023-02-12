@@ -7,31 +7,34 @@ using UnityEngine;
 
 public class DamagableCharacter : MonoBehaviour, IDamagable
 {
+    // IDamagable's implementation
+    [SerializeField] private int hp;
+    
+    public int HP
+    {
+        get { return hp; }
+        set { 
+            // здесь добавить обновление полоски хп
+            if (value > 0) 
+                hp = value;
+            else
+                Die();
+        }
+    }
+    
+    public void GetDamage(IWeaponable weapon)
+    {
+        HP -= weapon.Damage;
+        StartCoroutine(BecomeRed());
+    }
+    
+    
+    // DamagableCharacter unique methods
     public SpriteRenderer sprite;
     public float redTime;
     private int damageNumber = 0;
-    [SerializeField] private float hp;
     public CreaturesBase creature;
 
-
-    public float HP()
-    {
-        return hp;
-    }
-
-    public void GetDamage(float damage)
-    {
-        hp -= damage;
-        StartCoroutine(BecomeRed());
-        if (hp <= 0)
-        {
-            if (!creature.isOpenedInEcnyclopedia)
-            {
-                EncyclopediaManager.Instance.OpenNewCreature(creature);
-            }
-            Die();
-        }
-    }
 
     private IEnumerator BecomeRed()
     {
@@ -59,13 +62,18 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 
     private void Die()
     {
+        if (!creature.isOpenedInEcnyclopedia)
+        {
+            EncyclopediaManager.Instance.OpenNewCreature(creature);
+        }
+        
         if (transform.tag == "Player")
         {
             GameManagerScript.instance.GameOver();
         }
         else
         {
-            gameObject.transform.parent.gameObject.SetActive(false);
+            Destroy(gameObject.transform.parent.gameObject);
         }
     }
 }

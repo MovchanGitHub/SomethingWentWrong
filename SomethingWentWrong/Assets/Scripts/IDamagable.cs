@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamagable
 {
-    public float HP();
-    public void GetDamage(float damage);
+    public int HP { get; set; }
+    public void GetDamage(IWeaponable weapon);
 }
