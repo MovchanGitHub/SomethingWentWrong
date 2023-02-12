@@ -50,7 +50,7 @@ public class InventoryController : MonoBehaviour
         dragItemIcon();
 
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.Tab))
         {
             isCanvasActive = !isCanvasActive;
             GameManagerScript.instance.isUIOpened = isCanvasActive;

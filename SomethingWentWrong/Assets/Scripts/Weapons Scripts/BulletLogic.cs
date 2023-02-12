@@ -6,7 +6,6 @@ public class BulletLogic : WeaponLogic
 {
     public const string bulletName = "Shoot Fruit";
     //public int amountBullets;
-    private GameObject InventoryCanvas;
 
     public float offset;
     private Bullet bullet;
@@ -22,7 +21,7 @@ public class BulletLogic : WeaponLogic
         {
             InventoryManager.instance.BulletSpawner = gameObject;
         }
-        InventoryCanvas = InventoryManager.instance.gameObject;
+        //InventoryCanvas = InventoryManager.instance.gameObject;
     }
 
     void Update()
@@ -45,8 +44,8 @@ public class BulletLogic : WeaponLogic
     {
         Instantiate(bullet, shotpoint.position, transform.rotation);
         timeBtwShots = startTimeBtwShots;
-        InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
-        InventoryManager.instance.bulletsAmount--;
+        //InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
+        //InventoryManager.instance.bulletsAmount--;
     }
 
     public int GetAmountBullets()

@@ -15,23 +15,23 @@ public class BombLogic : WeaponLogic
     //private int amountBombs;
     private float timeAfterLastUse;
 
-    private InventoryManager inventory;
+    //private InventoryManager inventory;
     private IsometricPlayerMovementController player;
 
     private void Awake()
     {
         player = GetComponentInParent<IsometricPlayerMovementController>();
-        inventory = InventoryManager.instance;
+        //inventory = InventoryManager.instance;
     }
 
     private void Start()
     {
         bomb = projectileSample.GetComponent<Bomb>();
         timeAfterLastUse = 0f;
-        if (InventoryManager.instance != null)
+        /*if (InventoryManager.instance != null)
         {
             InventoryManager.instance.BombSpawner = gameObject;
-        }
+        }*/
     }
 
     private void Update()
@@ -53,8 +53,8 @@ public class BombLogic : WeaponLogic
     {
         Instantiate(bomb, transform.position, quaternion.identity);
         timeAfterLastUse = 0f;
-        InventoryManager.instance.UseOneTimeWeapon(bombName);
-        InventoryManager.instance.bombsAmount--;
+        //InventoryManager.instance.UseOneTimeWeapon(bombName);
+        //InventoryManager.instance.bombsAmount--;
     }
     
     public int GetAmountBombs()
