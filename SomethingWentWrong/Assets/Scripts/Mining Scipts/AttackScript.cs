@@ -2,12 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackScript : MonoBehaviour
+public class AttackScript : MonoBehaviour, IWeaponable
 {
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Fists;
+    
+    public WeaponType Type { get { return type; } }
 
+    private int damage = 5;
+
+    public int Damage { get { return damage; } }
+    
+    
+    // AttackScript's unique methods
     [SerializeField] private Transform attackPoint;
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private int damage = 5;
     public LayerMask damagableLayers;
 
     [SerializeField] private float attackRate = 2f;
@@ -27,16 +36,13 @@ public class AttackScript : MonoBehaviour
 
     void Attack()
     {
-        //Запуск анимации нужен тут
-
-
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(attackPoint.position, attackRange, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
         {
             if (hitObject.GetComponent<IDamagable>() != null)
             {
-                hitObject.GetComponent<IDamagable>().GetDamage(damage);
+                hitObject.GetComponent<IDamagable>().GetDamage(this);
             }
         }
     }

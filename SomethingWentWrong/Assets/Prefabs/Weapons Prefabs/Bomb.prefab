@@ -180,10 +180,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lifeTime: 1
-  damageAmount: 20
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 2147483647
+    m_Bits: 832
 --- !u!1 &6499335139566498530
 GameObject:
   m_ObjectHideFlags: 0

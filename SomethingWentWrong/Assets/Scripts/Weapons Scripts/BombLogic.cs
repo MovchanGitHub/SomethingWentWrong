@@ -6,11 +6,10 @@ using Unity.VisualScripting;
 using UnityEngine;
 
 
-public class PlayerBombSpawnerScript : MonoBehaviour
+public class BombLogic : WeaponLogic
 {
     public const string bombName = "Bomb Fruit";
-
-    public GameObject bombPrefab;
+    private Bomb bomb;
     //[SerializeField] GameObject InventoryCanvas;
     public float coolDown;
     //private int amountBombs;
@@ -27,6 +26,7 @@ public class PlayerBombSpawnerScript : MonoBehaviour
 
     private void Start()
     {
+        bomb = projectileSample.GetComponent<Bomb>();
         timeAfterLastUse = 0f;
         if (InventoryManager.instance != null)
         {
@@ -38,19 +38,24 @@ public class PlayerBombSpawnerScript : MonoBehaviour
     {
         timeAfterLastUse += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.B) && InventoryManager.instance.bombsAmount > 0 && timeAfterLastUse >= coolDown)
+        /*if (Input.GetKeyDown(KeyCode.B) && InventoryManager.instance.bombsAmount > 0 && timeAfterLastUse >= coolDown)
         {
-            Instantiate(bombPrefab, transform.position, quaternion.identity);
-            timeAfterLastUse = 0f;
-            inventory.UseOneTimeWeapon(bombName);
-            InventoryManager.instance.bombsAmount--;
+            //ThrowBomb();
         }
         else if (Input.GetKeyDown(KeyCode.B))
         {
             //Debug.Log(amountBombs);
-        }
+        }*/
     }
 
+
+    private void ThrowBomb()
+    {
+        Instantiate(bomb, transform.position, quaternion.identity);
+        timeAfterLastUse = 0f;
+        InventoryManager.instance.UseOneTimeWeapon(bombName);
+        InventoryManager.instance.bombsAmount--;
+    }
     
     public int GetAmountBombs()
     {
@@ -60,5 +65,7 @@ public class PlayerBombSpawnerScript : MonoBehaviour
     {
         InventoryManager.instance.bombsAmount = a;
     }
-    
+
+    override public void UseWeapon() { ThrowBomb(); }
+    override public void StopWeapon() {  }
 }

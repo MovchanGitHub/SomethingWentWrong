@@ -4,7 +4,27 @@ using UnityEngine;
 
 public class LightHouse : MonoBehaviour, IDamagable
 {
-    [SerializeField] private float hp;
+    // IDamagable's implementation
+    [SerializeField] private int hp;
+    
+    public int HP
+    {
+        get { return hp; }
+        set { 
+            // здесь добавить обновление полоски хп
+            if (value > 0) 
+                hp = value;
+            else
+                Die();
+        }
+    }
+    
+    public void GetDamage(IWeaponable weapon)
+    {
+        HP -= weapon.Damage;
+    }
+    
+    // LightHouse unique methods
     public bool active = false;
 
     private void Start()
@@ -15,19 +35,6 @@ public class LightHouse : MonoBehaviour, IDamagable
         }
     }
 
-    public float HP()
-    {
-        return hp;
-    }
-
-    public void GetDamage(float damage)
-    {
-        hp -= damage;
-        if (hp <= 0)
-        {
-            Die();
-        }
-    }
 
     private void Die()
     {

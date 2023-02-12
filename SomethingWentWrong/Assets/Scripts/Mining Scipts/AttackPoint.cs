@@ -2,11 +2,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AttackPoint : MonoBehaviour
+public class AttackPoint : MonoBehaviour, IWeaponable
 {
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Fists;
+    
+    public WeaponType Type { get { return type; } }
+
+    private int damage = 5;
+
+    public int Damage { get { return damage; } }
+    
+    
+    // AttackPoint's unique methods
     private Vector3 startPosition;
     [SerializeField] private float attackRange = 0.5f;
-    [SerializeField] private int damage = 5;
     public LayerMask damagableLayers;
 
     [SerializeField] private float attackRate = 2f;
@@ -49,7 +59,7 @@ public class AttackPoint : MonoBehaviour
         {
             if (hitObject.GetComponent<IDamagable>() != null)
             {
-                hitObject.GetComponent<IDamagable>().GetDamage(damage);
+                hitObject.GetComponent<IDamagable>().GetDamage(this);
             }
         }
         
