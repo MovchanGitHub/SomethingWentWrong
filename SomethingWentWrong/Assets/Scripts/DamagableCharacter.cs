@@ -4,17 +4,20 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamagableCharacter : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    public Slider slider;
     
     public int HP
     {
         get { return hp; }
         set { 
             // здесь добавить обновление полоски хп
+            slider.value = hp;
             if (value > 0) 
                 hp = value;
             else
@@ -69,7 +72,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         
         if (transform.tag == "Player")
         {
-            GameManagerScript.instance.GameOver();
+            GameManagerScript.instance.GameOver("Вы умерли");
         }
         else
         {

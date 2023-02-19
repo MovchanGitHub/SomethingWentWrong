@@ -84,7 +84,7 @@ public class SurvivalManager : MonoBehaviour
             currentHunger = 0;
             currentThirst = 0;
             currentAnoxaemia = 0;
-            GameManagerScript.instance.GameOver();
+            GameManagerScript.instance.GameOver("Вы умерли");
             //transform.gameObject.SetActive(false);
         }
 

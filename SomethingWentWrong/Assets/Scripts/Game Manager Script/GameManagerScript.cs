@@ -46,9 +46,9 @@ public class GameManagerScript : MonoBehaviour
         lightHouse.GetComponent<LightHouse>().active = false;
     }
 
-    public void GameOver()
+    public void GameOver(string message)
     {
-        UI.GetComponent<DeathScreen>().ShowDeathScreen();
+        UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
 
         IsometricPlayerMovementController.IsAbleToMove = false;
 
