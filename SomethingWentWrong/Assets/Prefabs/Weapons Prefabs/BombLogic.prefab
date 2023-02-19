@@ -44,5 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fbd72a718eef6c4694a3ea9cc1c0c80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombPrefab: {fileID: 6499335138008150702, guid: 459f053d5d9078346842603e0e06f73e, type: 3}
-  coolDown: 1
+  projectileSample: {fileID: 0}
+  coolDown: 0.5

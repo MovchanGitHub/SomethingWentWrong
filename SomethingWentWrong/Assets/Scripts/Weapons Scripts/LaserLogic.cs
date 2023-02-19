@@ -101,7 +101,7 @@ public class LaserLogic : WeaponLogic
 
                 if (timeToDamage < 0)
                 {
-                    IDamagable target = hit.transform.GetComponent<IDamagable>();
+                    IDamagable target = hit.transform.GetComponentInChildren<IDamagable>();
                     target.GetDamage(laser);
                     timeToDamage = laserDamageSpeed;
                 }

@@ -706,6 +706,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8264080713708237019}
+  - component: {fileID: 2000184765}
   m_Layer: 0
   m_Name: WeaponsLogic
   m_TagString: Untagged
@@ -731,6 +732,22 @@ Transform:
   m_Father: {fileID: 6369232760984217070}
   m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2000184765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4174462778273100978}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9ac02856eb2d2c24c8fe014245637a55, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLogics:
+  - {fileID: 542578764439005493}
+  - {fileID: 1105538745}
+  - {fileID: 895893635}
 --- !u!1 &4848401119255199828
 GameObject:
   m_ObjectHideFlags: 0
@@ -956,8 +973,48 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2514877755678825161, guid: 74cc7696540b9cc49ab65961b1dbbe4f, type: 3}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: damagableLayers.m_Bits
-      value: 64
+      value: 1024
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[0].b
+      value: 4.4297605
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[0].g
+      value: 4.4297605
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[0].r
+      value: 30.490566
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[1].b
+      value: 4.7686276
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[1].g
+      value: 30.494118
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[1].r
+      value: 22.086275
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[2].b
+      value: 16.439217
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[2].g
+      value: 30.243137
+      objectReference: {fileID: 0}
+    - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+      propertyPath: laserColor.Array.data[2].r
+      value: 5.019608
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959167, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: m_Name
@@ -974,6 +1031,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 779990865073959160, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
   m_PrefabInstance: {fileID: 960591691696757196}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &542578764439005493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
+  m_PrefabInstance: {fileID: 960591691696757196}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd57185281ab4ca4a96aec5fe653ddeb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &2332557216868755214
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1033,8 +1101,23 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 9
       objectReference: {fileID: 0}
+    - target: {fileID: 2332557217919224247, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
+      propertyPath: projectileSample
+      value: 
+      objectReference: {fileID: 6499335138008150702, guid: 459f053d5d9078346842603e0e06f73e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
+--- !u!114 &1105538745 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2332557217919224247, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
+  m_PrefabInstance: {fileID: 2332557216868755214}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbd72a718eef6c4694a3ea9cc1c0c80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1105538746 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2332557217919224244, guid: e8e7f085bd48b504aa07366360baba6c, type: 3}
@@ -1180,3 +1263,14 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6632065376643561534, guid: 94aa203f00a89334a90bb901b7b7c138, type: 3}
   m_PrefabInstance: {fileID: 6632065376331495612}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &895893635 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6632065376643561535, guid: 94aa203f00a89334a90bb901b7b7c138, type: 3}
+  m_PrefabInstance: {fileID: 6632065376331495612}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3159d2dfd9b8a44a85c35e9dfa71a94, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
