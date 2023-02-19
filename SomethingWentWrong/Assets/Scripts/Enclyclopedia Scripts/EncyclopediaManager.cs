@@ -75,7 +75,7 @@ public class EncyclopediaManager : MonoBehaviour
             }
             else
             {
-                curChild.GetComponentInChildren<Text>().text = "Неизвестно";
+                curChild.GetComponentInChildren<Text>().text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                 curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
             }
         }
@@ -91,7 +91,7 @@ public class EncyclopediaManager : MonoBehaviour
             }
             else
             {
-                curChild.GetComponentInChildren<Text>().text = "Неизвестно";
+                curChild.GetComponentInChildren<Text>().text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                 curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
             }
 
@@ -146,7 +146,7 @@ public class EncyclopediaManager : MonoBehaviour
             {
                 extraInfoPlantPanel.SetActive(false);
                 extraInfoEnemyPanel.SetActive(false);
-                panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "Неизвестно";
+                panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ";
                 panelWithExtraInfo.transform.GetChild(4).gameObject.GetComponent<Text>().text = "???";
                 panelWithExtraInfo.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = curCreature.imageUnknown;
             }
@@ -160,7 +160,7 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = !isOpened;
         mainPanel.SetActive(isOpened);
         panelWithExtraInfo.SetActive(false);
-        IsometricPlayerMovementController.IsAbleToMove = !isOpened;
+        IsometricPlayerMovementController.Instance.IsAbleToMove = !isOpened;
     }
 
 

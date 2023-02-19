@@ -50,7 +50,7 @@ Material:
     - _Fade: 1
     - _NoiseScale: 30
     - _NormalStrength: 1.5
-    - _Pixels: 24
+    - _Pixels: 48
     m_Colors:
-    - _BorderColor: {r: 37.90996, g: 0, b: 23.1659, a: 0}
+    - _BorderColor: {r: 766.9961, g: 0, b: 469.8353, a: 0}
   m_BuildTextureStacks: []

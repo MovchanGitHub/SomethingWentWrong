@@ -22,7 +22,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     public LayerMask damagableLayers;
     private EnemyMovement enemyLogic;
     public float coolDown;
-
+    
     private void Awake()
     {
         enemyLogic = GetComponentInParent<EnemyMovement>();

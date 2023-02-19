@@ -36,7 +36,7 @@ public class AttackPoint : MonoBehaviour, IWeaponable
     {
         if (Time.time >= attackTimer)
         {
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetKeyDown(KeyCode.Space) && !IsometricPlayerMovementController.Instance.usingWeapon)
             {
                 StartCoroutine(Attack());
                 attackTimer = Time.time + 1f / attackRate;
@@ -48,7 +48,8 @@ public class AttackPoint : MonoBehaviour, IWeaponable
     {
         anim.SetTrigger("Attack");
         anim.SetBool("RightHand", attackWithRightHand);
-        IsometricPlayerMovementController.IsAbleToMove = false;
+        IsometricPlayerMovementController.Instance.usingWeapon = true;
+        IsometricPlayerMovementController.Instance.hand_to_hand = true;
         attackWithRightHand = !attackWithRightHand;
 
         yield return new WaitForSeconds(0.3f);
@@ -64,7 +65,8 @@ public class AttackPoint : MonoBehaviour, IWeaponable
         }
         
         yield return new WaitForSeconds(0.4f);
-        IsometricPlayerMovementController.IsAbleToMove = true;
+        IsometricPlayerMovementController.Instance.usingWeapon = false;
+        IsometricPlayerMovementController.Instance.hand_to_hand = false;
     }
 
     private void OnDrawGizmosSelected()

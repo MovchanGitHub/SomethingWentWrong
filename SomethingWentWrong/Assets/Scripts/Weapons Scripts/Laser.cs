@@ -12,4 +12,6 @@ public class Laser : MonoBehaviour, IWeaponable
     [SerializeField] int damage;
 
     public int Damage { get { return damage; } }
+    
+    public Color LaserColor { get; set; }
 }

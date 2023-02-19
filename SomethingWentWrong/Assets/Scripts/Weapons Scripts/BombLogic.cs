@@ -18,19 +18,12 @@ public class BombLogic : WeaponLogic
     private void Start()
     {
         bomb = projectileSample.GetComponent<Bomb>();
-        coolDown = 0f;
-    }
-
-    private void Update()
-    {
-        coolDown += Time.deltaTime;
     }
 
 
     private void ThrowBomb()
     {
         Instantiate(bomb, transform.position, quaternion.identity);
-        coolDown = 0f;
     }
     
     public int GetAmountBombs()

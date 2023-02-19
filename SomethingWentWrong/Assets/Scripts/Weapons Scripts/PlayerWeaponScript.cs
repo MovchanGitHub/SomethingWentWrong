@@ -22,6 +22,7 @@ public class PlayerWeaponScript : MonoBehaviour
         
         set
         {
+            weaponLogics[currWeapon].StopWeapon();
             if (value >= weaponLogics.Count)
                 currWeapon = 0;
             else if (value < 0)
@@ -43,7 +44,9 @@ public class PlayerWeaponScript : MonoBehaviour
         
         
         // Использовать текущее оружие
-        if (Input.GetButtonDown("Fire1") && timeAfterUse > weaponLogics[currWeapon].CoolDown)
+        if (Input.GetButtonDown("Fire1") 
+            && (timeAfterUse > weaponLogics[currWeapon].CoolDown)
+            && !IsometricPlayerMovementController.Instance.usingWeapon)
         {
             timeAfterUse = 0;
             weaponLogics[currWeapon].UseWeapon();

@@ -18,7 +18,7 @@ public class Buttons : MonoBehaviour
     {
         Debug.Log($"Loading scene {sceneName}");
         pause.PauseGame(false);
-        IsometricPlayerMovementController.IsAbleToMove = true;
+        IsometricPlayerMovementController.Instance.IsAbleToMove = true;
         InventoryManager.instance.SetDefault();
         SurvivalManager.Instance.transform.gameObject.SetActive(true);
         SurvivalManager.Instance.SetDefault();
