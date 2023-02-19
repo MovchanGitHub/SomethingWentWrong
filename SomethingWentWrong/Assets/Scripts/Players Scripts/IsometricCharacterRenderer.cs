@@ -26,7 +26,8 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         _animator.SetBool("IsMoving", x != 0 || y != 0);
         
-        if (IsometricPlayerMovementController.Instance.isShooting)
+        if (IsometricPlayerMovementController.Instance.usingWeapon 
+            && !IsometricPlayerMovementController.Instance.hand_to_hand)
         {
             SetDirectionToMouse();
         }

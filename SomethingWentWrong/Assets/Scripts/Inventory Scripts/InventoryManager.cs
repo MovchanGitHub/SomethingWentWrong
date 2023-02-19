@@ -81,7 +81,7 @@ public class InventoryManager : MonoBehaviour
         {
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
-            IsometricPlayerMovementController.IsAbleToMove = !isOpened;
+            IsometricPlayerMovementController.Instance.IsAbleToMove = !isOpened;
             GameManagerScript.instance.isUIOpened = !GameManagerScript.instance.isUIOpened;
             if (AlreadyChosenCell != null)
             {

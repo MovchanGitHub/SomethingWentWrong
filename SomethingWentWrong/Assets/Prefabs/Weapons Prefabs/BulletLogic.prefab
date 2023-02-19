@@ -77,7 +77,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   projectileSample: {fileID: 1717934181467405371, guid: 62793888dcb18e74aa18f72dcca109e2, type: 3}
+  coolDown: 0.25
   offset: -90
-  bullet: {fileID: 2175984707524812041, guid: 62793888dcb18e74aa18f72dcca109e2, type: 3}
   shotpoint: {fileID: 6632065375427137759}
   startTimeBtwShots: 2

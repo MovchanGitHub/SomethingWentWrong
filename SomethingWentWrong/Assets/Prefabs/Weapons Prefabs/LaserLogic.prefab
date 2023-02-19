@@ -45,8 +45,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd57185281ab4ca4a96aec5fe653ddeb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
-  damage: 3
+  projectileSample: {fileID: 0}
+  coolDown: 0
   firePoint: {fileID: 0}
   damagableLayers:
     serializedVersion: 2
