@@ -50,7 +50,7 @@ public class GameManagerScript : MonoBehaviour
     {
         UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
 
-        IsometricPlayerMovementController.IsAbleToMove = false;
+        IsometricPlayerMovementController.Instance.IsAbleToMove = false;
 
         // InventoryManager.instance.canBeOpened = false;
 

@@ -29,34 +29,28 @@ public class LaserLogic : WeaponLogic
         _renderer = lineRenderer.GetComponent<Renderer>();
         _propBlock = new MaterialPropertyBlock();
         laser = projectileSample.GetComponent<Laser>();
+        laser.LaserColor = laserColor[0];
     }
 
     void Update()
     {
         _renderer.GetPropertyBlock(_propBlock);
         
-        /*if (Input.GetButtonDown("Fire1"))
-        {
-            UseWeapon();
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            StopWeapon();
-        }*/
-        
-        
         // Changing colors of the laser
         if (Input.GetKeyDown("1"))
         {
             _propBlock.SetColor("_Color", laserColor[0]);
+            laser.LaserColor = laserColor[0];
         }
         else if (Input.GetKeyDown("2"))
         {
             _propBlock.SetColor("_Color", laserColor[1]);
+            laser.LaserColor = laserColor[1];
         }
         else if (Input.GetKeyDown("3"))
         {
             _propBlock.SetColor("_Color", laserColor[2]);
+            laser.LaserColor = laserColor[2];
         }
         
         _renderer.SetPropertyBlock(_propBlock);
@@ -66,9 +60,9 @@ public class LaserLogic : WeaponLogic
     {
         isShooting = true;
         IsometricPlayerMovementController.Instance.isoRenderer.PlayUseLaserAnim();
+        IsometricPlayerMovementController.Instance.usingWeapon = true;
             
         yield return new WaitForSeconds(0.2f);
-        IsometricPlayerMovementController.Instance.isShooting = true;
         IsometricPlayerMovementController.Instance.MinimizeSpeed();
         lineRenderer.enabled = true;
         
@@ -101,7 +95,7 @@ public class LaserLogic : WeaponLogic
 
                 if (timeToDamage < 0)
                 {
-                    IDamagable target = hit.transform.GetComponent<IDamagable>();
+                    IDamagable target = hit.transform.GetComponentInChildren<IDamagable>();
                     target.GetDamage(laser);
                     timeToDamage = laserDamageSpeed;
                 }
@@ -120,7 +114,7 @@ public class LaserLogic : WeaponLogic
         }
         
         
-        IsometricPlayerMovementController.Instance.isShooting = false;
+        IsometricPlayerMovementController.Instance.usingWeapon = false;
         lineRenderer.enabled = false;
     }
     

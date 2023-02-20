@@ -2,10 +2,11 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.XR;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
-public static bool IsAbleToMove = true;
+    public bool IsAbleToMove = true;
 
     [SerializeField]
     private float movementSpeedMin = 1f;
@@ -18,7 +19,8 @@ public static bool IsAbleToMove = true;
 
     public bool isRunning;
 
-    public bool isShooting;
+    public bool usingWeapon;
+    public bool hand_to_hand;
 
     static private IsometricPlayerMovementController instance;
 
@@ -68,7 +70,7 @@ public static bool IsAbleToMove = true;
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun() && !isShooting)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun() && !usingWeapon)
             MaximizeSpeed();
         if (Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.canRun())
             MinimizeSpeed();
@@ -79,12 +81,15 @@ public static bool IsAbleToMove = true;
         if (IsAbleToMove)
         {
             
-            float verticalInput; 
-            float horizontalInput;
+            float verticalInput = 0; 
+            float horizontalInput = 0;
             
             Vector2 currentPos = rbody.position;
-            horizontalInput = Input.GetAxisRaw("Horizontal");
-            verticalInput = Input.GetAxisRaw("Vertical");
+            if (!usingWeapon)
+            {
+                horizontalInput = Input.GetAxisRaw("Horizontal");
+                verticalInput = Input.GetAxisRaw("Vertical");
+            }
             
             if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
             {

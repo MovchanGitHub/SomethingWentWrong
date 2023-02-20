@@ -17,7 +17,9 @@ public class InventoryController : MonoBehaviour
     }
 
     InventoryItem selectedItem;
+    InventoryItem newItem;
     InventoryItem overlapItem;
+    RectTransform newRectTransform;
     RectTransform rectTransform;
 
     [SerializeField] List<ItemsBase> items;
@@ -77,6 +79,10 @@ public class InventoryController : MonoBehaviour
         {
             onPressRightMouseButton();
         }
+        if (selectedItem != null)
+        {
+            Debug.Log(selectedItem.itemData.itemName);
+        }
     }
 
     private void handleHighlight()
@@ -113,10 +119,10 @@ public class InventoryController : MonoBehaviour
     private void createItem(ItemsBase item)
     {
         InventoryItem inventoryItem = Instantiate(itemPrefab).GetComponent<InventoryItem>();
-        selectedItem = inventoryItem;
+        newItem = inventoryItem;
 
-        rectTransform = inventoryItem.GetComponent<RectTransform>();
-        rectTransform.SetParent(canvasTransform);
+        newRectTransform = inventoryItem.GetComponent<RectTransform>();
+        newRectTransform.SetParent(canvasTransform);
 
         inventoryItem.Set(item);
     }
@@ -124,12 +130,12 @@ public class InventoryController : MonoBehaviour
     public bool checkSpaceInInventory(ItemsBase item)
     {
         createItem(item);
-        InventoryItem itemToInsert = selectedItem;
-        selectedItem = null;
+        InventoryItem itemToInsert = newItem;
+        newItem = null;
 
         Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
         Destroy(itemToInsert.gameObject);
-        selectedItem = null;
+        newItem = null;
 
         if (posOnGrid == null)
         {
@@ -144,15 +150,15 @@ public class InventoryController : MonoBehaviour
     public void insertItem(ItemsBase item)
     {
         createItem(item);
-        InventoryItem itemToInsert = selectedItem;
-        selectedItem = null;
+        InventoryItem itemToInsert = newItem;
+        newItem = null;
 
         Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
 
         if (posOnGrid == null)
         {
             Destroy(itemToInsert.gameObject);
-            selectedItem = null;
+            newItem = null;
             return;
         }
 
@@ -218,6 +224,7 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform = selectedItem.GetComponent<RectTransform>();
+            rectTransform.SetAsLastSibling();
         }
     }
 
@@ -226,6 +233,7 @@ public class InventoryController : MonoBehaviour
         if (selectedItem != null)
         {
             rectTransform.position = Input.mousePosition;
+            rectTransform.SetAsLastSibling();
         }
     }
 
