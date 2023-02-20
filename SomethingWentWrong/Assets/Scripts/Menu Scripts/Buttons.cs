@@ -18,12 +18,12 @@ public class Buttons : MonoBehaviour
     {
         Debug.Log($"Loading scene {sceneName}");
         pause.PauseGame(false);
+        StartCoroutine(LoadAsync(sceneName));
         IsometricPlayerMovementController.Instance.IsAbleToMove = true;
-        InventoryManager.instance.SetDefault();
+        // InventoryManager.instance.SetDefault();
         SurvivalManager.Instance.transform.gameObject.SetActive(true);
         SurvivalManager.Instance.SetDefault();
         GameManagerScript.instance.isUIOpened = false;
-        StartCoroutine(LoadAsync(sceneName));
     }
     
     public void OnContinueButton()

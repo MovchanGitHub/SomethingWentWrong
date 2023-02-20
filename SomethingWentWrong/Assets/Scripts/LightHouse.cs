@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LightHouse : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    public Slider slider;
     
     public int HP
     {
         get { return hp; }
         set { 
             // здесь добавить обновление полоски хп
+            slider.value = value;
             if (value > 0) 
                 hp = value;
             else
@@ -38,7 +41,7 @@ public class LightHouse : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        GameManagerScript.instance.GameOver();
+        GameManagerScript.instance.GameOver("Вы проиграли");
 
         Destroy(gameObject);
     }

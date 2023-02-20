@@ -1,13 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
+using UnityEngine.UI;
 
 public class DeathScreen : MonoBehaviour
 {
     // Start is called before the first frame update
     public GameObject screen;
     public bool isOpened;
+    public TextMeshProUGUI title;
     public InGameMenuScript pause;
     public GameObject[] windows;
 
@@ -23,7 +27,7 @@ public class DeathScreen : MonoBehaviour
             }
             else
             {
-                ShowDeathScreen();
+                ShowDeathScreen("Вы проиграли");
                 pause.PauseGame(true);
             }
         }
@@ -34,13 +38,14 @@ public class DeathScreen : MonoBehaviour
         isOpened = false;
         screen.SetActive(false);
     }
-    public void ShowDeathScreen()
+    public void ShowDeathScreen(string message)
     {
         foreach (var window in windows)
         {
             window.SetActive(false);
         }
         isOpened = true;
+        title.text = message;
         screen.SetActive(true);
     }
 }

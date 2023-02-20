@@ -21,7 +21,8 @@ public class DayNightCycle : MonoBehaviour
     public RetroMaskScript retroMask;
 
     public GameObject winMenu;
-    
+    public GameObject skillsWindow;
+
     public Color sunriseColor;
     public Color dayColor;
     public Color sunsetColor;
@@ -68,6 +69,9 @@ public class DayNightCycle : MonoBehaviour
             switch (dayCycle)
             {
                 case DayTime.Sunrise:
+                    // Обработка пережитого дня
+                    skillsWindow.gameObject.SetActive(true);
+                    
                     StartCoroutine(retroMask.Decrease());
                     spawnSystem.spawnEnabled = false;
                     break;

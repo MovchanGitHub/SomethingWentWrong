@@ -46,13 +46,13 @@ public class GameManagerScript : MonoBehaviour
         lightHouse.GetComponent<LightHouse>().active = false;
     }
 
-    public void GameOver()
+    public void GameOver(string message)
     {
-        UI.GetComponent<DeathScreen>().ShowDeathScreen();
+        UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
 
         IsometricPlayerMovementController.Instance.IsAbleToMove = false;
 
-        InventoryManager.instance.canBeOpened = false;
+        // InventoryManager.instance.canBeOpened = false;
 
         SurvivalManager.Instance.transform.gameObject.SetActive(false);
 

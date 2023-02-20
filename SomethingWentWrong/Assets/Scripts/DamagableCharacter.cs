@@ -4,11 +4,13 @@ using System.Collections.Generic;
 using System.Dynamic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DamagableCharacter : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    public Slider slider;
     private IWeaponable lastWeapon;
     
     public int HP
@@ -16,6 +18,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         get { return hp; }
         set { 
             // здесь добавить обновление полоски хп
+            slider.value = value;
             if (value > 0) 
                 hp = value;
             else
@@ -57,15 +60,16 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (!creature.isOpenedInEcnyclopedia)
+        if (transform.tag == "Player")
+        {
+            GameManagerScript.instance.GameOver("Вы умерли");
+        }
+        
+        else if (!creature.isOpenedInEcnyclopedia)
         {
             EncyclopediaManager.Instance.OpenNewCreature(creature);
         }
         
-        if (transform.tag == "Player")
-        {
-            GameManagerScript.instance.GameOver();
-        }
         else
         {
             StartCoroutine(EnemyDie());
