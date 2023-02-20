@@ -8,7 +8,7 @@ public class InGameMenuScript : MonoBehaviour
 {
     public GameObject pause;
     public SettingsScript settings;
-    public InventoryManager inventory;
+    // public InventoryManager inventory;
     public GameObject deathScreen;
     public GameObject winScreen;
     public GameObject controls;

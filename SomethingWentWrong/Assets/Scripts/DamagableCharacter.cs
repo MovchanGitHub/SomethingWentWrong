@@ -17,7 +17,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         get { return hp; }
         set { 
             // здесь добавить обновление полоски хп
-            slider.value = hp;
+            slider.value = value;
             if (value > 0) 
                 hp = value;
             else
@@ -65,15 +65,16 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (!creature.isOpenedInEcnyclopedia)
-        {
-            EncyclopediaManager.Instance.OpenNewCreature(creature);
-        }
-        
         if (transform.tag == "Player")
         {
             GameManagerScript.instance.GameOver("Вы умерли");
         }
+        
+        else if (!creature.isOpenedInEcnyclopedia)
+        {
+            EncyclopediaManager.Instance.OpenNewCreature(creature);
+        }
+        
         else
         {
             Destroy(gameObject.transform.parent.gameObject);

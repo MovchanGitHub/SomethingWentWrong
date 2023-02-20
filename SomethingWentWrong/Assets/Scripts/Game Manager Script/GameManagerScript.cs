@@ -52,7 +52,7 @@ public class GameManagerScript : MonoBehaviour
 
         IsometricPlayerMovementController.IsAbleToMove = false;
 
-        InventoryManager.instance.canBeOpened = false;
+        // InventoryManager.instance.canBeOpened = false;
 
         SurvivalManager.Instance.transform.gameObject.SetActive(false);
 

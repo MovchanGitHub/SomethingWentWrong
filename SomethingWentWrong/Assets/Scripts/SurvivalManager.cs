@@ -139,4 +139,9 @@ public class SurvivalManager : MonoBehaviour
         if (currentAnoxaemia > maxAnoxaemia)
             currentAnoxaemia = maxAnoxaemia;
     }
+
+    public void IncreaseMaxStamina(int value)
+    {
+        maxStamina += value;
+    }
 }

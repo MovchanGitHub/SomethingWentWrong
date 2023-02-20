@@ -14,7 +14,7 @@ public class LightHouse : MonoBehaviour, IDamagable
         get { return hp; }
         set { 
             // здесь добавить обновление полоски хп
-            slider.value = hp;
+            slider.value = value;
             if (value > 0) 
                 hp = value;
             else
