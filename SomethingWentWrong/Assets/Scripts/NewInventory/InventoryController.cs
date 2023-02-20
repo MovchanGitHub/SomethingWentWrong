@@ -81,7 +81,7 @@ public class InventoryController : MonoBehaviour
         }
         if (selectedItem != null)
         {
-            Debug.Log(selectedItem.itemData.itemName);
+            //Debug.Log(selectedItem.itemData.itemName);
         }
     }
 

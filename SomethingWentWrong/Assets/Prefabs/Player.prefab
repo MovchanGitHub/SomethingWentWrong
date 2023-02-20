@@ -1230,6 +1230,10 @@ PrefabInstance:
       propertyPath: sprite
       value: 
       objectReference: {fileID: 878174199}
+    - target: {fileID: 8038802948227840078, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
+      propertyPath: sprite
+      value: 
+      objectReference: {fileID: 878174199}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
 --- !u!4 &1710448098 stripped
@@ -1237,6 +1241,28 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5892254637738493113, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
   m_PrefabInstance: {fileID: 5892254636210805083}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1710448099 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5892254637738493112, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
+  m_PrefabInstance: {fileID: 5892254636210805083}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &4524061423637873185
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710448099}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2a23b0b187c45e4982c0125ade1f97c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hp: 0
+  sprite: {fileID: 0}
+  redTime: 0
+  creature: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!1001 &6632065376331495612
 PrefabInstance:
   m_ObjectHideFlags: 0

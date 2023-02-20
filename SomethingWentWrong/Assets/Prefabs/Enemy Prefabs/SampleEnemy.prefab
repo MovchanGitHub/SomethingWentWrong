@@ -355,7 +355,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4518771967143615462}
-  - component: {fileID: 7142521595494424341}
+  - component: {fileID: 2346137773388899309}
   - component: {fileID: 8475053302361529581}
   m_Layer: 8
   m_Name: EnemyDamageLogic
@@ -380,7 +380,7 @@ Transform:
   m_Father: {fileID: 819197558646750953}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7142521595494424341
+--- !u!114 &2346137773388899309
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -389,7 +389,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3413098130146541284}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0154e5b0cb2142a73e0fac6f64545, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fecf34284e431447aa4c0f559189c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20

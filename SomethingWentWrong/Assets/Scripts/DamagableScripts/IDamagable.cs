@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IDamagable
 {
-    public int HP { get; set; }
+    abstract int HP { get; set; }
     public void GetDamage(IWeaponable weapon);
 }

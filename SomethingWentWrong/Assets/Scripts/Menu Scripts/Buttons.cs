@@ -20,7 +20,7 @@ public class Buttons : MonoBehaviour
         pause.PauseGame(false);
         StartCoroutine(LoadAsync(sceneName));
         IsometricPlayerMovementController.Instance.IsAbleToMove = true;
-        // InventoryManager.instance.SetDefault();
+        InventoryManager.instance.SetDefault();
         SurvivalManager.Instance.transform.gameObject.SetActive(true);
         SurvivalManager.Instance.SetDefault();
         GameManagerScript.instance.isUIOpened = false;

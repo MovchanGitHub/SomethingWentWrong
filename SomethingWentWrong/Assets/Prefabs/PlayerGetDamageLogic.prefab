@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5892254637738493113}
-  - component: {fileID: 5892254637738493114}
+  - component: {fileID: 8038802948227840078}
   - component: {fileID: 5892254637738493115}
   m_Layer: 0
   m_Name: PlayerGetDamageLogic
@@ -33,7 +33,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5892254637738493114
+--- !u!114 &8038802948227840078
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -42,12 +42,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 5892254637738493112}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a6e0154e5b0cb2142a73e0fac6f64545, type: 3}
+  m_Script: {fileID: 11500000, guid: d2a23b0b187c45e4982c0125ade1f97c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 100
   sprite: {fileID: 0}
   redTime: 0.1
-  hp: 100
+  creature: {fileID: 0}
+  slider: {fileID: 0}
 --- !u!61 &5892254637738493115
 BoxCollider2D:
   m_ObjectHideFlags: 0

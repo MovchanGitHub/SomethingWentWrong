@@ -179,5 +179,9 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.84980917
       objectReference: {fileID: 0}
+    - target: {fileID: 7823324212553123304, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: 5e97eae3ef53fac408d59f0964b5c17b, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f332496d5833744883ca08bf118e95, type: 3}
