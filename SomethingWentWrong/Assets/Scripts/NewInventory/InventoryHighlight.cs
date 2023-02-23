@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class InventoryHighlight : MonoBehaviour
 {
-    [SerializeField] RectTransform highlighter;
+    public RectTransform highlighter;
 
     public void Show(bool b)
     {
-        // highlighter.gameObject.SetActive(b);
+        highlighter.gameObject.SetActive(b);
     }
 
     public void SetSize(InventoryItem targetItem)

@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
-    public const float tileWidth = 36;
-    public const float tileHeight = 36;
+    [HideInInspector] public static float tileWidth = 36;
+    [HideInInspector] public static float tileHeight = 36;
 
-    public const float tileSpriteWidth = 24;
-    public const float tileSpriteHeight = 24;
+    [HideInInspector] public static float tileSpriteWidth = 24;
+    [HideInInspector] public static float tileSpriteHeight = 24;
 
     RectTransform rectTransform;
     Vector2 positionOnTheGrid = new Vector2();

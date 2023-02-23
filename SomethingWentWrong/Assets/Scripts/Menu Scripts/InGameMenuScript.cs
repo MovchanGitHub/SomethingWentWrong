@@ -30,6 +30,11 @@ public class InGameMenuScript : MonoBehaviour
             // if (inventory.isOpened)
             //     inventory.gameObject.SetActive(false);
             // else 
+            if (InventoryController.instance.isCanvasActive)
+            {
+                InventoryController.instance.activateInventory(false);
+            }
+
             if (settings.isOpened)
             {
                 settings.HideSettings();
@@ -60,12 +65,14 @@ public class InGameMenuScript : MonoBehaviour
     {
         isOpened = false;
         pause.SetActive(false);
+        InventoryController.instance.canBeOpened = !isOpened;
     }
 
     public void ShowMenu()
     {
         isOpened = true;
         pause.SetActive(true);
+        InventoryController.instance.canBeOpened = !isOpened;
     }
     public void ShowHideMenu()
     {
