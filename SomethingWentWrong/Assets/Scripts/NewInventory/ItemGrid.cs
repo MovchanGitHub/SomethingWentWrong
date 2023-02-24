@@ -225,13 +225,13 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public bool checkAmmo()
+    public bool checkAmmo(ItemsBase ammoType)
     {
         for (int i = 0; i < gridSizeWidth; i++)
         {
             for (int j = 0; j < gridSizeHeight; j++)
             {
-                if (inventoryItemSlots[i,j] && inventoryItemSlots[i,j].itemData.itemName == "Стрельника")
+                if (inventoryItemSlots[i,j] && inventoryItemSlots[i,j].itemData == ammoType)
                 {
                     Destroy(inventoryItemSlots[i, j].gameObject);
                     cleanGridRef(inventoryItemSlots[i, j]);

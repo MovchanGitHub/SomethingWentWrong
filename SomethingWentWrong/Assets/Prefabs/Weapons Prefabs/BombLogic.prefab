@@ -46,3 +46,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSample: {fileID: 6499335138008150702, guid: 459f053d5d9078346842603e0e06f73e, type: 3}
   coolDown: 3
+  ammoType: {fileID: 11400000, guid: 6f7e94da8e8196f4f816cb466ab6cc6f, type: 2}

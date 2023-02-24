@@ -78,6 +78,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSample: {fileID: 1717934181467405371, guid: 62793888dcb18e74aa18f72dcca109e2, type: 3}
   coolDown: 0.25
+  ammoType: {fileID: 11400000, guid: 65fde0d26cbece140970acf16ec17cef, type: 2}
   offset: -90
   shotpoint: {fileID: 6632065375427137759}
   startTimeBtwShots: 2
