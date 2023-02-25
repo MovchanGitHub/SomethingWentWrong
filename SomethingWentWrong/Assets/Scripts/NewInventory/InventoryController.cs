@@ -253,23 +253,26 @@ public class InventoryController : MonoBehaviour
     private void UseItem(Vector2Int tileGridPosition)
     {
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
-        if (item.itemData.TypeOfThisItem == ItemType.Food)
+        if (item != null)
         {
-            if (item != null)
+            if (item.itemData.TypeOfThisItem == ItemType.Food)
             {
-                ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-                SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
-                SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-                SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+                if (item != null)
+                {
+                    ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
+                    SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
+                    SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+                    SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+                }
+                Destroy(item.gameObject);
+                SelectedItemGrid.cleanGridRef(item);
             }
-            Destroy(item.gameObject);
-            SelectedItemGrid.cleanGridRef(item);
+            else 
+            {
+                SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
+            }
         }
-        else 
-        {
-            SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-        }
-    }
+}
 
     public void changeScale(int newScale)
     {

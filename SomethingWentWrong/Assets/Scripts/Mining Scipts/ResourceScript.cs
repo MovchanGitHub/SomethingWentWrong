@@ -1,18 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ResourceScript : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    [SerializeField] private Slider slider;
     
     public int HP
     {
         get { return hp; }
         set
         {
-            // здесь добавить обновление полоски хп
+            slider.value = value;
             if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
             {
                 DropItem(((hp - value + currentDamage) / lootDropBarrier) * dropCount);

@@ -59,6 +59,18 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1360189013829714816, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Radius
+      value: 1.237014
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360189013829714816, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.15184426
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360189013829714816, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.058851242
+      objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
       value: 0.2008807
@@ -83,6 +95,26 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2879954988502134017, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Radius
+      value: 1.5488828
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879954988502134017, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.045114875
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879954988502134017, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.5729295
+      objectReference: {fileID: 0}
+    - target: {fileID: 3459011436825398241, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3459011436825398241, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -422902701
+      objectReference: {fileID: 0}
     - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Color.b
       value: 0.90196085
@@ -94,6 +126,14 @@ PrefabInstance:
     - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Color.r
       value: 0.1254902
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558170201927312784, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Value
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558170201927312784, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_MaxValue
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: hp
@@ -138,6 +178,22 @@ PrefabInstance:
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
       value: AguaBerryPlant Variant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992416990548397641, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992416990548397641, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086826917189673703, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.113
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086826917189673703, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 2.027
       objectReference: {fileID: 0}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite
