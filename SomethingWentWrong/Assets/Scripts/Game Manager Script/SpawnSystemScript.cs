@@ -52,7 +52,7 @@ public class SpawnSystemScript : MonoBehaviour
 
         IsometricPlayerMovementController.Instance.IsAbleToMove = false;
 
-        // InventoryManager.instance.canBeOpened = false;
+        InventoryController.instance.canBeOpened = false;
 
         SurvivalManager.Instance.transform.gameObject.SetActive(false);
 

@@ -9,7 +9,7 @@ public class BarTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject == GameManagerScript.instance.player)
+        if (collision.gameObject == SpawnSystemScript.instance.player)
         {
             slider.gameObject.SetActive(true);
         }
@@ -17,7 +17,7 @@ public class BarTrigger : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if (collision.gameObject == GameManagerScript.instance.player)
+        if (collision.gameObject == SpawnSystemScript.instance.player)
         {
             slider.gameObject.SetActive(false);
         }

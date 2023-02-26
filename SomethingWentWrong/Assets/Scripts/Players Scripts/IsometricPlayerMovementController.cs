@@ -47,8 +47,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject attackPoint;
     private Vector3 startPosition;
 
-    private int tapTimes;
-    [SerializeField] private float timeToResetTaps = 0.25f;
     [SerializeField] private float rushTime = 0.25f;
     
     float verticalInput; 
@@ -70,9 +68,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private void Start()
     {
         movementSpeed = movementSpeedMin;
-        if (GameManagerScript.instance != null)
+        if (SpawnSystemScript.instance != null)
         {
-            GameManagerScript.instance.player = gameObject;
+            SpawnSystemScript.instance.player = gameObject;
         }
 
         if (SurvivalManager.Instance != null)
@@ -107,38 +105,19 @@ public class IsometricPlayerMovementController : MonoBehaviour
         else
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 5);
         
-        tapTimes = 0;
         SurvivalManager.Instance.ReplenishStamina(-SurvivalManager.Instance.staminaToRush);
         StartCoroutine(Rush());
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(2))
+        if (Input.GetMouseButtonDown(1))
             StartRushing();
-        
+
         if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.CanRun() && !usingWeapon)
-        {
-            ++tapTimes;
-
-            if (tapTimes == 2)
-            {
-                StartRushing();
-                return;
-            }
-
-            StartCoroutine(ResetTapTimes());
-
             SetRunningSpeed();
-        }
         if ((Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.CanRun()) && !isRushing)
             SetWalkingSpeed();
-    }
-
-    IEnumerator ResetTapTimes()
-    {
-        yield return new WaitForSeconds(timeToResetTaps);
-        tapTimes = 0;
     }
 
     private void FixedUpdate()

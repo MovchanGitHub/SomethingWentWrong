@@ -23,7 +23,7 @@ public class Buttons : MonoBehaviour
         InventoryController.instance.canBeOpened = true;
         SurvivalManager.Instance.transform.gameObject.SetActive(true);
         SurvivalManager.Instance.SetDefault();
-        GameManagerScript.instance.isUIOpened = false;
+        SpawnSystemScript.instance.isUIOpened = false;
     }
     
     public void OnContinueButton()

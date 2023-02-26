@@ -12,7 +12,7 @@ public class PickUpScript : MonoBehaviour
 
     private void Start()
     {
-        player = GameManagerScript.instance.player.transform;
+        player = SpawnSystemScript.instance.player.transform;
     }
 
     private void Update()

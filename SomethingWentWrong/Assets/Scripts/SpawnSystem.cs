@@ -25,7 +25,7 @@ public class SpawnSystem : MonoBehaviour
 
                 EnemyMovement newEnemyMovement = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation).GetComponent<EnemyMovement>();
                 newEnemyMovement.isPatrolling = false;
-                newEnemyMovement.target = GameManagerScript.instance.player.transform;
+                newEnemyMovement.target = SpawnSystemScript.instance.player.transform;
                 newEnemyMovement.isEnemyNight = true;
                 newEnemyMovement.moveToLightHouse = true;
                 newEnemyMovement.GoToTarget();
@@ -40,7 +40,7 @@ public class SpawnSystem : MonoBehaviour
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            if (Vector2.Distance(GameManagerScript.instance.player.transform.position, spawnPoints[i].position) < spawnDistance)
+            if (Vector2.Distance(SpawnSystemScript.instance.player.transform.position, spawnPoints[i].position) < spawnDistance)
             {
                 excludedPoints.Add(i);
             }

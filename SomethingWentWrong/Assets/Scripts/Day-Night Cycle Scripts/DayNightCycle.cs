@@ -47,9 +47,9 @@ public class DayNightCycle : MonoBehaviour
         globalLight.color = sunriseColor;
         globalLight.intensity = sunriseIntensity;
         
-        if (GameManagerScript.instance.lightHouse)
+        if (SpawnSystemScript.instance.lightHouse)
         {
-            spawnSystem = GameManagerScript.instance.lightHouse.transform.GetComponentInChildren<SpawnSystem>();
+            spawnSystem = SpawnSystemScript.instance.lightHouse.transform.GetComponentInChildren<SpawnSystem>();
         }
     }
 

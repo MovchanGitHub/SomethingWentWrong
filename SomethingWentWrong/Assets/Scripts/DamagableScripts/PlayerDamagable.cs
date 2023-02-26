@@ -22,6 +22,6 @@ public class PlayerDamagable : DamagableCharacter
 
     protected override void Die()
     {
-        GameManagerScript.instance.GameOver("Вы умерли");
+        SpawnSystemScript.instance.GameOver("Вы умерли");
     }
 }

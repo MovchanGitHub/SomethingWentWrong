@@ -61,7 +61,7 @@ public class InventoryController : MonoBehaviour
         if (canBeOpened && Input.GetKeyDown(KeyCode.Tab))
         {
             isCanvasActive = !isCanvasActive;
-            GameManagerScript.instance.isUIOpened = isCanvasActive;
+            SpawnSystemScript.instance.isUIOpened = isCanvasActive;
             canvasTransform.gameObject.SetActive(isCanvasActive);
         }
 
@@ -94,7 +94,7 @@ public class InventoryController : MonoBehaviour
     public void activateInventory(bool isActive)
     {
         isCanvasActive = isActive;
-        GameManagerScript.instance.isUIOpened = isCanvasActive;
+        SpawnSystemScript.instance.isUIOpened = isCanvasActive;
         canvasTransform.gameObject.SetActive(isCanvasActive);
     }
 

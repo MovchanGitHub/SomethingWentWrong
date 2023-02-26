@@ -32,16 +32,16 @@ public class LightHouse : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        if (GameManagerScript.instance != null)
+        if (SpawnSystemScript.instance != null)
         {
-            GameManagerScript.instance.lightHouse = gameObject;
+            SpawnSystemScript.instance.lightHouse = gameObject;
         }
     }
 
 
     private void Die()
     {
-        GameManagerScript.instance.GameOver("Вы проиграли");
+        SpawnSystemScript.instance.GameOver("Вы проиграли");
 
         Destroy(gameObject);
     }

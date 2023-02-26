@@ -6,9 +6,9 @@ public class UIGameManagerFix : MonoBehaviour
 {
     private void Start()
     {
-        if (GameManagerScript.instance != null)
+        if (SpawnSystemScript.instance != null)
         {
-            GameManagerScript.instance.UI = gameObject;
+            SpawnSystemScript.instance.UI = gameObject;
         }
     }
 }
