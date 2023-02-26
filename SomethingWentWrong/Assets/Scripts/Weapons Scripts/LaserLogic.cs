@@ -66,7 +66,7 @@ public class LaserLogic : WeaponLogic
         IsometricPlayerMovementController.Instance.usingWeapon = true;
             
         yield return new WaitForSeconds(0.2f);
-        IsometricPlayerMovementController.Instance.MinimizeSpeed();
+        IsometricPlayerMovementController.Instance.SetWalkingSpeed();
         lineRenderer.enabled = true;
         
         StartCoroutine(UpdateLaser());
@@ -78,11 +78,14 @@ public class LaserLogic : WeaponLogic
         {
             StopWeapon();
         }
+        else
+        {
+            startVFX.SetActive(true);
+            endVFX.SetActive(true);
+        }
 
         float timeToDamage = laserDamageSpeed;
-        
-        startVFX.SetActive(true);
-        endVFX.SetActive(true);
+
         
         while (isShooting)
         {

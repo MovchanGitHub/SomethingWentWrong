@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using static RushAttack;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
@@ -15,7 +16,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
     [SerializeField]
     private float walkingAnimationSpeed = 1f;
     [SerializeField]
-    private float runningAnimationSpeed = 1.65f;
+    private float runningAnimationSpeed = 1.65f;    
+    [SerializeField]
+    private float rushingAnimationSpeed = 5f;
 
     public bool isRunning;
 
@@ -44,6 +47,15 @@ public class IsometricPlayerMovementController : MonoBehaviour
     [SerializeField] private GameObject attackPoint;
     private Vector3 startPosition;
 
+    private int tapTimes;
+    [SerializeField] private float timeToResetTaps = 0.25f;
+    [SerializeField] private float rushTime = 0.25f;
+    
+    float verticalInput = 0; 
+    float horizontalInput = 0;
+    private Vector2 currentPos;
+    private bool isRushing;
+
     private void Awake()
     {
         rbody = GetComponent<Rigidbody2D>();
@@ -68,48 +80,89 @@ public class IsometricPlayerMovementController : MonoBehaviour
         }
     }
 
+    IEnumerator Rush()
+    {
+        SetRushingSpeed();
+
+        yield return new WaitForSeconds(rushTime);
+        
+        SetWalkingSpeed();
+    }
+
+    void StartRushing()
+    {
+        if (!SurvivalManager.Instance.CanRush() || (horizontalInput == 0 && verticalInput == 0))
+            return;
+        
+        if (verticalInput == 0)
+            transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 15);
+        else
+            transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 5);
+
+        tapTimes = 0;
+        SurvivalManager.Instance.ReplenishStamina(-SurvivalManager.Instance.staminaToRush);
+        StartCoroutine(Rush());
+    }
+
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.canRun() && !usingWeapon)
-            MaximizeSpeed();
-        if (Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.canRun())
-            MinimizeSpeed();
+        if (Input.GetMouseButtonDown(2))
+            StartRushing();
+        
+        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.CanRun() && !usingWeapon)
+        {
+            ++tapTimes;
+
+            if (tapTimes == 2)
+            {
+                StartRushing();
+                return;
+            }
+
+            StartCoroutine(ResetTapTimes());
+
+            SetRunningSpeed();
+        }
+        if ((Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.CanRun()) && !isRushing)
+            SetWalkingSpeed();
+    }
+
+    IEnumerator ResetTapTimes()
+    {
+        yield return new WaitForSeconds(timeToResetTaps);
+        tapTimes = 0;
     }
 
     private void FixedUpdate()
     {
         if (IsAbleToMove)
         {
-            
-            float verticalInput = 0; 
-            float horizontalInput = 0;
-            
-            Vector2 currentPos = rbody.position;
-            if (!usingWeapon)
-            {
-                horizontalInput = Input.GetAxisRaw("Horizontal");
-                verticalInput = Input.GetAxisRaw("Vertical");
-            }
-            
-            if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
-            {
-                horizontalInput *= 2;
-            }
-            else
-            {
-                float tempInput = horizontalInput;
-                horizontalInput = a11 * horizontalInput + a12 * verticalInput;
-                verticalInput = a21 * tempInput + a22 * verticalInput;
-            }
-            
-            isoRenderer.SetDirection(horizontalInput, verticalInput);
+            currentPos = rbody.position;
 
-            inputVector = new Vector2(horizontalInput, verticalInput);
+            if (!isRushing)
+            {
+                verticalInput = 0; 
+                horizontalInput = 0;
             
-            inputVector = Vector2.ClampMagnitude(inputVector, 1);
-            Vector2 movement = inputVector * movementSpeed;
-            Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
-            rbody.MovePosition(newPos);
+                if (!usingWeapon)
+                {
+                    horizontalInput = Input.GetAxisRaw("Horizontal");
+                    verticalInput = Input.GetAxisRaw("Vertical");
+                }
+            
+                if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
+                {
+                    horizontalInput *= 2;
+                }
+                else
+                {
+                    float tempInput = horizontalInput;
+                    horizontalInput = a11 * horizontalInput + a12 * verticalInput;
+                    verticalInput = a21 * tempInput + a22 * verticalInput;
+                }
+            }
+            
+            Moving();
 
             if (horizontalInput != 0 || verticalInput != 0)
             {
@@ -120,23 +173,60 @@ public class IsometricPlayerMovementController : MonoBehaviour
         }
     }
 
-    private void MaximizeSpeed()
+    void Moving()
+    {
+        isoRenderer.SetDirection(horizontalInput, verticalInput);
+
+        inputVector = new Vector2(horizontalInput, verticalInput);
+            
+        inputVector = Vector2.ClampMagnitude(inputVector, 1);
+        Vector2 movement = inputVector * movementSpeed;
+        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+        rbody.MovePosition(newPos);
+    }
+
+    private void SetRunningSpeed()
     {
         movementSpeed = movementSpeedMax;
         isoRenderer.SetAnimationsSpeed(runningAnimationSpeed);
         isRunning = true;
     }
     
-    public void MinimizeSpeed()
+    private void SetRushingSpeed()
     {
-        movementSpeed = movementSpeedMin;        
+        movementSpeed = 3 * movementSpeedMax;
+        isoRenderer.SetAnimationsSpeed(rushingAnimationSpeed);
+        isRushing = true;
+        isRunning = true;
+    }
+    
+    public void SetWalkingSpeed()
+    {
+        movementSpeed = movementSpeedMin;
         isoRenderer.SetAnimationsSpeed(walkingAnimationSpeed);
+        isRushing = false;        
         isRunning = false;
+        transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
     public bool IsRunning
     {
         get { return isRunning; }
+    }
+    
+    private void OnTriggerEnter2D(Collider2D col)
+    {
+        if (!isRushing)
+            return;
+        
+        IDamagable obj;
+        obj = col.GetComponent<IDamagable>();
+        if (obj != null)
+        {
+            StopCoroutine(Rush());
+            SetWalkingSpeed();
+            obj.GetDamage(__RushAttack);
+        }
     }
 }
 

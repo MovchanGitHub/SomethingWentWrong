@@ -8,7 +8,8 @@ public enum WeaponType
     Bomb,
     Laser,
     Enemy,
-    Fists
+    Fists,
+    RushAttack
 }
 
 public interface IWeaponable
@@ -16,3 +17,5 @@ public interface IWeaponable
     public WeaponType Type { get; }
     public int Damage { get; }
 }
+
+

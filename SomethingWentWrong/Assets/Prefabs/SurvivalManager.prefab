@@ -51,11 +51,13 @@ MonoBehaviour:
   thirstDepletionRate: 1
   maxAnoxaemia: 120
   anoxaemiaDepletionRate: 1
-  maxStamina: 10
+  maxStamina: 5
   staminaDepletionRate: 1
   staminaRechargeRate: 2
   staminaRechargeDelay: 3
   player: {fileID: 0}
+  playerController: {fileID: 0}
+  staminaToRush: 2
 --- !u!114 &305593999
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,7 +70,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d810493450628e43a8d443b341c1efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _survivalManager: {fileID: 5480212214129357061}
   _hungerMeter: {fileID: 0}
   _thirstMeter: {fileID: 0}
   _staminaMeter: {fileID: 0}

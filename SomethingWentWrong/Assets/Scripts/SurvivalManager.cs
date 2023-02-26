@@ -42,7 +42,10 @@ public class SurvivalManager : MonoBehaviour
 
     private static SurvivalManager instance;
 
-    public bool canRun() => currentStamina > 0f;
+    public float staminaToRush;
+
+    public bool CanRun() => currentStamina > 0f;
+    public bool CanRush() => currentStamina >= staminaToRush;
 
     public static SurvivalManager Instance
     {
@@ -138,6 +141,13 @@ public class SurvivalManager : MonoBehaviour
         currentAnoxaemia += anoxaemiaAmount;
         if (currentAnoxaemia > maxAnoxaemia)
             currentAnoxaemia = maxAnoxaemia;
+    }
+    
+    public void ReplenishStamina(float staminaAmount)
+    {
+        currentStamina += staminaAmount;
+        if (currentStamina > maxStamina)
+            currentStamina = maxStamina;
     }
 
     public void IncreaseMaxStamina(int value)
