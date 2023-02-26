@@ -19,6 +19,9 @@ public class LaserLogic : WeaponLogic
 
     private Renderer _renderer;
     private MaterialPropertyBlock _propBlock;
+
+    [SerializeField] private GameObject startVFX;
+    [SerializeField] private GameObject endVFX;
     
     [SerializeField] private float laserDamageSpeed;
 
@@ -78,11 +81,16 @@ public class LaserLogic : WeaponLogic
 
         float timeToDamage = laserDamageSpeed;
         
+        startVFX.SetActive(true);
+        endVFX.SetActive(true);
+        
         while (isShooting)
         {
             Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, mousePos);
+            startVFX.transform.SetPositionAndRotation(firePoint.position, Quaternion.Euler(0f, Vector2.Angle(firePoint.position, mousePos), 0f));
+            endVFX.transform.SetPositionAndRotation(mousePos, Quaternion.Euler(0f, Vector2.Angle(firePoint.position, mousePos), 0f));
 
             Vector2 direction = mousePos - (Vector2)transform.position;
             RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, direction.normalized, direction.magnitude, damagableLayers);
@@ -92,7 +100,8 @@ public class LaserLogic : WeaponLogic
             if (hit)
             {
                 lineRenderer.SetPosition(1, hit.point);
-
+                endVFX.transform.SetPositionAndRotation(hit.point, Quaternion.Euler(0f, Vector2.Angle(firePoint.position, hit.point), 0f));
+                
                 if (timeToDamage < 0)
                 {
                     IDamagable target = hit.transform.GetComponentInChildren<IDamagable>();
@@ -115,6 +124,8 @@ public class LaserLogic : WeaponLogic
         
         
         IsometricPlayerMovementController.Instance.usingWeapon = false;
+        startVFX.SetActive(false);
+        endVFX.SetActive(false);
         lineRenderer.enabled = false;
     }
     
