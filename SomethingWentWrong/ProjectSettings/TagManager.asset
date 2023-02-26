@@ -25,6 +25,7 @@ TagManager:
   - enemy
   - Bomb
   - Building
+  - screenShake
   layers:
   - Default
   - TransparentFX
