@@ -51,8 +51,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
     [SerializeField] private float timeToResetTaps = 0.25f;
     [SerializeField] private float rushTime = 0.25f;
     
-    float verticalInput = 0; 
-    float horizontalInput = 0;
+    float verticalInput; 
+    float horizontalInput;
+    public float lastVerticalInput;
+    public float lastHorizontalInput;
     private Vector2 currentPos;
     private bool isRushing;
 
@@ -78,6 +80,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
             SurvivalManager.Instance.player = gameObject;
             SurvivalManager.Instance.playerController = this;
         }
+        
+        lastHorizontalInput = 1;
+        lastVerticalInput = -1;
     }
 
     IEnumerator Rush()
@@ -91,14 +96,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     void StartRushing()
     {
-        if (!SurvivalManager.Instance.CanRush() || (horizontalInput == 0 && verticalInput == 0))
+        if (!SurvivalManager.Instance.CanRush())
             return;
+        
+        horizontalInput = lastHorizontalInput;
+        verticalInput = lastVerticalInput;
         
         if (verticalInput == 0)
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 15);
         else
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 5);
-
+        
         tapTimes = 0;
         SurvivalManager.Instance.ReplenishStamina(-SurvivalManager.Instance.staminaToRush);
         StartCoroutine(Rush());

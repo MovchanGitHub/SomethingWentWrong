@@ -33,6 +33,8 @@ public class IsometricCharacterRenderer : MonoBehaviour
         }
         else if (x != 0 || y != 0)
         {
+            IsometricPlayerMovementController.Instance.lastHorizontalInput = x;
+            IsometricPlayerMovementController.Instance.lastVerticalInput = y;
             _animator.SetFloat("MouseX", x);
             _animator.SetFloat("MouseY", y);
         }

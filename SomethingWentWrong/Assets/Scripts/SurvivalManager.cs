@@ -42,7 +42,7 @@ public class SurvivalManager : MonoBehaviour
 
     private static SurvivalManager instance;
 
-    public float staminaToRush;
+    public float staminaToRush = 1;
 
     public bool CanRun() => currentStamina > 0f;
     public bool CanRush() => currentStamina >= staminaToRush;
