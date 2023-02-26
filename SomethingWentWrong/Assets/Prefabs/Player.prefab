@@ -707,8 +707,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8264080713708237019}
   - component: {fileID: 2000184765}
-  - component: {fileID: 3334658382615021012}
-  - component: {fileID: 8443283232484731695}
+  - component: {fileID: 2329373114015046089}
   m_Layer: 0
   m_Name: WeaponsLogic
   m_TagString: Untagged
@@ -750,7 +749,7 @@ MonoBehaviour:
   - {fileID: 542578764439005493}
   - {fileID: 1105538745}
   - {fileID: 895893635}
---- !u!114 &3334658382615021012
+--- !u!114 &2329373114015046089
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -759,29 +758,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4174462778273100978}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac02856eb2d2c24c8fe014245637a55, type: 3}
+  m_Script: {fileID: 11500000, guid: 08831ea7f5cafd74f80192fa69fcc507, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponLogics:
-  - {fileID: 542578764439005493}
-  - {fileID: 1105538745}
-  - {fileID: 895893635}
---- !u!114 &8443283232484731695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4174462778273100978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9ac02856eb2d2c24c8fe014245637a55, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponLogics:
-  - {fileID: 542578764439005493}
-  - {fileID: 1105538745}
-  - {fileID: 895893635}
+  type: 5
+  damage: 10
 --- !u!1 &4848401119255199828
 GameObject:
   m_ObjectHideFlags: 0
@@ -913,6 +894,7 @@ MonoBehaviour:
   movementSpeedMax: 6
   walkingAnimationSpeed: 1
   runningAnimationSpeed: 1.65
+  rushingAnimationSpeed: 3
   isRunning: 0
   usingWeapon: 0
   hand_to_hand: 0
@@ -923,6 +905,8 @@ MonoBehaviour:
   a22: 1
   normalMovement: 1
   attackPoint: {fileID: 4848401119255199828}
+  timeToResetTaps: 0.25
+  rushTime: 0.25
 --- !u!61 &1800723574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -936,7 +920,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.02190432, y: 0.17862985}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -947,7 +931,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.7934734, y: 0.36195916}
   m_EdgeRadius: 0
 --- !u!1001 &960591691696757196
 PrefabInstance:

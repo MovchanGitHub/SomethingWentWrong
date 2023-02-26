@@ -17,11 +17,7 @@ public class EnemyDamagable : DamagableCharacter
         {
             EncyclopediaManager.Instance.OpenNewCreature(creature);
         }
-
-        else
-        {
-            StartCoroutine(EnemyDie());
-        }
+        StartCoroutine(EnemyDie());
     }
     
     
