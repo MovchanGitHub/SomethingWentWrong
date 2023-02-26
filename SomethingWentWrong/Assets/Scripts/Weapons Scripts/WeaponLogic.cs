@@ -6,10 +6,16 @@ public class WeaponLogic : MonoBehaviour
 {
     [SerializeField] protected GameObject projectileSample;
     [SerializeField] protected float coolDown;
+    [SerializeField] protected ItemsBase ammoType;
 
     public float CoolDown
     {
         get { return coolDown;  }
+    }
+
+    public ItemsBase AmmoType
+    {
+        get { return ammoType; }
     }
 
     virtual public void UseWeapon() {}

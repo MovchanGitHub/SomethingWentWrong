@@ -24,14 +24,15 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] List<ItemsBase> items;
     [SerializeField] GameObject itemPrefab;
-    [SerializeField] Transform canvasTransform;
+    public Transform canvasTransform;
 
     Vector2Int oldPosition;
     InventoryHighlight inventoryHighlight;
     InventoryItem itemToHighlight;
-    private bool isCanvasActive = false;
+    [HideInInspector] public bool isCanvasActive = false;
 
     public static InventoryController instance { get; private set; }
+    [HideInInspector] public bool canBeOpened;
 
     private void Awake()
     {
@@ -47,12 +48,17 @@ public class InventoryController : MonoBehaviour
         Destroy(this.gameObject);
     }
 
+    private void Start()
+    {
+        canBeOpened = true;
+    }
+
     private void Update()
     {
         dragItemIcon();
 
 
-        if (Input.GetKeyDown(KeyCode.Tab))
+        if (canBeOpened && Input.GetKeyDown(KeyCode.Tab))
         {
             isCanvasActive = !isCanvasActive;
             GameManagerScript.instance.isUIOpened = isCanvasActive;
@@ -83,6 +89,13 @@ public class InventoryController : MonoBehaviour
         {
             //Debug.Log(selectedItem.itemData.itemName);
         }
+    }
+
+    public void activateInventory(bool isActive)
+    {
+        isCanvasActive = isActive;
+        GameManagerScript.instance.isUIOpened = isCanvasActive;
+        canvasTransform.gameObject.SetActive(isCanvasActive);
     }
 
     private void handleHighlight()
@@ -240,22 +253,32 @@ public class InventoryController : MonoBehaviour
     private void UseItem(Vector2Int tileGridPosition)
     {
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
-        if (item.itemData.TypeOfThisItem == ItemType.Food)
+        if (item != null)
         {
-            if (item != null)
+            if (item.itemData.TypeOfThisItem == ItemType.Food)
             {
-                ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-                SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
-                SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-                SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+                if (item != null)
+                {
+                    ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
+                    SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
+                    SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+                    SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+                }
+                Destroy(item.gameObject);
+                SelectedItemGrid.cleanGridRef(item);
             }
-            Destroy(item.gameObject);
-            SelectedItemGrid.cleanGridRef(item);
+            else 
+            {
+                SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
+            }
         }
-        else 
-        {
-            SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-        }
+}
+
+    public void changeScale(int newScale)
+    {
+        gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
+        ItemGrid.tileWidth = ItemGrid.tileSpriteWidth * newScale;
+        ItemGrid.tileHeight = ItemGrid.tileSpriteHeight * newScale;
     }
 }
 

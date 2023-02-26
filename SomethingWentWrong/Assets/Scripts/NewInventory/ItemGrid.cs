@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
-    public const float tileWidth = 36;
-    public const float tileHeight = 36;
+    [HideInInspector] public static float tileWidth = 36;
+    [HideInInspector] public static float tileHeight = 36;
 
-    public const float tileSpriteWidth = 24;
-    public const float tileSpriteHeight = 24;
+    [HideInInspector] public static float tileSpriteWidth = 24;
+    [HideInInspector] public static float tileSpriteHeight = 24;
 
     RectTransform rectTransform;
     Vector2 positionOnTheGrid = new Vector2();
@@ -224,13 +225,13 @@ public class ItemGrid : MonoBehaviour
         return true;
     }
 
-    public bool checkAmmo()
+    public bool checkAmmo(ItemsBase ammoType)
     {
         for (int i = 0; i < gridSizeWidth; i++)
         {
             for (int j = 0; j < gridSizeHeight; j++)
             {
-                if (inventoryItemSlots[i,j] && inventoryItemSlots[i,j].itemData.itemName == "Стрельника")
+                if (inventoryItemSlots[i,j] && inventoryItemSlots[i,j].itemData == ammoType)
                 {
                     Destroy(inventoryItemSlots[i, j].gameObject);
                     cleanGridRef(inventoryItemSlots[i, j]);

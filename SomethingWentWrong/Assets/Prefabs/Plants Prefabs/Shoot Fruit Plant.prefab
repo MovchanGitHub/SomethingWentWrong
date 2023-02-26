@@ -51,6 +51,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1360189013829714816, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Radius
+      value: 1.1856899
+      objectReference: {fileID: 0}
+    - target: {fileID: 1360189013829714816, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.08345556
+      objectReference: {fileID: 0}
     - target: {fileID: 2271632158478839360, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
       value: 0.3447112
@@ -75,6 +83,14 @@ PrefabInstance:
       propertyPath: m_LocalScale.y
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 2879954988502134017, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Radius
+      value: 1.535379
+      objectReference: {fileID: 0}
+    - target: {fileID: 2879954988502134017, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.67009056
+      objectReference: {fileID: 0}
     - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Color.b
       value: 0
@@ -86,6 +102,14 @@ PrefabInstance:
     - target: {fileID: 4174108627666774054, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Color.r
       value: 0.9960785
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558170201927312784, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4558170201927312784, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: drop
@@ -122,6 +146,22 @@ PrefabInstance:
     - target: {fileID: 5778336505848466201, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Name
       value: Shoot Fruit Plant
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992416990548397641, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5992416990548397641, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086826917189673703, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.008
+      objectReference: {fileID: 0}
+    - target: {fileID: 7086826917189673703, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.675
       objectReference: {fileID: 0}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite

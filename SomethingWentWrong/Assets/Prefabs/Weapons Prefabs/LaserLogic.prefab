@@ -49,6 +49,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   projectileSample: {fileID: 0}
   coolDown: 0
+  ammoType: {fileID: 11400000, guid: 2f0f6b7869f2b93479dfaaad84e810d5, type: 2}
   firePoint: {fileID: 0}
   damagableLayers:
     serializedVersion: 2
