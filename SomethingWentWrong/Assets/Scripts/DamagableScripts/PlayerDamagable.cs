@@ -12,10 +12,13 @@ public class PlayerDamagable : DamagableCharacter
     {
         get { return hp; }
         set { 
-            // здесь добавить обновление полоски хп
-            slider.value = value;
-            if (value > 0 && value + hp > MaxHp)
-                hp = value;
+            // Обновление индикатора здоровья
+            if (value > 0) {
+                if (value <= MaxHp) {
+                    slider.value = value;
+                    hp = value;
+                }
+            }
             else
                 Die();
         }

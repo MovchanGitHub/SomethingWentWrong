@@ -13,7 +13,7 @@ public class SurvivalManager : MonoBehaviour
     public float HungerPercent => currentHunger / maxHunger;
     
     //жажда
-    [Header("Thirst")] 
+    [Header("Thirst")]
     [SerializeField] private float maxThirst;
     [SerializeField] private float thirstDepletionRate;
     private float currentThirst;

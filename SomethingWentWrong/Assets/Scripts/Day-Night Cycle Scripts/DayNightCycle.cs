@@ -70,8 +70,8 @@ public class DayNightCycle : MonoBehaviour
             {
                 case DayTime.Sunrise:
                     // Обработка пережитого дня
+                    skillsWindow.GetComponentInParent<SkillsScript>().InitSkills();
                     skillsWindow.gameObject.SetActive(true);
-                    
                     StartCoroutine(retroMask.Decrease());
                     spawnSystem.spawnEnabled = false;
                     break;
