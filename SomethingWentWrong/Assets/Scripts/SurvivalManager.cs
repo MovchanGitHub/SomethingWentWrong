@@ -150,8 +150,12 @@ public class SurvivalManager : MonoBehaviour
             currentStamina = maxStamina;
     }
 
-    public void IncreaseMaxStamina(int value)
-    {
-        maxStamina += value;
-    }
+    public void IncreaseMaxStamina(float value)  => maxStamina += value;
+    public void IncreaseStaminaRecharging(float value) => staminaRechargeRate += value;
+    public void IncreaseMaxAnoxemia(float value) => maxAnoxaemia += value;
+    public void IncreaseAnoxemiaEndurance(float value) => anoxaemiaDepletionRate -= value;
+    public void IncreaseMaxHunger(float value) => maxHunger += value;
+    public void IncreaseHungerEndurance(float value) => hungerDepletionRate -= value;
+    public void IncreaseMaxThirst(float value) => maxThirst += value;
+    public void IncreaseThirstEndurance(float value) => thirstDepletionRate -= value;
 }

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class PlayerDamagable : DamagableCharacter
 {
     public Slider slider;
+    [SerializeField] public int MaxHp;
     
     public int HP
     {
@@ -13,7 +14,7 @@ public class PlayerDamagable : DamagableCharacter
         set { 
             // здесь добавить обновление полоски хп
             slider.value = value;
-            if (value > 0) 
+            if (value > 0 && value + hp > MaxHp)
                 hp = value;
             else
                 Die();
