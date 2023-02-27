@@ -81,6 +81,7 @@ public class SkillsScript : MonoBehaviour
 
     public void ImproveHealth(){
         playerDamagable.MaxHp += MAX_HEALTH;
+        playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
     }
     public void ImproveLightHouseHealth(){
