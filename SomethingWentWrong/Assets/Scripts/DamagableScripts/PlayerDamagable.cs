@@ -8,7 +8,7 @@ public class PlayerDamagable : DamagableCharacter
     public Slider slider;
     [SerializeField] public int MaxHp;
     
-    public int HP
+    public int Hp
     {
         get { return hp; }
         set { 

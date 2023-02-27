@@ -22,12 +22,12 @@ public class SkillsScript : MonoBehaviour
     private const int MAX_HEALTH = 5;
     private const float MAX_STAMINA = 1f;
     private const float STAMINA_RECOVERY = 1f;
-    private const float MAX_ANOXEMIA = 1f;
-    private const float ANOXEMIA_ENDURANCE = 1f;
-    private const float MAX_HUNGER = 1f;
-    private const float HUNGER_ENDURANCE = 1f;
-    private const float MAX_THIRST = 1f;
-    private const float THIRST_ENDURANCE = 1f;
+    private const float MAX_ANOXEMIA = 5f;
+    private const float ANOXEMIA_ENDURANCE = 0.9f;
+    private const float MAX_HUNGER = 5f;
+    private const float HUNGER_ENDURANCE = 0.9f;
+    private const float MAX_THIRST = 5f;
+    private const float THIRST_ENDURANCE = 0.9f;
 
     private bool isSkillWindowsActive;
     private Unity.Mathematics.Random random;
@@ -51,21 +51,20 @@ public class SkillsScript : MonoBehaviour
         variants = setOfVariants.ToArray();
         for (var i = 0; i < 3; ++i) {
             switch (variants[i]) {
-                case 1: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveHealth"; break;
-                case 2: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveLightHouseHealth"; break;
-                case 3: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveStamina"; break;
-                case 4: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveStaminaRecovery"; break;
-                case 5: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveAnoxemia"; break;
-                case 6: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveMaxAnoxemia"; break;
-                case 7: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveHunger"; break;
-                case 8: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveMaxHunger"; break;
-                case 9: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveThrist"; break;
-                case 10: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "ImproveMaxThrist"; break;
+                case 1:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальное здоровье"; break;
+                case 2:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Починить ракету"; break;
+                case 3:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная выносливость"; break;
+                case 4:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Выносливость"; break;
+                case 5:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Кислородная выносливость"; break;
+                case 6:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный кислород"; break;
+                case 7:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Сытость"; break;
+                case 8:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная сытость"; break;
+                case 9:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Жажда"; break;
+                case 10: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная жажда"; break;
             }
         }
     }
     public void GetSkill(int button) {
-        Debug.Log($"{variants[button]} ");
         switch (variants[button]) {
                 case 1: ImproveHealth(); break;
                 case 2: ImproveLightHouseHealth(); break;
@@ -82,7 +81,6 @@ public class SkillsScript : MonoBehaviour
 
     public void ImproveHealth(){
         playerDamagable.MaxHp += MAX_HEALTH;
-        Debug.Log($"Max HP: {playerDamagable.MaxHp}");
         skillsWindow.SetActive(false);
     }
     public void ImproveLightHouseHealth(){
@@ -98,27 +96,27 @@ public class SkillsScript : MonoBehaviour
         skillsWindow.SetActive(false);
     }
     public void ImproveAnoxemia(){
-        survivalManager.IncreaseMaxAnoxemia(MAX_ANOXEMIA);
-        skillsWindow.SetActive(false);
-    }
-    public void ImproveMaxAnoxemia(){
         survivalManager.IncreaseAnoxemiaEndurance(ANOXEMIA_ENDURANCE);
         skillsWindow.SetActive(false);
     }
-    public void ImproveHunger(){
-        survivalManager.IncreaseMaxHunger(MAX_HUNGER);
+    public void ImproveMaxAnoxemia(){
+        survivalManager.IncreaseMaxAnoxemia(MAX_ANOXEMIA);
         skillsWindow.SetActive(false);
     }
-    public void ImproveMaxHunger(){
+    public void ImproveHunger(){
         survivalManager.IncreaseHungerEndurance(HUNGER_ENDURANCE);
         skillsWindow.SetActive(false);
     }
+    public void ImproveMaxHunger(){
+        survivalManager.IncreaseMaxHunger(MAX_HUNGER);
+        skillsWindow.SetActive(false);
+    }
     public void ImproveThrist(){
-        survivalManager.IncreaseMaxThirst(MAX_THIRST);
+        survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
         skillsWindow.SetActive(false);
     }
     public void ImproveMaxThrist(){
-        survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
+        survivalManager.IncreaseMaxThirst(MAX_THIRST);
         skillsWindow.SetActive(false);
     }
 }
