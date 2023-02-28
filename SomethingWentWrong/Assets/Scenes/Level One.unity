@@ -101992,6 +101992,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 66338844, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1105538745, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
       propertyPath: projectileSample
       value: 
@@ -102557,6 +102561,10 @@ PrefabInstance:
     - target: {fileID: 2346254775372954323, guid: dc286b68a92a555488ea009e97a150cc, type: 3}
       propertyPath: m_Name
       value: ShakeManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346254775372954323, guid: dc286b68a92a555488ea009e97a150cc, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7226983979932188464, guid: dc286b68a92a555488ea009e97a150cc, type: 3}
       propertyPath: m_RootOrder
