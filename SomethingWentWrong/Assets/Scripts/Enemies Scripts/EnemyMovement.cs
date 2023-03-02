@@ -47,11 +47,7 @@ public class EnemyMovement : MonoBehaviour
         }
         if (moveToLightHouse)
         {
-            if (SpawnSystemScript.instance.lightHouse)
-            {
-                GameObject lightHouse = SpawnSystemScript.instance.lightHouse;
-                transform.position = Vector2.MoveTowards(transform.position, lightHouse.transform.position, speed * Time.deltaTime);
-            }
+            transform.position = Vector2.MoveTowards(transform.position, GameManager.GM.Rocket.gameObject.transform.position, speed * Time.deltaTime);
         }
     }
     

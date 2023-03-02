@@ -39,7 +39,6 @@ public class Buttons : MonoBehaviour
         GM.InventoryManager.canBeOpened = true;
         GM.SurvivalManager.gameObject.SetActive(true);
         GM.SurvivalManager.SetDefault();
-        SpawnSystemScript.instance.isUIOpened = false;
     }
     
     public void OnContinueButton()

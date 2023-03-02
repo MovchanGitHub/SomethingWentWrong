@@ -35,18 +35,11 @@ public class LightHouse : MonoBehaviour, IDamagable
     // LightHouse unique methods
     public bool active = false;
 
-    private void Start()
-    {
-        if (SpawnSystemScript.instance != null)
-        {
-            SpawnSystemScript.instance.lightHouse = gameObject;
-        }
-    }
-
 
     private void Die()
     {
-        SpawnSystemScript.instance.GameOver("Вы проиграли");
+        healthBar.value = 0;
+        GameManager.GM.GameOver("Вы проиграли (ракета уничтожена)");
 
         Destroy(gameObject);
     }

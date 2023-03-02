@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class GameManager : MonoBehaviour
 {
@@ -15,7 +16,6 @@ public class GameManager : MonoBehaviour
     private void Awake()
     {
         GM = this;
-        
     }
 
     public static GameManager GM { get; private set; }
@@ -27,23 +27,16 @@ public class GameManager : MonoBehaviour
     public InventoryController InventoryManager { get { return inventoryManager; } }
     public MiniGMUI UI { get { return ui; } }
 
-
-    public void GameOve()
-    {
-        //GameOver.Invoke();
-    }
     public void GameOver(string message)
     {
-        //UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
+        UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
 
-        //IsometricPlayerMovementController.Instance.IsAbleToMove = false;
+        playerMovement.IsAbleToMove = false;
 
-        //InventoryController.instance.canBeOpened = false;
+        inventoryManager.canBeOpened = false;
 
-        //GameManager.GM.SurvivalManager.gameObject.SetActive(false);
+        SurvivalManager.gameObject.SetActive(false);
 
-        //player.gameObject.SetActive(false);
-
-        //instance.isUIOpened = true;
+        playerMovement.gameObject.SetActive(false);
     }
 }

@@ -63,7 +63,7 @@ public class InventoryManager : MonoBehaviour
     {
         isOpened = false;
         
-        playerTransform = SpawnSystemScript.instance.player.transform;
+        //playerTransform = SpawnSystemScript.instance.player.transform;
         BombSpawnerCode = BombSpawner.GetComponent<BombLogic>();
         BulletSpawnerCode = BulletSpawner.GetComponent<Bullet>();
         emptyCellCode = emptyCell.GetComponent<InventoryCell>();
@@ -82,7 +82,7 @@ public class InventoryManager : MonoBehaviour
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
             GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
-            SpawnSystemScript.instance.isUIOpened = !SpawnSystemScript.instance.isUIOpened;
+            //SpawnSystemScript.instance.isUIOpened = !SpawnSystemScript.instance.isUIOpened;
             if (AlreadyChosenCell != null)
             {
                 MakeCellEmpty(CurrentCellRef.GetComponent<InventoryCell>());
