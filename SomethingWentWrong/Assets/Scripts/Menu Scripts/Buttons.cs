@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static GameManager;
 
 public class Buttons : MonoBehaviour
 {
@@ -19,10 +20,10 @@ public class Buttons : MonoBehaviour
         Debug.Log($"Loading scene {sceneName}");
         pause.PauseGame(false);
         StartCoroutine(LoadAsync(sceneName));
-        IsometricPlayerMovementController.Instance.IsAbleToMove = true;
-        InventoryController.instance.canBeOpened = true;
-        SurvivalManager.Instance.transform.gameObject.SetActive(true);
-        SurvivalManager.Instance.SetDefault();
+        GameManager.GM.PlayerMovement.IsAbleToMove = true;
+        GameManager.GM.InventoryManager.canBeOpened = true;
+        GM.SurvivalManager.gameObject.SetActive(true);
+        GM.SurvivalManager.SetDefault();
         SpawnSystemScript.instance.isUIOpened = false;
     }
     

@@ -26,15 +26,15 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         _animator.SetBool("IsMoving", x != 0 || y != 0);
         
-        if (IsometricPlayerMovementController.Instance.usingWeapon 
-            && !IsometricPlayerMovementController.Instance.hand_to_hand)
+        if (GameManager.GM.PlayerMovement.usingWeapon 
+            && !GameManager.GM.PlayerMovement.hand_to_hand)
         {
             SetDirectionToMouse();
         }
         else if (x != 0 || y != 0)
         {
-            IsometricPlayerMovementController.Instance.lastHorizontalInput = x;
-            IsometricPlayerMovementController.Instance.lastVerticalInput = y;
+            GameManager.GM.PlayerMovement.lastHorizontalInput = x;
+            GameManager.GM.PlayerMovement.lastVerticalInput = y;
             _animator.SetFloat("MouseX", x);
             _animator.SetFloat("MouseY", y);
         }

@@ -7,14 +7,14 @@ public class LightHouse : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
-    public Slider slider;
+    [SerializeField] private Slider healthBar;
     
     public int HP
     {
         get { return hp; }
-        set { 
+        set {
             // здесь добавить обновление полоски хп
-            slider.value = value;
+            healthBar.value = value;
             if (value > 0) 
                 hp = value;
             else

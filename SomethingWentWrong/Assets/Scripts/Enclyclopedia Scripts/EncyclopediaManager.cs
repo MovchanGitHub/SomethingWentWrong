@@ -160,7 +160,7 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = !isOpened;
         mainPanel.SetActive(isOpened);
         panelWithExtraInfo.SetActive(false);
-        IsometricPlayerMovementController.Instance.IsAbleToMove = !isOpened;
+        GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
     }
 
 

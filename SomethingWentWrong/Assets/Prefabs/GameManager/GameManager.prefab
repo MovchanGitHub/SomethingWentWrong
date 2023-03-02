@@ -44,4 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a558f2c7b7cff444acdffef737bf254, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rocket: {fileID: 0}
+  survivalManager: {fileID: 0}
   playerMovement: {fileID: 0}
+  inventoryManager: {fileID: 0}

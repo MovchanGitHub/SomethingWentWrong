@@ -69,9 +69,9 @@ public class InventoryManager : MonoBehaviour
         emptyCellCode = emptyCell.GetComponent<InventoryCell>();
         contextMenuWidthDiv2 = ContextMenu.GetComponent<RectTransform>().rect.width / 2;
         contextMenuHeightDiv2 = ContextMenu.GetComponent<RectTransform>().rect.height / 2;
-        SurvivalManagerCode = SurvivalManager.Instance;
+        SurvivalManagerCode = GameManager.GM.SurvivalManager;
 
-        CountOneTimeWeapon(BombLogic.bombName, BombSpawner.GetComponent<BombLogic>().SetAmountBombs);
+        //CountOneTimeWeapon(BombLogic.bombName, BombSpawner.GetComponent<BombLogic>().SetAmountBombs);
     }
 
 
@@ -81,7 +81,7 @@ public class InventoryManager : MonoBehaviour
         {
             isOpened = !isOpened;
             InventoryPanel.SetActive(isOpened);
-            IsometricPlayerMovementController.Instance.IsAbleToMove = !isOpened;
+            GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
             SpawnSystemScript.instance.isUIOpened = !SpawnSystemScript.instance.isUIOpened;
             if (AlreadyChosenCell != null)
             {

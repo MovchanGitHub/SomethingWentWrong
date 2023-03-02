@@ -4,45 +4,45 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    static private GameManager instance;
+    [SerializeField] private LightHouse rocket;
+    [SerializeField] private SurvivalManager survivalManager;
+    [SerializeField] private IsometricPlayerMovementController playerMovement;
+    [SerializeField] private InventoryController inventoryManager;
+    //[SerializeField] private GameObject ui;
 
-    [SerializeField] private GameObject followingCamera;
-    [SerializeField] private GameObject lighthouse;
-    [SerializeField] private GameObject uI;
-    //[SerializeField] private GameObject encyclopedia;
-    [SerializeField] private GameObject spawnSystem;
-    [SerializeField] private GameObject dayNightCycle;
-    [SerializeField] private GameObject eventSystem;
-    [SerializeField] private GameObject survivalManager;
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject dayNightMusic;
-    [SerializeField] private GameObject inventoryController;
-    //[SerializeField] private GameObject newInventory;
-
-    private IsometricPlayerMovementController playerMovement;
+    
 
     private void Awake()
     {
-        instance = this;
-
-        playerMovement = player.GetComponent<IsometricPlayerMovementController>();
+        GM = this;
         
     }
 
-    public GameManager __GameManager { get { return instance; } }
+    public static GameManager GM { get; private set; }
 
-    public GameObject FollowingCamera { get { return followingCamera; } }
-    public GameObject Lighthouse { get { return lighthouse; } }
-    public GameObject UI { get { return uI; } }
-    //public GameObject Encyclopedia { get { return encyclopedia; } }
-    public GameObject SpawnSystem { get { return spawnSystem; } }
-    public GameObject DayNightCycle { get { return dayNightCycle; } }
-    public GameObject EventSystem { get { return eventSystem; } }
-    public GameObject SurvivalManager { get { return survivalManager; } }
-    public GameObject Player { get { return player; } }
-    public GameObject DayNightMusic { get { return dayNightMusic; } }
-    public GameObject InventoryController { get { return inventoryController; } }
-    //public GameObject NewInventory { get { return newInventory; } }
 
+    public LightHouse Rocket { get { return rocket; } }
+    public SurvivalManager SurvivalManager { get { return survivalManager; } }
     public IsometricPlayerMovementController PlayerMovement { get { return playerMovement; } }
+    public InventoryController InventoryManager { get { return inventoryManager; } }
+
+
+    public void GameOve()
+    {
+        //GameOver.Invoke();
+    }
+    public void GameOver(string message)
+    {
+        //UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
+
+        //IsometricPlayerMovementController.Instance.IsAbleToMove = false;
+
+        //InventoryController.instance.canBeOpened = false;
+
+        //GameManager.GM.SurvivalManager.gameObject.SetActive(false);
+
+        //player.gameObject.SetActive(false);
+
+        //instance.isUIOpened = true;
+    }
 }

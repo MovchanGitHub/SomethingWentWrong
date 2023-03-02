@@ -16,6 +16,7 @@ public class SpawnSystemScript : MonoBehaviour
 
     private void Awake()
     {
+        player = GameManager.GM.PlayerMovement.gameObject;
         if (instance == null)
         {
             instance = this;
@@ -26,38 +27,38 @@ public class SpawnSystemScript : MonoBehaviour
         Destroy(this.gameObject);
     }
 
-    public void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.G))
-        {
-            ActivateLightHouse();
-        }        
-    }
+    //public void Update()
+    //{
+    //    if (Input.GetKeyDown(KeyCode.G))
+    //    {
+    //        ActivateLightHouse();
+    //    }        
+    //}
 
-    public void ActivateLightHouse()
-    {
-        //isLightHouseActive = true;
-        lightHouse.GetComponent<LightHouse>().active = true;
-    }
+    //public void ActivateLightHouse()
+    //{
+    //    //isLightHouseActive = true;
+    //    lightHouse.GetComponent<LightHouse>().active = true;
+    //}
 
-    public void DeactivateLightHouse()
-    {
-        //isLightHouseActive = false;
-        lightHouse.GetComponent<LightHouse>().active = false;
-    }
+    //public void DeactivateLightHouse()
+    //{
+    //    //isLightHouseActive = false;
+    //    lightHouse.GetComponent<LightHouse>().active = false;
+    //}
 
     public void GameOver(string message)
     {
-        UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
+        //UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
 
-        IsometricPlayerMovementController.Instance.IsAbleToMove = false;
+        //IsometricPlayerMovementController.Instance.IsAbleToMove = false;
 
-        InventoryController.instance.canBeOpened = false;
+        //InventoryController.instance.canBeOpened = false;
 
-        SurvivalManager.Instance.transform.gameObject.SetActive(false);
+        //GameManager.GM.SurvivalManager.gameObject.SetActive(false);
 
-        player.gameObject.SetActive(false);
+        //player.gameObject.SetActive(false);
 
-        instance.isUIOpened = true;
+        //instance.isUIOpened = true;
     }
 }

@@ -35,44 +35,23 @@ public class SurvivalManager : MonoBehaviour
     private float currentStaminaDelayCounter;
     public float StaminaPercent => currentStamina / maxStamina;
 
-    [Header("Player References")] 
-    public GameObject player;
+    private IsometricPlayerMovementController playerController;
 
-    public IsometricPlayerMovementController playerController;
-
-    private static SurvivalManager instance;
 
     public float staminaToRush = 1;
 
     public bool CanRun() => currentStamina > 0f;
     public bool CanRush() => currentStamina >= staminaToRush;
 
-    public static SurvivalManager Instance
-    {
-        get { return instance; }
-
-        private set { instance = value; }
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            return;
-        }
-
-        Destroy(gameObject);
-    }
-
     private void Start()
     {
+        
+
         currentHunger = maxHunger;
         currentThirst = maxThirst;
         currentAnoxaemia = maxAnoxaemia;
         currentStamina = maxStamina;
-        playerController = player.GetComponent<IsometricPlayerMovementController>();
+        playerController = GameManager.GM.PlayerMovement.GetComponent<IsometricPlayerMovementController>();
     }
 
     private void Update()

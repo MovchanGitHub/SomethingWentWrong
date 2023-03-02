@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
-using static RushAttack;
+using static GameManager;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
@@ -24,16 +24,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public bool usingWeapon;
     public bool hand_to_hand;
-
-    static private IsometricPlayerMovementController instance;
-
-    static public IsometricPlayerMovementController Instance
-    {
-        get { return instance;  }
-    }
     
     private float movementSpeed;
-    public IsometricCharacterRenderer isoRenderer;
+    [HideInInspector]public IsometricCharacterRenderer isoRenderer;
 
     private Rigidbody2D rbody;
     
@@ -44,11 +37,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public bool normalMovement = true; 
 
-    [SerializeField] private GameObject attackPoint;
+    private GameObject attackPoint;
     private Vector3 startPosition;
 
     [SerializeField] private float rushTime = 0.25f;
-    
+
+    private RushAttack rushAttack;
     float verticalInput; 
     float horizontalInput;
     public float lastVerticalInput;
@@ -60,25 +54,13 @@ public class IsometricPlayerMovementController : MonoBehaviour
     {
         rbody = GetComponent<Rigidbody2D>();
         isoRenderer = GetComponentInChildren<IsometricCharacterRenderer>();
+        attackPoint = GetComponentInChildren<AttackPoint>().gameObject;
+        rushAttack = GetComponentInChildren<RushAttack>();
         startPosition = attackPoint.transform.localPosition;
-
-        instance = this;
     }
 
     private void Start()
     {
-        movementSpeed = movementSpeedMin;
-        if (SpawnSystemScript.instance != null)
-        {
-            SpawnSystemScript.instance.player = gameObject;
-        }
-
-        if (SurvivalManager.Instance != null)
-        {
-            SurvivalManager.Instance.player = gameObject;
-            SurvivalManager.Instance.playerController = this;
-        }
-        
         lastHorizontalInput = 1;
         lastVerticalInput = -1;
     }
@@ -94,7 +76,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     void StartRushing()
     {
-        if (!SurvivalManager.Instance.CanRush())
+        if (!GM.SurvivalManager.CanRush())
             return;
         
         horizontalInput = lastHorizontalInput;
@@ -104,8 +86,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 15);
         else
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 5);
-        
-        SurvivalManager.Instance.ReplenishStamina(-SurvivalManager.Instance.staminaToRush);
+
+        GM.SurvivalManager.ReplenishStamina(-GM.SurvivalManager.staminaToRush);
         StartCoroutine(Rush());
     }
 
@@ -114,9 +96,9 @@ public class IsometricPlayerMovementController : MonoBehaviour
         if (Input.GetMouseButtonDown(1))
             StartRushing();
 
-        if (Input.GetKeyDown(KeyCode.LeftShift) && SurvivalManager.Instance.CanRun() && !usingWeapon)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && GM.SurvivalManager.CanRun() && !usingWeapon)
             SetRunningSpeed();
-        if ((Input.GetKeyUp(KeyCode.LeftShift) || !SurvivalManager.Instance.CanRun()) && !isRushing)
+        if ((Input.GetKeyUp(KeyCode.LeftShift) || !GM.SurvivalManager.CanRun()) && !isRushing)
             SetWalkingSpeed();
     }
 
@@ -212,7 +194,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             StopCoroutine(Rush());
             SetWalkingSpeed();
-            obj.GetDamage(__RushAttack);
+            obj.GetDamage(rushAttack);
         }
     }
 }

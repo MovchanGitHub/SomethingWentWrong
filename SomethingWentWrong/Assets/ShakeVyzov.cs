@@ -8,7 +8,7 @@ public class ShakeVyzov : MonoBehaviour
 
     private void Start()
     {
-        shake = GameObject.FindGameObjectWithTag("screenShake").GetComponent<Shake>();
+        shake = GetComponent<Shake>();
     }
     private void Update()
     {

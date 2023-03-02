@@ -17,10 +17,6 @@ public class BulletLogic : WeaponLogic
     private void Start()
     {
         bullet = projectileSample.GetComponent<Bullet>();
-        if (InventoryManager.instance != null)
-        {
-            InventoryManager.instance.BulletSpawner = gameObject;
-        }
         //InventoryCanvas = InventoryManager.instance.gameObject;
     }
 
@@ -46,15 +42,6 @@ public class BulletLogic : WeaponLogic
         timeBtwShots = startTimeBtwShots;
         //InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
         //InventoryManager.instance.bulletsAmount--;
-    }
-
-    public int GetAmountBullets()
-    {
-        return InventoryManager.instance.bulletsAmount;
-    }
-    public void SetAmountBullets(int a)
-    {
-        InventoryManager.instance.bulletsAmount = a;
     }
     
     override public void UseWeapon() { ThrowBullet(); }

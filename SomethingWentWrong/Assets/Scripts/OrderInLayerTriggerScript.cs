@@ -9,7 +9,7 @@ public class OrderInLayerTriggerScript : MonoBehaviour
 
     private void Awake()
     {
-        isoRenderer = transform.parent.GetComponentInChildren<IsometricCharacterRenderer>();
+        isoRenderer = GetComponentInParent<IsometricCharacterRenderer>();
     }
 
     private void OnTriggerEnter2D(Collider2D col)
