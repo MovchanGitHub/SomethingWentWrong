@@ -7,20 +7,25 @@ public class LightHouse : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    [SerializeField] private int maxHp;
     [SerializeField] private Slider healthBar;
     
     public int HP
     {
         get { return hp; }
         set {
-            // здесь добавить обновление полоски хп
             healthBar.value = value;
-            if (value > 0) 
-                hp = value;
+            if (value > 0)
+                if (value > maxHp)
+                    hp = maxHp;
+                else
+                    hp = value;
             else
                 Die();
         }
     }
+
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
     
     public void GetDamage(IWeaponable weapon)
     {

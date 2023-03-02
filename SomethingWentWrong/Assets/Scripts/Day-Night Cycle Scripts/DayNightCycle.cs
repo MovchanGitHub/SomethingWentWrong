@@ -20,8 +20,8 @@ public class DayNightCycle : MonoBehaviour
 
     //public RetroMaskScript retroMask;
 
-    [SerializeField] private GameObject winScreen;
-    [SerializeField] private GameObject skillWindow;
+    private GameObject winScreen;
+    private GameObject skillWindow;
 
     [SerializeField] private Color sunriseColor;
     [SerializeField] private Color dayColor;
@@ -43,6 +43,8 @@ public class DayNightCycle : MonoBehaviour
     void Start() 
     {
         spawnSystem = GameManager.GM.Rocket.GetComponentInChildren<SpawnSystem>();
+        winScreen = GameManager.GM.UI.WinScreen;
+        skillWindow = GameManager.GM.UI.SkillsMenu;
 
         currentTime = 0;
         dayCycle = DayTime.Day;

@@ -10,18 +10,33 @@ using static GameManager;
 
 public class Buttons : MonoBehaviour
 {
-    public InGameMenuScript pause;
-    public SettingsScript settings;
+    InGameMenuScript pauseScript;
+    SettingsScript settingsScript;
     public Button[] buttons;
-    
-    
+
+    [SerializeField] GameObject loadingScreen;
+    Slider slider;
+    TextMeshProUGUI progressText;
+
+    private void Awake()
+    {
+        pauseScript = GetComponent<InGameMenuScript>();
+        settingsScript = GetComponent<SettingsScript>();
+    }
+
+    private void Start()
+    {
+        slider = loadingScreen.GetComponentInChildren<Slider>();
+        progressText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
+    }
+
     public void OnButtonLoadScene(string sceneName)
     {
         Debug.Log($"Loading scene {sceneName}");
-        pause.PauseGame(false);
+        pauseScript.PauseGame(false);
         StartCoroutine(LoadAsync(sceneName));
-        GameManager.GM.PlayerMovement.IsAbleToMove = true;
-        GameManager.GM.InventoryManager.canBeOpened = true;
+        GM.PlayerMovement.IsAbleToMove = true;
+        GM.InventoryManager.canBeOpened = true;
         GM.SurvivalManager.gameObject.SetActive(true);
         GM.SurvivalManager.SetDefault();
         SpawnSystemScript.instance.isUIOpened = false;
@@ -30,8 +45,8 @@ public class Buttons : MonoBehaviour
     public void OnContinueButton()
     {
         RefreshAnimation();
-        pause.HideMenu();
-        pause.PauseGame(false);
+        pauseScript.HideMenu();
+        pauseScript.PauseGame(false);
     }
     
     public void OnButtonExit()
@@ -43,33 +58,29 @@ public class Buttons : MonoBehaviour
     public void OnButtonSettings()
     {
         RefreshAnimation();
-        settings.ShowSettings();
-        pause.HideMenu();
+        settingsScript.ShowSettings();
+        pauseScript.HideMenu();
     }
     
     public void OnButtonControlKeys()
     {
         RefreshAnimation();
-        pause.ShowHideMenu();
-        pause.controls.SetActive(true);
+        pauseScript.ShowHideMenu();
+        GM.UI.ControlsMenu.SetActive(true);
         
     }
     public void OnButtonBack()
     {
-        settings.HideSettings();
-        pause.ShowMenu();
+        settingsScript.HideSettings();
+        pauseScript.ShowMenu();
     }
     
     public void OnButtonControlBack()
     {
         RefreshAnimation();
-        pause.controls.SetActive(false);
-        pause.ShowHideMenu();
+        GM.UI.ControlsMenu.SetActive(false);
+        pauseScript.ShowHideMenu();
     }
-    
-    public GameObject loadingScreen;
-    public Slider slider;
-    public TextMeshProUGUI progressText;
     
     IEnumerator LoadAsync(string sceneName)
     {

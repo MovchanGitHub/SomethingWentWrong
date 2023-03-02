@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 
 
 public class SettingsScript : MonoBehaviour
 {
 
-    public GameObject settings;
-    public InGameMenuScript pause;
+    GameObject settingsMenu;
+    InGameMenuScript pauseScript;
 	
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
@@ -17,25 +18,32 @@ public class SettingsScript : MonoBehaviour
 
     private void Awake()
     {
-        settings.SetActive(false);
+        pauseScript = GetComponent<InGameMenuScript>();
+    }
+
+    private void Start()
+    {
+        settingsMenu = GM.UI.SettingsMenu;
+
+        settingsMenu.SetActive(false);
     }
     
     public void HideSettings()
     {
-        settings.SetActive(false);
-        pause.ShowMenu();
+        settingsMenu.SetActive(false);
+        pauseScript.ShowMenu();
         isOpened = false;
     }
     public void ShowSettings()
     {
         isOpened = true;
-        settings.SetActive(true);
-        pause.HideMenu();
+        settingsMenu.SetActive(true);
+        pauseScript.HideMenu();
     }
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
-        settings.GameObject().SetActive(isOpened);
+        settingsMenu.GameObject().SetActive(isOpened);
     }
 
     public void SetMusicVolume(float value)

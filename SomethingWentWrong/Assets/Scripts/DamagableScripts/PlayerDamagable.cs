@@ -5,22 +5,27 @@ using UnityEngine.UI;
 
 public class PlayerDamagable : DamagableCharacter
 {
-    public Slider slider;
-    [SerializeField] public int MaxHp;
-    
-    public int Hp
+    [SerializeField] private Slider slider;
+
+    private void Awake()
+    {
+        maxHp = HP;
+    }
+
+    new public int HP
     {
         get { return hp; }
-        set { 
-            // Обновление индикатора здоровья
-            if (value > 0) {
-                if (value <= MaxHp) {
-                    slider.value = value;
+        set {
+            if (value > 0)
+            {
+                if (value > maxHp)
+                    hp = maxHp;
+                else
                     hp = value;
-                }
             }
             else
-                Die();
+                Die(); //В событии указать обнуление слайдера
+            slider.value = hp;
         }
     }
 

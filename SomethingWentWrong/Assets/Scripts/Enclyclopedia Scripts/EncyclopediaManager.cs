@@ -26,22 +26,8 @@ public class EncyclopediaManager : MonoBehaviour
     //[SerializeField] private List<NotesManager> enemiesNotes;
     //[SerializeField] private List<NotesManager> plantsNotes;
 
-    private static EncyclopediaManager instance;
 
     private bool isOpened;
-
-    public static EncyclopediaManager Instance
-    {
-        get 
-        {
-            return instance;
-        }
-    }
-
-    private void Awake()
-    {
-        instance = this;
-    }
 
     private void Start()
     {

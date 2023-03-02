@@ -8,9 +8,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private SurvivalManager survivalManager;
     [SerializeField] private IsometricPlayerMovementController playerMovement;
     [SerializeField] private InventoryController inventoryManager;
-    //[SerializeField] private GameObject ui;
+    [SerializeField] private MiniGMUI ui;
 
-    
+
 
     private void Awake()
     {
@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public SurvivalManager SurvivalManager { get { return survivalManager; } }
     public IsometricPlayerMovementController PlayerMovement { get { return playerMovement; } }
     public InventoryController InventoryManager { get { return inventoryManager; } }
+    public MiniGMUI UI { get { return ui; } }
 
 
     public void GameOve()

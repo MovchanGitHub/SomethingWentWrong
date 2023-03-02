@@ -2846,7 +2846,6 @@ GameObject:
   - component: {fileID: 4863238972016884878}
   - component: {fileID: 5662082102503628271}
   - component: {fileID: 2087006452621477670}
-  - component: {fileID: 1264710397398618222}
   - component: {fileID: 4307913356379243910}
   - component: {fileID: 4307913357667752237}
   m_Layer: 0
@@ -2955,11 +2954,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d99a66b181834f78909f9cf3c7ae6e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause: {fileID: 2595107329927128807}
-  settings: {fileID: 2756128440079393895}
-  deathScreen: {fileID: 3169179761061187408}
-  winScreen: {fileID: 4379750618115310097}
-  controls: {fileID: 6922717102153382208}
   isOpened: 0
   isPaused: 0
 --- !u!114 &2756128440079393895
@@ -2974,8 +2968,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2c2f640065e764dea968fa65b948089a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  settings: {fileID: 8514840294192388088}
-  pause: {fileID: 2756128440079393894}
   musicVolume: 1
   soundsVolume: 100
   isOpened: 0
@@ -2991,15 +2983,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25e015cd8172d42468e3605c1e3bd7f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screen: {fileID: 3169179761061187408}
   isOpened: 0
-  title: {fileID: 874715326216358307}
-  pause: {fileID: 2756128440079393894}
-  windows:
-  - {fileID: 2595107329927128807}
-  - {fileID: 8514840294192388088}
-  - {fileID: 6922717102153382208}
-  - {fileID: 6436228068595625841}
 --- !u!114 &5662082102503628271
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3012,14 +2996,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdfb3bc92a82b4bbbaf5d22acad37684, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  screen: {fileID: 4379750618115310097}
   isOpened: 0
-  pause: {fileID: 2756128440079393894}
-  windows:
-  - {fileID: 2595107329927128807}
-  - {fileID: 8514840294192388088}
-  - {fileID: 6922717102153382208}
-  - {fileID: 6436228068595625841}
 --- !u!114 &2087006452621477670
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3032,8 +3009,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1a18d6e3419cc407dbd0c7b991c1c37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pause: {fileID: 2756128440079393894}
-  settings: {fileID: 2756128440079393895}
   buttons:
   - {fileID: 7856257291225132341}
   - {fileID: 1623831333711349791}
@@ -3042,20 +3017,6 @@ MonoBehaviour:
   - {fileID: 175453204459601645}
   - {fileID: 5021273546388381317}
   loadingScreen: {fileID: 6079274577111843358}
-  slider: {fileID: 1615369618707830187}
-  progressText: {fileID: 3929347108968921907}
---- !u!114 &1264710397398618222
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2756128440079393889}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0861b45fe9f4b924ca49baecd0d414e6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &4307913356379243910
 MonoBehaviour:
   m_ObjectHideFlags: 0
