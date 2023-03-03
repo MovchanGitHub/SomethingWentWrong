@@ -48,3 +48,4 @@ MonoBehaviour:
   survivalManager: {fileID: 0}
   playerMovement: {fileID: 0}
   inventoryManager: {fileID: 0}
+  ui: {fileID: 0}

@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class LightHouse : MonoBehaviour, IDamagable
 {
@@ -14,15 +16,23 @@ public class LightHouse : MonoBehaviour, IDamagable
     {
         get { return hp; }
         set {
-            healthBar.value = value;
+
             if (value > 0)
+            {
                 if (value > maxHp)
                     hp = maxHp;
                 else
                     hp = value;
+                healthBar.value = value;
+            }
             else
-                Die();
+                Destroy(gameObject);
         }
+    }
+
+    private void Awake()
+    {
+        maxHp = HP;
     }
 
     public int MaxHP { get { return maxHp; } set { maxHp = value; } }
@@ -35,12 +45,10 @@ public class LightHouse : MonoBehaviour, IDamagable
     // LightHouse unique methods
     public bool active = false;
 
-
-    private void Die()
+    private void OnDestroy()
     {
         healthBar.value = 0;
-        GameManager.GM.GameOver("Вы проиграли (ракета уничтожена)");
-
-        Destroy(gameObject);
+        GM.GameOver("Вы проиграли (ракета уничтожена)");
+        GM.UnlinkRocket();
     }
 }

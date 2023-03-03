@@ -2109,7 +2109,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0.2, y: 1}
+  m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -2848,6 +2848,7 @@ GameObject:
   - component: {fileID: 2087006452621477670}
   - component: {fileID: 4307913356379243910}
   - component: {fileID: 4307913357667752237}
+  - component: {fileID: 1306443031}
   m_Layer: 0
   m_Name: UI
   m_TagString: Untagged
@@ -3042,14 +3043,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7036309811ee2460faca4edbe22029cc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  skillsWindow: {fileID: 6436228068595625841}
   playerDamagable: {fileID: 0}
-  survivalManager: {fileID: 0}
-  lightHouse: {fileID: 0}
-  variantsButtons:
-  - {fileID: 7860010913874264351}
-  - {fileID: 5674811409380534996}
-  - {fileID: 1649607567009547358}
+--- !u!114 &1306443031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2756128440079393889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 15e6edf4e2043c9489fef11a9f224ee3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  settingsMenu: {fileID: 8514840294192388088}
+  pauseMenu: {fileID: 2595107329927128807}
+  deathScreen: {fileID: 3169179761061187408}
+  winScreen: {fileID: 4379750618115310097}
+  controlsMenu: {fileID: 6922717102153382208}
+  skillsMenu: {fileID: 6436228068595625841}
+  encyclopedia: {fileID: 4307913357548301607}
 --- !u!1 &2756128440155432772
 GameObject:
   m_ObjectHideFlags: 0
@@ -3780,7 +3793,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -15079,7 +15092,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 10, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}

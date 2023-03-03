@@ -684,6 +684,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 300
+  maxHp: 0
+  healthBar: {fileID: 0}
   active: 0
 --- !u!1 &6328719535615184290
 GameObject:

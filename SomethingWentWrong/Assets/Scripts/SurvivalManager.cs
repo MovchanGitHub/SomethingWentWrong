@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class SurvivalManager : MonoBehaviour
 {
@@ -35,8 +36,6 @@ public class SurvivalManager : MonoBehaviour
     private float currentStaminaDelayCounter;
     public float StaminaPercent => currentStamina / maxStamina;
 
-    private IsometricPlayerMovementController playerController;
-
 
     public float staminaToRush = 1;
 
@@ -45,13 +44,10 @@ public class SurvivalManager : MonoBehaviour
 
     private void Start()
     {
-        
-
         currentHunger = maxHunger;
         currentThirst = maxThirst;
         currentAnoxaemia = maxAnoxaemia;
         currentStamina = maxStamina;
-        playerController = GameManager.GM.PlayerMovement.GetComponent<IsometricPlayerMovementController>();
     }
 
     private void Update()
@@ -73,14 +69,14 @@ public class SurvivalManager : MonoBehaviour
         }
 
         //if player runs
-        if (playerController.IsRunning)
+        if (GM.PlayerMovement.IsRunning)
         {
             currentStamina   -= staminaDepletionRate   * Time.deltaTime;
             currentStaminaDelayCounter = 0;
         }
 
         //if player runs and...
-        if (!playerController.IsRunning && currentStamina < maxStamina)
+        if (!GM.PlayerMovement.IsRunning && currentStamina < maxStamina)
         {
             if (currentStaminaDelayCounter < staminaRechargeDelay)
             {

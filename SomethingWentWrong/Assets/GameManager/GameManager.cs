@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -11,8 +12,6 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InventoryController inventoryManager;
     [SerializeField] private MiniGMUI ui;
 
-
-
     private void Awake()
     {
         GM = this;
@@ -20,8 +19,10 @@ public class GameManager : MonoBehaviour
 
     public static GameManager GM { get; private set; }
 
-
     public LightHouse Rocket { get { return rocket; } }
+
+    public void UnlinkRocket() { rocket = null; }
+    
     public SurvivalManager SurvivalManager { get { return survivalManager; } }
     public IsometricPlayerMovementController PlayerMovement { get { return playerMovement; } }
     public InventoryController InventoryManager { get { return inventoryManager; } }
@@ -38,5 +39,20 @@ public class GameManager : MonoBehaviour
         SurvivalManager.gameObject.SetActive(false);
 
         playerMovement.gameObject.SetActive(false);
+    }
+
+    private void Update()
+    {
+        // player rush attack
+        if (Input.GetMouseButtonDown(1))
+            PlayerMovement.Rush();
+        
+        // player run
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+            PlayerMovement.Run();
+        
+        // player walk (stop running)
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+            PlayerMovement.Walk();
     }
 }

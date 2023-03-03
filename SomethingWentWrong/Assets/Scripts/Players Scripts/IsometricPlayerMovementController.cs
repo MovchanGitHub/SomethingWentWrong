@@ -22,7 +22,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public bool isRunning;
 
-    public bool usingWeapon;
+    public bool usingWeapon= false;
     public bool hand_to_hand;
     
     private float movementSpeed;
@@ -48,7 +48,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float lastVerticalInput;
     public float lastHorizontalInput;
     private Vector2 currentPos;
-    private bool isRushing;
+    private bool isRushing = false;
 
     private void Awake()
     {
@@ -63,9 +63,10 @@ public class IsometricPlayerMovementController : MonoBehaviour
     {
         lastHorizontalInput = 1;
         lastVerticalInput = -1;
+        SetWalkingSpeed();
     }
 
-    IEnumerator Rush()
+    private IEnumerator StartRushing()
     {
         SetRushingSpeed();
 
@@ -74,7 +75,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         SetWalkingSpeed();
     }
 
-    void StartRushing()
+    public void Rush()
     {
         if (!GM.SurvivalManager.CanRush())
             return;
@@ -88,18 +89,25 @@ public class IsometricPlayerMovementController : MonoBehaviour
             transform.rotation = Quaternion.Euler(0, 0, -Math.Sign(horizontalInput) * 5);
 
         GM.SurvivalManager.ReplenishStamina(-GM.SurvivalManager.staminaToRush);
-        StartCoroutine(Rush());
+        StartCoroutine(StartRushing());
+    }
+
+    public void Run()
+    {
+        if (!(GM.SurvivalManager.CanRun() && !usingWeapon)) return;
+            SetRunningSpeed();
+    }
+
+    public void Walk()
+    {
+        if (isRushing) return;
+        SetWalkingSpeed();
     }
 
     private void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-            StartRushing();
-
-        if (Input.GetKeyDown(KeyCode.LeftShift) && GM.SurvivalManager.CanRun() && !usingWeapon)
-            SetRunningSpeed();
-        if ((Input.GetKeyUp(KeyCode.LeftShift) || !GM.SurvivalManager.CanRun()) && !isRushing)
-            SetWalkingSpeed();
+        if (isRunning && !GM.SurvivalManager.CanRun())
+            Walk();
     }
 
     private void FixedUpdate()
@@ -142,7 +150,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         }
     }
 
-    void Moving()
+    private void Moving()
     {
         isoRenderer.SetDirection(horizontalInput, verticalInput);
 
@@ -192,7 +200,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         obj = col.GetComponent<IDamagable>();
         if (obj != null)
         {
-            StopCoroutine(Rush());
+            StopCoroutine(StartRushing());
             SetWalkingSpeed();
             obj.GetDamage(rushAttack);
         }

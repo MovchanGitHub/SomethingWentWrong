@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class EnemyMovement : MonoBehaviour
 {
@@ -47,7 +48,8 @@ public class EnemyMovement : MonoBehaviour
         }
         if (moveToLightHouse)
         {
-            transform.position = Vector2.MoveTowards(transform.position, GameManager.GM.Rocket.gameObject.transform.position, speed * Time.deltaTime);
+            if (GM.Rocket)
+                transform.position = Vector2.MoveTowards(transform.position, GM.Rocket.gameObject.transform.position, speed * Time.deltaTime);
         }
     }
     
