@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class SurvivalManager : MonoBehaviour
 {
@@ -35,36 +36,11 @@ public class SurvivalManager : MonoBehaviour
     private float currentStaminaDelayCounter;
     public float StaminaPercent => currentStamina / maxStamina;
 
-    [Header("Player References")] 
-    public GameObject player;
-
-    public IsometricPlayerMovementController playerController;
-
-    private static SurvivalManager instance;
 
     public float staminaToRush = 1;
 
     public bool CanRun() => currentStamina > 0f;
     public bool CanRush() => currentStamina >= staminaToRush;
-
-    public static SurvivalManager Instance
-    {
-        get { return instance; }
-
-        private set { instance = value; }
-    }
-
-    private void Awake()
-    {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-            return;
-        }
-
-        Destroy(gameObject);
-    }
 
     private void Start()
     {
@@ -72,7 +48,6 @@ public class SurvivalManager : MonoBehaviour
         currentThirst = maxThirst;
         currentAnoxaemia = maxAnoxaemia;
         currentStamina = maxStamina;
-        playerController = player.GetComponent<IsometricPlayerMovementController>();
     }
 
     private void Update()
@@ -84,22 +59,24 @@ public class SurvivalManager : MonoBehaviour
         if (currentHunger <= 0 || currentThirst <= 0 || currentAnoxaemia <= 0)
         {
             //player dies :/
-            currentHunger = 0;
-            currentThirst = 0;
-            currentAnoxaemia = 0;
-            SpawnSystemScript.instance.GameOver("Вы умерли");
+            if (currentHunger <= 0)
+                GameManager.GM.GameOver("Вы умерли от голода");
+            if (currentThirst <= 0)
+                GameManager.GM.GameOver("Вы умерли от жажды");
+            if (currentAnoxaemia <= 0)
+                GameManager.GM.GameOver("Вы умерли от нехватки кислорода");
             //transform.gameObject.SetActive(false);
         }
 
         //if player runs
-        if (playerController.IsRunning)
+        if (GM.PlayerMovement.IsRunning)
         {
             currentStamina   -= staminaDepletionRate   * Time.deltaTime;
             currentStaminaDelayCounter = 0;
         }
 
         //if player runs and...
-        if (!playerController.IsRunning && currentStamina < maxStamina)
+        if (!GM.PlayerMovement.IsRunning && currentStamina < maxStamina)
         {
             if (currentStaminaDelayCounter < staminaRechargeDelay)
             {

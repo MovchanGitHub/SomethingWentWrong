@@ -2,36 +2,25 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 public class WinScreen : MonoBehaviour
 {
-    public GameObject screen;
+    GameObject winScreen;
     public bool isOpened;
-    public InGameMenuScript pause;
-    public GameObject[] windows;
+    GameObject[] windows;
+    
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            if (isOpened)
-            {
-                HideWinScreen();
-                pause.PauseGame(false);
-            }
-            else
-            {
-                ShowWinScreen();
-                pause.PauseGame(true);
-            }
-        }
+        winScreen = GM.UI.WinScreen;
+        windows = new GameObject[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
     }
 
     public void HideWinScreen()
     {
         isOpened = false;
-        screen.SetActive(false);
+        winScreen.SetActive(false);
     }
     public void ShowWinScreen()
     {
@@ -40,6 +29,6 @@ public class WinScreen : MonoBehaviour
             window.SetActive(false);
         }
         isOpened = true;
-        screen.SetActive(true);
+        winScreen.SetActive(true);
     }
 }

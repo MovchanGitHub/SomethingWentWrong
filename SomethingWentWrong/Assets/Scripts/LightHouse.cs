@@ -1,26 +1,41 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class LightHouse : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
-    public Slider slider;
+    [SerializeField] private int maxHp;
+    [SerializeField] private Slider healthBar;
     
     public int HP
     {
         get { return hp; }
-        set { 
-            // здесь добавить обновление полоски хп
-            slider.value = value;
-            if (value > 0) 
-                hp = value;
+        set {
+
+            if (value > 0)
+            {
+                if (value > maxHp)
+                    hp = maxHp;
+                else
+                    hp = value;
+                healthBar.value = value;
+            }
             else
-                Die();
+                Destroy(gameObject);
         }
     }
+
+    private void Awake()
+    {
+        maxHp = HP;
+    }
+
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
     
     public void GetDamage(IWeaponable weapon)
     {
@@ -30,19 +45,10 @@ public class LightHouse : MonoBehaviour, IDamagable
     // LightHouse unique methods
     public bool active = false;
 
-    private void Start()
+    private void OnDestroy()
     {
-        if (SpawnSystemScript.instance != null)
-        {
-            SpawnSystemScript.instance.lightHouse = gameObject;
-        }
-    }
-
-
-    private void Die()
-    {
-        SpawnSystemScript.instance.GameOver("Вы проиграли");
-
-        Destroy(gameObject);
+        healthBar.value = 0;
+        GM.GameOver("Вы проиграли (ракета уничтожена)");
+        GM.UnlinkRocket();
     }
 }

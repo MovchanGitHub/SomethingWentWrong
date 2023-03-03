@@ -9,15 +9,16 @@ using UnityEngine.Rendering;
 using UnityEngine.UI;
 using Button = UnityEngine.UIElements.Button;
 using Random = UnityEngine.Random;
+using static GameManager;
 
 public class SkillsScript : MonoBehaviour
 {
-    public GameObject skillsWindow;
-    public PlayerDamagable playerDamagable;
-    public SurvivalManager survivalManager;
-    public LightHouse lightHouse;
+    GameObject skillsWindow;
+    [SerializeField] PlayerDamagable playerDamagable;
+    SurvivalManager survivalManager;
+    LightHouse lightHouse;
 
-    public GameObject[] variantsButtons;
+    GameObject[] variantsButtons;
     
     private const int MAX_HEALTH = 5;
     private const float MAX_STAMINA = 1f;
@@ -31,17 +32,18 @@ public class SkillsScript : MonoBehaviour
 
     private bool isSkillWindowsActive;
     private Unity.Mathematics.Random random;
-    private int[] variants; 
+    private int[] variants;
+
     void Start() {
+        skillsWindow = GM.UI.SkillsMenu;
+        survivalManager = GM.SurvivalManager;
+        lightHouse = GM.Rocket;
+        variantsButtons = new GameObject[] { skillsWindow.transform.GetChild(0).gameObject, skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject };
+
         random = new Unity.Mathematics.Random();
         random.InitState(1851936439U);
         skillsWindow.SetActive(false);
         InitSkills();
-    }
-    void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            skillsWindow.SetActive(isSkillWindowsActive = !isSkillWindowsActive);
-        }
     }
 
     public void InitSkills() {
@@ -80,7 +82,7 @@ public class SkillsScript : MonoBehaviour
     }
 
     public void ImproveHealth(){
-        playerDamagable.MaxHp += MAX_HEALTH;
+        playerDamagable.MaxHP += MAX_HEALTH;
         playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
     }

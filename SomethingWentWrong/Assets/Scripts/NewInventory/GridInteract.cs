@@ -16,16 +16,16 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
 
     private void Start()
     {
-        InventoryController.instance.SelectedItemGrid = InventoryController.instance.standartItemGrid;
+        GameManager.GM.InventoryManager.SelectedItemGrid = GameManager.GM.InventoryManager.standartItemGrid;
     }
 
     public void OnPointerEnter(PointerEventData eventData)
     {
-        InventoryController.instance.SelectedItemGrid = itemGrid;
+        GameManager.GM.InventoryManager.SelectedItemGrid = itemGrid;
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
-        InventoryController.instance.SelectedItemGrid = InventoryController.instance.standartItemGrid;
+        GameManager.GM.InventoryManager.SelectedItemGrid = GameManager.GM.InventoryManager.standartItemGrid;
     }
 }

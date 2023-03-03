@@ -31,21 +31,11 @@ public class InventoryController : MonoBehaviour
     InventoryItem itemToHighlight;
     [HideInInspector] public bool isCanvasActive = false;
 
-    public static InventoryController instance { get; private set; }
     [HideInInspector] public bool canBeOpened;
 
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
-
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(this.gameObject);
-            return;
-        }
-
-        Destroy(this.gameObject);
     }
 
     private void Start()
@@ -61,7 +51,6 @@ public class InventoryController : MonoBehaviour
         if (canBeOpened && Input.GetKeyDown(KeyCode.Tab))
         {
             isCanvasActive = !isCanvasActive;
-            SpawnSystemScript.instance.isUIOpened = isCanvasActive;
             canvasTransform.gameObject.SetActive(isCanvasActive);
         }
 
@@ -94,7 +83,6 @@ public class InventoryController : MonoBehaviour
     public void activateInventory(bool isActive)
     {
         isCanvasActive = isActive;
-        SpawnSystemScript.instance.isUIOpened = isCanvasActive;
         canvasTransform.gameObject.SetActive(isCanvasActive);
     }
 
@@ -260,9 +248,9 @@ public class InventoryController : MonoBehaviour
                 if (item != null)
                 {
                     ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-                    SurvivalManager.Instance.ReplenishHunger(itemToUse.satiationEffect);
-                    SurvivalManager.Instance.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-                    SurvivalManager.Instance.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+                    GameManager.GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
+                    GameManager.GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+                    GameManager.GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
                 }
                 Destroy(item.gameObject);
                 SelectedItemGrid.cleanGridRef(item);

@@ -10,6 +10,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] protected int hp;
+    [SerializeField] protected int maxHp;
     protected IWeaponable lastWeapon;
     
     public int HP
@@ -23,6 +24,8 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
         }
     }
     
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
+
     public void GetDamage(IWeaponable weapon)
     {
         lastWeapon = weapon;

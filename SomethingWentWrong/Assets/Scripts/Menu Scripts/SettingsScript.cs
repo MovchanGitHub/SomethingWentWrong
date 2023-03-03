@@ -2,14 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 
 
 public class SettingsScript : MonoBehaviour
 {
 
-    public GameObject settings;
-    public InGameMenuScript pause;
+    GameObject settingsMenu;
+    InGameMenuScript pauseScript;
 	
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
@@ -17,25 +18,32 @@ public class SettingsScript : MonoBehaviour
 
     private void Awake()
     {
-        settings.SetActive(false);
+        pauseScript = GetComponent<InGameMenuScript>();
+    }
+
+    private void Start()
+    {
+        settingsMenu = GM.UI.SettingsMenu;
+
+        settingsMenu.SetActive(false);
     }
     
     public void HideSettings()
     {
-        settings.SetActive(false);
-        pause.ShowMenu();
+        settingsMenu.SetActive(false);
+        pauseScript.ShowMenu();
         isOpened = false;
     }
     public void ShowSettings()
     {
         isOpened = true;
-        settings.SetActive(true);
-        pause.HideMenu();
+        settingsMenu.SetActive(true);
+        pauseScript.HideMenu();
     }
     public void ShowHideSettings()
     {
         isOpened = !isOpened;
-        settings.GameObject().SetActive(isOpened);
+        settingsMenu.GameObject().SetActive(isOpened);
     }
 
     public void SetMusicVolume(float value)
@@ -51,10 +59,10 @@ public class SettingsScript : MonoBehaviour
     {
         switch (value)
         {
-            case 0: { Screen.SetResolution(1280, 720, Screen.fullScreen); InventoryController.instance.changeScale(2); } break;
-            case 1: {Screen.SetResolution(1920, 1080, Screen.fullScreen); InventoryController.instance.changeScale(3); } break;
-            case 2: {Screen.SetResolution(2560, 1440, Screen.fullScreen); InventoryController.instance.changeScale(4); } break;
-            case 3: {Screen.SetResolution(3840, 2160, Screen.fullScreen); InventoryController.instance.changeScale(6); } break;
+            case 0: { Screen.SetResolution(1280, 720, Screen.fullScreen); GameManager.GM.InventoryManager.changeScale(2); } break;
+            case 1: {Screen.SetResolution(1920, 1080, Screen.fullScreen); GameManager.GM.InventoryManager.changeScale(3); } break;
+            case 2: {Screen.SetResolution(2560, 1440, Screen.fullScreen); GameManager.GM.InventoryManager.changeScale(4); } break;
+            case 3: {Screen.SetResolution(3840, 2160, Screen.fullScreen); GameManager.GM.InventoryManager.changeScale(6); } break;
                 
         }
     }

@@ -125,16 +125,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: 0
-  cycleDuration: 15
+  cycleDuration: 10
   dayCycle: 0
-  winMenu: {fileID: 0}
-  sunriseColor: {r: 0.6775098, g: 0.8116114, b: 0.8207547, a: 0}
-  dayColor: {r: 1, g: 1, b: 1, a: 0}
-  sunsetColor: {r: 0.48905307, g: 0.59140265, b: 0.6603774, a: 0}
-  nightColor: {r: 0.41220188, g: 0.49382037, b: 0.5566038, a: 0}
-  midnightColor: {r: 0.3088844, g: 0.29837132, b: 0.4245283, a: 0}
-  sunriseIntensity: 0
-  dayIntensity: 0
-  sunsetIntensity: 0
-  nightIntensity: 0
-  midnightIntensity: 0
+  sunriseColor: {r: 0.5803922, g: 0.21960784, b: 1, a: 1}
+  dayColor: {r: 0.7882353, g: 0.73333335, b: 1, a: 0.9411765}
+  sunsetColor: {r: 0.6509804, g: 0.33333334, b: 1, a: 0.9411765}
+  nightColor: {r: 0.5568628, g: 0.098039225, b: 1, a: 0.9411765}
+  midnightColor: {r: 0.23137257, g: 0.36078432, b: 1, a: 0.9411765}
+  sunriseIntensity: 0.35
+  dayIntensity: 0.5
+  sunsetIntensity: 0.4
+  nightIntensity: 0.2
+  midnightIntensity: 0.1

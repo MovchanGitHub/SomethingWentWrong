@@ -31,6 +31,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
                 Die();
         }
     }
+
+    public int MaxHP { get { throw new System.NotSupportedException("Don`t use Plants` MaxHP getter! >:("); } set { throw new System.NotSupportedException("Don`t use Plants` MaxHP setter! >:("); } }
     
     public void GetDamage(IWeaponable weapon)
     {
@@ -67,7 +69,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         if (!creature.isOpenedInEcnyclopedia)
         {
-            EncyclopediaManager.Instance.OpenNewCreature(creature);
+            GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
         Destroy(gameObject);
     }

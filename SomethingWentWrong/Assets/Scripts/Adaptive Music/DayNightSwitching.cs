@@ -15,11 +15,12 @@ public class DayNightSwitching : MusicFaderScript
 
     private const int TransTime = 500;
 
-    public GameObject adaptiveParameter;
     private DayTime _dayCycle;
     private bool _inCombat;
     public AudioMixer intenseMixer;
     public float intenseMixerVol;
+
+    [SerializeField] private DayNightCycle DayNightCycleScript;
 
     private static DayNightSwitching instance;
 
@@ -78,9 +79,8 @@ public class DayNightSwitching : MusicFaderScript
     private void Update()
     {
         intenseMixer.SetFloat("intenseMusicVol", _dayAudio.volume * intenseMixerVol - intenseMixerVol * 2);
-        if (Input.GetKeyDown(KeyCode.P)) _inCombat = !_inCombat;
 
-        _dayCycle = adaptiveParameter.GetComponent<DayNightCycle>().dayCycle;
+        _dayCycle = DayNightCycleScript.dayCycle;
 
         if (_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night)
         {

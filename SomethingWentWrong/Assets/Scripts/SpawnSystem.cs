@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SpawnSystem : MonoBehaviour
 {
+    private Transform playerTransfrom;
     [SerializeField] private Transform[] spawnPoints;
     [SerializeField] private GameObject[] enemyPrefabs;
     [SerializeField] private float spawnDistance;
@@ -13,6 +14,11 @@ public class SpawnSystem : MonoBehaviour
     [SerializeField] private float spawnRate;
     private float spawnTimer = 0f;
     public bool spawnEnabled = false;
+
+    private void Start()
+    {
+        playerTransfrom = GameManager.GM.PlayerMovement.gameObject.transform;
+    }
 
     void Update()
     {
@@ -25,7 +31,7 @@ public class SpawnSystem : MonoBehaviour
 
                 EnemyMovement newEnemyMovement = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation).GetComponent<EnemyMovement>();
                 newEnemyMovement.isPatrolling = false;
-                newEnemyMovement.target = SpawnSystemScript.instance.player.transform;
+                newEnemyMovement.target = playerTransfrom;
                 newEnemyMovement.isEnemyNight = true;
                 newEnemyMovement.moveToLightHouse = true;
                 newEnemyMovement.GoToTarget();
@@ -40,7 +46,7 @@ public class SpawnSystem : MonoBehaviour
 
         for (int i = 0; i < spawnPoints.Length; i++)
         {
-            if (Vector2.Distance(SpawnSystemScript.instance.player.transform.position, spawnPoints[i].position) < spawnDistance)
+            if (Vector2.Distance(playerTransfrom.position, spawnPoints[i].position) < spawnDistance)
             {
                 excludedPoints.Add(i);
             }

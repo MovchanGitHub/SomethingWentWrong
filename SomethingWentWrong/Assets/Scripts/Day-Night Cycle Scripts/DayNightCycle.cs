@@ -18,22 +18,22 @@ public class DayNightCycle : MonoBehaviour
 
     private int dayCount;
 
-    public RetroMaskScript retroMask;
+    //public RetroMaskScript retroMask;
 
-    public GameObject winMenu;
-    public GameObject skillsWindow;
+    private GameObject winScreen;
+    private GameObject skillWindow;
 
-    public Color sunriseColor;
-    public Color dayColor;
-    public Color sunsetColor;
-    public Color nightColor;
-    public Color midnightColor;
+    [SerializeField] private Color sunriseColor;
+    [SerializeField] private Color dayColor;
+    [SerializeField] private Color sunsetColor;
+    [SerializeField] private Color nightColor;
+    [SerializeField] private Color midnightColor;
 
-    public float sunriseIntensity;
-    public float dayIntensity;
-    public float sunsetIntensity;
-    public float nightIntensity;
-    public float midnightIntensity;
+    [SerializeField] private float sunriseIntensity;
+    [SerializeField] private float dayIntensity;
+    [SerializeField] private float sunsetIntensity;
+    [SerializeField] private float nightIntensity;
+    [SerializeField] private float midnightIntensity;
 
     private void Awake()
     {
@@ -42,15 +42,14 @@ public class DayNightCycle : MonoBehaviour
 
     void Start() 
     {
+        spawnSystem = GameManager.GM.Rocket.GetComponentInChildren<SpawnSystem>();
+        winScreen = GameManager.GM.UI.WinScreen;
+        skillWindow = GameManager.GM.UI.SkillsMenu;
+
         currentTime = 0;
         dayCycle = DayTime.Day;
         globalLight.color = sunriseColor;
         globalLight.intensity = sunriseIntensity;
-        
-        if (SpawnSystemScript.instance.lightHouse)
-        {
-            spawnSystem = SpawnSystemScript.instance.lightHouse.transform.GetComponentInChildren<SpawnSystem>();
-        }
     }
 
      void Update()
@@ -70,15 +69,15 @@ public class DayNightCycle : MonoBehaviour
             {
                 case DayTime.Sunrise:
                     // Обработка пережитого дня
-                    skillsWindow.GetComponentInParent<SkillsScript>().InitSkills();
-                    skillsWindow.gameObject.SetActive(true);
+                    skillWindow.GetComponentInParent<SkillsScript>().InitSkills();
+                    skillWindow.SetActive(true);
                     //StartCoroutine(retroMask.Decrease());
                     spawnSystem.spawnEnabled = false;
                     break;
 
                 case DayTime.Day:
                     if (dayCount == 15)
-                        winMenu.SetActive(true);
+                        winScreen.SetActive(true);
                     break;
 
                 case DayTime.Sunset:

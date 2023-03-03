@@ -17,7 +17,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &66338845
 Transform:
   m_ObjectHideFlags: 0
@@ -904,9 +904,9 @@ MonoBehaviour:
   a21: 0
   a22: 1
   normalMovement: 1
-  attackPoint: {fileID: 4848401119255199828}
-  timeToResetTaps: 0.25
   rushTime: 0.25
+  lastVerticalInput: 0
+  lastHorizontalInput: 0
 --- !u!61 &1800723574
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1002,39 +1002,39 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[0].b
-      value: 3.5137255
+      value: 4.4297605
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[0].g
-      value: 3.5137255
+      value: 4.4297605
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[0].r
-      value: 23.968628
+      value: 30.490566
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[1].b
-      value: 2.6352942
+      value: 4.7686276
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[1].g
-      value: 23.968628
+      value: 30.494118
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[1].r
-      value: 19.827452
+      value: 22.086275
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[2].b
-      value: 3.3882353
+      value: 16.439217
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[2].g
-      value: 23.968628
+      value: 30.243137
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserColor.Array.data[2].r
-      value: 4.392157
+      value: 5.019608
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959167, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: m_Name
@@ -1225,28 +1225,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5892254637738493113, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
   m_PrefabInstance: {fileID: 5892254636210805083}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &1710448099 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5892254637738493112, guid: a7da885f3e71eaa468ff3bef519ac085, type: 3}
-  m_PrefabInstance: {fileID: 5892254636210805083}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &4524061423637873185
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1710448099}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d2a23b0b187c45e4982c0125ade1f97c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  hp: 0
-  sprite: {fileID: 0}
-  redTime: 0
-  creature: {fileID: 0}
-  slider: {fileID: 0}
 --- !u!1001 &6632065376331495612
 PrefabInstance:
   m_ObjectHideFlags: 0

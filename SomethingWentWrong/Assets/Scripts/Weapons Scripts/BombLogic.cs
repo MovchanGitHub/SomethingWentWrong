@@ -26,14 +26,6 @@ public class BombLogic : WeaponLogic
         Instantiate(bomb, transform.position, quaternion.identity);
     }
     
-    public int GetAmountBombs()
-    {
-        return InventoryManager.instance.bombsAmount;
-    }
-    public void SetAmountBombs(int a)
-    {
-        InventoryManager.instance.bombsAmount = a;
-    }
 
     override public void UseWeapon() { ThrowBomb(); }
     override public void StopWeapon() {  }

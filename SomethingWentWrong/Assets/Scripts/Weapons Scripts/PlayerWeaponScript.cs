@@ -46,8 +46,8 @@ public class PlayerWeaponScript : MonoBehaviour
         // Использовать текущее оружие
         if (Input.GetButtonDown("Fire1") 
             && (timeAfterUse > weaponLogics[currWeapon].CoolDown)
-            && !IsometricPlayerMovementController.Instance.usingWeapon
-            && InventoryController.instance.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType)
+            && !GameManager.GM.PlayerMovement.usingWeapon
+            && GameManager.GM.InventoryManager.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType)
             )
         {
             timeAfterUse = 0;

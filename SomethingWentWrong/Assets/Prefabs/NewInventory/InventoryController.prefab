@@ -45,11 +45,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b841ada03ce1f27499a4af26b1237813, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  standartItemGrid: {fileID: 0}
+  selectedItemGrid: {fileID: 0}
   items:
   - {fileID: 11400000, guid: 8089eb3ea5b3dc14fba82a951a684cbe, type: 2}
   - {fileID: 11400000, guid: 2721a115fb24915409b8e12a922e0829, type: 2}
   itemPrefab: {fileID: 4446438601414710796, guid: ffb798c9d130b844095316c7a0e2b0a0, type: 3}
   canvasTransform: {fileID: 0}
+  isCanvasActive: 0
+  canBeOpened: 0
 --- !u!114 &1412961941844932375
 MonoBehaviour:
   m_ObjectHideFlags: 0

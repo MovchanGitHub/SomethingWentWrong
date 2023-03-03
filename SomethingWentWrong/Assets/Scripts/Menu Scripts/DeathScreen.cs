@@ -5,38 +5,27 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UI;
+using static GameManager;
 
 public class DeathScreen : MonoBehaviour
 {
     // Start is called before the first frame update
-    public GameObject screen;
+    GameObject deathScreen;
     public bool isOpened;
-    public TextMeshProUGUI title;
-    public InGameMenuScript pause;
-    public GameObject[] windows;
+    TextMeshProUGUI title;
+    GameObject[] windows;
 
-    // Update is called once per frame
-    void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            if (isOpened)
-            {
-                HideDeathScreen();
-                pause.PauseGame(false);
-            }
-            else
-            {
-                ShowDeathScreen("Вы проиграли");
-                pause.PauseGame(true);
-            }
-        }
+        deathScreen = GM.UI.DeathScreen;
+        title = deathScreen.GetComponentInChildren<TextMeshProUGUI>();
+        windows = new GameObject[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
     }
 
     public void HideDeathScreen()
     {
         isOpened = false;
-        screen.SetActive(false);
+        deathScreen.SetActive(false);
     }
     public void ShowDeathScreen(string message)
     {
@@ -46,6 +35,6 @@ public class DeathScreen : MonoBehaviour
         }
         isOpened = true;
         title.text = message;
-        screen.SetActive(true);
+        deathScreen.SetActive(true);
     }
 }

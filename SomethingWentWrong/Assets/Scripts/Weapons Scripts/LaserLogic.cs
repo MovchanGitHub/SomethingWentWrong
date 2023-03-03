@@ -62,11 +62,11 @@ public class LaserLogic : WeaponLogic
     IEnumerator EnableLaser()
     {
         isShooting = true;
-        IsometricPlayerMovementController.Instance.isoRenderer.PlayUseLaserAnim();
-        IsometricPlayerMovementController.Instance.usingWeapon = true;
+        GameManager.GM.PlayerMovement.isoRenderer.PlayUseLaserAnim();
+        GameManager.GM.PlayerMovement.usingWeapon = true;
             
         yield return new WaitForSeconds(0.2f);
-        IsometricPlayerMovementController.Instance.SetWalkingSpeed();
+        GameManager.GM.PlayerMovement.SetWalkingSpeed();
         lineRenderer.enabled = true;
         
         StartCoroutine(UpdateLaser());
@@ -122,11 +122,11 @@ public class LaserLogic : WeaponLogic
         if (isShooting)
         {
             isShooting = false;
-            IsometricPlayerMovementController.Instance.isoRenderer.PlayStopLaserAnim();
+            GameManager.GM.PlayerMovement.isoRenderer.PlayStopLaserAnim();
         }
-        
-        
-        IsometricPlayerMovementController.Instance.usingWeapon = false;
+
+
+        GameManager.GM.PlayerMovement.usingWeapon = false;
         startVFX.SetActive(false);
         endVFX.SetActive(false);
         lineRenderer.enabled = false;
