@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class LaserLogic : WeaponLogic
 {
@@ -62,11 +63,10 @@ public class LaserLogic : WeaponLogic
     IEnumerator EnableLaser()
     {
         isShooting = true;
-        GameManager.GM.PlayerMovement.isoRenderer.PlayShoot();
-        GameManager.GM.PlayerMovement.usingWeapon = true;
+        GM.PlayerMovement.isoRenderer.PlayShoot();
             
         yield return new WaitForSeconds(0.2f);
-        GameManager.GM.PlayerMovement.SetWalkingSpeed();
+        GM.PlayerMovement.SetWalkingSpeed();
         lineRenderer.enabled = true;
         
         StartCoroutine(UpdateLaser());
@@ -122,11 +122,9 @@ public class LaserLogic : WeaponLogic
         if (isShooting)
         {
             isShooting = false;
-            GameManager.GM.PlayerMovement.isoRenderer.PlayStopShooting();
+            GM.PlayerMovement.isoRenderer.PlayStopShooting();
         }
-
-
-        GameManager.GM.PlayerMovement.usingWeapon = false;
+        
         startVFX.SetActive(false);
         endVFX.SetActive(false);
         lineRenderer.enabled = false;

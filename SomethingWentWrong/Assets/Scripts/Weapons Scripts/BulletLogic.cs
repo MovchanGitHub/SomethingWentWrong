@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class BulletLogic : WeaponLogic
 {
@@ -36,14 +37,17 @@ public class BulletLogic : WeaponLogic
         }*/
     }
 
-    private void ThrowBullet()
+    private IEnumerator ThrowBullet()
     {
+        GM.PlayerMovement.isoRenderer.PlayShoot();
         Instantiate(bullet, shotpoint.position, transform.rotation);
         timeBtwShots = startTimeBtwShots;
         //InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
         //InventoryManager.instance.bulletsAmount--;
+        yield return new WaitForSeconds(.2f);
+        GM.PlayerMovement.isoRenderer.PlayStopShooting();
     }
     
-    override public void UseWeapon() { ThrowBullet(); }
+    override public void UseWeapon() { StartCoroutine(ThrowBullet()); }
     override public void StopWeapon() {  }
 }
