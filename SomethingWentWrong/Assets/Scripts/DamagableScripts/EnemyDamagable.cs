@@ -1,11 +1,26 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class EnemyDamagable : DamagableCharacter
 {
     private EnemyShaderLogic esl;
-    
+    [SerializeField] private Slider slider;
+
+    public override int HP
+    {
+        get { return hp; }
+        set
+        {
+            if (value > 0)
+                hp = value;
+            else
+                Die();
+            slider.value = hp;
+        }
+    }
+
     private void Start()
     {
         esl = transform.parent.GetComponentInChildren<EnemyShaderLogic>();
