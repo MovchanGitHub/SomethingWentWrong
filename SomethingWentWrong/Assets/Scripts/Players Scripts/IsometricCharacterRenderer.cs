@@ -40,14 +40,14 @@ public class IsometricCharacterRenderer : MonoBehaviour
         }
     }
 
-    public void PlayUseLaserAnim()
+    public void PlayShoot()
     {
-        _animator.SetTrigger("UseLaser");
+        _animator.SetTrigger("Shoot");
     }
     
-    public void PlayStopLaserAnim()
+    public void PlayStopShooting()
     {
-        _animator.SetTrigger("StopLaser");
+        _animator.SetTrigger("StopShooting");
     }
     
     private void SetDirectionToMouse()

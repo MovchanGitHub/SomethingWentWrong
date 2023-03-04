@@ -62,7 +62,7 @@ public class LaserLogic : WeaponLogic
     IEnumerator EnableLaser()
     {
         isShooting = true;
-        GameManager.GM.PlayerMovement.isoRenderer.PlayUseLaserAnim();
+        GameManager.GM.PlayerMovement.isoRenderer.PlayShoot();
         GameManager.GM.PlayerMovement.usingWeapon = true;
             
         yield return new WaitForSeconds(0.2f);
@@ -122,7 +122,7 @@ public class LaserLogic : WeaponLogic
         if (isShooting)
         {
             isShooting = false;
-            GameManager.GM.PlayerMovement.isoRenderer.PlayStopLaserAnim();
+            GameManager.GM.PlayerMovement.isoRenderer.PlayStopShooting();
         }
 
 
