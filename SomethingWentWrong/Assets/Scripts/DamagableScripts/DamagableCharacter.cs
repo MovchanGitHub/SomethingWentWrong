@@ -13,7 +13,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
     [SerializeField] protected int maxHp;
     protected IWeaponable lastWeapon;
     
-    public int HP
+    public virtual int HP
     {
         get { return hp; }
         set { 
@@ -26,7 +26,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
     
     public int MaxHP { get { return maxHp; } set { maxHp = value; } }
 
-    public void GetDamage(IWeaponable weapon)
+    public virtual void GetDamage(IWeaponable weapon)
     {
         lastWeapon = weapon;
         HP -= weapon.Damage;

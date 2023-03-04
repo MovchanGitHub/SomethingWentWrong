@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IsometricPlayerMovementController playerMovement;
     [SerializeField] private InventoryController inventoryManager;
     [SerializeField] private MiniGMUI ui;
+    [SerializeField] private GameObject camera;
 
     private void Awake()
     {
@@ -27,6 +28,7 @@ public class GameManager : MonoBehaviour
     public IsometricPlayerMovementController PlayerMovement { get { return playerMovement; } }
     public InventoryController InventoryManager { get { return inventoryManager; } }
     public MiniGMUI UI { get { return ui; } }
+    public GameObject Cam { get { return camera; } }
 
     public void GameOver(string message)
     {
