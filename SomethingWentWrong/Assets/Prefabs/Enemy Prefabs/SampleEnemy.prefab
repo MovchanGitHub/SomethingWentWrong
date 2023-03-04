@@ -614,6 +614,7 @@ MonoBehaviour:
   redTime: 0.1
   creature: {fileID: 11400000, guid: 96ffd4bd8d4377f41a5833e7bf0a1103, type: 2}
   slider: {fileID: 1629523543601078973}
+  damagePopupPrefab: {fileID: -1458636167758823117, guid: c63a5d69e167cfd45851b10272ea8b73, type: 3}
 --- !u!61 &8475053302361529581
 BoxCollider2D:
   m_ObjectHideFlags: 0
