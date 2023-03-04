@@ -32,15 +32,12 @@ public class AttackPoint : MonoBehaviour, IWeaponable
         anim = transform.parent.GetComponentInChildren<Animator>();
     }
 
-    void Update()
+    public void TryAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (Time.time >= attackTimer)
+        if (Time.time >= attackTimer && !GameManager.GM.PlayerMovement.usingWeapon)
         {
-            if (Input.GetKeyDown(KeyCode.Space) && !GameManager.GM.PlayerMovement.usingWeapon)
-            {
-                StartCoroutine(Attack());
-                attackTimer = Time.time + 1f / attackRate;
-            }
+            StartCoroutine(Attack());
+            attackTimer = Time.time + 1f / attackRate;
         }
     }
 

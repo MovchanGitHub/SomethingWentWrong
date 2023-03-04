@@ -7,10 +7,18 @@ public class WeaponLogic : MonoBehaviour
     [SerializeField] protected GameObject projectileSample;
     [SerializeField] protected float coolDown;
     [SerializeField] protected ItemsBase ammoType;
+    protected bool readyToFire = true;
 
-    public float CoolDown
+    public bool ReadyToFire
     {
-        get { return coolDown;  }
+        get { return readyToFire;  }
+    }
+
+    protected IEnumerator GoCoolDown()
+    {
+        readyToFire = false;
+        yield return new WaitForSeconds(coolDown);
+        readyToFire = true;
     }
 
     public ItemsBase AmmoType

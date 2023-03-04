@@ -12,7 +12,7 @@ public class PlayerDamagable : DamagableCharacter
         maxHp = HP;
     }
 
-    new public int HP
+    public override int HP
     {
         get { return hp; }
         set {

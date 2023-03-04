@@ -13,7 +13,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
     [SerializeField] protected int maxHp;
     protected IWeaponable lastWeapon;
     
-    public int HP
+    public virtual int HP
     {
         get { return hp; }
         set { 

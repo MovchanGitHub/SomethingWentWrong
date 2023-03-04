@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BulletLogic : WeaponLogic
 {
@@ -11,7 +12,6 @@ public class BulletLogic : WeaponLogic
     private Bullet bullet;
     public Transform shotpoint;
 
-    private float timeBtwShots;
     public float startTimeBtwShots;
 
     private void Start()
@@ -22,10 +22,9 @@ public class BulletLogic : WeaponLogic
 
     void Update()
     {
-        Vector3 difference = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
+        Vector3 difference = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position;
         float rotZ = Mathf.Atan2(difference.y, difference.x) * Mathf.Rad2Deg;
         transform.rotation = Quaternion.Euler(0f, 0f, rotZ + offset);
-        timeBtwShots -= Time.deltaTime;
 
         /*if (!GameManagerScript.instance.isUIOpened && timeBtwShots <= 0)
         {
@@ -39,7 +38,7 @@ public class BulletLogic : WeaponLogic
     private void ThrowBullet()
     {
         Instantiate(bullet, shotpoint.position, transform.rotation);
-        timeBtwShots = startTimeBtwShots;
+        StartCoroutine(GoCoolDown());
         //InventoryCanvas.GetComponent<InventoryManager>().UseOneTimeWeapon(bulletName);
         //InventoryManager.instance.bulletsAmount--;
     }

@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class LaserLogic : WeaponLogic
 {
@@ -40,21 +41,21 @@ public class LaserLogic : WeaponLogic
         _renderer.GetPropertyBlock(_propBlock);
         
         // Changing colors of the laser
-        if (Input.GetKeyDown("1"))
-        {
-            _propBlock.SetColor("_Color", laserColor[0]);
-            laser.LaserColor = laserColor[0];
-        }
-        else if (Input.GetKeyDown("2"))
-        {
-            _propBlock.SetColor("_Color", laserColor[1]);
-            laser.LaserColor = laserColor[1];
-        }
-        else if (Input.GetKeyDown("3"))
-        {
-            _propBlock.SetColor("_Color", laserColor[2]);
-            laser.LaserColor = laserColor[2];
-        }
+        //if (Input.GetKeyDown("1"))
+        //{
+        //    _propBlock.SetColor("_Color", laserColor[0]);
+        //    laser.LaserColor = laserColor[0];
+        //}
+        //else if (Input.GetKeyDown("2"))
+        //{
+        //    _propBlock.SetColor("_Color", laserColor[1]);
+        //    laser.LaserColor = laserColor[1];
+        //}
+        //else if (Input.GetKeyDown("3"))
+        //{
+        //    _propBlock.SetColor("_Color", laserColor[2]);
+        //    laser.LaserColor = laserColor[2];
+        //}
         
         _renderer.SetPropertyBlock(_propBlock);
     }
@@ -89,7 +90,7 @@ public class LaserLogic : WeaponLogic
         
         while (isShooting)
         {
-            Vector2 mousePos = cam.ScreenToWorldPoint(Input.mousePosition);
+            Vector2 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, mousePos);
             startVFX.transform.SetPositionAndRotation(firePoint.position, Quaternion.Euler(0f, Vector2.Angle(firePoint.position, mousePos), 0f));
