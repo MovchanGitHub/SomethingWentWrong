@@ -69,7 +69,7 @@ public class SurvivalManager : MonoBehaviour
         }
 
         //if player runs
-        if (GM.PlayerMovement.IsRunning)
+        if (GM.PlayerMovement.IsRunning && GM.PlayerMovement.IsMoving)
         {
             currentStamina   -= staminaDepletionRate   * Time.deltaTime;
             currentStaminaDelayCounter = 0;

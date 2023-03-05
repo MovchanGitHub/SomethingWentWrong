@@ -39,6 +39,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private GameObject attackPoint;
     private Vector3 startPosition;
+    public bool IsMoving { get; private set; }
 
     [SerializeField] private float rushTime = 0.25f;
 
@@ -112,6 +113,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        IsMoving = false;
+        
         if (IsAbleToMove)
         {
             currentPos = rbody.position;
@@ -143,6 +146,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
             if (horizontalInput != 0 || verticalInput != 0)
             {
+                IsMoving = true;
                 Vector3 newAttackPointPosition = new Vector3(startPosition.x + 1 * horizontalInput, startPosition.y + 1 * verticalInput, startPosition.z);
                 newAttackPointPosition = Vector3.ClampMagnitude(newAttackPointPosition, 1);
                 attackPoint.transform.localPosition = newAttackPointPosition;

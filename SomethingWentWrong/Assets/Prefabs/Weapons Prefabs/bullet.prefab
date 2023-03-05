@@ -95,8 +95,9 @@ GameObject:
   - component: {fileID: 8448890104637511583}
   - component: {fileID: 2175984707524812041}
   - component: {fileID: -6155188867539892378}
+  - component: {fileID: 7095514689794228157}
   m_Layer: 0
-  m_Name: Bullet
+  m_Name: bullet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -131,9 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 0
-  damage: 3
-  speed: 10
-  lifeTime: 3
+  damage: 10
+  speed: 75
+  lifeTime: 1.2
+  direction: {x: 0, y: 0}
 --- !u!61 &-6155188867539892378
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -160,3 +162,24 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.7541629, y: 0.35641748}
   m_EdgeRadius: 0
+--- !u!50 &7095514689794228157
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717934181467405371}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
