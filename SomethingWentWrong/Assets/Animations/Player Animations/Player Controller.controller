@@ -27,7 +27,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 7a9720d03b125e24d84ce80e5fa992b7, type: 2}
     m_Threshold: 0.2857143
-    m_Position: {x: 0, y: -1}
+    m_Position: {x: -0, y: -0.67}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -35,7 +35,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 48fc5e8f85e12cb4aa89cebdd8dd4da8, type: 2}
     m_Threshold: 0.42857143
-    m_Position: {x: -0, y: 1}
+    m_Position: {x: -0, y: 0.67}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -43,7 +43,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 619d367b99af52a4a81a53b42d5b7aba, type: 2}
     m_Threshold: 0.5714286
-    m_Position: {x: 1, y: 0.5}
+    m_Position: {x: 0.9, y: 0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -51,7 +51,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: aaa2c29c3b5c39e4aab2e91a45c25b99, type: 2}
     m_Threshold: 0.71428573
-    m_Position: {x: -1, y: 0.5}
+    m_Position: {x: -0.9, y: 0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -59,7 +59,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 779db229ae4c34a4fbccab861f55367d, type: 2}
     m_Threshold: 0.85714287
-    m_Position: {x: 1, y: -0.5}
+    m_Position: {x: 0.9, y: -0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -67,7 +67,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 1208f7be0f486804ab56824092dcf843, type: 2}
     m_Threshold: 1
-    m_Position: {x: -1, y: -0.5}
+    m_Position: {x: -0.9, y: -0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -418,7 +418,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: UseLaser
+  m_Name: Shoot
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -524,7 +524,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: ReadyToUseLaser
+  m_Name: ReadyToShoot
   m_Speed: 2
   m_CycleOffset: 0
   m_Transitions:
@@ -598,18 +598,6 @@ AnimatorController:
     m_DefaultInt: 0
     m_DefaultBool: 0
     m_Controller: {fileID: 0}
-  - m_Name: StopLaser
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
-  - m_Name: UseLaser
-    m_Type: 9
-    m_DefaultFloat: 0
-    m_DefaultInt: 0
-    m_DefaultBool: 0
-    m_Controller: {fileID: 0}
   - m_Name: MouseX
     m_Type: 1
     m_DefaultFloat: 0
@@ -618,6 +606,18 @@ AnimatorController:
     m_Controller: {fileID: 0}
   - m_Name: MouseY
     m_Type: 1
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: Shoot
+    m_Type: 9
+    m_DefaultFloat: 0
+    m_DefaultInt: 0
+    m_DefaultBool: 0
+    m_Controller: {fileID: 0}
+  - m_Name: StopShooting
+    m_Type: 9
     m_DefaultFloat: 0
     m_DefaultInt: 0
     m_DefaultBool: 0
@@ -671,7 +671,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: StopLaser
+    m_ConditionEvent: StopShooting
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -5511644769054786181}
@@ -718,7 +718,7 @@ AnimatorStateTransition:
   m_Name: 
   m_Conditions:
   - m_ConditionMode: 1
-    m_ConditionEvent: UseLaser
+    m_ConditionEvent: Shoot
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: -1267482314212363003}
@@ -968,7 +968,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 2b5a5a6a5b0896944bd6c8340785d9d8, type: 2}
     m_Threshold: 0
-    m_Position: {x: 1, y: -0.5}
+    m_Position: {x: 0.9, y: -0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -992,7 +992,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 267dc5bb58f9df142b41a89c040e6c4c, type: 2}
     m_Threshold: 0.42857143
-    m_Position: {x: 0, y: -0.5}
+    m_Position: {x: 0, y: -0.67}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -1000,7 +1000,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 251a9209580421f4e8756a5611656b2d, type: 2}
     m_Threshold: 0.5714286
-    m_Position: {x: 0, y: 0.5}
+    m_Position: {x: 0, y: 0.67}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -1008,7 +1008,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 86872c9c168e17440a73d93002d2c757, type: 2}
     m_Threshold: 0.71428573
-    m_Position: {x: 1, y: 0.5}
+    m_Position: {x: 0.9, y: 0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -1016,7 +1016,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 391880b28a010574b9eda2789b0a2f62, type: 2}
     m_Threshold: 0.85714287
-    m_Position: {x: -1, y: 0.5}
+    m_Position: {x: -0.9, y: 0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
@@ -1024,7 +1024,7 @@ BlendTree:
   - serializedVersion: 2
     m_Motion: {fileID: 7400000, guid: 96746e53a3e9361409244a034f860b46, type: 2}
     m_Threshold: 1
-    m_Position: {x: -1, y: -0.5}
+    m_Position: {x: -0.9, y: -0.33}
     m_TimeScale: 1
     m_CycleOffset: 0
     m_DirectBlendParameter: Blend
