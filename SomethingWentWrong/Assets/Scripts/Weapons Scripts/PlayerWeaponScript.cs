@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static GameManager;
 public class PlayerWeaponScript : MonoBehaviour
 {
     [SerializeField] private List<WeaponLogic> weaponLogics;
-
     private int currWeapon = 0;
 
     private float timeAfterUse;
@@ -38,9 +37,16 @@ public class PlayerWeaponScript : MonoBehaviour
         
         // Поменять текущее оружие
         if (Input.GetKeyDown(KeyCode.E))
+        {
+            GM.UI.WeaponsBarScript.RightRotateWeapons();
             CurrWeapon++;
+        }
+        
         if (Input.GetKeyDown(KeyCode.Q))
+        {
+            GM.UI.WeaponsBarScript.LeftRotateWeapons();
             CurrWeapon--;
+        }
         
         
         // Использовать текущее оружие
