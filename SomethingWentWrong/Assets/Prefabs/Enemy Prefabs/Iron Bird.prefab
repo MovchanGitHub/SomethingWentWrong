@@ -27,6 +27,18 @@ PrefabInstance:
       propertyPath: creature
       value: 
       objectReference: {fileID: 11400000, guid: 5e97eae3ef53fac408d59f0964b5c17b, type: 2}
+    - target: {fileID: 3949660094033181154, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: m_Radius
+      value: 1.5280454
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949660094033181154, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.019968987
+      objectReference: {fileID: 0}
+    - target: {fileID: 3949660094033181154, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.924227
+      objectReference: {fileID: 0}
     - target: {fileID: 4143399787372952296, guid: a9f332496d5833744883ca08bf118e95, type: 3}
       propertyPath: m_Size.x
       value: 1.0222168
@@ -183,5 +195,13 @@ PrefabInstance:
       propertyPath: creature
       value: 
       objectReference: {fileID: 11400000, guid: 5e97eae3ef53fac408d59f0964b5c17b, type: 2}
+    - target: {fileID: 8553545721590277820, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.015
+      objectReference: {fileID: 0}
+    - target: {fileID: 8553545721590277820, guid: a9f332496d5833744883ca08bf118e95, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 1.998
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a9f332496d5833744883ca08bf118e95, type: 3}

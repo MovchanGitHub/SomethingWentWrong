@@ -8,12 +8,14 @@ public class ResourceScript : MonoBehaviour, IDamagable
     // IDamagable's implementation
     [SerializeField] private int hp;
     [SerializeField] private Slider slider;
+    [SerializeField] private DamagePopup damagePopupPrefab;
     
     public int HP
     {
         get { return hp; }
         set
         {
+            spawnDamagePopup(transform.position, hp - value);
             slider.value = value;
             if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
             {
@@ -72,5 +74,11 @@ public class ResourceScript : MonoBehaviour, IDamagable
             GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
         Destroy(gameObject);
+    }
+
+    public void spawnDamagePopup(Vector3 position, int damageAmount)
+    {
+        DamagePopup damagePopup = Instantiate(damagePopupPrefab, position, Quaternion.identity);
+        damagePopup.setup(damageAmount);
     }
 }
