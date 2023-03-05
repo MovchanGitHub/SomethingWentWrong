@@ -38,7 +38,7 @@ TagManager:
   - Enemies
   - Player
   - DamagableObjectCollider
-  - 
+  - PlayerCollider
   - 
   - 
   - 

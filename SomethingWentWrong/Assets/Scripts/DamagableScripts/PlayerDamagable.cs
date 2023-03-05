@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class PlayerDamagable : DamagableCharacter
 {
@@ -24,13 +27,21 @@ public class PlayerDamagable : DamagableCharacter
                     hp = value;
             }
             else
-                Die(); //В событии указать обнуление слайдера
+                Destroy(gameObject);
             slider.value = hp;
         }
     }
-
-    protected override void Die()
+    
+    public override void GetDamage(IWeaponable weapon)
     {
-        GameManager.GM.GameOver("Вы умерли");
+        base.GetDamage(weapon);
+        if (weapon.Type == WeaponType.Bomb)
+            StartCoroutine(GameManager.GM.Camera.GetComponent<CameraShake>().Shake(.15f, .3f));
+    }
+
+    private void OnDestroy()
+    {
+        slider.value = 0;
+        GM.GameOver("Вы умерли");
     }
 }

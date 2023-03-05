@@ -15,8 +15,11 @@ public class Bullet : MonoBehaviour, IWeaponable
     
     
     // Bullet's unique methods
+    private Rigidbody2D rb;
     public float speed;
     public float lifeTime;
+    public Vector2 direction;
+    private Vector2 newPos;
 
     private void OnTriggerEnter2D(Collider2D col)
     {
@@ -35,11 +38,13 @@ public class Bullet : MonoBehaviour, IWeaponable
     
     private void Start()
     {
+        rb = GetComponent<Rigidbody2D>();
         StartCoroutine(LifeTime());
     }
     
     private void Update()
     {
-        transform.Translate(Vector2.up * speed * Time.deltaTime);
+        newPos = (Vector2)transform.position + direction * (speed * Time.deltaTime);
+        rb.MovePosition(newPos);
     }
 }

@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InventoryController inventoryManager;
     [SerializeField] private MiniGMUI ui;
     [SerializeField] private InputSystem inputSystem;
+    [SerializeField] private Camera mainCamera;
 
     private void Awake()
     {
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     public InventoryController InventoryManager { get { return inventoryManager; } }
     public MiniGMUI UI { get { return ui; } }
     public InputSystem InputSystem { get { return inputSystem; } }
+    public Camera Camera { get { return mainCamera; } }
 
     public void GameOver(string message)
     {

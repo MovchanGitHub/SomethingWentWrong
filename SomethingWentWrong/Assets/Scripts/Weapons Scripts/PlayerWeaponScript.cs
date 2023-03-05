@@ -2,11 +2,10 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using static GameManager;
 public class PlayerWeaponScript : MonoBehaviour
 {
     [SerializeField] private List<WeaponLogic> weaponLogics;
-
     private int currWeapon = 0;
 
 

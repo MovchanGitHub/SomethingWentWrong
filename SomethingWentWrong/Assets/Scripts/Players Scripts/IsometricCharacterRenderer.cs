@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 public class IsometricCharacterRenderer : MonoBehaviour
 {
@@ -40,14 +41,16 @@ public class IsometricCharacterRenderer : MonoBehaviour
         }
     }
 
-    public void PlayUseLaserAnim()
+    public void PlayShoot()
     {
-        _animator.SetTrigger("UseLaser");
+        GM.PlayerMovement.usingWeapon = true;
+        _animator.SetTrigger("Shoot");
     }
     
-    public void PlayStopLaserAnim()
+    public void PlayStopShooting()
     {
-        _animator.SetTrigger("StopLaser");
+        GM.PlayerMovement.usingWeapon = false;
+        _animator.SetTrigger("StopShooting");
     }
     
     private void SetDirectionToMouse()
