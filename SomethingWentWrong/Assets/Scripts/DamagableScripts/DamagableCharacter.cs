@@ -26,32 +26,18 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
     
     public int MaxHP { get { return maxHp; } set { maxHp = value; } }
 
-    public virtual void GetDamage(IWeaponable weapon)
-    {
-        lastWeapon = weapon;
-        HP -= weapon.Damage;
-        StartCoroutine(BecomeRed());
-    }
     
     
     // DamagableCharacter unique methods
     public SpriteRenderer sprite;
     public float redTime;
-    private int damageNumber = 0;
     public CreaturesBase creature;
 
-  
-
-    private IEnumerator BecomeRed()
-    {
-        //sprite.color = Color.red;
-        damageNumber++;
-        yield return new WaitForSeconds(redTime);
-        damageNumber--;
-        if (damageNumber == 0)
-            sprite.color = Color.white;
-    }
-
     protected virtual void Die() { }
-
+    
+    public virtual void GetDamage(IWeaponable weapon)
+    {
+        lastWeapon = weapon;
+        HP -= weapon.Damage;
+    }
 }

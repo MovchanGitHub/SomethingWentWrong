@@ -28,9 +28,15 @@ public class PlayerWeaponScript : MonoBehaviour
     public void ChangeWeapon (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (context.control.name == "q")
+        {
             CurrWeapon--;
+            GM.UI.WeaponsBarScript.LeftRotateWeapons();
+        }
         else
+        {
             CurrWeapon++;
+            GM.UI.WeaponsBarScript.RightRotateWeapons();
+        }
     }
 
     public void Attack (UnityEngine.InputSystem.InputAction.CallbackContext context)
