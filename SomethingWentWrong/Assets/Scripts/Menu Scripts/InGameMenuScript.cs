@@ -33,36 +33,33 @@ public class InGameMenuScript : MonoBehaviour
         winScreen.SetActive(false);
         controlsMenu.SetActive(false);
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            // if (inventory.isOpened)
-            //     inventory.gameObject.SetActive(false);
-            // else 
-            if (GM.InventoryManager.isCanvasActive)
-            {
-                GM.InventoryManager.activateInventory(false);
-            }
 
-            if (settingsScript.isOpened)
-            {
-                settingsScript.HideSettings();
-                ShowMenu();
-            }
-            else
-                if (isOpened)
-                {
-                    HideMenu();
-                    PauseGame(false);
-                }
-                else
-                {
-                    PauseGame(true);
-                    ShowMenu();
-                }
+    public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        // if (inventory.isOpened)
+        //     inventory.gameObject.SetActive(false);
+        // else 
+        if (GM.InventoryManager.isCanvasActive)
+        {
+            GM.InventoryManager.activateInventory(false);
         }
-        
+
+        if (settingsScript.isOpened)
+        {
+            settingsScript.HideSettings();
+            ShowMenu();
+        }
+        else
+            if (isOpened)
+        {
+            HideMenu();
+            PauseGame(false);
+        }
+        else
+        {
+            PauseGame(true);
+            ShowMenu();
+        }
     }
 
     public void PauseGame(bool state)
@@ -75,14 +72,14 @@ public class InGameMenuScript : MonoBehaviour
     {
         isOpened = false;
         pauseMenu.SetActive(false);
-        GameManager.GM.InventoryManager.canBeOpened = !isOpened;
+        GM.InventoryManager.canBeOpened = !isOpened;
     }
 
     public void ShowMenu()
     {
         isOpened = true;
         pauseMenu.SetActive(true);
-        GameManager.GM.InventoryManager.canBeOpened = !isOpened;
+        GM.InventoryManager.canBeOpened = !isOpened;
     }
     public void ShowHideMenu()
     {

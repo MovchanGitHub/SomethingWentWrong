@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static GameManager;
 
 public class BulletLogic : WeaponLogic
@@ -10,6 +11,7 @@ public class BulletLogic : WeaponLogic
     private Bullet bullet;
     public Transform shotpoint;
 
+	
     private void Start()
     {
         bullet = projectileSample.GetComponent<Bullet>();

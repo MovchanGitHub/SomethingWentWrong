@@ -49,3 +49,4 @@ MonoBehaviour:
   playerMovement: {fileID: 0}
   inventoryManager: {fileID: 0}
   ui: {fileID: 0}
+  inputSystem: {fileID: 0}

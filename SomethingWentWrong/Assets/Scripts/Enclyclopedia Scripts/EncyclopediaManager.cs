@@ -6,6 +6,8 @@ using UnityEditor;
 
 public class EncyclopediaManager : MonoBehaviour
 {
+    private InputSystem inputSystem;
+
     [SerializeField] private GameObject mainPanel;
     [SerializeField] private GameObject panelWithExtraInfo;
     [SerializeField] private GameObject extraInfoEnemyPanel;
@@ -29,22 +31,18 @@ public class EncyclopediaManager : MonoBehaviour
 
     private bool isOpened;
 
-    private void Start()
+    private void Awake()
     {
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
         InitializeEncyclopedia();
-        selectedTab = new Color32(89, 137, 0, 255);
-        nonSelectedTab = new Color32(124, 192, 0, 255);
+        selectedTab = new Color32(124, 192, 0, 255);
+        nonSelectedTab = new Color32(89, 137, 0, 255);
     }
 
-    private void Update()
+    private void Start()
     {
-        if (Input.GetKeyDown(KeyCode.O))
-        {
-            OpenCloseEncyclopedia();
-        }
-        
+        inputSystem = GameManager.GM.InputSystem;
     }
 
     private void InitializeEncyclopedia()
@@ -141,12 +139,17 @@ public class EncyclopediaManager : MonoBehaviour
 
 
 
-    private void OpenCloseEncyclopedia()
+    public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         isOpened = !isOpened;
         mainPanel.SetActive(isOpened);
         panelWithExtraInfo.SetActive(false);
-        GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
+        if (isOpened)
+            inputSystem.BlockPlayerInputs();
+        else
+            inputSystem.UnblockPlayerInputs();
+
+        //GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
     }
 
 

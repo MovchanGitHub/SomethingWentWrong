@@ -8,12 +8,6 @@ public class PlayerWeaponScript : MonoBehaviour
     [SerializeField] private List<WeaponLogic> weaponLogics;
     private int currWeapon = 0;
 
-    private float timeAfterUse;
-
-    private void Start()
-    {
-        timeAfterUse = 0f;
-    }
 
     private int CurrWeapon
     {
@@ -30,38 +24,23 @@ public class PlayerWeaponScript : MonoBehaviour
                 currWeapon = value;
         }
     }
-    
-    private void Update()
+
+    public void ChangeWeapon (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        timeAfterUse += Time.deltaTime;
-        
-        // Поменять текущее оружие
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            GM.UI.WeaponsBarScript.RightRotateWeapons();
-            CurrWeapon++;
-        }
-        
-        if (Input.GetKeyDown(KeyCode.Q))
-        {
-            GM.UI.WeaponsBarScript.LeftRotateWeapons();
+        if (context.control.name == "q")
             CurrWeapon--;
-        }
-        
-        
-        // Использовать текущее оружие
-        if (Input.GetButtonDown("Fire1") 
-            && (timeAfterUse > weaponLogics[currWeapon].CoolDown)
-            && !GameManager.GM.PlayerMovement.usingWeapon
-            && GameManager.GM.InventoryManager.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType)
-            )
-        {
-            timeAfterUse = 0;
+        else
+            CurrWeapon++;
+    }
+
+    public void Attack (UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        if (weaponLogics[CurrWeapon].ReadyToFire && GameManager.GM.InventoryManager.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType))
             weaponLogics[currWeapon].UseWeapon();
-        }
-        else if (Input.GetButtonUp("Fire1"))
-        {
-            weaponLogics[currWeapon].StopWeapon();
-        }
+    }
+
+    public void StopAttack (UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        weaponLogics[currWeapon].StopWeapon();
     }
 }

@@ -2,9 +2,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class InventoryController : MonoBehaviour
 {
+    private InputSystem inputSystem;
+
     public ItemGrid standartItemGrid;
     [SerializeField] private ItemGrid selectedItemGrid;
     public ItemGrid SelectedItemGrid {
@@ -40,19 +43,28 @@ public class InventoryController : MonoBehaviour
 
     private void Start()
     {
+        inputSystem = GameManager.GM.InputSystem;
+
         canBeOpened = true;
+    }
+
+    public void OpenCloseInventory(InputAction.CallbackContext context)
+    {
+        isCanvasActive = !isCanvasActive;
+        canvasTransform.gameObject.SetActive(isCanvasActive);
+        if (isCanvasActive)
+        {
+            inputSystem.BlockPlayerInputs();
+        }
+        else
+        {
+            inputSystem.UnblockPlayerInputs();
+        }
     }
 
     private void Update()
     {
         dragItemIcon();
-
-
-        if (canBeOpened && Input.GetKeyDown(KeyCode.Tab))
-        {
-            isCanvasActive = !isCanvasActive;
-            canvasTransform.gameObject.SetActive(isCanvasActive);
-        }
 
         if (selectedItemGrid == null)
         {
@@ -65,12 +77,12 @@ public class InventoryController : MonoBehaviour
             handleHighlight();
         }
 
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             onPressLeftMouseButton();
         }
 
-        if (Input.GetMouseButtonDown(1))
+        if (Mouse.current.rightButton.wasPressedThisFrame)
         {
             onPressRightMouseButton();
         }
@@ -192,7 +204,7 @@ public class InventoryController : MonoBehaviour
 
     private Vector2Int getTileGridPosition()
     {
-        Vector2 pos = Input.mousePosition;
+        Vector2 pos = Mouse.current.position.ReadValue();
 
         if (selectedItem != null)
         {
@@ -233,7 +245,7 @@ public class InventoryController : MonoBehaviour
     {
         if (selectedItem != null)
         {
-            rectTransform.position = Input.mousePosition;
+            rectTransform.position = Mouse.current.position.ReadValue();
             rectTransform.SetAsLastSibling();
         }
     }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private IsometricPlayerMovementController playerMovement;
     [SerializeField] private InventoryController inventoryManager;
     [SerializeField] private MiniGMUI ui;
+    [SerializeField] private InputSystem inputSystem;
     [SerializeField] private Camera mainCamera;
 
     private void Awake()
@@ -28,6 +29,7 @@ public class GameManager : MonoBehaviour
     public IsometricPlayerMovementController PlayerMovement { get { return playerMovement; } }
     public InventoryController InventoryManager { get { return inventoryManager; } }
     public MiniGMUI UI { get { return ui; } }
+    public InputSystem InputSystem { get { return inputSystem; } }
     public Camera Camera { get { return mainCamera; } }
 
     public void GameOver(string message)
@@ -41,20 +43,5 @@ public class GameManager : MonoBehaviour
         SurvivalManager.gameObject.SetActive(false);
 
         playerMovement.gameObject.SetActive(false);
-    }
-
-    private void Update()
-    {
-        // player rush attack
-        if (Input.GetMouseButtonDown(1))
-            PlayerMovement.Rush();
-        
-        // player run
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-            PlayerMovement.Run();
-        
-        // player walk (stop running)
-        if (Input.GetKeyUp(KeyCode.LeftShift))
-            PlayerMovement.Walk();
     }
 }

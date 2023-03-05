@@ -3,10 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR;
+using UnityEngine.InputSystem;
 using static GameManager;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
+    private PlayerInput playerInput;
+
     public bool IsAbleToMove = true;
 
     [SerializeField]
@@ -62,6 +65,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     private void Start()
     {
+        playerInput = GM.InputSystem.GetComponent<PlayerInput>();
+
         lastHorizontalInput = 1;
         lastVerticalInput = -1;
         SetWalkingSpeed();
@@ -76,7 +81,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         SetWalkingSpeed();
     }
 
-    public void Rush()
+    public void Rush(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (!GM.SurvivalManager.CanRush())
             return;
@@ -93,22 +98,23 @@ public class IsometricPlayerMovementController : MonoBehaviour
         StartCoroutine(StartRushing());
     }
 
-    public void Run()
+    private IEnumerator Running()
     {
-        if (!(GM.SurvivalManager.CanRun() && !usingWeapon)) return;
-            SetRunningSpeed();
-    }
-
-    public void Walk()
-    {
-        if (isRushing) return;
+        SetRunningSpeed();
+        while (GM.SurvivalManager.CanRun())
+            yield return null;
         SetWalkingSpeed();
     }
 
-    private void Update()
+    public void Run(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (isRunning && !GM.SurvivalManager.CanRun())
-            Walk();
+        if (!GM.SurvivalManager.CanRun() || usingWeapon) return;
+        StartCoroutine(Running());
+    }
+
+    public void Walk(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    {
+        SetWalkingSpeed();
     }
 
     private void FixedUpdate()
@@ -126,8 +132,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
             
                 if (!usingWeapon)
                 {
-                    horizontalInput = Input.GetAxisRaw("Horizontal");
-                    verticalInput = Input.GetAxisRaw("Vertical");
+                    horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
+                    verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
                 }
             
                 if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)

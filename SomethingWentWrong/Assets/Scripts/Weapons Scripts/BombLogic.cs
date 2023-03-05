@@ -20,10 +20,12 @@ public class BombLogic : WeaponLogic
         bomb = projectileSample.GetComponent<Bomb>();
     }
 
+    
 
     private void ThrowBomb()
     {
         Instantiate(bomb, transform.position, quaternion.identity);
+        StartCoroutine(GoCoolDown());
     }
     
 
