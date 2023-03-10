@@ -235,6 +235,7 @@ public class ItemGrid : MonoBehaviour
                 {
                     Destroy(inventoryItemSlots[i, j].gameObject);
                     cleanGridRef(inventoryItemSlots[i, j]);
+                    GameManager.GM.InventoryManager.AmmoCounter[ammoType.itemName]--;
                     return true;
                 }
             }
