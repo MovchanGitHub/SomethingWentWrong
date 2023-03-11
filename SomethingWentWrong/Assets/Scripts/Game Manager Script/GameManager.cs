@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private MiniGMUI ui;
     [SerializeField] private InputSystem inputSystem;
     [SerializeField] private Camera mainCamera;
+    [SerializeField] private EnvironmentSpawnScript EnvironmentSpawner;
 
     private void Awake()
     {
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     public MiniGMUI UI { get { return ui; } }
     public InputSystem InputSystem { get { return inputSystem; } }
     public Camera Camera { get { return mainCamera; } }
+    public EnvironmentSpawnScript Environment { get { return EnvironmentSpawner; } }
 
     public void GameOver(string message)
     {

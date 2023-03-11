@@ -1,7 +1,10 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class ResourceScript : MonoBehaviour, IDamagable
 {
@@ -9,6 +12,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int hp;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
+
+    public int positionIndex;
     
     public int HP
     {
@@ -40,8 +45,16 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         HP -=  weapon.Damage;
     }
-    
-    
+
+    private void Awake()
+    {
+        if (!GM || !GM.Environment)
+            positionIndex = -1;
+        else
+            positionIndex = GM.Environment.PositionIndex;
+    }
+
+
     // Resource unique methods
     [SerializeField] private int lootDropBarrier = 5;
     [SerializeField] private CreaturesBase creature;
@@ -71,8 +84,11 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         if (!creature.isOpenedInEcnyclopedia)
         {
-            GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
+            GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
+
+        GM.Environment.PurgePointWithIndex(positionIndex);
+        
         Destroy(gameObject);
     }
 
