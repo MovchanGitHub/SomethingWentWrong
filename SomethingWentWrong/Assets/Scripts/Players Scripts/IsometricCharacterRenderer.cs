@@ -43,7 +43,7 @@ public class IsometricCharacterRenderer : MonoBehaviour
 
     public void PlayShoot()
     {
-        GM.PlayerMovement.usingWeapon = true;
+        GM.PlayerMovement.usingWeapon = true;        
         _animator.SetTrigger("Shoot");
     }
     

@@ -41,8 +41,9 @@ public class PlayerWeaponScript : MonoBehaviour
 
     public void Attack (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (weaponLogics[CurrWeapon].ReadyToFire && GameManager.GM.InventoryManager.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType))
-            weaponLogics[currWeapon].UseWeapon();
+        if (weaponLogics[CurrWeapon].ReadyToFire && !GM.PlayerMovement.usingWeapon)
+            if (!weaponLogics[currWeapon].UseWeapon())
+                weaponLogics[currWeapon].CanNotUseWeapon();
     }
 
     public void StopAttack (UnityEngine.InputSystem.InputAction.CallbackContext context)

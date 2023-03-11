@@ -79,7 +79,7 @@ public class EnvironmentSpawnScript : MonoBehaviour
     {
         while (spawnedResources != simultaneouslyAmount)
         {
-            positionIndex = UnityEngine.Random.Range(0, spawnPointsAmount - 1);
+            positionIndex = UnityEngine.Random.Range(0, spawnPointsAmount);
             
             if (isBusy[positionIndex] || 
                 Vector2.Distance(GM.PlayerMovement.transform.position, spawnPoints[positionIndex].position) < 
