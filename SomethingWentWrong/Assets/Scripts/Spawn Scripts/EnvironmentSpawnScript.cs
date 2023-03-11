@@ -15,12 +15,38 @@ public class EnvironmentSpawnScript : MonoBehaviour
     private bool[] isBusy;
 
     [SerializeField] private List<GameObject> objectSamples;
+    [SerializeField] private List<int> resourcesProbabilities;
+    
+    private GameObject[] objectSamplesWithProbabilities;
 
     private int positionIndex;
 
     private int spawnedResources;
 
     [SerializeField] private int minDistanceToPlayer;
+
+    private int probabilitesSum = 0;
+
+    private void Awake()
+    {
+        for (int i = 0; i < resourcesProbabilities.Count; ++i)
+        {
+            probabilitesSum += resourcesProbabilities[i];
+        }
+        
+        objectSamplesWithProbabilities = new GameObject[probabilitesSum];
+
+        int ind = 0;
+        
+        for (int i = 0; i < resourcesProbabilities.Count; ++i)
+        {
+            for (int j = 0; j < resourcesProbabilities[i]; ++j)
+            {
+                objectSamplesWithProbabilities[ind] = objectSamples[i];
+                ind++;
+            }
+        }
+    }
 
     public int PositionIndex
     {
@@ -79,7 +105,7 @@ public class EnvironmentSpawnScript : MonoBehaviour
             Debug.Log("spawned resource at position " + positionIndex);
 
             Instantiate(
-                objectSamples[UnityEngine.Random.Range(0, objectSamples.Count - 1)],
+                objectSamplesWithProbabilities[UnityEngine.Random.Range(0, probabilitesSum)],
                 spawnPoints[positionIndex].position,
                 Quaternion.identity);
             
