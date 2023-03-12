@@ -26,6 +26,7 @@ TagManager:
   - Bomb
   - Building
   - screenShake
+  - Plant
   layers:
   - Default
   - TransparentFX

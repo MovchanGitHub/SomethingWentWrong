@@ -52,9 +52,9 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
     
-    private void DropItem(int dropCount)
+    private void DropItem(int dropAmount)
     {
-        int amountOfDrop = dropCount;
+        int amountOfDrop = Mathf.Clamp(dropAmount, 0, dropCount);
         while (amountOfDrop > 0)
         {
             amountOfDrop--;
