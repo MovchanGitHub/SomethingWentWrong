@@ -60,11 +60,11 @@ public class SurvivalManager : MonoBehaviour
         {
             //player dies :/
             if (currentHunger <= 0)
-                GameManager.GM.GameOver("Вы умерли от голода");
+                GM.GameOver("Вы умерли от голода");
             if (currentThirst <= 0)
-                GameManager.GM.GameOver("Вы умерли от жажды");
+                GM.GameOver("Вы умерли от жажды");
             if (currentAnoxaemia <= 0)
-                GameManager.GM.GameOver("Вы умерли от нехватки кислорода");
+                GM.GameOver("Вы умерли от нехватки кислорода");
             //transform.gameObject.SetActive(false);
         }
 

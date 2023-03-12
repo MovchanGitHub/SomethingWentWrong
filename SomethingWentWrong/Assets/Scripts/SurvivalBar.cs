@@ -7,20 +7,51 @@ using static GameManager;
 public class SurvivalBar : MonoBehaviour
 {
     private Image _hungerMeter, _thirstMeter, _staminaMeter, _anoxaemiaMeter;
+    private Image _hungerMeterIncrease, _thirstMeterIncrease, _anoxaemiaMeterIncrease;
 
     private void Start()
     {
-        _hungerMeter = transform.GetChild(0).GetComponent<Image>();
-        _thirstMeter = transform.GetChild(1).GetComponent<Image>();
-        _staminaMeter = transform.GetChild(2).GetComponent<Image>();
-        _anoxaemiaMeter = transform.GetChild(3).GetComponent<Image>();
+        _hungerMeterIncrease = transform.GetChild(0).GetComponent<Image>();
+        _hungerMeter = transform.GetChild(1).GetComponent<Image>();
+        _thirstMeterIncrease = transform.GetChild(2).GetComponent<Image>();
+        _thirstMeter = transform.GetChild(3).GetComponent<Image>();
+        _staminaMeter = transform.GetChild(4).GetComponent<Image>();
+        _anoxaemiaMeterIncrease = transform.GetChild(5).GetComponent<Image>();
+        _anoxaemiaMeter = transform.GetChild(6).GetComponent<Image>();
     }
 
-    private void FixedUpdate()
+    private void Update()
     {
         _hungerMeter.fillAmount = GM.SurvivalManager.HungerPercent;
         _thirstMeter.fillAmount = GM.SurvivalManager.ThirstPercent;
         _staminaMeter.fillAmount = GM.SurvivalManager.StaminaPercent;
         _anoxaemiaMeter.fillAmount = GM.SurvivalManager.AnoxaemiaPercent;
+    }
+
+    public void ShowIncreasmentFromFood (ItemTypeFood item)
+    {
+        Debug.Log(12);
+        StartCoroutine(UpdateIncreasmentFromFood(item));
+        Debug.Log(21);
+    }
+    private IEnumerator UpdateIncreasmentFromFood(ItemTypeFood item)
+    {
+        while (true)
+        {
+            _hungerMeterIncrease.fillAmount = (float)item.satiationEffect / 100 + _hungerMeter.fillAmount;
+            _thirstMeterIncrease.fillAmount = (float)item.slakingOfThirstEffect / 100 + _thirstMeter.fillAmount;
+            _anoxaemiaMeterIncrease.fillAmount = (float)item.oxygenRecovery / 100 + _anoxaemiaMeter.fillAmount;
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public void RemoveIncreasmentFromFood()
+    {
+        StopCoroutine(nameof(UpdateIncreasmentFromFood));
+        StopAllCoroutines();
+        Debug.Log(3);
+        _hungerMeterIncrease.fillAmount = 0;
+        _thirstMeterIncrease.fillAmount = 0;
+        _anoxaemiaMeterIncrease.fillAmount = 0;
     }
 }
