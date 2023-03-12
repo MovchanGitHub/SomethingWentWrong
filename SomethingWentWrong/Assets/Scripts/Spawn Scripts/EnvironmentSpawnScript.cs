@@ -102,7 +102,7 @@ public class EnvironmentSpawnScript : MonoBehaviour
                 }
             }
             
-            Debug.Log("spawned resource at position " + positionIndex);
+            //Debug.Log("spawned resource at position " + positionIndex);
 
             Instantiate(
                 objectSamplesWithProbabilities[UnityEngine.Random.Range(0, probabilitesSum)],

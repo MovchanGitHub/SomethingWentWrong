@@ -48,10 +48,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void Awake()
     {
-        if (!GM || !GM.Environment)
+        if (!GM || !GM.Spawner)
             positionIndex = -1;
         else
-            positionIndex = GM.Environment.PositionIndex;
+            positionIndex = GM.Spawner.Resources.PositionIndex;
     }
 
 
@@ -87,7 +87,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
             GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
 
-        GM.Environment.PurgePointWithIndex(positionIndex);
+        GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
         Destroy(gameObject);
     }

@@ -18,6 +18,26 @@ public class EnemiesSpawnSystem : MonoBehaviour
     // кол-во врагов которое должно заспавниться
     [SerializeField] private int enemiesToSpawn;
     private int spawnedEnemies = 0;
+
+    private int existingEnemies = 0;
+
+    public int ExistingEnemies
+    {
+        get
+        {
+            return existingEnemies;
+        }
+        
+        set
+        {
+            existingEnemies = value;
+            if (existingEnemies == 0)
+            {
+                Debug.Log("Волна противников подавлена");
+                // событие происходящее при убийстве всех заспавненных врагов (e.g смена музыки)
+            }
+        }
+    }
     
     [SerializeField] private float timeBetweenSpawn;
     [SerializeField] private float deltaTimeBetweenSpawn;
@@ -73,9 +93,10 @@ public class EnemiesSpawnSystem : MonoBehaviour
             newEnemyMovement.moveToLightHouse = true;
             newEnemyMovement.GoToTarget();
 
-            Debug.Log("spawned enemy at position " + positionIndex);
+            //Debug.Log("spawned enemy at position " + positionIndex);
             
             spawnedEnemies++;
+            existingEnemies++;
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
 
@@ -88,11 +109,11 @@ public class EnemiesSpawnSystem : MonoBehaviour
     private int FindPointFarFromPlayer()
     {
         int positionIndex = UnityEngine.Random.Range(0, spawnPointsAmount);
-        
+
         if (Vector2.Distance(
-                   GM.PlayerMovement.transform.position, 
-                   spawnPoints[positionIndex].position) 
-               < minDistanceToPlayer)
+                GM.PlayerMovement.transform.position,
+                spawnPoints[positionIndex].position)
+            < minDistanceToPlayer)
         {
             int startIndex = positionIndex;
 
@@ -115,7 +136,4 @@ public class EnemiesSpawnSystem : MonoBehaviour
 
         return positionIndex;
     }
-    
-    
-    
 }
