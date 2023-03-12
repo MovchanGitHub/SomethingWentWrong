@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using static GameManager;
 
@@ -78,5 +79,13 @@ public class EnemyMovement : MonoBehaviour
         lookAt.ChangeLookAtPoint(patrolPoints[currentPointIndex].position, patrolPoints[newPointIndex].position);
         currentPointIndex = newPointIndex;
         isWaiting = false;
+    }
+
+    private void OnDestroy()
+    {
+        if (isEnemyNight)
+        {
+            GM.Spawner.Enemies.ExistingEnemies--;
+        }
     }
 }

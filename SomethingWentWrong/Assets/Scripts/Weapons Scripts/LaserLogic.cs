@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using static GameManager;
@@ -14,82 +15,141 @@ public class LaserLogic : WeaponLogic
     
     [SerializeField] private LayerMask damagableLayers;
 
-    [SerializeField] [ColorUsage(true, true)]
-    private List<Color> laserColor;
+    //[SerializeField] [ColorUsage(true, true)]
+    //private List<Color> laserColors;
+
+    [SerializeField]
+    [ColorUsage(true, true)]
+    private Color laserColor;
+    
+    [SerializeField]
+    [ColorUsage(true, true)]
+    private Color laserEmptyColor;
 
     private bool isShooting;
 
-    private Renderer _renderer;
-    private MaterialPropertyBlock _propBlock;
+    private Renderer _laserRenderer;
+    private MaterialPropertyBlock _laserPropBlock;
 
     [SerializeField] private GameObject startVFX;
     [SerializeField] private GameObject endVFX;
     
     [SerializeField] private float laserDamageSpeed;
 
+    // сколько времени можно использовать лазер до того как его надо перезарядить 
+    [SerializeField] private float timeBeforeReload;
+    
+    // сколько времени лазер используется с последней перезарядки
+    private float usedTime;
+
+    private float timeToDamage;
+
     private void Start()
     {
+        usedTime = timeBeforeReload + 1f;
         cam = Camera.main;
         lineRenderer = GetComponentInChildren<LineRenderer>();
-        _renderer = lineRenderer.GetComponent<Renderer>();
-        _propBlock = new MaterialPropertyBlock();
+        _laserRenderer = lineRenderer.GetComponent<Renderer>();
+        _laserPropBlock = new MaterialPropertyBlock();
         laser = projectileSample.GetComponent<Laser>();
-        laser.LaserColor = laserColor[0];
+        laser.LaserColor = laserColor;
     }
 
-    void Update()
-    {
-        _renderer.GetPropertyBlock(_propBlock);
-        
-        // Changing colors of the laser
-        //if (Input.GetKeyDown("1"))
-        //{
-        //    _propBlock.SetColor("_Color", laserColor[0]);
-        //    laser.LaserColor = laserColor[0];
-        //}
-        //else if (Input.GetKeyDown("2"))
-        //{
-        //    _propBlock.SetColor("_Color", laserColor[1]);
-        //    laser.LaserColor = laserColor[1];
-        //}
-        //else if (Input.GetKeyDown("3"))
-        //{
-        //    _propBlock.SetColor("_Color", laserColor[2]);
-        //    laser.LaserColor = laserColor[2];
-        //}
-        
-        _renderer.SetPropertyBlock(_propBlock);
-    }
+    private bool allowReuseLaser = true;
+
+    [SerializeField] private float intensity;
     
     IEnumerator EnableLaser()
     {
+        if (!allowReuseLaser)
+            yield break;
+
+        allowReuseLaser = false;
         isShooting = true;
         GM.PlayerMovement.isoRenderer.PlayShoot();
             
         yield return new WaitForSeconds(0.2f);
+        allowReuseLaser = true;
+
+        if (!isShooting)
+        {
+            StopWeapon();
+            yield break;
+        }
+        
+        GM.PlayerMovement.usingWeapon = true;   
+        
+        startVFX.SetActive(true);
+        endVFX.SetActive(true);
         GM.PlayerMovement.SetWalkingSpeed();
         lineRenderer.enabled = true;
         
         StartCoroutine(UpdateLaser());
+        
+        
+        
+        timeToDamage = laserDamageSpeed;
+    }
+
+    private bool tryToReloadLaser()
+    {
+        if (GM.InventoryManager.standartItemGrid.checkAmmo(AmmoType))
+        {
+            StartCoroutine(ReloadLaser());
+            return true;
+        }
+
+        return false;
+    }
+
+    private IEnumerator ReloadLaser()
+    {
+        isShooting = false;
+        DisableLaser();
+        isShooting = true;
+        usedTime = 0f;
+        yield return new WaitForSeconds(0.1f);
+        
+        if (!isShooting) yield break;
+        StartCoroutine(EnableLaser());
     }
 
     IEnumerator UpdateLaser()
     {
-        if (!isShooting)
-        {
-            StopWeapon();
-        }
-        else
-        {
-            startVFX.SetActive(true);
-            endVFX.SetActive(true);
-        }
-
-        float timeToDamage = laserDamageSpeed;
-
-        
         while (isShooting)
         {
+            usedTime += Time.deltaTime;
+            
+            if (usedTime > timeBeforeReload)
+            {
+                StopWeapon();
+                tryToReloadLaser();
+                break;
+            }
+            
+            _laserRenderer.GetPropertyBlock(_laserPropBlock);
+            _laserPropBlock.SetColor("_Color", Color.Lerp(laserEmptyColor, laser.LaserColor, (timeBeforeReload - usedTime) / timeBeforeReload) * intensity);
+            /*// Changing colors of the laser
+            if (Input.GetKeyDown("1"))
+            {
+                _laserPropBlock.SetColor("_Color", laserColors[0]);
+                laser.LaserColor = laserColors[0];
+            }
+            else if (Input.GetKeyDown("2"))
+            {
+                _laserPropBlock.SetColor("_Color", laserColors[1]);
+                laser.LaserColor = laserColors[1];
+            }
+            else if (Input.GetKeyDown("3"))
+            {
+                _laserPropBlock.SetColor("_Color", laserColors[2]);
+                laser.LaserColor = laserColors[2];
+            }*/
+        
+            _laserRenderer.SetPropertyBlock(_laserPropBlock);
+            
+            
+            
             Vector2 mousePos = cam.ScreenToWorldPoint(Mouse.current.position.ReadValue());
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, mousePos);
@@ -131,6 +191,15 @@ public class LaserLogic : WeaponLogic
         lineRenderer.enabled = false;
     }
     
-    override public void UseWeapon() { StartCoroutine(EnableLaser()); }
+    override public bool UseWeapon()
+    {
+        if (usedTime <= timeBeforeReload)
+        {
+            StartCoroutine(EnableLaser());
+            return true;
+        }
+        
+        return tryToReloadLaser();
+    }
     override public void StopWeapon() { DisableLaser(); }
 }

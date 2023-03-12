@@ -15,7 +15,7 @@ public class DayNightCycle : MonoBehaviour
     private Light2D globalLight;
     public float currentTime;
     [HideInInspector] public DayTime dayCycle;
-    private SpawnSystem spawnSystem;
+    //private SpawnSystem spawnSystem;
 
     [SerializeField] private float sunriseDuration;
     [SerializeField] private float dayDuration;
@@ -39,6 +39,8 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private float nightIntensity;
     [SerializeField] private float midnightIntensity;
 
+    [SerializeField] private EnemiesSpawnSystem ess;
+
     private float timePassedPercent;
 
     private void Awake()
@@ -48,7 +50,7 @@ public class DayNightCycle : MonoBehaviour
 
     void Start() 
     {
-        spawnSystem = GM.Rocket.GetComponentInChildren<SpawnSystem>();
+        //spawnSystem = GM.Rocket.GetComponentInChildren<SpawnSystem>();
 
         currentTime = 0;
         dayCycle = DayTime.Day;
@@ -91,7 +93,8 @@ public class DayNightCycle : MonoBehaviour
                  {
                      currentTime = 0;
                      dayCycle = DayTime.Night;
-                     spawnSystem.spawnEnabled = true;
+                     StartCoroutine(ess.SpawnEnemies());
+                     //spawnSystem.spawnEnabled = true;
                      break;
                  }
              
@@ -140,7 +143,7 @@ public class DayNightCycle : MonoBehaviour
                          GM.UI.SkillsMenu.SetActive(true);
                      }
                      
-                     spawnSystem.spawnEnabled = false;
+                     //spawnSystem.spawnEnabled = false;
                      break;
                  }
              

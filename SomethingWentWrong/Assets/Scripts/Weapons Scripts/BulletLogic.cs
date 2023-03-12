@@ -26,7 +26,16 @@ public class BulletLogic : WeaponLogic
         yield return new WaitForSeconds(.3f);
         GM.PlayerMovement.isoRenderer.PlayStopShooting();
     }
-    
-    override public void UseWeapon() { StartCoroutine(ThrowBullet()); }
+
+    override public bool UseWeapon()
+    {
+        if (GM.InventoryManager.standartItemGrid.checkAmmo(AmmoType))
+        {
+            StartCoroutine(ThrowBullet());
+            return true;
+        }
+
+        return false;
+    }
     override public void StopWeapon() {  }
 }

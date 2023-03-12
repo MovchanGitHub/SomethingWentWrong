@@ -17,7 +17,7 @@ public class OffScreenTracker : MonoBehaviour
 
             Vector3 screenCenter = new Vector3(Screen.width, Screen.height, 0) / 2;
 
-            Vector3 targetPositionScreenPoint = Camera.main.WorldToScreenPoint(core.transform.position);
+            Vector3 targetPositionScreenPoint = GameManager.GM.Camera.WorldToScreenPoint(core.transform.position);
 
             Vector3 dir = (targetPositionScreenPoint - screenCenter).normalized;
 
