@@ -36,6 +36,13 @@ public class InventoryController : MonoBehaviour
 
     [HideInInspector] public bool canBeOpened;
 
+    private Dictionary<string, int> ammoCounter;
+
+    public Dictionary<string, int> AmmoCounter
+    {
+        get => ammoCounter;
+    }
+
     private void Awake()
     {
         inventoryHighlight = GetComponent<InventoryHighlight>();
@@ -46,6 +53,8 @@ public class InventoryController : MonoBehaviour
         inputSystem = GameManager.GM.InputSystem;
 
         canBeOpened = true;
+
+        ammoCounter = new Dictionary<string, int>{ { "Стрельника", 0}, { "Бомбалика", 0}, { "Тенносей", 0} };
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)
@@ -176,6 +185,10 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.placeItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
+        if (item.TypeOfThisItem == ItemType.Weapon)
+        {
+            AmmoCounter[item.itemName]++;
+        }
     }
 
     private void onPressLeftMouseButton()
