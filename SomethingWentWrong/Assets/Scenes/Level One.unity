@@ -610,7 +610,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 165191086770567848, guid: 323d0d5d77f931d4caa5305171aacba1, type: 3}
   m_PrefabInstance: {fileID: 248676538}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 404198133}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 507cd3fa1fb28f94cbe8e63f7f7ab9ba, type: 3}
@@ -664,7 +664,7 @@ PrefabInstance:
     - target: {fileID: 2599615222366475725, guid: 6c14cbc85d5ce4f4fa586ca53a4785dd, type: 3}
       propertyPath: core
       value: 
-      objectReference: {fileID: 404198133}
+      objectReference: {fileID: 1263891061}
     - target: {fileID: 2599615222366475726, guid: 6c14cbc85d5ce4f4fa586ca53a4785dd, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -675,7 +675,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2599615222366475726, guid: 6c14cbc85d5ce4f4fa586ca53a4785dd, type: 3}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 2599615222366475726, guid: 6c14cbc85d5ce4f4fa586ca53a4785dd, type: 3}
       propertyPath: m_AnchorMax.x
@@ -1979,9 +1979,9 @@ PolygonCollider2D:
       - {x: -0.16824722, y: 0.2623551}
       - {x: 0.28518677, y: -0.1476304}
       - {x: 1.2788405, y: 0.35206008}
---- !u!1 &404198133 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5039453115786968518, guid: 323d0d5d77f931d4caa5305171aacba1, type: 3}
+--- !u!4 &404198136 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 322748558391231247, guid: 323d0d5d77f931d4caa5305171aacba1, type: 3}
   m_PrefabInstance: {fileID: 248676538}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &404345594
@@ -45049,6 +45049,37 @@ PolygonCollider2D:
       - {x: -0.16499758, y: 0.32698798}
       - {x: -0.1567049, y: -1.1412424}
       - {x: 0.30048442, y: -0.74435914}
+--- !u!1 &1263891061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1263891062}
+  m_Layer: 6
+  m_Name: TrackerPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1263891062
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1263891061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 1.3, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 404198136}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1282878802
 GameObject:
   m_ObjectHideFlags: 0
