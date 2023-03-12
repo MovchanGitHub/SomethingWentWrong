@@ -9,6 +9,7 @@ using static GameManager;
 public class PlayerDamagable : DamagableCharacter
 {
     [SerializeField] private Slider slider;
+    private int damageNumber = 0;
 
     private void Awake()
     {
@@ -37,6 +38,17 @@ public class PlayerDamagable : DamagableCharacter
         base.GetDamage(weapon);
         if (weapon.Type == WeaponType.Bomb)
             StartCoroutine(GameManager.GM.Camera.GetComponent<CameraShake>().Shake(.15f, .3f));
+        StartCoroutine(BecomeRed());
+    }
+    
+    private IEnumerator BecomeRed()
+    {
+        sprite.color = Color.red;
+        damageNumber++;
+        yield return new WaitForSeconds(redTime);
+        damageNumber--;
+        if (damageNumber == 0)
+            sprite.color = Color.white;
     }
 
     private void OnDestroy()

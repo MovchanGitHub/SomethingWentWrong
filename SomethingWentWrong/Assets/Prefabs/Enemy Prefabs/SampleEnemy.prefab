@@ -71,7 +71,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d61f8d036c06f9479d6872cd944ec1a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resourceTag: Resource
+  plantTag: Plant
   playerTag: Player
   buildingTag: Building
   damagableLayers:

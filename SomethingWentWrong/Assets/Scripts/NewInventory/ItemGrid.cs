@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
-    [HideInInspector] public static float tileWidth = 36;
-    [HideInInspector] public static float tileHeight = 36;
+    [HideInInspector] public static float tileWidth = 72;
+    [HideInInspector] public static float tileHeight = 72;
 
     [HideInInspector] public static float tileSpriteWidth = 24;
     [HideInInspector] public static float tileSpriteHeight = 24;
@@ -235,6 +235,7 @@ public class ItemGrid : MonoBehaviour
                 {
                     Destroy(inventoryItemSlots[i, j].gameObject);
                     cleanGridRef(inventoryItemSlots[i, j]);
+                    GameManager.GM.InventoryManager.AmmoCounter[ammoType.itemName]--;
                     return true;
                 }
             }

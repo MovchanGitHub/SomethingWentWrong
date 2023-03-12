@@ -28,15 +28,22 @@ public class PlayerWeaponScript : MonoBehaviour
     public void ChangeWeapon (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         if (context.control.name == "q")
+        {
             CurrWeapon--;
+            GM.UI.WeaponsBarScript.LeftRotateWeapons();
+        }
         else
+        {
             CurrWeapon++;
+            GM.UI.WeaponsBarScript.RightRotateWeapons();
+        }
     }
 
     public void Attack (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (weaponLogics[CurrWeapon].ReadyToFire && GameManager.GM.InventoryManager.standartItemGrid.checkAmmo(weaponLogics[currWeapon].AmmoType))
-            weaponLogics[currWeapon].UseWeapon();
+        if (weaponLogics[CurrWeapon].ReadyToFire && !GM.PlayerMovement.usingWeapon)
+            if (!weaponLogics[currWeapon].UseWeapon())
+                weaponLogics[currWeapon].CanNotUseWeapon();
     }
 
     public void StopAttack (UnityEngine.InputSystem.InputAction.CallbackContext context)

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
+using static GameManager;
 
 
 public class BombLogic : WeaponLogic
@@ -27,8 +28,17 @@ public class BombLogic : WeaponLogic
         Instantiate(bomb, transform.position, quaternion.identity);
         StartCoroutine(GoCoolDown());
     }
-    
 
-    override public void UseWeapon() { ThrowBomb(); }
+
+    override public bool UseWeapon()
+    {
+        if (GM.InventoryManager.standartItemGrid.checkAmmo(AmmoType))
+        {
+            ThrowBomb();
+            return true;
+        }
+
+        return false;
+    }
     override public void StopWeapon() {  }
 }
