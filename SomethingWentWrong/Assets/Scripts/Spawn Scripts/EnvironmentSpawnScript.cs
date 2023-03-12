@@ -96,7 +96,7 @@ public class EnvironmentSpawnScript : MonoBehaviour
 
                     if (positionIndex == startIndex)
                     {
-                        Debug.Log("it is impossible to spawn a resource");
+                        Debug.LogError("it is impossible to spawn a resource");
                         return;
                     }
                 }
