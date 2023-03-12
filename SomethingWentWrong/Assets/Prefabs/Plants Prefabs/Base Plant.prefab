@@ -546,7 +546,7 @@ GameObject:
   - component: {fileID: 4563948575474062212}
   m_Layer: 6
   m_Name: Base Plant
-  m_TagString: Untagged
+  m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647

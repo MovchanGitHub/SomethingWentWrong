@@ -16,7 +16,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     
     
     // EnemyAttack's unique values
-    public string resourceTag;
+    public string plantTag;
     public string playerTag;
     public string buildingTag;
     public LayerMask damagableLayers;
@@ -30,7 +30,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == resourceTag || col.tag == playerTag || col.tag == buildingTag)
+        if (col.tag == plantTag || col.tag == playerTag || col.tag == buildingTag)
         {
             StartCoroutine(Attack());
         }
@@ -38,7 +38,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.tag == resourceTag || other.tag == playerTag || other.tag == buildingTag)
+        if (other.tag == plantTag || other.tag == playerTag || other.tag == buildingTag)
         {
             enemyLogic.canMove = true;
         }
@@ -49,7 +49,6 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         enemyLogic.canMove = false;
         while (!enemyLogic.canMove)
         {
-            yield return new WaitForSeconds(coolDown);
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1.5f, damagableLayers);
 
             foreach (Collider2D hitObject in hitObjects)
@@ -58,7 +57,8 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
                 {
                     hitObject.GetComponent<IDamagable>().GetDamage(this);
                 }
-            } 
+            }
+            yield return new WaitForSeconds(coolDown);
         }
     }
 }
