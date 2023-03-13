@@ -3570,9 +3570,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isOpened: 0
-  title: {fileID: 8943010418470480646}
-  newScoreTitle: {fileID: 0}
-  maxScore: {fileID: 0}
+  title: {fileID: 874715326216358307}
+  newScoreTitle: {fileID: 4744642036981158974}
+  maxScore: {fileID: 9201129653611205564}
   dayNightCycle: {fileID: 0}
   MaxScore: 0
 --- !u!114 &4307913357667752237
@@ -4665,7 +4665,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2007551454964785976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15888,7 +15888,7 @@ GameObject:
   - component: {fileID: 9108603540097709431}
   - component: {fileID: 4744642036981158974}
   m_Layer: 0
-  m_Name: NewScore
+  m_Name: NewScoreTitle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
