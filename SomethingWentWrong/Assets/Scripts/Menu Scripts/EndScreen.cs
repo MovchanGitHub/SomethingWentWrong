@@ -32,7 +32,6 @@ public class EndScreen: MonoBehaviour
     
     public void ShowDeathScreen(string message) {
         var days = dayNightCycle.DayCount;
-        maxScore.text = $"Рекорд: {MaxScore}";
         foreach (var window in windows)
             window.SetActive(false);
         
@@ -40,6 +39,9 @@ public class EndScreen: MonoBehaviour
             MaxScore = days;
             newScoreTitle.gameObject.SetActive(true);
         }
+        
+        maxScore.text = $"Рекорд: {MaxScore}";
+
         isOpened = true;
         if (message == "Вы победили")
             title.color = Color.green;

@@ -32,7 +32,7 @@ public class DayNightCycle : MonoBehaviour
         get => dayCount;
         set {
             dayCount = value;
-            score.text = $"Дней: {value - 1}";
+            score.text = $"День: {value}";
         }
     }
 
