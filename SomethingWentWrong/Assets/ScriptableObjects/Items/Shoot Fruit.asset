@@ -12,7 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3266eca772aad05429a6da0908fa4435, type: 3}
   m_Name: Shoot Fruit
   m_EditorClassIdentifier: 
-  itemName: "\u0421\u0442\u0440\u0435\u043B\u044C\u043D\u0438\u043A\u0430"
+  width: 1
+  height: 1
+  itemName: bullet
   maximumAmount: 20
   itemDescription: 
   TypeOfThisItem: 1

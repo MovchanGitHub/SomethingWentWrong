@@ -45,13 +45,14 @@ public class InventoryController : MonoBehaviour
     }
     
     
-    private void UpdateWeaponBar(string key, int value)
+    public void UpdateWeaponBar(string key, int value)
     {
         switch (key)
         {
-            case "Стрельника": GM.UI.WeaponsBarScript.ammoCount1.text = value.ToString(); break;
-            case "Бомбалика": GM.UI.WeaponsBarScript.ammoCount2.text = value.ToString(); break;
-            case "Тенносей": GM.UI.WeaponsBarScript.ammoCount3.text = value.ToString(); break;  
+            case "crystal": GM.UI.WeaponsBarScript.ammoCount1.text = value.ToString();break;
+            case "bomb": GM.UI.WeaponsBarScript.ammoCount2.text = value.ToString(); break;
+            case "bullet": GM.UI.WeaponsBarScript.ammoCount3.text = value.ToString(); break;
+            default: Debug.LogError(key); break;
         }
     }
 
@@ -66,7 +67,7 @@ public class InventoryController : MonoBehaviour
 
         canBeOpened = true;
 
-        ammoCounter = new Dictionary<string, int>{ { "Стрельника", 0}, { "Бомбалика", 0}, { "Тенносей", 0} };
+        ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)
@@ -171,14 +172,7 @@ public class InventoryController : MonoBehaviour
         Destroy(itemToInsert.gameObject);
         newItem = null;
 
-        if (posOnGrid == null)
-        {
-            return false;
-        }
-        else
-        {
-            return true;
-        }
+        return !(posOnGrid == null);
     }
 
     public void insertItem(ItemsBase item)

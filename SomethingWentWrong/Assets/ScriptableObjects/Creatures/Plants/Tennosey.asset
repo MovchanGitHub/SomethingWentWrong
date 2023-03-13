@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e30b4f5d2e4344da589e0a49e47896, type: 3}
   m_Name: Tennosey
   m_EditorClassIdentifier: 
-  name: "\u0422\u0435\u043D\u043D\u043E\u0441\u0435\u0439"
+  name: crystal
   description: "\u0417\u0435\u043B\u0435\u043D\u044B\u0439 \u0441\u0432\u0435\u0442\u044F\u0449\u0438\u0439\u0441\u044F
     \u043A\u0430\u043C\u0435\u043D\u044C. \u0412\u043E\u0437\u043C\u043E\u0436\u043D\u043E
     \u0440\u0430\u0434\u0438\u043E\u0430\u043A\u0442\u0438\u0432\u043D\u044B\u0439"
