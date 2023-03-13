@@ -36,7 +36,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string message)
     {
-        UI.GetComponent<DeathScreen>().ShowDeathScreen(message);
+        UI.GetComponent<EndScreen>().ShowDeathScreen(message);
 
         playerMovement.IsAbleToMove = false;
 

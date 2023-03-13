@@ -13,8 +13,7 @@ public class PauseEffect : MonoBehaviour
 
     private InGameMenuScript _inGameMenuScript;
     private SettingsScript _settingsScript;
-    private DeathScreen _deathScreen;
-    private WinScreen _winScreen;
+    private EndScreen _deathScreen;
     void Start()
     {
         audioMixer.SetFloat("Cutoff", _cutoffValue);
@@ -23,13 +22,12 @@ public class PauseEffect : MonoBehaviour
 
         _inGameMenuScript = GetComponent<InGameMenuScript>();
         _settingsScript = GetComponent<SettingsScript>();
-        _deathScreen = GetComponent<DeathScreen>();
-        _winScreen = GetComponent<WinScreen>();
+        _deathScreen = GetComponent<EndScreen>();
     }
 
     void Update()
     {
-        if (_inGameMenuScript.isOpened || _settingsScript.isOpened || _deathScreen.isOpened || _winScreen.isOpened)
+        if (_inGameMenuScript.isOpened || _settingsScript.isOpened || _deathScreen.isOpened)
         {
             if (_cutoffValue > 460f) _cutoffValue -= (_cutoffValue - 452f) / (TransitionTime * 2);
             else _cutoffValue = 452f;

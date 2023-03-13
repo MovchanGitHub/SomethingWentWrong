@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
@@ -23,7 +24,17 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private float nightDuration;
     [SerializeField] private float midnightDuration;
 
+
+    public TextMeshProUGUI score;
     private int dayCount = 0;
+    public int DayCount
+    {
+        get => dayCount;
+        set {
+            dayCount = value;
+            score.text = $"Дней: {value - 1}";
+        }
+    }
 
     //public RetroMaskScript retroMask;
 
@@ -134,13 +145,14 @@ public class DayNightCycle : MonoBehaviour
                      currentTime = 0;
                      dayCycle = DayTime.Sunrise;
                      
-                     dayCount++;
+                     DayCount++;
                      if (dayCount >= 3)
-                         GM.UI.WinScreen.SetActive(true);
+                         GM.GameOver("Вы победили");
                      else
                      {
                          GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
-                         GM.UI.SkillsMenu.SetActive(true);
+                         if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)
+                             GM.UI.SkillsMenu.SetActive(true);
                      }
                      
                      //spawnSystem.spawnEnabled = false;
