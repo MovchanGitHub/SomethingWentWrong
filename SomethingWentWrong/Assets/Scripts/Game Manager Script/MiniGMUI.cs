@@ -6,8 +6,7 @@ public class MiniGMUI : MonoBehaviour
 {
     [SerializeField] GameObject settingsMenu;
     [SerializeField] GameObject pauseMenu;
-    [SerializeField] GameObject deathScreen;
-    [SerializeField] GameObject winScreen;
+    [SerializeField] GameObject endScreen;
     [SerializeField] GameObject controlsMenu;
 
     [SerializeField] GameObject skillsMenu;
@@ -25,8 +24,7 @@ public class MiniGMUI : MonoBehaviour
 
     public GameObject PauseMenu { get { return pauseMenu; } }
     public GameObject SettingsMenu { get { return settingsMenu; } }
-    public GameObject DeathScreen { get { return deathScreen; } }
-    public GameObject WinScreen { get { return winScreen; } }
+    public GameObject EndScreen { get { return endScreen; } }
     public GameObject ControlsMenu { get { return controlsMenu; } }
 
     public GameObject SkillsMenu { get { return skillsMenu; } }

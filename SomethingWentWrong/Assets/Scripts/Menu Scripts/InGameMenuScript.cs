@@ -9,7 +9,7 @@ public class InGameMenuScript : MonoBehaviour
 {
     GameObject pauseMenu;
     // public InventoryManager inventory;
-    GameObject deathScreen;
+    GameObject endScreen;
     GameObject winScreen;
     GameObject controlsMenu;
     SettingsScript settingsScript;
@@ -24,13 +24,11 @@ public class InGameMenuScript : MonoBehaviour
     private void Start()
     {
         pauseMenu = GM.UI.PauseMenu;
-        deathScreen = GM.UI.DeathScreen;
-        winScreen = GM.UI.WinScreen;
+        endScreen = GM.UI.EndScreen;
         controlsMenu = GM.UI.ControlsMenu;
 
         pauseMenu.SetActive(isOpened);
-        deathScreen.SetActive(false);
-        winScreen.SetActive(false);
+        endScreen.SetActive(false);
         controlsMenu.SetActive(false);
     }
 

@@ -48,7 +48,7 @@ public class LightHouse : MonoBehaviour, IDamagable
     private void OnDestroy()
     {
         healthBar.value = 0;
-        GM.GameOver("Вы проиграли (ракета уничтожена)");
+        GM.GameOver("Ракета уничтожена");
         GM.UnlinkRocket();
     }
 }

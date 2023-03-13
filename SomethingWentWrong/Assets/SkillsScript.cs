@@ -81,44 +81,44 @@ public class SkillsScript : MonoBehaviour
         }
     }
 
-    public void ImproveHealth(){
+    public void ImproveHealth() {
         playerDamagable.MaxHP += MAX_HEALTH;
         playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
     }
-    public void ImproveLightHouseHealth(){
+    public void ImproveLightHouseHealth() {
         lightHouse.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
     }
-    public void ImproveStamina(){
+    public void ImproveStamina() {
         survivalManager.IncreaseMaxStamina(MAX_STAMINA);
         skillsWindow.SetActive(false);
     }
-    public void ImproveStaminaRecovery(){
+    public void ImproveStaminaRecovery() {
         survivalManager.IncreaseStaminaRecharging(STAMINA_RECOVERY);
         skillsWindow.SetActive(false);
     }
-    public void ImproveAnoxemia(){
+    public void ImproveAnoxemia() {
         survivalManager.IncreaseAnoxemiaEndurance(ANOXEMIA_ENDURANCE);
         skillsWindow.SetActive(false);
     }
-    public void ImproveMaxAnoxemia(){
+    public void ImproveMaxAnoxemia() {
         survivalManager.IncreaseMaxAnoxemia(MAX_ANOXEMIA);
         skillsWindow.SetActive(false);
     }
-    public void ImproveHunger(){
+    public void ImproveHunger() {
         survivalManager.IncreaseHungerEndurance(HUNGER_ENDURANCE);
         skillsWindow.SetActive(false);
     }
-    public void ImproveMaxHunger(){
+    public void ImproveMaxHunger() {
         survivalManager.IncreaseMaxHunger(MAX_HUNGER);
         skillsWindow.SetActive(false);
     }
-    public void ImproveThrist(){
+    public void ImproveThrist() {
         survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
         skillsWindow.SetActive(false);
     }
-    public void ImproveMaxThrist(){
+    public void ImproveMaxThrist() {
         survivalManager.IncreaseMaxThirst(MAX_THIRST);
         skillsWindow.SetActive(false);
     }
