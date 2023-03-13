@@ -3109,7 +3109,7 @@ RectTransform:
   - {fileID: 2007551454964785976}
   - {fileID: 2455084879806962253}
   m_Father: {fileID: 2756128440079393890}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3422,8 +3422,8 @@ RectTransform:
   - {fileID: 6058126844113248955}
   - {fileID: 4476997290635285249}
   - {fileID: 2599615220794904293}
-  - {fileID: 591909774207578505}
   - {fileID: 6854328986730885905}
+  - {fileID: 591909774207578505}
   - {fileID: 4307913357548301604}
   - {fileID: 7482615149057573415}
   m_Father: {fileID: 0}
@@ -3619,9 +3619,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 79895f2004ef747138f67fbcea93d1e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bombsCount: 0
-  crystalCount: 0
-  sunflowersCount: 0
   weapon1: {fileID: 6899399408556548074}
   weapon2: {fileID: 4812277386265407503}
   weapon3: {fileID: 7570028699680733210}
@@ -4668,7 +4665,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &2007551454964785976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -17478,7 +17475,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077163993399005933, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_RootOrder
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5077163993399005933, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_AnchorMax.x
@@ -17534,7 +17531,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5077163993399005933, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -18
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5077163993399005933, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_AnchoredPosition.y

@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static GameManager;
 
 public class InventoryController : MonoBehaviour
 {
@@ -41,6 +42,17 @@ public class InventoryController : MonoBehaviour
     public Dictionary<string, int> AmmoCounter
     {
         get => ammoCounter;
+    }
+    
+    
+    private void UpdateWeaponBar(string key, int value)
+    {
+        switch (key)
+        {
+            case "Стрельника": GM.UI.WeaponsBarScript.ammoCount1.text = value.ToString(); break;
+            case "Бомбалика": GM.UI.WeaponsBarScript.ammoCount2.text = value.ToString(); break;
+            case "Тенносей": GM.UI.WeaponsBarScript.ammoCount3.text = value.ToString(); break;  
+        }
     }
 
     private void Awake()
@@ -187,7 +199,7 @@ public class InventoryController : MonoBehaviour
         selectedItemGrid.placeItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
         if (item.TypeOfThisItem == ItemType.Weapon)
         {
-            AmmoCounter[item.itemName]++;
+            UpdateWeaponBar(item.itemName, ++ammoCounter[item.itemName]);
         }
     }
 
