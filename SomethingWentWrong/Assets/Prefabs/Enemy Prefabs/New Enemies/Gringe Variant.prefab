@@ -25,7 +25,7 @@ PrefabInstance:
       objectReference: {fileID: 455747190, guid: 421506d9ffb137e4e8e272f99a4d0a70, type: 3}
     - target: {fileID: 819197558646750934, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Name
-      value: Gringe
+      value: Gringe Variant
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_RootOrder
@@ -88,7 +88,7 @@ Animator:
   m_GameObject: {fileID: 2235180738624815615}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8520f6871ee2085408d789c45d077630, type: 2}
+  m_Controller: {fileID: 22100000, guid: 270f75d3281457049abe7eceb33fe21c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

@@ -10,6 +10,7 @@ public class EnemyAnimator : MonoBehaviour
     private int yId;
     private int isMovingId;
     private int attackId;
+    private int stopAttackId;
 
     private void Awake()
     {
@@ -18,6 +19,7 @@ public class EnemyAnimator : MonoBehaviour
         yId = Animator.StringToHash("Y");
         isMovingId = Animator.StringToHash("isMoving");
         attackId = Animator.StringToHash("Attack");
+        stopAttackId = Animator.StringToHash("StopAttack");
     }
 
     public void ChangeXY(Vector3 newXY)
@@ -39,5 +41,10 @@ public class EnemyAnimator : MonoBehaviour
     public void AttackTrigger()
     {
         anim.SetTrigger(attackId);
+    }
+
+    public void StopAttackTrigger()
+    {
+        anim.SetTrigger(stopAttackId);
     }
 }

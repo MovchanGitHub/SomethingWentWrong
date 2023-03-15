@@ -36,14 +36,20 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string message)
     {
-        UI.GetComponent<EndScreen>().ShowDeathScreen(message);
+        if (UI)
+            UI.GetComponent<EndScreen>().ShowDeathScreen(message);
 
-        playerMovement.IsAbleToMove = false;
+        if (playerMovement)
+        {
+            playerMovement.IsAbleToMove = false;
+            playerMovement.gameObject.SetActive(false);
 
-        inventoryManager.canBeOpened = false;
+        }
 
-        SurvivalManager.gameObject.SetActive(false);
+        if (inventoryManager)
+            inventoryManager.canBeOpened = false;
 
-        playerMovement.gameObject.SetActive(false);
+        if (SurvivalManager)
+            SurvivalManager.gameObject.SetActive(false);
     }
 }

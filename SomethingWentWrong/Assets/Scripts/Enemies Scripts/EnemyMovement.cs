@@ -32,7 +32,8 @@ public class EnemyMovement : MonoBehaviour
 
     private void Start()
     {
-        es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
+        if (es && es.Animator)
+            es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
     }
 
     private void Update()
@@ -85,17 +86,21 @@ public class EnemyMovement : MonoBehaviour
     
     private IEnumerator Wait()
     {
-        es.Animator.IdleAnim();
+        if (es &&es.Animator)
+            es.Animator.IdleAnim();
 
         isWaiting = true;
         yield return new WaitForSeconds(waitTime);
         int newPointIndex = (currentPointIndex + 1) % patrolPoints.Length;
         lookAt.ChangeLookAtPoint(patrolPoints[currentPointIndex].position, patrolPoints[newPointIndex].position);
         currentPointIndex = newPointIndex;
-        es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
+        if (es &&es.Animator)
+        {
+            es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
+            es.Animator.WalkAnim();
+
+        }
         isWaiting = false;
-        
-        es.Animator.WalkAnim();
     }
 
     private void OnDestroy()
