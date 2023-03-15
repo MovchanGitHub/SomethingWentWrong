@@ -22,6 +22,8 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     public LayerMask damagableLayers;
     private EnemyMovement enemyLogic;
     public float coolDown;
+
+    public EnemyScript es;
     
     private void Awake()
     {
@@ -32,6 +34,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     {
         if (col.tag == plantTag || col.tag == playerTag || col.tag == buildingTag)
         {
+            StopCoroutine(Attack());
             StartCoroutine(Attack());
         }
     }
@@ -44,11 +47,16 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         }
     }
 
+    private float attackAnimationTime = 0.85f;
+
     private IEnumerator Attack()
     {
         enemyLogic.canMove = false;
         while (!enemyLogic.canMove)
         {
+            es.Animator.AttackTrigger();
+            yield return new WaitForSeconds(attackAnimationTime);
+            
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1.5f, damagableLayers);
 
             foreach (Collider2D hitObject in hitObjects)
