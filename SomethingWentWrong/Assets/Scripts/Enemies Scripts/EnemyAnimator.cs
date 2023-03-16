@@ -11,6 +11,7 @@ public class EnemyAnimator : MonoBehaviour
     private int isMovingId;
     private int attackId;
     private int stopAttackId;
+    public float attackAnimationDuration;
 
     private void Awake()
     {

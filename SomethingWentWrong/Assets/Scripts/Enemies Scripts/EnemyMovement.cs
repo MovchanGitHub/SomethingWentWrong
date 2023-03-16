@@ -19,7 +19,23 @@ public class EnemyMovement : MonoBehaviour
     public bool isPatrolling;
     private bool isWaiting;
 
-    public bool canMove;
+    private bool canMove;
+
+    public bool CanMove
+    {
+        get => canMove;
+        set
+        {
+            canMove = value;
+            if (es && es.Animator)
+            {
+                if (canMove)
+                    es.Animator.IdleAnim();
+                else 
+                    es.Animator.WalkAnim();
+            }
+        }
+    }
 
     private EnemyNoticeTarget lookAt;
 
@@ -38,11 +54,13 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
+        if (!canMove) return;
+
         if (isPatrolling)
         {
             Patrol();
         }
-        else if (canMove)
+        else 
         {
             GoToTarget();
         }
@@ -96,8 +114,8 @@ public class EnemyMovement : MonoBehaviour
         currentPointIndex = newPointIndex;
         if (es &&es.Animator)
         {
-            es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
             es.Animator.WalkAnim();
+            es.Animator.ChangeXY(patrolPoints[currentPointIndex].position - transform.position);
 
         }
         isWaiting = false;

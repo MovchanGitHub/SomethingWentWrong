@@ -44,23 +44,27 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     {
         if (other.tag == plantTag || other.tag == playerTag || other.tag == buildingTag)
         {
-            enemyLogic.canMove = true;
+            if (es && es.Animator)
+            {
+                es.Animator.WalkAnim();
+            }
+
+            enemyLogic.CanMove = true;
         }
     }
-
-    private float attackAnimationTime = 0.85f;
 
     private IEnumerator Attack()
     {
         isAttacking = true;
-        enemyLogic.canMove = false;
-        while (!enemyLogic.canMove)
+        enemyLogic.CanMove = false;
+        while (!enemyLogic.CanMove)
         {
-            if (es &&es.Animator)
+            if (es && es.Animator)
+            {
                 es.Animator.AttackTrigger();
-            yield return new WaitForSeconds(attackAnimationTime);
-            if (es &&es.Animator)
-                es.Animator.StopAttackTrigger();
+                yield return new WaitForSeconds(es.Animator.attackAnimationDuration);
+                //es.Animator.StopAttackTrigger();
+            }
             
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1.5f, damagableLayers);
 
