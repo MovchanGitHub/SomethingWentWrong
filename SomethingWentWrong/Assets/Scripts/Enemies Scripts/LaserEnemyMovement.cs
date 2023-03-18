@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class LaserEnemyMovement : MonoBehaviour
 {
-    private GameObject actualTarget;
+    public GameObject actualTarget;
     private GameObject playerTarget;
     private GameObject rocketTarget;
 

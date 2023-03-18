@@ -15,9 +15,9 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
 
     [SerializeField] private LayerMask damagableLayers;
 
-    private GameObject playerTarget;
+    private GameObject actualTarget;
     [SerializeField] private GameObject laser;
-    private float distanceToPlayer;
+    private float distanceToTarget;
     private LaserEnemyMovement enemyLogic;
     public float triggerAttackDistance = 2f;
     private float angle;
@@ -31,18 +31,13 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         enemyLogic = GetComponentInParent<LaserEnemyMovement>();
     }
 
-    void Start()
-    {
-        playerTarget = GameManager.GM.PlayerMovement.gameObject;
-    }
-
     void Update()
     {
-        distanceToPlayer = Vector2.Distance(transform.position, playerTarget.transform.position);
-        direction = playerTarget.transform.position - transform.position;
+        distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
+        direction = enemyLogic.actualTarget.transform.position - transform.position;
         direction.Normalize();
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 80;
-        if (distanceToPlayer < triggerAttackDistance && enemyLogic.canMove)
+        if (distanceToTarget < triggerAttackDistance && enemyLogic.canMove)
         {
             enemyLogic.canMove = false;
             StartCoroutine(LaserAttack());
