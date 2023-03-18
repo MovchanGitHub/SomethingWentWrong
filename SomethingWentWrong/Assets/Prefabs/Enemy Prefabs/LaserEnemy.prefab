@@ -228,6 +228,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+    - {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
 --- !u!4 &4615848117298448133 stripped
 Transform:
@@ -270,5 +271,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cac621e1dc16445be950042749229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damagableLayers:
+    serializedVersion: 2
+    m_Bits: 576
   laser: {fileID: 1197105545250727984}
   triggerAttackDistance: 2
+  laserDamageSpeed: 0.1
