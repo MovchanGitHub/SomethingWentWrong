@@ -80,4 +80,10 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         yield return new WaitForSeconds(1f);
         enemyLogic.canMove = true;
     }
+
+    public void stopAttack()
+    {
+        laser.gameObject.SetActive(false);
+        StopAllCoroutines();
+    }
 }

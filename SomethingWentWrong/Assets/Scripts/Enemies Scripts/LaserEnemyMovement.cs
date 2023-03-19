@@ -12,6 +12,17 @@ public class LaserEnemyMovement : MonoBehaviour
     private float distance;
     private float triggerDistance = 5f;
     [HideInInspector] public bool canMove = true;
+    private Rigidbody2D rigidBody2D;
+    private LaserEnemyAttack attackLogic;
+
+    [SerializeField] private float strength = 15;
+    [SerializeField] private float delay = 0.15f;
+
+    private void Awake()
+    {
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        attackLogic = GetComponentInChildren<LaserEnemyAttack>();
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -38,5 +49,23 @@ public class LaserEnemyMovement : MonoBehaviour
         {
             actualTarget = rocketTarget;
         }
+    }
+
+    public void playFeedback(GameObject sender)
+    {
+        StopAllCoroutines();
+        attackLogic.stopAttack();
+        canMove = false;
+        Vector2 direction = ((transform.position - sender.transform.position).normalized);
+        rigidBody2D.AddForce(direction * strength, ForceMode2D.Impulse);
+        StartCoroutine(Reset());
+
+    }
+
+    private IEnumerator Reset()
+    {
+        yield return new WaitForSeconds(delay);
+        rigidBody2D.velocity = Vector3.zero;
+        canMove = true;
     }
 }
