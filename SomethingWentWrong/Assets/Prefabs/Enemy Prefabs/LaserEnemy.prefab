@@ -252,6 +252,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3004b0470f250ea4f99a5f42f1abacc0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  actualTarget: {fileID: 0}
   speed: 2
   canMove: 1
 --- !u!1 &4615848118585917764 stripped
@@ -276,4 +277,4 @@ MonoBehaviour:
     m_Bits: 576
   laser: {fileID: 1197105545250727984}
   triggerAttackDistance: 2
-  laserDamageSpeed: 0.1
+  laserDamageSpeed: 0.08

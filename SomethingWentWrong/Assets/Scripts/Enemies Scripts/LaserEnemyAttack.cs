@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class LaserEnemyAttack : MonoBehaviour, IWeaponable
 {
     // IWeaponable's implementation
@@ -25,6 +26,8 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
     private Vector2 direction;
     [SerializeField] private float laserDamageSpeed;
     private float timeToDamage;
+    private int attackDirection;
+    private int actualAttackDirection;
 
     private void Awake()
     {
@@ -36,20 +39,23 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
         direction = enemyLogic.actualTarget.transform.position - transform.position;
         direction.Normalize();
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg - 80;
+        attackDirection = Random.Range(0, 2) * 2 - 1;
+        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 80;
         if (distanceToTarget < triggerAttackDistance && enemyLogic.canMove)
         {
+            Debug.Log(enemyLogic.actualTarget.name + " - " + direction + " - " + angle);
+            actualAttackDirection = attackDirection;
             enemyLogic.canMove = false;
-            StartCoroutine(LaserAttack());
+            StartCoroutine(LaserAttack(angle));
         }
     }
 
-    private IEnumerator LaserAttack()
+    private IEnumerator LaserAttack(float angle)
     {
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(1f);
         laser.gameObject.SetActive(true);
         Quaternion startRotation = Quaternion.Euler(Vector3.forward * angle);
-        Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + 160));
+        Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 160));
         float rate = 1f;
         laser.transform.rotation = startRotation;
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
@@ -71,6 +77,7 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
             yield return null;
         }
         laser.gameObject.SetActive(false);
+        yield return new WaitForSeconds(1f);
         enemyLogic.canMove = true;
     }
 }
