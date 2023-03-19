@@ -57,7 +57,7 @@ public class AttackPoint : MonoBehaviour, IWeaponable
         {
             if (hitObject.GetComponent<IDamagable>() != null)
             {
-                hitObject.GetComponent<IDamagable>().GetDamage(this);
+                hitObject.GetComponent<IDamagable>().GetDamage(this, GameManager.GM.PlayerMovement.gameObject);
             }
         }
         

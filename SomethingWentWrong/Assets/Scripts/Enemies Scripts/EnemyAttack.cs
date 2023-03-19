@@ -22,6 +22,10 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     public LayerMask damagableLayers;
     private EnemyMovement enemyLogic;
     public float coolDown;
+
+    public EnemyScript es;
+
+    private bool isAttacking;
     
     private void Awake()
     {
@@ -30,7 +34,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.tag == plantTag || col.tag == playerTag || col.tag == buildingTag)
+        if (!isAttacking && (col.tag == plantTag || col.tag == playerTag || col.tag == buildingTag))
         {
             StartCoroutine(Attack());
         }
@@ -40,15 +44,28 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     {
         if (other.tag == plantTag || other.tag == playerTag || other.tag == buildingTag)
         {
-            enemyLogic.canMove = true;
+            if (es && es.Animator)
+            {
+                es.Animator.WalkAnim();
+            }
+
+            enemyLogic.CanMove = true;
         }
     }
 
     private IEnumerator Attack()
     {
-        enemyLogic.canMove = false;
-        while (!enemyLogic.canMove)
+        isAttacking = true;
+        enemyLogic.CanMove = false;
+        while (!enemyLogic.CanMove)
         {
+            if (es && es.Animator)
+            {
+                es.Animator.AttackTrigger();
+                yield return new WaitForSeconds(es.Animator.attackAnimationDuration);
+                //es.Animator.StopAttackTrigger();
+            }
+            
             Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, 1.5f, damagableLayers);
 
             foreach (Collider2D hitObject in hitObjects)
@@ -60,5 +77,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
             }
             yield return new WaitForSeconds(coolDown);
         }
+
+        isAttacking = false;
     }
 }

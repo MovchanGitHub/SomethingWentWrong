@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour, IWeaponable
     {
         if (col.GetComponent<IDamagable>() != null && col.tag != "Player") 
         {
-            col.GetComponent<IDamagable>().GetDamage(this);
+            col.GetComponent<IDamagable>().GetDamage(this, gameObject);
             Destroy(gameObject);
         }
     }

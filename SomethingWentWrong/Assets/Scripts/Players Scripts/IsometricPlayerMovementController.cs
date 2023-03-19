@@ -212,7 +212,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         {
             StopCoroutine(StartRushing());
             SetWalkingSpeed();
-            obj.GetDamage(rushAttack);
+            obj.GetDamage(rushAttack, GameManager.GM.PlayerMovement.gameObject);
         }
     }
 }

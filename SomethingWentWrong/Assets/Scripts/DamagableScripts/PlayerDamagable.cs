@@ -35,7 +35,7 @@ public class PlayerDamagable : DamagableCharacter
         }
     }
     
-    public override void GetDamage(IWeaponable weapon)
+    public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         base.GetDamage(weapon);
         if (weapon.Type == WeaponType.Bomb)

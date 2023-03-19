@@ -52,7 +52,7 @@ public class Bomb : MonoBehaviour, IWeaponable
 
         foreach (Collider2D hitObject in hitObjects)
         {
-            hitObject.transform.GetComponentInParent<IDamagable>().GetDamage(this);
+            hitObject.transform.GetComponentInParent<IDamagable>().GetDamage(this, gameObject);
         }
 
         Destroy(gameObject);
