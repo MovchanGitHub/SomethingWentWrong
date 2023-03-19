@@ -79,6 +79,7 @@ public class SkillsScript : MonoBehaviour
                 case 9: ImproveThrist(); break;
                 case 10: ImproveMaxThrist(); break;
         }
+        StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
 
     public void ImproveHealth() {
