@@ -16,12 +16,6 @@ public class PlayerShaderLogic : MonoBehaviour
         _propBlock = new MaterialPropertyBlock();
     }
 
-    private void Update()
-    {
-        if (Input.GetButtonDown("Fire1"))
-            StartCoroutine(Upgrade());
-    }
-
     private float timePassed = 0f;
     [SerializeField] private float upgradeTime = 0.75f;
     [SerializeField] private float redTime = 0.5f;
@@ -30,7 +24,6 @@ public class PlayerShaderLogic : MonoBehaviour
 
     public IEnumerator Upgrade()
     {
-        Debug.Log("Upgrade called");
         _renderer.GetPropertyBlock(_propBlock);
         _propBlock.SetInt("_Upgrade", 1);
         _renderer.SetPropertyBlock(_propBlock);
