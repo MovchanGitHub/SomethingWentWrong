@@ -16,7 +16,7 @@ public class LaserEnemyMovement : MonoBehaviour
     private LaserEnemyAttack attackLogic;
 
     [SerializeField] private float strength = 15;
-    [SerializeField] private float delay = 0.15f;
+    [SerializeField] private float delay = 0.3f;
 
     private void Awake()
     {

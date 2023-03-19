@@ -43,7 +43,6 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 80;
         if (distanceToTarget < triggerAttackDistance && enemyLogic.canMove)
         {
-            Debug.Log(enemyLogic.actualTarget.name + " - " + direction + " - " + angle);
             actualAttackDirection = attackDirection;
             enemyLogic.canMove = false;
             StartCoroutine(LaserAttack(angle));
@@ -52,7 +51,7 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
 
     private IEnumerator LaserAttack(float angle)
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.2f);
         laser.gameObject.SetActive(true);
         Quaternion startRotation = Quaternion.Euler(Vector3.forward * angle);
         Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 160));
@@ -77,7 +76,7 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
             yield return null;
         }
         laser.gameObject.SetActive(false);
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(0.5f);
         enemyLogic.canMove = true;
     }
 

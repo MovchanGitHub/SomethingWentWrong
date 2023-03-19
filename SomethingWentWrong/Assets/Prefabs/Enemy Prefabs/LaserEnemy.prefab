@@ -256,7 +256,7 @@ MonoBehaviour:
   actualTarget: {fileID: 0}
   speed: 2
   canMove: 1
-  strength: 15
+  strength: 10
   delay: 0.15
 --- !u!212 &4615848118547667784 stripped
 SpriteRenderer:

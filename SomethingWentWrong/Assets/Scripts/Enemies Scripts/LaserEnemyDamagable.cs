@@ -34,11 +34,13 @@ public class LaserEnemyDamagable : DamagableCharacter
         esl = transform.parent.GetComponentInChildren<EnemyShaderLogic>();
     }
 
-    public override void GetDamage(IWeaponable weapon)
+    public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         base.GetDamage(weapon);
-        enemyLogic.playFeedback(GameManager.GM.PlayerMovement.gameObject);
-
+        if (sender != null)
+        {
+            enemyLogic.playFeedback(sender);
+        }
     }
 
 

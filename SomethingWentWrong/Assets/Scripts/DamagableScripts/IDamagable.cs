@@ -6,5 +6,5 @@ public interface IDamagable
 {
     abstract int HP { get; set; }
     abstract int MaxHP { get; set; }
-    public void GetDamage(IWeaponable weapon);
+    public void GetDamage(IWeaponable weapon, GameObject sender = null);
 }

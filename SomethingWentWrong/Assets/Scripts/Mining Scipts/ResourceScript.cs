@@ -41,7 +41,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     public int MaxHP { get { throw new System.NotSupportedException("Don`t use Plants` MaxHP getter! >:("); } set { throw new System.NotSupportedException("Don`t use Plants` MaxHP setter! >:("); } }
     
-    public void GetDamage(IWeaponable weapon)
+    public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         HP -=  weapon.Damage;
     }

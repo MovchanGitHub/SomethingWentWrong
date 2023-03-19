@@ -35,7 +35,7 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
 
     protected virtual void Die() { }
     
-    public virtual void GetDamage(IWeaponable weapon)
+    public virtual void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         lastWeapon = weapon;
         HP -= weapon.Damage;
