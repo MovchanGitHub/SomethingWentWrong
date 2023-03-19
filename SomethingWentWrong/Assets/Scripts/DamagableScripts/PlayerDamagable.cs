@@ -10,10 +10,12 @@ public class PlayerDamagable : DamagableCharacter
 {
     [SerializeField] private Slider slider;
     private int damageNumber = 0;
+    private PlayerShaderLogic psl;
 
     private void Awake()
     {
         maxHp = HP;
+        psl = transform.parent.GetComponentInChildren<PlayerShaderLogic>();
     }
 
     public override int HP
@@ -38,18 +40,18 @@ public class PlayerDamagable : DamagableCharacter
         base.GetDamage(weapon);
         if (weapon.Type == WeaponType.Bomb)
             StartCoroutine(GameManager.GM.Camera.GetComponent<CameraShake>().Shake(.15f, .3f));
-        StartCoroutine(BecomeRed());
+        StartCoroutine(psl.BecomeRed());
     }
     
-    private IEnumerator BecomeRed()
-    {
-        sprite.color = Color.red;
-        damageNumber++;
-        yield return new WaitForSeconds(redTime);
-        damageNumber--;
-        if (damageNumber == 0)
-            sprite.color = Color.white;
-    }
+    // private IEnumerator BecomeRed()
+    // {
+    //     sprite.color = Color.red;
+    //     damageNumber++;
+    //     yield return new WaitForSeconds(redTime);
+    //     damageNumber--;
+    //     if (damageNumber == 0)
+    //         sprite.color = Color.white;
+    // }
 
     private void OnDestroy()
     {
