@@ -140,6 +140,7 @@ public class SkillsScript : MonoBehaviour
         }
     }
 
+    /* Skill debug
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -147,6 +148,7 @@ public class SkillsScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
             ImproveLightHouseHealth();
     }
+    */
 
     
     public void ImproveHealth() {
