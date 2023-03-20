@@ -19,6 +19,7 @@ public class SkillsScript : MonoBehaviour
     LightHouse lightHouse;
 
     GameObject[] variantsButtons;
+    GameObject variantMask;
     
     private const int MAX_HEALTH = 5;
     private const float MAX_STAMINA = 1f;
@@ -34,19 +35,27 @@ public class SkillsScript : MonoBehaviour
     private Unity.Mathematics.Random random;
     private int[] variants;
 
+    private int currentVariant;
+
     void Start() {
         skillsWindow = GM.UI.SkillsMenu;
         survivalManager = GM.SurvivalManager;
         lightHouse = GM.Rocket;
-        variantsButtons = new GameObject[] { skillsWindow.transform.GetChild(0).gameObject, skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject };
+        
+        variantMask = skillsWindow.transform.GetChild(0).gameObject;
+        variantsButtons = new GameObject[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
 
+        
         random = new Unity.Mathematics.Random();
         random.InitState(1851936439U);
-        skillsWindow.SetActive(false);
+        skillsWindow.SetActive(true);
         InitSkills();
     }
 
-    public void InitSkills() {
+    public void InitSkills()
+    {
+        currentVariant = 2;
+        
         var setOfVariants = new HashSet<int>();
         while (setOfVariants.Count != 3)
             setOfVariants.Add(random.NextInt(1, 10));
@@ -82,6 +91,25 @@ public class SkillsScript : MonoBehaviour
         StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
 
+    public void OnHighLight(int var)
+    {
+        switch (var)
+        {
+            case 1: 
+                variantMask.gameObject.transform.position = variantsButtons[0].gameObject.transform.position;
+                currentVariant = 1;
+                break;
+            case 2: 
+                variantMask.gameObject.transform.position = variantsButtons[1].gameObject.transform.position;
+                currentVariant = 2;
+                break;
+            case 3: 
+                variantMask.gameObject.transform.position = variantsButtons[2].gameObject.transform.position;
+                currentVariant = 3;
+                break;
+        }
+    }
+    
     public void ImproveHealth() {
         playerDamagable.MaxHP += MAX_HEALTH;
         playerDamagable.HP += MAX_HEALTH;

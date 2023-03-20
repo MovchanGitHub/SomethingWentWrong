@@ -150,7 +150,8 @@ public class DayNightCycle : MonoBehaviour
                          GM.GameOver("Вы победили");
                      else
                      {
-                         GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
+                         // вызов окна скилов
+                         // GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
                          if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)
                              GM.UI.SkillsMenu.SetActive(true);
                      }
