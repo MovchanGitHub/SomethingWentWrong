@@ -23,11 +23,22 @@ public class DamagableCharacter : MonoBehaviour, IDamagable
                 Die();
         }
     }
-    
-    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
 
-    
-    
+    public virtual int MaxHP
+    {
+        get
+        {
+            return maxHp;
+        }
+        set
+        {
+            maxHp = value;
+            
+        }
+    }
+
+
+
     // DamagableCharacter unique methods
     public SpriteRenderer sprite;
     public float redTime;

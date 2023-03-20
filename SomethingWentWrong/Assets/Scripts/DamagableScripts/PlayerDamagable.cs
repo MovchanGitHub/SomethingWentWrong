@@ -34,6 +34,18 @@ public class PlayerDamagable : DamagableCharacter
             slider.value = hp;
         }
     }
+    public override int MaxHP
+    {
+        get
+        {
+            return maxHp;
+        }
+        set
+        {
+            maxHp = value;
+            slider.maxValue = value;
+        }
+    }
     
     public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
@@ -56,6 +68,6 @@ public class PlayerDamagable : DamagableCharacter
     private void OnDestroy()
     {
         slider.value = 0;
-        GM.GameOver("Вы умерли");
+        GM.GameOver("ПОМЕР");
     }
 }

@@ -36,6 +36,16 @@ public class SkillsScript : MonoBehaviour
     private int[] variants;
 
     private int currentVariant;
+    
+    [SerializeField] private float time;
+    private float _timeLeft = 0f;
+
+    private RectTransform hb;
+    private RectTransform rh;
+    private RectTransform ph;
+    private int rocketHealthUpgradeCount = 0;
+    private int playerHealthUpgradeCount = 0;
+    private int summaryUpgradeCount = 0;
 
     void Start() {
         skillsWindow = GM.UI.SkillsMenu;
@@ -48,14 +58,20 @@ public class SkillsScript : MonoBehaviour
         
         random = new Unity.Mathematics.Random();
         random.InitState(1851936439U);
+        
         skillsWindow.SetActive(true);
         InitSkills();
+        
+        hb = GM.UI.HealthBar.GetComponent<RectTransform>();
+        rh = GM.UI.RocketHealthSlider.GetComponent<RectTransform>();
+        ph = GM.UI.PlayerHealthSlider.GetComponent<RectTransform>();
     }
 
     public void InitSkills()
     {
         currentVariant = 2;
-        
+        variantMask.gameObject.transform.position = variantsButtons[1].gameObject.transform.position;
+
         var setOfVariants = new HashSet<int>();
         while (setOfVariants.Count != 3)
             setOfVariants.Add(random.NextInt(1, 10));
@@ -74,9 +90,22 @@ public class SkillsScript : MonoBehaviour
                 case 10: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная жажда"; break;
             }
         }
+        _timeLeft = time;
+        StartCoroutine(SkillTime());
     }
-    public void GetSkill(int button) {
-        switch (variants[button]) {
+
+    public IEnumerator SkillTime()
+    {
+        while (_timeLeft > 0)
+        {
+            _timeLeft -= Time.deltaTime;
+            yield return null;
+        }
+        skillsWindow.SetActive(false);
+    }
+    
+    public void GetSkill() {
+        switch (variants[currentVariant]) {
                 case 1: ImproveHealth(); break;
                 case 2: ImproveLightHouseHealth(); break;
                 case 3: ImproveStamina(); break;
@@ -90,6 +119,7 @@ public class SkillsScript : MonoBehaviour
         }
         StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
+    
 
     public void OnHighLight(int var)
     {
@@ -109,15 +139,39 @@ public class SkillsScript : MonoBehaviour
                 break;
         }
     }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.T))
+            ImproveHealth();
+        if (Input.GetKeyDown(KeyCode.Y))
+            ImproveLightHouseHealth();
+    }
+
     
     public void ImproveHealth() {
         playerDamagable.MaxHP += MAX_HEALTH;
         playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
+        ph.sizeDelta = new Vector2(ph.sizeDelta.x + 3, ph.sizeDelta.y);
+        playerHealthUpgradeCount++;
+        if (playerHealthUpgradeCount > summaryUpgradeCount)
+        {
+            summaryUpgradeCount++;
+            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 3, hb.sizeDelta.y);
+        }
     }
     public void ImproveLightHouseHealth() {
         lightHouse.HP += MAX_HEALTH;
+        lightHouse.MaxHP += MAX_HEALTH;
         skillsWindow.SetActive(false);
+        rh.sizeDelta = new Vector2(rh.sizeDelta.x + 3, rh.sizeDelta.y);
+        rocketHealthUpgradeCount++;
+        if (rocketHealthUpgradeCount > summaryUpgradeCount)
+        {
+            summaryUpgradeCount++;
+            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 3, hb.sizeDelta.y);
+        }
     }
     public void ImproveStamina() {
         survivalManager.IncreaseMaxStamina(MAX_STAMINA);

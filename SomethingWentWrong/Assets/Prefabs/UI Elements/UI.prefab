@@ -1098,6 +1098,7 @@ GameObject:
   - component: {fileID: 4463471685928656861}
   - component: {fileID: 434480367279498317}
   - component: {fileID: 2858200275722312030}
+  - component: {fileID: 872801761}
   m_Layer: 0
   m_Name: Mask
   m_TagString: Untagged
@@ -1163,6 +1164,23 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 0.7
+--- !u!111 &872801761
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 595534050078536424}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: fd74e3cc832be4f0987c6bc175d5b23e, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: fd74e3cc832be4f0987c6bc175d5b23e, type: 2}
+  - {fileID: 7400000, guid: 812facb6fd6b14a60944007186b2e450, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 1
+  m_CullingType: 0
 --- !u!1 &626018993216614978
 GameObject:
   m_ObjectHideFlags: 0
@@ -2384,6 +2402,7 @@ GameObject:
   - component: {fileID: 1782046402536015499}
   - component: {fileID: 2974995877341549494}
   - component: {fileID: 1639845983808949487}
+  - component: {fileID: 1437156460}
   m_Layer: 0
   m_Name: Variant3
   m_TagString: Untagged
@@ -2497,7 +2516,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4307913357667752237}
         m_TargetAssemblyTypeName: SkillsScript, Assembly-CSharp
         m_MethodName: GetSkill
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2506,6 +2525,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1437156460
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1649607567009547358}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1119f7fe0964541e6a3f155261734316, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1961333142751343745
 GameObject:
   m_ObjectHideFlags: 0
@@ -2536,13 +2575,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 7066764630550047978}
-  m_RootOrder: 1
+  m_Father: {fileID: 2278673836600295850}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -102.5, y: 0}
-  m_SizeDelta: {x: -215, y: 32}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 28.5, y: 14.500019}
+  m_SizeDelta: {x: 16.900024, y: 32}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2423192651918568669
 CanvasRenderer:
@@ -3705,6 +3744,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamagable: {fileID: 0}
+  time: 10
 --- !u!114 &1306443031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3721,6 +3761,9 @@ MonoBehaviour:
   pauseMenu: {fileID: 2595107329927128807}
   endScreen: {fileID: 3169179761061187408}
   controlsMenu: {fileID: 6922717102153382208}
+  playerHealthSlider: {fileID: 3947912227355975604}
+  rocketHealthSlider: {fileID: 4687340604520603842}
+  healthBar: {fileID: 3330192075736641506}
   skillsMenu: {fileID: 6436228068595625841}
   weaponsBar: {fileID: 404682486970086704}
   encyclopedia: {fileID: 4307913357548301607}
@@ -3739,9 +3782,9 @@ MonoBehaviour:
   weapon1: {fileID: 6899399408556548074}
   weapon2: {fileID: 4812277386265407503}
   weapon3: {fileID: 7570028699680733210}
-  ammoCount1: {fileID: 0}
-  ammoCount2: {fileID: 0}
-  ammoCount3: {fileID: 0}
+  ammoCount1: {fileID: 4183803974008893098}
+  ammoCount2: {fileID: 2744511494517084536}
+  ammoCount3: {fileID: 2405369921740770871}
 --- !u!1 &2756128440155432772
 GameObject:
   m_ObjectHideFlags: 0
@@ -5149,14 +5192,16 @@ RectTransform:
   m_Children:
   - {fileID: 7066764630550047978}
   - {fileID: 3195138123409507218}
+  - {fileID: 1169542278558003562}
+  - {fileID: 127376674291951706}
   m_Father: {fileID: 2756128440079393890}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 131.05078, y: -37.34375}
-  m_SizeDelta: {x: 262.09998, y: 74.68933}
-  m_Pivot: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 3, y: -3}
+  m_SizeDelta: {x: 262, y: 75}
+  m_Pivot: {x: 0, y: 1}
 --- !u!222 &2241226815029730019
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5497,15 +5542,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7468115073660839759}
-  - {fileID: 127376674291951706}
   m_Father: {fileID: 2278673836600295850}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -22}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 14.999939, y: -14.4999695}
   m_SizeDelta: {x: 232, y: 15}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &3101281935738086691
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -5630,7 +5674,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -100, y: -50}
+  m_AnchoredPosition: {x: -110, y: -50}
   m_SizeDelta: {x: 200, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2197295104027956216
@@ -5661,7 +5705,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\u0414\u043D\u0435\u0439: 0"
+  m_text: "\u0414\u0435\u043D\u044C: 0"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 878ee91fccefc4c0fa7bbaa3b2ad67d3, type: 2}
   m_sharedMaterial: {fileID: -3092758682043495622, guid: 878ee91fccefc4c0fa7bbaa3b2ad67d3, type: 2}
@@ -5695,7 +5739,7 @@ MonoBehaviour:
   m_fontSizeMin: 24
   m_fontSizeMax: 32
   m_fontStyle: 0
-  m_HorizontalAlignment: 2
+  m_HorizontalAlignment: 4
   m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
@@ -11878,15 +11922,14 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5035752476292737096}
-  - {fileID: 1169542278558003562}
   m_Father: {fileID: 2278673836600295850}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 22}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 14.999939, y: 14.5}
   m_SizeDelta: {x: 232, y: 15}
-  m_Pivot: {x: 0.5, y: 1}
+  m_Pivot: {x: 0, y: 0.5}
 --- !u!222 &6438418026677501368
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -13369,6 +13412,7 @@ GameObject:
   - component: {fileID: 2967566354167675183}
   - component: {fileID: 514240908101984692}
   - component: {fileID: 8874480605477918440}
+  - component: {fileID: 1419213894}
   m_Layer: 0
   m_Name: Variant2
   m_TagString: Untagged
@@ -13482,7 +13526,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4307913357667752237}
         m_TargetAssemblyTypeName: SkillsScript, Assembly-CSharp
         m_MethodName: GetSkill
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -13491,6 +13535,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &1419213894
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5674811409380534996}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1c043e2c743b74420a2616c446a34041, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5699940658152453946
 GameObject:
   m_ObjectHideFlags: 0
@@ -15275,6 +15339,7 @@ GameObject:
   - component: {fileID: 6670272843116260495}
   - component: {fileID: 8273137685719563047}
   - component: {fileID: 3605836568001215151}
+  - component: {fileID: 2054480302}
   m_Layer: 0
   m_Name: Varian1
   m_TagString: Untagged
@@ -15388,7 +15453,7 @@ MonoBehaviour:
       - m_Target: {fileID: 4307913357667752237}
         m_TargetAssemblyTypeName: SkillsScript, Assembly-CSharp
         m_MethodName: GetSkill
-        m_Mode: 3
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -15397,6 +15462,26 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+--- !u!95 &2054480302
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7860010913874264351}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1e610e0ac539f4bc9b1a9a7328c4a8ab, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &7906724986644160177
 GameObject:
   m_ObjectHideFlags: 0
@@ -16409,13 +16494,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 3195138123409507218}
-  m_RootOrder: 1
+  m_Father: {fileID: 2278673836600295850}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
-  m_AnchorMax: {x: 1, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: 0}
-  m_SizeDelta: {x: -210, y: 25}
+  m_AnchorMax: {x: 0, y: 0.5}
+  m_AnchoredPosition: {x: 26, y: -14.499985}
+  m_SizeDelta: {x: 21.900024, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &128029365666290187
 CanvasRenderer:

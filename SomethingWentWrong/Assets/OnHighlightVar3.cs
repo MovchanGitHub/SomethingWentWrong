@@ -8,7 +8,7 @@ public class OnHighlightVar3 : StateMachineBehaviour
     // OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        Debug.Log(3);
+        // Debug.Log(3);
         GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().OnHighLight(3);
     }
 

@@ -35,8 +35,19 @@ public class LightHouse : MonoBehaviour, IDamagable
         maxHp = HP;
     }
 
-    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
-    
+    public int MaxHP
+    {
+        get
+        {
+            return maxHp;
+        }
+        set
+        {
+            maxHp = value;
+            healthBar.maxValue = value;
+        }
+    }
+
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         HP -= weapon.Damage;
