@@ -21,7 +21,6 @@ public class OffScreenTracker : MonoBehaviour
         Vector3 targScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), new Vector3(2f,2f,2f), distanceFromOrigin/ 15);
         Arrow.transform.localScale = targScale;
 
-
         Vector3 viewPos = Camera.main.WorldToViewportPoint(core.transform.position);
         if (!(viewPos.x >= 0 && viewPos.x <= 1 && viewPos.y >= 0 && viewPos.y <= 1 && viewPos.z > 0))
         {
