@@ -148,12 +148,13 @@ public class DayNightCycle : MonoBehaviour
                      DayCount++;
                      if (dayCount >= 3)
                          GM.GameOver("Вы победили");
-                     else
-                     {
-                         GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
-                         if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)
-                             GM.UI.SkillsMenu.SetActive(true);
-                     }
+                     // else
+                     // {
+                     //     вызов окна скилов
+                     //     GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
+                     //     if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)
+                     //         GM.UI.SkillsMenu.SetActive(true);
+                     // }
                      
                      //spawnSystem.spawnEnabled = false;
                      break;
