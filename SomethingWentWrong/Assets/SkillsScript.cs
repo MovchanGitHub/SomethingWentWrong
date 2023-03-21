@@ -21,7 +21,7 @@ public class SkillsScript : MonoBehaviour
     GameObject[] variantsButtons;
     GameObject variantMask;
     
-    private const int MAX_HEALTH = 5;
+    private const int MAX_HEALTH = 10;
     private const float MAX_STAMINA = 1f;
     private const float STAMINA_RECOVERY = 1f;
     private const float MAX_ANOXEMIA = 5f;
@@ -140,7 +140,7 @@ public class SkillsScript : MonoBehaviour
         }
     }
 
-    /* Skill debug
+    // Skill debug
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.T))
@@ -148,31 +148,31 @@ public class SkillsScript : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Y))
             ImproveLightHouseHealth();
     }
-    */
+    
 
     
     public void ImproveHealth() {
         playerDamagable.MaxHP += MAX_HEALTH;
         playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
-        ph.sizeDelta = new Vector2(ph.sizeDelta.x + 3, ph.sizeDelta.y);
+        ph.sizeDelta = new Vector2(ph.sizeDelta.x + 5, ph.sizeDelta.y);
         playerHealthUpgradeCount++;
         if (playerHealthUpgradeCount > summaryUpgradeCount)
         {
             summaryUpgradeCount++;
-            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 3, hb.sizeDelta.y);
+            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 5, hb.sizeDelta.y);
         }
     }
     public void ImproveLightHouseHealth() {
         lightHouse.HP += MAX_HEALTH;
         lightHouse.MaxHP += MAX_HEALTH;
         skillsWindow.SetActive(false);
-        rh.sizeDelta = new Vector2(rh.sizeDelta.x + 3, rh.sizeDelta.y);
+        rh.sizeDelta = new Vector2(rh.sizeDelta.x + 5, rh.sizeDelta.y);
         rocketHealthUpgradeCount++;
         if (rocketHealthUpgradeCount > summaryUpgradeCount)
         {
             summaryUpgradeCount++;
-            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 3, hb.sizeDelta.y);
+            hb.sizeDelta = new Vector2(hb.sizeDelta.x + 5, hb.sizeDelta.y);
         }
     }
     public void ImproveStamina() {
