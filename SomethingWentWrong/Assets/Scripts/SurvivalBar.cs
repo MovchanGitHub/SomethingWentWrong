@@ -9,6 +9,13 @@ public class SurvivalBar : MonoBehaviour
     private Image _hungerMeter, _thirstMeter, _staminaMeter, _anoxaemiaMeter;
     private Image _hungerMeterIncrease, _thirstMeterIncrease, _anoxaemiaMeterIncrease;
 
+    private List<Coroutine> increasmentCoroutines;
+
+    private void Awake()
+    {
+        increasmentCoroutines = new List<Coroutine>();
+    }
+
     private void Start()
     {
         _hungerMeterIncrease = transform.GetChild(0).GetComponent<Image>();
@@ -31,7 +38,7 @@ public class SurvivalBar : MonoBehaviour
     public void ShowIncreasmentFromFood (ItemTypeFood item)
     {
         Debug.Log(12);
-        StartCoroutine(UpdateIncreasmentFromFood(item));
+        increasmentCoroutines.Add(StartCoroutine(UpdateIncreasmentFromFood(item)));
         Debug.Log(21);
     }
     private IEnumerator UpdateIncreasmentFromFood(ItemTypeFood item)
@@ -47,8 +54,8 @@ public class SurvivalBar : MonoBehaviour
 
     public void RemoveIncreasmentFromFood()
     {
-        StopCoroutine(nameof(UpdateIncreasmentFromFood));
-        StopAllCoroutines();
+        StopCoroutine(increasmentCoroutines[0]);
+        increasmentCoroutines.RemoveAt(0);
         Debug.Log(3);
         _hungerMeterIncrease.fillAmount = 0;
         _thirstMeterIncrease.fillAmount = 0;
