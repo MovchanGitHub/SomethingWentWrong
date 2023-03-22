@@ -143,10 +143,10 @@ public class SkillsScript : MonoBehaviour
     // Skill debug
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-            ImproveHealth();
-        if (Input.GetKeyDown(KeyCode.Y))
-            ImproveLightHouseHealth();
+        //if (Input.GetKeyDown(KeyCode.T))
+        //    ImproveHealth();
+        //if (Input.GetKeyDown(KeyCode.Y))
+        //    ImproveLightHouseHealth();
     }
     
 
