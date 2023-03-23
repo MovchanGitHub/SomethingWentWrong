@@ -28,6 +28,7 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
     {
         Debug.Log("01");
         GameManager.GM.InventoryManager.SelectedItemGrid = itemGrid;
+        /*
         curPos = itemGrid.getTileGridPosition(eventData.position);
         Debug.Log(itemGrid.getItem(curPos.x, curPos.y)?.itemData.TypeOfThisItem ?? ItemType.NoItem);
         Debug.Log((itemGrid.getItem(curPos.x, curPos.y)?.itemData.TypeOfThisItem ?? ItemType.NoItem) == ItemType.Food);
@@ -37,17 +38,20 @@ public class GridInteract : MonoBehaviour, IPointerEnterHandler, IPointerExitHan
             wasShownIncreasment = true;
             Debug.Log(1);
         }
+        */
     }
 
     public void OnPointerExit(PointerEventData eventData)
     {
         Debug.Log("02");
         GameManager.GM.InventoryManager.SelectedItemGrid = GameManager.GM.InventoryManager.standartItemGrid;
+        /*
         if (wasShownIncreasment)
         {
             survivalBarScript.RemoveIncreasmentFromFood();
             Debug.Log(2);
             wasShownIncreasment = false;
         }
+        */
     }
 }

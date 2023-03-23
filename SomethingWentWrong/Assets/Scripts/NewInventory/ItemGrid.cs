@@ -6,8 +6,8 @@ using UnityEngine.UI;
 
 public class ItemGrid : MonoBehaviour
 {
-    [HideInInspector] public static float tileWidth = 72;
-    [HideInInspector] public static float tileHeight = 72;
+    [HideInInspector] public static float tileWidth = 24;
+    [HideInInspector] public static float tileHeight = 24;
 
     [HideInInspector] public static float tileSpriteWidth = 24;
     [HideInInspector] public static float tileSpriteHeight = 24;
@@ -35,13 +35,13 @@ public class ItemGrid : MonoBehaviour
         rectTransform.sizeDelta = size;
     }
 
-    public Vector2Int getTileGridPosition(Vector2 mousePosition)
+    public Vector2Int getTileGridPosition(Vector2 mousePosition, Vector2 inventoryCanvasScale, Vector2 UICanvasScale)
     {
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 
-        tileGridPosition.x = Mathf.Clamp((int)(positionOnTheGrid.x / tileWidth), 0, gridSizeWidth - 1);
-        tileGridPosition.y = Mathf.Clamp((int)(positionOnTheGrid.y / tileHeight), 0, gridSizeHeight - 1);
+        tileGridPosition.x = Mathf.Clamp((int)(positionOnTheGrid.x / tileWidth / inventoryCanvasScale.x / UICanvasScale.x), 0, gridSizeWidth - 1);
+        tileGridPosition.y = Mathf.Clamp((int)(positionOnTheGrid.y / tileHeight / inventoryCanvasScale.y/ UICanvasScale.y), 0, gridSizeHeight - 1);
 
         if (tileGridPosition.x > gridSizeWidth - 1)
         {

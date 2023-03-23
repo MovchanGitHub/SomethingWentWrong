@@ -17898,11 +17898,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6523717159327542857, guid: 4bc3b336aa492fe469463e5ef700b9ad, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -259
+      value: -497.63
       objectReference: {fileID: 0}
     - target: {fileID: 6523717159327542857, guid: 4bc3b336aa492fe469463e5ef700b9ad, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: -19
+      value: 126
       objectReference: {fileID: 0}
     - target: {fileID: 6523717160510119496, guid: 4bc3b336aa492fe469463e5ef700b9ad, type: 3}
       propertyPath: m_Pivot.x

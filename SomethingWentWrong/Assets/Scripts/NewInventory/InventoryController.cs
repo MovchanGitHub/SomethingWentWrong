@@ -108,10 +108,6 @@ public class InventoryController : MonoBehaviour
         {
             onPressRightMouseButton();
         }
-        if (selectedItem != null)
-        {
-            //Debug.Log(selectedItem.itemData.itemName);
-        }
     }
 
     public void activateInventory(bool isActive)
@@ -181,6 +177,7 @@ public class InventoryController : MonoBehaviour
         InventoryItem itemToInsert = newItem;
         newItem = null;
 
+        itemToInsert.transform.localScale = Vector2.one; //scale update
         Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
 
         if (posOnGrid == null)
@@ -231,7 +228,7 @@ public class InventoryController : MonoBehaviour
             pos.y += (selectedItem.itemData.height - 1) * ItemGrid.tileHeight / 2;
         }
 
-        return selectedItemGrid.getTileGridPosition(pos);
+        return selectedItemGrid.getTileGridPosition(pos, canvasTransform.localScale, canvasTransform.parent.localScale);
     }
 
     private void DropItem(Vector2Int tileGridPosition)
