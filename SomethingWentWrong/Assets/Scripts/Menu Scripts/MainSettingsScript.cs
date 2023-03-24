@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 
 
 public class MainSettingsScript : MonoBehaviour
@@ -23,11 +23,11 @@ public class MainSettingsScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
-        {
-            ShowHideSettings();
-            GetComponentInParent<MainMenuScript>().ShowHideMenu();
-        }
+        // if (Input.GetKeyDown(KeyCode.Escape) && isOpened)
+        // {
+        //     ShowHideSettings();
+        //     GetComponentInParent<MainMenuScript>().ShowHideMenu();
+        // }
     }
     public void ShowHideSettings()
     {
@@ -62,5 +62,4 @@ public class MainSettingsScript : MonoBehaviour
         Screen.SetResolution(Screen.width, Screen.height, is_fullscreen);
         Debug.Log($"Is full screen - {is_fullscreen}");
     }
-
 }

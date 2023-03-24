@@ -19,8 +19,8 @@ public class MainMenuScript : MonoBehaviour
     }
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !isMainMenu)
-            ShowHideMenu();
+        // if (Input.GetKeyDown(KeyCode.Escape) && !isMainMenu)
+        //     ShowHideMenu();
     }
     
     public void ShowHideMenu()
