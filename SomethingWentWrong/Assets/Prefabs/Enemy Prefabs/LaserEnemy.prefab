@@ -182,6 +182,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: LaserEnemy
       objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: delay
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: strength
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -244,7 +252,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
-    - {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
     - {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
 --- !u!4 &4615848117298448133 stripped
@@ -257,7 +264,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 819197558646750934, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_PrefabInstance: {fileID: 5427003297875327468}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &5837978869555572288
+--- !u!114 &1115334608253664447
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -266,25 +273,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4615848117298448186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3004b0470f250ea4f99a5f42f1abacc0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  actualTarget: {fileID: 0}
-  speed: 2
-  canMove: 1
-  strength: 10
-  delay: 0.15
-  es: {fileID: 0}
---- !u!114 &7423016790518864810
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4615848117298448186}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f7b5356f778e0194c80fc3c2b9541064, type: 3}
+  m_Script: {fileID: 11500000, guid: 76f87df2e3022f54da7c267ab9e5a012, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &4615848118547667784 stripped
@@ -350,10 +339,9 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 576
-  laser: {fileID: 1197105545250727984}
-  triggerAttackDistance: 2
-  laserDamageSpeed: 0.08
   es: {fileID: 0}
+  laser: {fileID: 1197105545250727984}
+  laserDamageSpeed: 0.08
 --- !u!114 &6759249627809127249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
@@ -370,7 +358,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3413098130146541284, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_PrefabInstance: {fileID: 5427003297875327468}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8055896654338066227
+--- !u!114 &9102825845068390443
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -379,7 +367,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7209511025686890248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54ee941cd985a634db3bac325a3b8cda, type: 3}
+  m_Script: {fileID: 11500000, guid: 3fecf34284e431447aa4c0f559189c54, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20

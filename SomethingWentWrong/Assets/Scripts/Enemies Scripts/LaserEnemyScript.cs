@@ -19,8 +19,8 @@ public class LaserEnemyScript : MonoBehaviour
         _enemyDamagable = GetComponentInChildren<LaserEnemyDamagable>();
         _enemyAttack = GetComponentInChildren<LaserEnemyAttack>();
 
-        _enemyMovement.es = this;
-        _enemyAttack.es = this;
+        //_enemyMovement.es = this;
+        //_enemyAttack.es = this;
     }
 
     public LaserEnemyMovement Movement => _enemyMovement;

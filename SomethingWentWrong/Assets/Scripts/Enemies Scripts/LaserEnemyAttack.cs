@@ -3,49 +3,28 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LaserEnemyAttack : MonoBehaviour, IWeaponable
+public class LaserEnemyAttack : EnemyAttack
 {
-    // IWeaponable's implementation
-    private WeaponType type = WeaponType.Enemy;
 
-    public WeaponType Type { get { return type; } }
-
-    private int damage = 5;
-
-    public int Damage { get { return damage; } }
-
-    [SerializeField] private LayerMask damagableLayers;
-
-    private GameObject actualTarget;
     [SerializeField] private GameObject laser;
-    private float distanceToTarget;
-    private LaserEnemyMovement enemyLogic;
-    public float triggerAttackDistance = 2f;
     private float angle;
     private float attackDuration = 0.3f;
-    private Vector2 direction;
     [SerializeField] private float laserDamageSpeed;
     private float timeToDamage;
     private int attackDirection;
     private int actualAttackDirection;
-    [HideInInspector] public LaserEnemyScript es;
 
-    private void Awake()
-    {
-        enemyLogic = GetComponentInParent<LaserEnemyMovement>();
-    }
-
-    void Update()
+    protected override void Update()
     {
         distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
         direction = enemyLogic.actualTarget.transform.position - transform.position;
         direction.Normalize();
         attackDirection = Random.Range(0, 2) * 2 - 1;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 80;
-        if (distanceToTarget < triggerAttackDistance && enemyLogic.canMove)
+        if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
             actualAttackDirection = attackDirection;
-            enemyLogic.canMove = false;
+            enemyLogic.CanMove = false;
             StartCoroutine(LaserAttack(angle));
         }
     }
@@ -78,11 +57,11 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         }
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        enemyLogic.canMove = true;
+        enemyLogic.CanMove = true;
         es.Animator.StopAttackTrigger();
     }
 
-    public void stopAttack()
+    public override void stopAttack()
     {
         laser.gameObject.SetActive(false);
         StopAllCoroutines();

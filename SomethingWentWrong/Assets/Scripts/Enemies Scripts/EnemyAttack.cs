@@ -6,19 +6,19 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour, IWeaponable
 {
     // IWeaponable's implementation
-    private WeaponType type = WeaponType.Enemy;
+    protected WeaponType type = WeaponType.Enemy;
 
     public WeaponType Type { get { return type; } }
 
-    private int damage = 5;
+    protected int damage = 5;
 
     public int Damage { get { return damage; } }
 
-    [SerializeField] private LayerMask damagableLayers;
-    private float distanceToTarget;
-    private EnemyMovement enemyLogic;
-    public float triggerAttackDistance = 1.5f;
-    private Vector2 direction;
+    [SerializeField] protected LayerMask damagableLayers;
+    protected float distanceToTarget;
+    protected EnemyMovement enemyLogic;
+    protected float triggerAttackDistance = 1.5f;
+    protected Vector2 direction;
     [HideInInspector] public EnemyScript es;
 
     private void Awake()
@@ -26,7 +26,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         enemyLogic = GetComponentInParent<EnemyMovement>();
     }
 
-    private void Update()
+    protected virtual void Update()
     {
         distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
         direction = enemyLogic.actualTarget.transform.position - transform.position;
@@ -59,7 +59,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         enemyLogic.CanMove = true;
     }
 
-    public void stopAttack()
+    public virtual void stopAttack()
     {
         if (es && es.Animator)
             es.Animator.StopAttackTrigger();

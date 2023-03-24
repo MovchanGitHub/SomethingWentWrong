@@ -74,7 +74,6 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 576
-  triggerAttackDistance: 1
   es: {fileID: 0}
 --- !u!1 &819197557229691554
 GameObject:
@@ -288,8 +287,8 @@ MonoBehaviour:
   actualTarget: {fileID: 0}
   speed: 3
   isEnemyNight: 0
-  strength: 5
-  delay: 0.4
+  strength: 10
+  delay: 0.15
   es: {fileID: 0}
 --- !u!61 &74431507
 BoxCollider2D:
