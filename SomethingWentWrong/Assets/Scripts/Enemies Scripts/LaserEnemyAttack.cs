@@ -28,6 +28,7 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
     private float timeToDamage;
     private int attackDirection;
     private int actualAttackDirection;
+    [HideInInspector] public LaserEnemyScript es;
 
     private void Awake()
     {
@@ -57,6 +58,7 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 160));
         float rate = 1f;
         laser.transform.rotation = startRotation;
+        es.Animator.AttackTrigger();
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
         {
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
@@ -71,13 +73,13 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
                     timeToDamage = laserDamageSpeed;
                 }
             }
-
             laser.transform.rotation = Quaternion.Lerp(startRotation, endRotation, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
         enemyLogic.canMove = true;
+        es.Animator.StopAttackTrigger();
     }
 
     public void stopAttack()

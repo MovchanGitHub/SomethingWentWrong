@@ -270,7 +270,8 @@ MonoBehaviour:
   canMove: 1
   strength: 10
   delay: 0.15
---- !u!114 &699082684
+  es: {fileID: 0}
+--- !u!114 &7423016790518864810
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -279,7 +280,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 4615848117298448186}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 76f87df2e3022f54da7c267ab9e5a012, type: 3}
+  m_Script: {fileID: 11500000, guid: f7b5356f778e0194c80fc3c2b9541064, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &4615848118547667784 stripped
@@ -300,7 +301,7 @@ Animator:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615848118547667790}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 22100000, guid: 6690b2e9b827d534ea853785a86c6d8e, type: 2}
   m_CullingMode: 0
@@ -348,6 +349,7 @@ MonoBehaviour:
   laser: {fileID: 1197105545250727984}
   triggerAttackDistance: 2
   laserDamageSpeed: 0.08
+  es: {fileID: 0}
 --- !u!114 &6759249627809127249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
