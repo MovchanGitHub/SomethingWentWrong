@@ -41,7 +41,7 @@ public class LaserEnemyAttack : EnemyAttack
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
         {
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)laser.transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
             timeToDamage -= Time.deltaTime;
             if (hit)
             {
