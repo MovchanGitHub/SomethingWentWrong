@@ -7,6 +7,69 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 {
     // IWeaponable's implementation
     private WeaponType type = WeaponType.Enemy;
+
+    public WeaponType Type { get { return type; } }
+
+    private int damage = 5;
+
+    public int Damage { get { return damage; } }
+
+    [SerializeField] private LayerMask damagableLayers;
+    private float distanceToTarget;
+    private EnemyMovement enemyLogic;
+    public float triggerAttackDistance = 1.5f;
+    private Vector2 direction;
+    [HideInInspector] public EnemyScript es;
+
+    private void Awake()
+    {
+        enemyLogic = GetComponentInParent<EnemyMovement>();
+    }
+
+    private void Update()
+    {
+        distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
+        direction = enemyLogic.actualTarget.transform.position - transform.position;
+        direction.Normalize();
+        if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
+        {
+            enemyLogic.CanMove = false;
+            if (es && es.Animator)
+                es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
+            StartCoroutine(Attack());
+        }
+    }
+
+    private IEnumerator Attack()
+    {
+        if (es && es.Animator)
+            es.Animator.AttackTrigger();
+        yield return new WaitForSeconds(0.3f);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + 1f, damagableLayers);
+        foreach (Collider2D hitObject in hitObjects)
+        {
+            if (hitObject.GetComponent<IDamagable>() != null)
+            {
+                hitObject.GetComponent<IDamagable>().GetDamage(this);
+            }
+        }
+        yield return new WaitForSeconds(1f);
+        if (es && es.Animator)
+            es.Animator.StopAttackTrigger();
+        enemyLogic.CanMove = true;
+    }
+
+    public void stopAttack()
+    {
+        if (es && es.Animator)
+            es.Animator.StopAttackTrigger();
+        StopAllCoroutines();
+    }
+
+
+    /*
+    // IWeaponable's implementation
+    private WeaponType type = WeaponType.Enemy;
     
     public WeaponType Type { get { return type; } }
 
@@ -80,4 +143,5 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
         isAttacking = false;
     }
+    */
 }
