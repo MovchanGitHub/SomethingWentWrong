@@ -29,7 +29,7 @@ public class InputSystem : MonoBehaviour
         inputActions["PlayerShoot"] = GM.PlayerMovement.GetComponentInChildren<PlayerWeaponScript>().Attack;
         inputActions["PlayerStopShooting"] = GM.PlayerMovement.GetComponentInChildren<PlayerWeaponScript>().StopAttack;
         inputActions["InventoryClose"] = GM.InventoryManager.OpenCloseInventory;
-        inputActions["EncyclopediaOpen"] = GM.UI.Encyclopedia.OpenCloseEncyclopedia;
+        //inputActions["EncyclopediaOpen"] = GM.UI.Encyclopedia.OpenCloseEncyclopedia;
         inputActions["MenuOpen"] = GM.UI.GetComponent<InGameMenuScript>().EscapeIsPressed;
         
         playerInput.actions["Sprint"].started += inputActions["PlayerRun"];
@@ -42,9 +42,9 @@ public class InputSystem : MonoBehaviour
         playerInput.actions["Change Weapon"].started += inputActions["PlayerChangeWeapon"];
         playerInput.actions["Weapon Attack"].started += inputActions["PlayerShoot"];
         playerInput.actions["Weapon Attack"].canceled += inputActions["PlayerStopShooting"];
-
+        
         playerInput.actions["Open Inventory"].started += inputActions["InventoryClose"];
-        playerInput.actions["Open Encyclopedia"].started += inputActions["EncyclopediaOpen"];
+        //playerInput.actions["Open Encyclopedia"].started += inputActions["EncyclopediaOpen"];
         playerInput.actions["Open InGame Menu"].started += inputActions["MenuOpen"];
     }
 
@@ -83,7 +83,7 @@ public class InputSystem : MonoBehaviour
         playerInput.actions["Weapon Attack"].canceled -= inputActions["PlayerStopShooting"];
         
         playerInput.actions["Open Inventory"].started -= inputActions["InventoryClose"];
-        playerInput.actions["Open Encyclopedia"].started -= inputActions["EncyclopediaOpen"];
+        //playerInput.actions["Open Encyclopedia"].started -= inputActions["EncyclopediaOpen"];
         playerInput.actions["Open InGame Menu"].started -= inputActions["MenuOpen"];
     }
 }

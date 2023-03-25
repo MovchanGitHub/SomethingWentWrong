@@ -66,7 +66,7 @@ public class InventoryController : MonoBehaviour
 
     private void Start()
     {
-        inputSystem = GameManager.GM.InputSystem;
+        inputSystem = GM.InputSystem;
 
         canBeOpened = true;
 

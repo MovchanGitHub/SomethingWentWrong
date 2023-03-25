@@ -84,7 +84,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         if (!creature.isOpenedInEcnyclopedia)
         {
-            GM.UI.Encyclopedia.OpenNewCreature(creature);
+            //GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
 
         GM.Spawner.Resources.PurgePointWithIndex(positionIndex);

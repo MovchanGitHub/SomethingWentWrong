@@ -46,7 +46,7 @@ public class EnemyDamagable : DamagableCharacter
         if (es.Movement.isEnemyNight) GM.Spawner.Enemies.ExistingEnemies--;
         if (!creature.isOpenedInEcnyclopedia)
         {
-            GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
+            //GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
         StartCoroutine(EnemyDie());
     }
