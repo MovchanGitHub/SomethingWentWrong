@@ -26,7 +26,7 @@ public class WeaponLogic : MonoBehaviour
         get { return ammoType; }
     }
 
-    public virtual bool UseWeapon() { return true;}
+    public virtual bool UseWeapon() { return true; }
 
     public virtual void StopWeapon() {}
 

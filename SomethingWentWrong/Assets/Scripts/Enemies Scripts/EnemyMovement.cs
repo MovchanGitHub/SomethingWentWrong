@@ -120,12 +120,4 @@ public class EnemyMovement : MonoBehaviour
         }
         isWaiting = false;
     }
-
-    private void OnDestroy()
-    {
-        if (isEnemyNight)
-        {
-            GM.Spawner.Enemies.ExistingEnemies--;
-        }
-    }
 }

@@ -46,11 +46,13 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         GM.PlayerMovement.usingWeapon = true;        
         _animator.SetTrigger("Shoot");
+        _animator.ResetTrigger("StopShooting");
     }
     
     public void PlayStopShooting()
     {
         GM.PlayerMovement.usingWeapon = false;
+        _animator.ResetTrigger("Shoot");
         _animator.SetTrigger("StopShooting");
     }
     

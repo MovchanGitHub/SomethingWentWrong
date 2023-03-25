@@ -15,7 +15,8 @@ public class LightHouse : MonoBehaviour, IDamagable
     public int HP
     {
         get { return hp; }
-        set {
+        set
+        {
 
             if (value > 0)
             {
@@ -26,7 +27,7 @@ public class LightHouse : MonoBehaviour, IDamagable
                 healthBar.value = value;
             }
             else
-                Destroy(gameObject);
+                Die();
         }
     }
 
@@ -50,16 +51,27 @@ public class LightHouse : MonoBehaviour, IDamagable
 
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        HP -= weapon.Damage;
+        switch (weapon.Type)
+        {
+            case WeaponType.Fists: // игрок не ломает ракету кулаками
+                break;
+            case WeaponType.Laser: // ракета чинится от лазера (сварка)
+                HP += weapon.Damage;
+                break;
+            default:
+                HP -= weapon.Damage;
+                break;
+        }
     }
     
     // LightHouse unique methods
     public bool active = false;
 
-    private void OnDestroy()
+    private void Die()
     {
         healthBar.value = 0;
         GM.GameOver("Ракета уничтожена");
         GM.UnlinkRocket();
+        Destroy(gameObject);
     }
 }

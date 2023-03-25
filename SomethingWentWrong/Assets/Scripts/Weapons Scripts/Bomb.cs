@@ -48,7 +48,7 @@ public class Bomb : MonoBehaviour, IWeaponable
 
     private void Explode()
     {
-        hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, _area.transform.localScale.y, damagableLayers);
+        hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, 4, damagableLayers);
 
         foreach (Collider2D hitObject in hitObjects)
         {

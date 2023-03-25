@@ -21,6 +21,7 @@ public class EnemyScript : MonoBehaviour
 
         //_enemyMovement.es = this;
         //_enemyAttack.es = this;
+        _enemyDamagable.es = this;
     }
 
     public EnemyMovement Movement => _enemyMovement;

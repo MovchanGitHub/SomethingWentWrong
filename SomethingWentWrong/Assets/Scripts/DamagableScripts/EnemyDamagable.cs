@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class EnemyDamagable : DamagableCharacter
 {
     private EnemyShaderLogic esl;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
+    public EnemyScript es;
 
     public override int HP
     {
@@ -30,6 +32,7 @@ public class EnemyDamagable : DamagableCharacter
     
     protected override void Die()
     {
+        if (es.Movement.isEnemyNight) GM.Spawner.Enemies.ExistingEnemies--;
         if (!creature.isOpenedInEcnyclopedia)
         {
             GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);

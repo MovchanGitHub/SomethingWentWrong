@@ -96,6 +96,7 @@ public class EnemiesSpawnSystem : MonoBehaviour
             newEnemyMovement.isEnemyNight = true;
             newEnemyMovement.moveToLightHouse = true;
             newEnemyMovement.GoToTarget();
+            newEnemyMovement.transform.parent = transform;
 
             //Debug.Log("spawned enemy at position " + positionIndex);
             
