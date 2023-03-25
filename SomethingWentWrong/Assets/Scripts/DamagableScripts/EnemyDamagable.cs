@@ -32,7 +32,7 @@ public class EnemyDamagable : DamagableCharacter
     {
         if (!creature.isOpenedInEcnyclopedia)
         {
-            GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
+            //GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
         }
         StartCoroutine(EnemyDie());
     }

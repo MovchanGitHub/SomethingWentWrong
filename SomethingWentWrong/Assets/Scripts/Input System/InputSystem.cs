@@ -27,7 +27,7 @@ public class InputSystem : MonoBehaviour
         playerInput.actions["Weapon Attack"].canceled += GM.PlayerMovement.GetComponentInChildren<PlayerWeaponScript>().StopAttack;
 
         playerInput.actions["Open Inventory"].started += GM.InventoryManager.OpenCloseInventory;
-        playerInput.actions["Open Encyclopedia"].started += GM.UI.Encyclopedia.OpenCloseEncyclopedia;
+        //playerInput.actions["Open Encyclopedia"].started += GM.UI.Encyclopedia.OpenCloseEncyclopedia;
         playerInput.actions["Open InGame Menu"].started += GM.UI.GetComponent<InGameMenuScript>().EscapeIsPressed;
     }
 

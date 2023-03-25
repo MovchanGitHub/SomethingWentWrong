@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using static GameManager;
 
 public class IsometricCharacterRenderer : MonoBehaviour
@@ -55,8 +56,8 @@ public class IsometricCharacterRenderer : MonoBehaviour
     
     private void SetDirectionToMouse()
     {
-        _animator.SetFloat("MouseX", Input.mousePosition.x - Screen.width * 0.5f);
-        _animator.SetFloat("MouseY", Input.mousePosition.y - Screen.height * 0.5f);
+        _animator.SetFloat("MouseX", Mouse.current.position.x.ReadValue() - Screen.width * 0.5f);
+        _animator.SetFloat("MouseY", Mouse.current.position.y.ReadValue() - Screen.height * 0.5f);
     }
 
     public void ChangeSpriteOrder(int new_order)
