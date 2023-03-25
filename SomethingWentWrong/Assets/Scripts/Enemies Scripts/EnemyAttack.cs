@@ -10,7 +10,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     public WeaponType Type { get { return type; } }
 
-    protected int damage = 5;
+    [SerializeField] protected int damage = 5;
 
     public int Damage { get { return damage; } }
 
@@ -20,6 +20,9 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     protected float triggerAttackDistance = 1.5f;
     protected Vector2 direction;
     [HideInInspector] public EnemyScript es;
+    [SerializeField] private float timeBeforeAttack = 0.5f;
+    [SerializeField] private float timeAfterAttack = 1f;
+    [SerializeField] private float attackRange = 0.5f;
 
     private void Awake()
     {
@@ -44,8 +47,8 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     {
         if (es && es.Animator)
             es.Animator.AttackTrigger();
-        yield return new WaitForSeconds(0.3f);
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + 1f, damagableLayers);
+        yield return new WaitForSeconds(timeBeforeAttack);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + attackRange, damagableLayers);
         foreach (Collider2D hitObject in hitObjects)
         {
             if (hitObject.GetComponent<IDamagable>() != null)
@@ -53,7 +56,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
                 hitObject.GetComponent<IDamagable>().GetDamage(this);
             }
         }
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(timeAfterAttack);
         if (es && es.Animator)
             es.Animator.StopAttackTrigger();
         enemyLogic.CanMove = true;

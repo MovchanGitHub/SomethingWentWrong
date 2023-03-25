@@ -89,8 +89,8 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator Reset()
     {
-        if (es && es.Animator)
-            es.Animator.IdleAnim();
+        //if (es && es.Animator)
+            //es.Animator.IdleAnim();
         yield return new WaitForSeconds(delay);
         rigidBody2D.velocity = Vector3.zero;
         canMove = true;
