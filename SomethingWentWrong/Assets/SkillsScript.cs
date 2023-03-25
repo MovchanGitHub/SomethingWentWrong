@@ -59,7 +59,7 @@ public class SkillsScript : MonoBehaviour
         random = new Unity.Mathematics.Random();
         random.InitState(1851936439U);
         
-        skillsWindow.SetActive(true);
+        skillsWindow.SetActive(false);
         InitSkills();
         
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
@@ -105,7 +105,7 @@ public class SkillsScript : MonoBehaviour
     }
     
     public void GetSkill() {
-        switch (variants[currentVariant]) {
+        switch (variants[currentVariant - 1]) {
                 case 1: ImproveHealth(); break;
                 case 2: ImproveLightHouseHealth(); break;
                 case 3: ImproveStamina(); break;
