@@ -59,7 +59,7 @@ public class SkillsScript : MonoBehaviour
         random = new Unity.Mathematics.Random();
         random.InitState(1851936439U);
         
-        skillsWindow.SetActive(true);
+        skillsWindow.SetActive(false);
         InitSkills();
         
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
