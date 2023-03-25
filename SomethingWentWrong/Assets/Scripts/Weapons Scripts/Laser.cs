@@ -11,7 +11,10 @@ public class Laser : MonoBehaviour, IWeaponable
 
     [SerializeField] int damage;
 
-    public int Damage { get { return damage; } }
+    public int Damage { get { return Random.Range(damage - damageDispersion, damage + damageDispersion + 1); } }
     
     public Color LaserColor { get; set; }
+    
+    [SerializeField] private int damageDispersion = 1;
+
 }

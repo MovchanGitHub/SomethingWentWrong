@@ -9,7 +9,10 @@ public enum WeaponType
     Laser,
     Enemy,
     Fists,
-    RushAttack
+    RushAttack,
+    Golem,
+    Eye,
+    Dino
 }
 
 public interface IWeaponable

@@ -21,7 +21,7 @@ public class BulletLogic : WeaponLogic
     {
         GM.PlayerMovement.isoRenderer.PlayShoot();
         Instantiate(bullet, shotpoint.position, transform.rotation)
-            .direction = Vector2.ClampMagnitude(GM.Camera.ScreenToWorldPoint(Input.mousePosition) - transform.position, 1);
+            .direction = Vector2.ClampMagnitude(GM.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position, 1);
         
         yield return new WaitForSeconds(.3f);
         GM.PlayerMovement.isoRenderer.PlayStopShooting();
@@ -38,4 +38,9 @@ public class BulletLogic : WeaponLogic
         return false;
     }
     override public void StopWeapon() {  }
+    
+    public override void CanNotUseWeapon()
+    {
+        Debug.Log("нельзя стрелять: нет шляпки острого подсолнуха");
+    }
 }

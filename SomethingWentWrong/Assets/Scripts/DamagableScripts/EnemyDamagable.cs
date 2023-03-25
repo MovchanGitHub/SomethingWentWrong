@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static GameManager;
 
 public class EnemyDamagable : DamagableCharacter
 {
@@ -42,6 +43,7 @@ public class EnemyDamagable : DamagableCharacter
 
     protected override void Die()
     {
+        if (es.Movement.isEnemyNight) GM.Spawner.Enemies.ExistingEnemies--;
         if (!creature.isOpenedInEcnyclopedia)
         {
             GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
