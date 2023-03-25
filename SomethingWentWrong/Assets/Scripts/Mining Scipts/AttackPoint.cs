@@ -20,7 +20,7 @@ public class AttackPoint : MonoBehaviour, IWeaponable
     public LayerMask damagableLayers;
 
     [SerializeField] private float attackRate = 2f;
-    private float attackTimer = 0f;
+    public float attackTimer = 0f;
 
     private Animator anim;
 
