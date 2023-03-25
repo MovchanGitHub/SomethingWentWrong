@@ -24,7 +24,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     [SerializeField] private float timeAfterAttack = 1f;
     [SerializeField] private float attackRange = 0.5f;
 
-    private void Awake()
+    protected virtual void Awake()
     {
         enemyLogic = GetComponentInParent<EnemyMovement>();
     }

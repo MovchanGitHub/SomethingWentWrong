@@ -8,7 +8,6 @@ public class LaserEnemyAttack : EnemyAttack
 
     [SerializeField] private GameObject laser;
     private float angle;
-    private float attackDuration = 0.3f;
     [SerializeField] private float laserDamageSpeed;
     private float timeToDamage;
     private int attackDirection;
