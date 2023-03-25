@@ -7,6 +7,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 819197557229691556, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Sprite
       value: 
@@ -21,11 +33,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.x
@@ -68,16 +80,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0.06
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 2.85
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Radius
-      value: 1.9744077
+      value: 1.3663218
       objectReference: {fileID: 0}
     - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Offset.y
-      value: 1.2157569
+      value: 0.60767007
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
@@ -103,8 +119,9 @@ MonoBehaviour:
   damagableLayers:
     serializedVersion: 2
     m_Bits: 0
+  triggerAttackDistance: 3
   es: {fileID: 0}
-  timeBeforeAttack: 0.5
+  timeBeforeAttack: 0.1
   timeAfterAttack: 1
   attackRange: 0.5
 --- !u!1 &474237801703479250 stripped

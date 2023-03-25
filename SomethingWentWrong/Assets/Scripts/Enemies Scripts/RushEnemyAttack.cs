@@ -28,14 +28,18 @@ public class RushEnemyAttack : EnemyAttack
 
     private IEnumerator RushAttack(Vector2 direction)
     {
-        //es.Animator.AttackTrigger();
-        yield return new WaitForSeconds(2f);
+        if (es && es.Animator)
+           es.Animator.AttackTrigger();
+        yield return new WaitForSeconds(timeBeforeAttack);
 
         direction.Normalize();
         rigidBody2D.AddForce(direction * rushStrength, ForceMode2D.Impulse);
         StartCoroutine(Reset());
 
-        //es.Animator.StopAttackTrigger();
+        if (es && es.Animator)
+            es.Animator.StopAttackTrigger();
+        yield return new WaitForSeconds(timeAfterAttack);
+        enemyLogic.CanMove = true;
     }
 
     private IEnumerator Reset()
@@ -44,6 +48,15 @@ public class RushEnemyAttack : EnemyAttack
         //es.Animator.IdleAnim();
         yield return new WaitForSeconds(delay);
         rigidBody2D.velocity = Vector3.zero;
-        enemyLogic.CanMove = true;
+        //enemyLogic.CanMove = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        IDamagable toDamage = collision.GetComponent<IDamagable>();
+        if (toDamage != null)
+        {
+            toDamage.GetDamage(this);
+        }
     }
 }

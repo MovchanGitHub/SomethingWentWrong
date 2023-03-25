@@ -17,12 +17,12 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
     [SerializeField] protected LayerMask damagableLayers;
     protected float distanceToTarget;
     protected EnemyMovement enemyLogic;
-    protected float triggerAttackDistance = 1.5f;
+    [SerializeField] protected float triggerAttackDistance = 1.5f;
     protected Vector2 direction;
     [HideInInspector] public EnemyScript es;
-    [SerializeField] private float timeBeforeAttack = 0.5f;
-    [SerializeField] private float timeAfterAttack = 1f;
-    [SerializeField] private float attackRange = 0.5f;
+    [SerializeField] protected float timeBeforeAttack = 0.5f;
+    [SerializeField] protected float timeAfterAttack = 1f;
+    [SerializeField] protected float attackRange = 0.5f;
 
     protected virtual void Awake()
     {
