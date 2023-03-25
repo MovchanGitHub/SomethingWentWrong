@@ -30,11 +30,11 @@ public class SpawnSystem : MonoBehaviour
                 int randSpawnPoint = findPointsFarFromPlayer(spawnPoints);
 
                 EnemyMovement newEnemyMovement = Instantiate(enemyPrefabs[randEnemy], spawnPoints[randSpawnPoint].position, transform.rotation).GetComponent<EnemyMovement>();
-                newEnemyMovement.isPatrolling = false;
-                newEnemyMovement.target = playerTransfrom;
+                //newEnemyMovement.isPatrolling = false;
+                //newEnemyMovement.target = playerTransfrom;
                 newEnemyMovement.isEnemyNight = true;
-                newEnemyMovement.moveToLightHouse = true;
-                newEnemyMovement.GoToTarget();
+                //newEnemyMovement.moveToLightHouse = true;
+                //newEnemyMovement.GoToTarget();
             }
             spawnTimer = Time.time + 1f / spawnRate;
         }

@@ -8,6 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class EnemyNoticeTarget : MonoBehaviour
 {
+    /*
     public string targetTag;
     private EnemyMovement enemyLogic;
 
@@ -51,4 +52,5 @@ public class EnemyNoticeTarget : MonoBehaviour
     {
         
     }
+    */
 }

@@ -37,9 +37,7 @@ public class SurvivalBar : MonoBehaviour
 
     public void ShowIncreasmentFromFood (ItemTypeFood item)
     {
-        Debug.Log(12);
         increasmentCoroutines.Add(StartCoroutine(UpdateIncreasmentFromFood(item)));
-        Debug.Log(21);
     }
     private IEnumerator UpdateIncreasmentFromFood(ItemTypeFood item)
     {
@@ -54,9 +52,8 @@ public class SurvivalBar : MonoBehaviour
 
     public void RemoveIncreasmentFromFood()
     {
-        StopCoroutine(increasmentCoroutines[0]);
+        StopAllCoroutines();
         increasmentCoroutines.RemoveAt(0);
-        Debug.Log(3);
         _hungerMeterIncrease.fillAmount = 0;
         _thirstMeterIncrease.fillAmount = 0;
         _anoxaemiaMeterIncrease.fillAmount = 0;

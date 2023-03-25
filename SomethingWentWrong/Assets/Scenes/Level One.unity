@@ -98999,10 +98999,6 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
-      propertyPath: m_SizeDelta.y
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2756128440079393889, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_Name
       value: UI

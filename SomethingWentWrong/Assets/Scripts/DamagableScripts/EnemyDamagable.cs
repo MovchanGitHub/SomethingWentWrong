@@ -9,7 +9,7 @@ public class EnemyDamagable : DamagableCharacter
     private EnemyShaderLogic esl;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
-    public EnemyScript es;
+    private EnemyMovement enemyLogic; //new
 
     public override int HP
     {
@@ -27,9 +27,20 @@ public class EnemyDamagable : DamagableCharacter
 
     private void Start()
     {
+        enemyLogic = GetComponentInParent<EnemyMovement>(); //new
         esl = transform.parent.GetComponentInChildren<EnemyShaderLogic>();
     }
-    
+
+    //new
+    public override void GetDamage(IWeaponable weapon, GameObject sender = null)
+    {
+        base.GetDamage(weapon);
+        if (sender != null)
+        {
+            enemyLogic.playFeedback(sender);
+        }
+    }
+
     protected override void Die()
     {
         if (es.Movement.isEnemyNight) GM.Spawner.Enemies.ExistingEnemies--;
