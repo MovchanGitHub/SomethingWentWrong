@@ -105,7 +105,7 @@ public class SkillsScript : MonoBehaviour
     }
     
     public void GetSkill() {
-        switch (variants[currentVariant]) {
+        switch (variants[currentVariant - 1]) {
                 case 1: ImproveHealth(); break;
                 case 2: ImproveLightHouseHealth(); break;
                 case 3: ImproveStamina(); break;
