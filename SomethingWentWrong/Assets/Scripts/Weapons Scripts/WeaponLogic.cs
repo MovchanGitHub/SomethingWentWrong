@@ -33,6 +33,6 @@ public class WeaponLogic : MonoBehaviour
     public virtual void CanNotUseWeapon()
     {
         // информирование игрока о том что оружие не доступно к использованию
-        Debug.Log("нельзя использовать это оружие сейчас");
+        // Debug.Log("нельзя использовать это оружие сейчас");
     }
 }
