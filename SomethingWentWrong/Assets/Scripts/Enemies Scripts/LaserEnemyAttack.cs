@@ -3,48 +3,27 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-public class LaserEnemyAttack : MonoBehaviour, IWeaponable
+public class LaserEnemyAttack : EnemyAttack
 {
-    // IWeaponable's implementation
-    private WeaponType type = WeaponType.Enemy;
 
-    public WeaponType Type { get { return type; } }
-
-    private int damage = 5;
-
-    public int Damage { get { return damage; } }
-
-    [SerializeField] private LayerMask damagableLayers;
-
-    private GameObject actualTarget;
     [SerializeField] private GameObject laser;
-    private float distanceToTarget;
-    private LaserEnemyMovement enemyLogic;
-    public float triggerAttackDistance = 2f;
     private float angle;
-    private float attackDuration = 0.3f;
-    private Vector2 direction;
     [SerializeField] private float laserDamageSpeed;
     private float timeToDamage;
     private int attackDirection;
     private int actualAttackDirection;
 
-    private void Awake()
-    {
-        enemyLogic = GetComponentInParent<LaserEnemyMovement>();
-    }
-
-    void Update()
+    protected override void Update()
     {
         distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
         direction = enemyLogic.actualTarget.transform.position - transform.position;
         direction.Normalize();
         attackDirection = Random.Range(0, 2) * 2 - 1;
         angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 80;
-        if (distanceToTarget < triggerAttackDistance && enemyLogic.canMove)
+        if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
             actualAttackDirection = attackDirection;
-            enemyLogic.canMove = false;
+            enemyLogic.CanMove = false;
             StartCoroutine(LaserAttack(angle));
         }
     }
@@ -57,10 +36,11 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
         Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 160));
         float rate = 1f;
         laser.transform.rotation = startRotation;
+        es.Animator.AttackTrigger();
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
         {
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
-            RaycastHit2D hit = Physics2D.Raycast((Vector2)transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
+            RaycastHit2D hit = Physics2D.Raycast((Vector2)laser.transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
             timeToDamage -= Time.deltaTime;
             if (hit)
             {
@@ -71,16 +51,16 @@ public class LaserEnemyAttack : MonoBehaviour, IWeaponable
                     timeToDamage = laserDamageSpeed;
                 }
             }
-
             laser.transform.rotation = Quaternion.Lerp(startRotation, endRotation, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        enemyLogic.canMove = true;
+        enemyLogic.CanMove = true;
+        es.Animator.StopAttackTrigger();
     }
 
-    public void stopAttack()
+    public override void stopAttack()
     {
         laser.gameObject.SetActive(false);
         StopAllCoroutines();

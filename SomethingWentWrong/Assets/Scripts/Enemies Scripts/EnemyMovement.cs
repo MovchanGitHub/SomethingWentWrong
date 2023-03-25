@@ -7,6 +7,105 @@ using static GameManager;
 
 public class EnemyMovement : MonoBehaviour
 {
+    private bool canMove = true;
+
+    public bool CanMove
+    {
+        get => canMove;
+        set
+        {
+            canMove = value;
+            if (es && es.Animator)
+            {
+                if (canMove)
+                    es.Animator.IdleAnim();
+                else
+                    es.Animator.WalkAnim();
+            }
+        }
+    }
+
+    public GameObject actualTarget;
+    private GameObject playerTarget;
+    private GameObject rocketTarget;
+
+    public float speed = 5f;
+    private float distance;
+    private float triggerDistance = 5f;
+    private Rigidbody2D rigidBody2D;
+    private EnemyAttack attackLogic;
+    public bool isEnemyNight = false;
+
+    [SerializeField] private float strength = 15;
+    [SerializeField] private float delay = 0.3f;
+
+    [HideInInspector] public EnemyScript es;
+
+    private void Awake()
+    {
+        rigidBody2D = GetComponent<Rigidbody2D>();
+        attackLogic = GetComponentInChildren<EnemyAttack>();
+    }
+
+    void Start()
+    {
+        playerTarget = GM.PlayerMovement.gameObject;
+        rocketTarget = GM.Rocket.gameObject;
+        actualTarget = rocketTarget;
+    }
+
+    void Update()
+    {
+        distance = Vector2.Distance(transform.position, playerTarget.transform.position);
+        if (canMove)
+        {
+            transform.position = Vector2.MoveTowards(transform.position, actualTarget.transform.position, speed * Time.deltaTime);
+        }
+
+        if (distance < triggerDistance)
+        {
+            actualTarget = playerTarget;
+            if (es && es.Animator && canMove)
+                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+        }
+        else
+        {
+            actualTarget = rocketTarget;
+            if (es && es.Animator && canMove)
+                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+        }
+    }
+
+    public void playFeedback(GameObject sender)
+    {
+        StopAllCoroutines();
+        attackLogic.stopAttack();
+        canMove = false;
+        Vector2 direction = ((transform.position - sender.transform.position).normalized);
+        rigidBody2D.AddForce(direction * strength, ForceMode2D.Impulse);
+        StartCoroutine(Reset());
+
+    }
+
+    private IEnumerator Reset()
+    {
+        //if (es && es.Animator)
+            //es.Animator.IdleAnim();
+        yield return new WaitForSeconds(delay);
+        rigidBody2D.velocity = Vector3.zero;
+        canMove = true;
+    }
+
+    private void OnDestroy()
+    {
+        if (isEnemyNight)
+        {
+            GM.Spawner.Enemies.ExistingEnemies--;
+        }
+    }
+
+
+    /*
     public float speed;
     public Transform[] patrolPoints;
     public float waitTime;
@@ -128,4 +227,5 @@ public class EnemyMovement : MonoBehaviour
             GM.Spawner.Enemies.ExistingEnemies--;
         }
     }
+    */
 }

@@ -43,8 +43,11 @@ public class InventoryController : MonoBehaviour
     {
         get => ammoCounter;
     }
-    
-    
+
+    private SurvivalBar survivalBarScript;
+    bool wasShownIncreasment = false;
+
+
     public void UpdateWeaponBar(string key, int value)
     {
         switch (key)
@@ -68,11 +71,19 @@ public class InventoryController : MonoBehaviour
         canBeOpened = true;
 
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
+
+        survivalBarScript = GameManager.GM.UI.GetComponentInChildren<SurvivalBar>();
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)
     {
         isCanvasActive = !isCanvasActive;
+
+        if (!isCanvasActive)
+        {
+            removeIncreasment();
+        }
+
         canvasTransform.gameObject.SetActive(isCanvasActive);
         if (isCanvasActive)
         {
@@ -108,10 +119,6 @@ public class InventoryController : MonoBehaviour
         {
             onPressRightMouseButton();
         }
-        if (selectedItem != null)
-        {
-            //Debug.Log(selectedItem.itemData.itemName);
-        }
     }
 
     public void activateInventory(bool isActive)
@@ -137,10 +144,20 @@ public class InventoryController : MonoBehaviour
                 inventoryHighlight.Show(true);
                 inventoryHighlight.SetSize(itemToHighlight);
                 inventoryHighlight.setPosition(selectedItemGrid, itemToHighlight);
+                if (isCanvasActive && itemToHighlight.itemData.TypeOfThisItem == ItemType.Food)
+                {
+                    survivalBarScript.ShowIncreasmentFromFood(itemToHighlight.itemData as ItemTypeFood);
+                    wasShownIncreasment = true;
+                }
+                else
+                {
+                    removeIncreasment();
+                }
             }
             else
             {
                 inventoryHighlight.Show(false);
+                removeIncreasment();
             }
         }
         else
@@ -148,6 +165,15 @@ public class InventoryController : MonoBehaviour
             inventoryHighlight.Show(selectedItemGrid.boundaryCheck(posOnGrid.x, posOnGrid.y, selectedItem.itemData.width, selectedItem.itemData.height));
             inventoryHighlight.SetSize(selectedItem);
             inventoryHighlight.setPosition(selectedItemGrid, selectedItem, posOnGrid.x, posOnGrid.y);
+        }
+    }
+
+    private void removeIncreasment()
+    {
+        if (wasShownIncreasment)
+        {
+            survivalBarScript.RemoveIncreasmentFromFood();
+            wasShownIncreasment = false;
         }
     }
 
@@ -181,6 +207,7 @@ public class InventoryController : MonoBehaviour
         InventoryItem itemToInsert = newItem;
         newItem = null;
 
+        itemToInsert.transform.localScale = Vector2.one; //scale update
         Vector2Int? posOnGrid = SelectedItemGrid.findSpaceForItem(itemToInsert);
 
         if (posOnGrid == null)
@@ -231,7 +258,7 @@ public class InventoryController : MonoBehaviour
             pos.y += (selectedItem.itemData.height - 1) * ItemGrid.tileHeight / 2;
         }
 
-        return selectedItemGrid.getTileGridPosition(pos);
+        return selectedItemGrid.getTileGridPosition(pos, canvasTransform.localScale, canvasTransform.parent.localScale);
     }
 
     private void DropItem(Vector2Int tileGridPosition)
@@ -271,6 +298,7 @@ public class InventoryController : MonoBehaviour
 
     private void UseItem(Vector2Int tileGridPosition)
     {
+        removeIncreasment();
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (item != null)
         {

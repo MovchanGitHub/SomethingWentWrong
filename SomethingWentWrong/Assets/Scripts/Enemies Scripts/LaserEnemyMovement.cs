@@ -18,6 +18,8 @@ public class LaserEnemyMovement : MonoBehaviour
     [SerializeField] private float strength = 15;
     [SerializeField] private float delay = 0.3f;
 
+    [HideInInspector] public LaserEnemyScript es;
+
     private void Awake()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
@@ -35,6 +37,7 @@ public class LaserEnemyMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        es.Animator.WalkAnim();
         distance = Vector2.Distance(transform.position, playerTarget.transform.position);
         if (canMove)
         {
@@ -44,10 +47,12 @@ public class LaserEnemyMovement : MonoBehaviour
         if (distance < triggerDistance)
         {
             actualTarget = playerTarget;
+            es.Animator.ChangeXY(playerTarget.transform.position - transform.position);
         }
         else
         {
             actualTarget = rocketTarget;
+            es.Animator.ChangeXY(playerTarget.transform.position - transform.position);
         }
     }
 
@@ -64,6 +69,7 @@ public class LaserEnemyMovement : MonoBehaviour
 
     private IEnumerator Reset()
     {
+        es.Animator.IdleAnim();
         yield return new WaitForSeconds(delay);
         rigidBody2D.velocity = Vector3.zero;
         canMove = true;
