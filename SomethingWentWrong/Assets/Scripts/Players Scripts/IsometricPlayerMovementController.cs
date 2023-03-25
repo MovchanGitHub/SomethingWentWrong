@@ -52,7 +52,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float lastVerticalInput;
     public float lastHorizontalInput;
     private Vector2 currentPos;
-    private bool isRushing = false;
+    public bool isRushing;
 
     private void Awake()
     {

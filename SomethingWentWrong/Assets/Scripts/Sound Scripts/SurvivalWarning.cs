@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using static GameManager;
 
@@ -10,6 +8,7 @@ public class SurvivalWarning : MonoBehaviour
     private float _thirst;
     private float _anoxaemia;
     private bool _condition;
+    private bool _IsPaused;
 
     // Start is called before the first frame update
     void Start()
@@ -23,8 +22,9 @@ public class SurvivalWarning : MonoBehaviour
         _hunger = GM.SurvivalManager.HungerPercent;
         _thirst = GM.SurvivalManager.ThirstPercent;
         _anoxaemia = GM.SurvivalManager.AnoxaemiaPercent;
-        _condition = _hunger < 0.35 || _thirst < 0.35 || _anoxaemia < 0.35;
-        if (_condition)
+        _condition = _hunger < 0.15 || _thirst < 0.15 || _anoxaemia < 0.15;
+        _IsPaused = (GM.UI.GetComponent<SettingsScript>().isOpened || GM.UI.GetComponent<EndScreen>().isOpened || GM.UI.GetComponent<InGameMenuScript>().isOpened);
+        if (_condition && !_IsPaused)
         {
             _warningSource.loop = true;
             if (!_warningSource.isPlaying)
