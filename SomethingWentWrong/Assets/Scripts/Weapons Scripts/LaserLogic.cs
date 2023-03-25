@@ -180,11 +180,8 @@ public class LaserLogic : WeaponLogic
 
     void DisableLaser()
     {
-        if (isShooting)
-        {
-            isShooting = false;
-            GM.PlayerMovement.isoRenderer.PlayStopShooting();
-        }
+        isShooting = false;
+        GM.PlayerMovement.isoRenderer.PlayStopShooting();
         
         startVFX.SetActive(false);
         endVFX.SetActive(false);
@@ -202,4 +199,9 @@ public class LaserLogic : WeaponLogic
         return tryToReloadLaser();
     }
     override public void StopWeapon() { DisableLaser(); }
+    
+    public override void CanNotUseWeapon()
+    {
+        Debug.Log("нельзя стрелять: нет кристалла");
+    }
 }

@@ -91,11 +91,11 @@ public class EnemiesSpawnSystem : MonoBehaviour
                 spawnPoints[positionIndex].position,
                 Quaternion.identity).GetComponent<EnemyMovement>();
             
-            newEnemyMovement.isPatrolling = false;
-            newEnemyMovement.target = GM.PlayerMovement.transform;
+            //newEnemyMovement.isPatrolling = false;
+            //newEnemyMovement.target = GM.PlayerMovement.transform;
             newEnemyMovement.isEnemyNight = true;
-            newEnemyMovement.moveToLightHouse = true;
-            newEnemyMovement.GoToTarget();
+            //newEnemyMovement.moveToLightHouse = true;
+            //newEnemyMovement.GoToTarget();
 
             //Debug.Log("spawned enemy at position " + positionIndex);
             

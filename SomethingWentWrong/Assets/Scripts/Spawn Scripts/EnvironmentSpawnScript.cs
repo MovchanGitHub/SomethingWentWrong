@@ -104,10 +104,10 @@ public class EnvironmentSpawnScript : MonoBehaviour
             
             //Debug.Log("spawned resource at position " + positionIndex);
 
-            Instantiate(
+            var newResource = Instantiate(
                 objectSamplesWithProbabilities[UnityEngine.Random.Range(0, probabilitesSum)],
                 spawnPoints[positionIndex].position,
-                Quaternion.identity);
+                Quaternion.identity).transform.parent = transform;
             
             isBusy[positionIndex] = true;
 

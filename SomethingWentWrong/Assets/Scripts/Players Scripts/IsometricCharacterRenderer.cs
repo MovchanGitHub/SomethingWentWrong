@@ -46,18 +46,21 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         GM.PlayerMovement.usingWeapon = true;        
         _animator.SetTrigger("Shoot");
+        _animator.ResetTrigger("StopShooting");
     }
     
     public void PlayStopShooting()
     {
         GM.PlayerMovement.usingWeapon = false;
+        _animator.ResetTrigger("Shoot");
         _animator.SetTrigger("StopShooting");
     }
     
     private void SetDirectionToMouse()
     {
-        _animator.SetFloat("MouseX", Mouse.current.position.x.ReadValue() - Screen.width * 0.5f);
-        _animator.SetFloat("MouseY", Mouse.current.position.y.ReadValue() - Screen.height * 0.5f);
+        Vector2 mousePos = Mouse.current.position.ReadValue();
+        _animator.SetFloat("MouseX", mousePos.x - Screen.width * 0.5f);
+        _animator.SetFloat("MouseY", mousePos.y - Screen.height * 0.5f);
     }
 
     public void ChangeSpriteOrder(int new_order)

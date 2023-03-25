@@ -38,4 +38,9 @@ public class BulletLogic : WeaponLogic
         return false;
     }
     override public void StopWeapon() {  }
+    
+    public override void CanNotUseWeapon()
+    {
+        Debug.Log("нельзя стрелять: нет шляпки острого подсолнуха");
+    }
 }

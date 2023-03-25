@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class Bullet : MonoBehaviour, IWeaponable
@@ -21,7 +22,7 @@ public class Bullet : MonoBehaviour, IWeaponable
     public Vector2 direction;
     private Vector2 newPos;
 
-    private void OnTriggerEnter2D(Collider2D col)
+    private void OnTriggerEnter2D(Collider2D col) 
     {
         if (col.GetComponent<IDamagable>() != null && col.tag != "Player") 
         {
@@ -40,11 +41,13 @@ public class Bullet : MonoBehaviour, IWeaponable
     {
         rb = GetComponent<Rigidbody2D>();
         StartCoroutine(LifeTime());
+        direction = Vector2.ClampMagnitude(direction, 1f);
+        newPos = (Vector2)transform.position + direction * (speed * Time.deltaTime);
     }
     
     private void Update()
     {
-        newPos = (Vector2)transform.position + direction * (speed * Time.deltaTime);
+        newPos += direction * (speed * Time.deltaTime);
         rb.MovePosition(newPos);
     }
 }

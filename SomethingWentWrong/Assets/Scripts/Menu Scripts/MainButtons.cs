@@ -11,6 +11,7 @@ public class MainButtons : MonoBehaviour
 {
     private MainMenuScript mainMenu;
     private MainSettingsScript settings;
+    public GameObject aboutGame;
     private Button[] buttons;
     public Animator backAnimator;
     
@@ -53,6 +54,23 @@ public class MainButtons : MonoBehaviour
         settings.ShowHideSettings();
         mainMenu.ShowHideMenu();
     }
+    public void OnButtonAboutGame()
+    {
+        foreach (var button in buttons)
+        {
+            button.animator.Update(1);
+        }
+
+        aboutGame.SetActive(true);
+        mainMenu.ShowHideMenu();
+    }
+    public void OnButtonAboutGameBack()
+    {
+        aboutGame.SetActive(false);
+        mainMenu.ShowHideMenu();
+    }
+    
+    
     public void OnButtonBack()
     {
         backAnimator.Update(1);

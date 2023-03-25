@@ -66,8 +66,16 @@ public class Buttons : MonoBehaviour
         RefreshAnimation();
         pauseScript.ShowHideMenu();
         GM.UI.ControlsMenu.SetActive(true);
-        
     }
+    
+    public void OnButtonAboutGame()
+    {
+        RefreshAnimation();
+        pauseScript.ShowHideMenu();
+        GM.UI.AboutGame.SetActive(true);
+    }
+    
+    
     public void OnButtonBack()
     {
         settingsScript.HideSettings();
@@ -78,6 +86,12 @@ public class Buttons : MonoBehaviour
     {
         RefreshAnimation();
         GM.UI.ControlsMenu.SetActive(false);
+        pauseScript.ShowHideMenu();
+    }
+    public void OnButtonAboutGameBack()
+    {
+        // RefreshAnimation();
+        GM.UI.AboutGame.SetActive(false);
         pauseScript.ShowHideMenu();
     }
     

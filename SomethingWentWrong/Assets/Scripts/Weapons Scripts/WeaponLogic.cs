@@ -26,13 +26,13 @@ public class WeaponLogic : MonoBehaviour
         get { return ammoType; }
     }
 
-    public virtual bool UseWeapon() { return true;}
+    public virtual bool UseWeapon() { return true; }
 
     public virtual void StopWeapon() {}
 
     public virtual void CanNotUseWeapon()
     {
         // информирование игрока о том что оружие не доступно к использованию
-        Debug.Log("нельзя использовать это оружие сейчас");
+        // Debug.Log("нельзя использовать это оружие сейчас");
     }
 }
