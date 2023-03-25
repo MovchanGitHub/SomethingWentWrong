@@ -19,9 +19,8 @@ public class EnemyScript : MonoBehaviour
         _enemyDamagable = GetComponentInChildren<EnemyDamagable>();
         _enemyAttack = GetComponentInChildren<EnemyAttack>();
 
-        //_enemyMovement.es = this;
-        //_enemyAttack.es = this;
-        _enemyDamagable.es = this;
+        _enemyMovement.es = this;
+        _enemyAttack.es = this;
     }
 
     public EnemyMovement Movement => _enemyMovement;
