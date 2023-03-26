@@ -61,18 +61,18 @@ public class ItemGrid : MonoBehaviour
         {
             return false;
         }
-
+        
         if (!overlapCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height, ref overlapItem))
         {
             overlapItem = null;
             return false;
         }
-
+        /*
         if (overlapItem)
         {
             cleanGridRef(overlapItem);
         }
-
+        */
         placeItem(inventoryItem, posX, posY);
 
         return true;
@@ -186,17 +186,28 @@ public class ItemGrid : MonoBehaviour
 
     private bool overlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
     {
+        Debug.Log(width + " - " + height);
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
             {
+                string itemName = "null";
+                if (inventoryItemSlots[posX + x, posY + y])
+                {
+                    itemName = inventoryItemSlots[posX + x, posY + y].itemData.itemName;
+                }
+                Debug.Log("PosX - " + (posX + x) + "; PosY - " + (posY + y) + "; ItemSlot - " + itemName);
                 if (inventoryItemSlots[posX + x, posY + y] != null)
                 {
+                    return false;
+                    /*
                     if (overlapItem == null)
                     {
                         overlapItem = inventoryItemSlots[posX + x, posY + y];
                     }
+                    */
                 }
+                /*
                 else
                 {
                     if (overlapItem != inventoryItemSlots[posX + x, posY + y])
@@ -204,6 +215,7 @@ public class ItemGrid : MonoBehaviour
                         return false;
                     }
                 }
+                */
             }
         }
 

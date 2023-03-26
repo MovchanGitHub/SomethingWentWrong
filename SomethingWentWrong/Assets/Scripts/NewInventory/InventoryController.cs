@@ -25,6 +25,7 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapItem;
     RectTransform newRectTransform;
     RectTransform rectTransform;
+    private Vector2Int selectedItemPos;
 
     [SerializeField] List<ItemsBase> items;
     [SerializeField] GameObject itemPrefab;
@@ -82,9 +83,16 @@ public class InventoryController : MonoBehaviour
         if (!isCanvasActive)
         {
             removeIncreasment();
+            if (selectedItem != null)
+            {
+                insertItem(selectedItem.itemData);
+                Destroy(selectedItem.gameObject);
+                selectedItem = null;
+            }
         }
 
         canvasTransform.gameObject.SetActive(isCanvasActive);
+
         if (isCanvasActive)
         {
             inputSystem.BlockPlayerInputs();
@@ -110,12 +118,12 @@ public class InventoryController : MonoBehaviour
             handleHighlight();
         }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && isCanvasActive)
         {
             onPressLeftMouseButton();
         }
 
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame && isCanvasActive)
         {
             onPressRightMouseButton();
         }
