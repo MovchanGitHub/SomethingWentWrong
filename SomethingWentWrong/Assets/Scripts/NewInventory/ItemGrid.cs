@@ -186,7 +186,6 @@ public class ItemGrid : MonoBehaviour
 
     private bool overlapCheck(int posX, int posY, int width, int height, ref InventoryItem overlapItem)
     {
-        Debug.Log(width + " - " + height);
         for (int x = 0; x < width; x++)
         {
             for (int y = 0; y < height; y++)
@@ -196,7 +195,6 @@ public class ItemGrid : MonoBehaviour
                 {
                     itemName = inventoryItemSlots[posX + x, posY + y].itemData.itemName;
                 }
-                Debug.Log("PosX - " + (posX + x) + "; PosY - " + (posY + y) + "; ItemSlot - " + itemName);
                 if (inventoryItemSlots[posX + x, posY + y] != null)
                 {
                     return false;

@@ -274,6 +274,11 @@ public class InventoryController : MonoBehaviour
         bool isDropComplete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
         if (isDropComplete)
         {
+            if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
+            {
+                ++ammoCounter[selectedItem.itemData.itemName];
+                UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
+            }
             selectedItem = null;
             if (overlapItem != null)
             {
@@ -290,6 +295,11 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
+            {
+                --ammoCounter[selectedItem.itemData.itemName];
+                UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
+            }
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }
