@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3266eca772aad05429a6da0908fa4435, type: 3}
   m_Name: Bomb Fruit
   m_EditorClassIdentifier: 
-  width: 2
-  height: 2
+  width: 3
+  height: 3
   itemName: bomb
   maximumAmount: 5
   itemDescription: 
