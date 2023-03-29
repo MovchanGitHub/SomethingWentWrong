@@ -320,27 +320,23 @@ public class InventoryController : MonoBehaviour
     private void UseItem(Vector2Int tileGridPosition)
     {
         removeIncreasment();
+        InventoryItem itemToCheck = SelectedItemGrid.checkItem(tileGridPosition.x, tileGridPosition.y);
+        if (itemToCheck != null && itemToCheck.itemData.TypeOfThisItem == ItemType.Weapon)
+        {
+            return;
+        }
+
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (item != null)
         {
-            if (item.itemData.TypeOfThisItem == ItemType.Food)
-            {
-                if (item != null)
-                {
-                    ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-                    GameManager.GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
-                    GameManager.GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-                    GameManager.GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
-                }
-                Destroy(item.gameObject);
-                SelectedItemGrid.cleanGridRef(item);
-            }
-            else 
-            {
-                SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-            }
+            ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
+            GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
+            GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+            GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            Destroy(item.gameObject);
+            SelectedItemGrid.cleanGridRef(item);
         }
-}
+    }
 
     public void changeScale(int newScale)
     {

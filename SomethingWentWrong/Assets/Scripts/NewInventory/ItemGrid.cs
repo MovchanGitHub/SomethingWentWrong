@@ -91,6 +91,13 @@ public class ItemGrid : MonoBehaviour
         return pos;
     }
 
+    public InventoryItem checkItem(int x, int y)
+    {
+        InventoryItem item = inventoryItemSlots[x, y];
+
+        return item;
+    }
+
     public InventoryItem PickUpItem(int x, int y)
     {
         InventoryItem item = inventoryItemSlots[x, y];
