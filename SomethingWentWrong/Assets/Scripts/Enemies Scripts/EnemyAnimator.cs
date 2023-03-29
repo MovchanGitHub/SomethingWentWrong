@@ -42,12 +42,12 @@ public class EnemyAnimator : MonoBehaviour
     public void AttackTrigger()
     {
         anim.SetTrigger(attackId);
-        //anim.SetBool(attackingId, true);
+        //anim.ResetTrigger(stopAttackId);
     }
 
     public void StopAttackTrigger()
     {
         anim.SetTrigger(stopAttackId);
-        //anim.SetBool(attackingId, false);
+        //anim.ResetTrigger(attackId);
     }
 }

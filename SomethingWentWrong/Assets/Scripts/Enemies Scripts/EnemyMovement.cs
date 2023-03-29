@@ -26,7 +26,7 @@ public class EnemyMovement : MonoBehaviour
 
     public float speed = 5f;
     private float distance;
-    private float triggerDistance = 5f;
+    [SerializeField] private float triggerDistance = 5f;
     private Rigidbody2D rigidBody2D;
     public bool isEnemyNight = false;
 
@@ -69,6 +69,7 @@ public class EnemyMovement : MonoBehaviour
 
     public void PlayFeedback(GameObject sender)
     {
+        if (strength == 0) return;
         StopAllCoroutines();
         es.Attack.stopAttack();
         CanMove = false;

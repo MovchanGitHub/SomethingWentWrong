@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3786402
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8386055
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.046192646
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09139556
+      objectReference: {fileID: 0}
     - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -43,6 +59,10 @@ PrefabInstance:
       propertyPath: strength
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: triggerDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -57,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 2.72
+      value: 5.22
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.3
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -94,6 +114,14 @@ PrefabInstance:
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: hp
@@ -139,14 +167,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8de7d46aa18f64ca10a631916947c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 5
   damagableLayers:
     serializedVersion: 2
     m_Bits: 1536
-  triggerAttackDistance: 3
+  triggerAttackDistance: 4
   es: {fileID: 0}
-  timeBeforeAttack: 0.1
-  timeAfterAttack: 1
+  timeBeforeAttack: 0.15
+  timeAfterAttack: 1.5
   attackRange: 1
 --- !u!1 &474237801703479250 stripped
 GameObject:

@@ -215,7 +215,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!isRushing || rushingTime < 0.1f)
+        if (!isRushing || rushingTime < 0.05f)
             return;
         
         IDamagable obj;

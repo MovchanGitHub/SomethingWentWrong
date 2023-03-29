@@ -9,23 +9,39 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: damage
-      value: 10
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: attackRange
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: timeAfterAttack
-      value: 0
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: timeBeforeAttack
-      value: 1
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: triggerAttackDistance
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3548794
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.y
+      value: 1.3958162
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.08213806
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.17770714
       objectReference: {fileID: 0}
     - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalScale.x
@@ -54,6 +70,10 @@ PrefabInstance:
     - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: delay
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: speed
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: strength
@@ -102,6 +122,22 @@ PrefabInstance:
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Value
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_MaxValue
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: hp
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: maxHp
+      value: 40
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}

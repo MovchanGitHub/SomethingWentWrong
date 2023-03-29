@@ -14,6 +14,8 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     public int Damage { get { return damage; } }
 
+    protected bool isAttacking = false;
+
     [SerializeField] protected LayerMask damagableLayers;
     protected float distanceToTarget;
     protected EnemyMovement enemyLogic;
@@ -44,6 +46,9 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     private IEnumerator Attack()
     {
+        if (isAttacking) yield break;
+
+        isAttacking = true;
         es.Animator.AttackTrigger();
         
         yield return new WaitForSeconds(timeBeforeAttack);
@@ -55,17 +60,25 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
                 hitObject.GetComponent<IDamagable>().GetDamage(this);
             }
         }
+        es.Animator.StopAttackTrigger();
         yield return new WaitForSeconds(timeAfterAttack);
         
         enemyLogic.CanMove = true;
-        es.Animator.StopAttackTrigger();
+        isAttacking = false;
     }
 
     public virtual void stopAttack()
     {
-        es.Animator.StopAttackTrigger();
         StopAllCoroutines();
+        es.Animator.StopAttackTrigger();
+        StartCoroutine(StopAttackCoroutine());
+    }
+
+    protected IEnumerator StopAttackCoroutine()
+    {
+        yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
+        isAttacking = false;
     }
 
 
