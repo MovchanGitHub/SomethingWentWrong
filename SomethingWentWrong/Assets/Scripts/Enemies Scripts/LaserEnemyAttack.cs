@@ -12,16 +12,18 @@ public class LaserEnemyAttack : EnemyAttack
     private float timeToDamage;
     private int attackDirection;
     private int actualAttackDirection;
+    private Vector2 targetPosition;
 
     protected override void Update()
     {
         distanceToTarget = Vector2.Distance(transform.position, enemyLogic.actualTarget.transform.position);
-        direction = enemyLogic.actualTarget.transform.position - transform.position;
-        direction.Normalize();
-        attackDirection = Random.Range(0, 2) * 2 - 1;
-        angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 80;
+        
         if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
+            direction = enemyLogic.actualTarget.transform.position - transform.position;
+            direction.Normalize();
+            attackDirection = Random.Range(0, 2) * 2 - 1;
+            angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 60; //80
             actualAttackDirection = attackDirection;
             enemyLogic.CanMove = false;
             StartCoroutine(LaserAttack(angle));
@@ -30,13 +32,13 @@ public class LaserEnemyAttack : EnemyAttack
 
     private IEnumerator LaserAttack(float angle)
     {
-        yield return new WaitForSeconds(0.2f);
+        es.Animator.AttackTrigger();
+        yield return new WaitForSeconds(timeBeforeAttack);
         laser.gameObject.SetActive(true);
         Quaternion startRotation = Quaternion.Euler(Vector3.forward * angle);
-        Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 160));
+        Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 100)); //160
         float rate = 1f;
         laser.transform.rotation = startRotation;
-        es.Animator.AttackTrigger();
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
         {
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
@@ -55,7 +57,7 @@ public class LaserEnemyAttack : EnemyAttack
             yield return null;
         }
         laser.gameObject.SetActive(false);
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
         es.Animator.StopAttackTrigger();
     }
@@ -64,5 +66,6 @@ public class LaserEnemyAttack : EnemyAttack
     {
         laser.gameObject.SetActive(false);
         StopAllCoroutines();
+        enemyLogic.CanMove = true;
     }
 }

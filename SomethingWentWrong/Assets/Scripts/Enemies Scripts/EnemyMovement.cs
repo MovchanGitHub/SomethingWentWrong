@@ -15,13 +15,8 @@ public class EnemyMovement : MonoBehaviour
         set
         {
             canMove = value;
-            if (es && es.Animator)
-            {
-                if (canMove)
-                    es.Animator.IdleAnim();
-                else
-                    es.Animator.WalkAnim();
-            }
+            if (canMove) es.Animator.WalkAnim();
+            else es.Animator.IdleAnim();
         }
     }
 
@@ -33,7 +28,6 @@ public class EnemyMovement : MonoBehaviour
     private float distance;
     private float triggerDistance = 5f;
     private Rigidbody2D rigidBody2D;
-    private EnemyAttack attackLogic;
     public bool isEnemyNight = false;
 
     [SerializeField] private float strength = 15;
@@ -44,7 +38,6 @@ public class EnemyMovement : MonoBehaviour
     private void Awake()
     {
         rigidBody2D = GetComponent<Rigidbody2D>();
-        attackLogic = GetComponentInChildren<EnemyAttack>();
     }
 
     void Start()
@@ -57,7 +50,7 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         distance = Vector2.Distance(transform.position, playerTarget.transform.position);
-        if (canMove)
+        if (CanMove)
         {
             transform.position = Vector2.MoveTowards(transform.position, actualTarget.transform.position, speed * Time.deltaTime);
         }
@@ -65,22 +58,20 @@ public class EnemyMovement : MonoBehaviour
         if (distance < triggerDistance)
         {
             actualTarget = playerTarget;
-            if (es && es.Animator && canMove)
-                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
         }
         else
         {
             actualTarget = rocketTarget;
-            if (es && es.Animator && canMove)
-                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
         }
     }
 
-    public void playFeedback(GameObject sender)
+    public void PlayFeedback(GameObject sender)
     {
         StopAllCoroutines();
-        attackLogic.stopAttack();
-        canMove = false;
+        es.Attack.stopAttack();
+        CanMove = false;
         Vector2 direction = ((transform.position - sender.transform.position).normalized);
         rigidBody2D.AddForce(direction * strength, ForceMode2D.Impulse);
         StartCoroutine(Reset());
@@ -89,11 +80,9 @@ public class EnemyMovement : MonoBehaviour
 
     private IEnumerator Reset()
     {
-        //if (es && es.Animator)
-            //es.Animator.IdleAnim();
         yield return new WaitForSeconds(delay);
         rigidBody2D.velocity = Vector3.zero;
-        canMove = true;
+        CanMove = true;
     }
 
     private void OnDestroy()

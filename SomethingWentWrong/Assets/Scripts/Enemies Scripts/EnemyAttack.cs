@@ -37,16 +37,15 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
             enemyLogic.CanMove = false;
-            if (es && es.Animator)
-                es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
+            es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
             StartCoroutine(Attack());
         }
     }
 
     private IEnumerator Attack()
     {
-        if (es && es.Animator)
-            es.Animator.AttackTrigger();
+        es.Animator.AttackTrigger();
+        
         yield return new WaitForSeconds(timeBeforeAttack);
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + attackRange, damagableLayers);
         foreach (Collider2D hitObject in hitObjects)
@@ -57,16 +56,16 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
             }
         }
         yield return new WaitForSeconds(timeAfterAttack);
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
+        
         enemyLogic.CanMove = true;
+        es.Animator.StopAttackTrigger();
     }
 
     public virtual void stopAttack()
     {
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
+        es.Animator.StopAttackTrigger();
         StopAllCoroutines();
+        enemyLogic.CanMove = true;
     }
 
 

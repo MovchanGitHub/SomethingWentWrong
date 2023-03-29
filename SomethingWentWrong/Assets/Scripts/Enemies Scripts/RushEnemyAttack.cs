@@ -28,16 +28,14 @@ public class RushEnemyAttack : EnemyAttack
 
     private IEnumerator RushAttack(Vector2 direction)
     {
-        if (es && es.Animator)
-           es.Animator.AttackTrigger();
+        es.Animator.AttackTrigger();
         yield return new WaitForSeconds(timeBeforeAttack);
 
         direction.Normalize();
         rigidBody2D.AddForce(direction * rushStrength, ForceMode2D.Impulse);
         StartCoroutine(Reset());
 
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
+        es.Animator.StopAttackTrigger();
         yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
     }

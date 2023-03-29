@@ -34,10 +34,11 @@ public class EnemyDamagable : DamagableCharacter
     //new
     public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        base.GetDamage(weapon);
+        if (weapon.Type == WeaponType.Enemy) return;
+        base.GetDamage(weapon, null);
         if (sender != null)
         {
-            enemyLogic.playFeedback(sender);
+            enemyLogic.PlayFeedback(sender);
         }
     }
 
