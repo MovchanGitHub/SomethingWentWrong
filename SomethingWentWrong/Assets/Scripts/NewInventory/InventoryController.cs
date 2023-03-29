@@ -73,12 +73,15 @@ public class InventoryController : MonoBehaviour
 
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
 
-        survivalBarScript = GameManager.GM.UI.GetComponentInChildren<SurvivalBar>();
+        survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)
     {
-        isCanvasActive = !isCanvasActive;
+        if (GM.PlayerMovement.isActiveAndEnabled)
+        {
+            isCanvasActive = !isCanvasActive;
+        }
 
         if (!isCanvasActive)
         {

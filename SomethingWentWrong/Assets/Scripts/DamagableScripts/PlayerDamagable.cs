@@ -67,6 +67,8 @@ public class PlayerDamagable : DamagableCharacter
 
     private void OnDestroy()
     {
+        GM.InventoryManager.isCanvasActive = false;
+        GM.InventoryManager.canvasTransform.gameObject.SetActive(false);
         slider.value = 0;
         GM.GameOver("ПОМЕР");
     }
