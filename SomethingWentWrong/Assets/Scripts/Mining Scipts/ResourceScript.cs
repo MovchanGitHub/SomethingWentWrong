@@ -88,10 +88,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (!creature.isOpenedInEcnyclopedia)
-        {
-            //GM.UI.Encyclopedia.OpenNewCreature(creature);
-        }
+        // if (!creature.isOpenedInEcnyclopedia)
+        // {
+        //     GM.UI.Encyclopedia.OpenNewCreature(creature);
+        // }
 
         GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
