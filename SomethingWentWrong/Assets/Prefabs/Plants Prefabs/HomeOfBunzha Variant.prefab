@@ -123,6 +123,10 @@ PrefabInstance:
       propertyPath: encyclopedia
       value: 
       objectReference: {fileID: 6558930595366591851, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: lootDropBarrier
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
       value: 0.37877464
@@ -170,7 +174,7 @@ PrefabInstance:
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: f7764e87e72df514aa14a5f2405afa83, type: 3}
+      objectReference: {fileID: 21300000, guid: f82a5f72ab454ca4d95544d75a8f97bf, type: 3}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

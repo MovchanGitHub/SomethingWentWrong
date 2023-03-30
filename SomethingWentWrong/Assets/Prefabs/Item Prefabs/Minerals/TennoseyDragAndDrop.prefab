@@ -93,11 +93,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 108118163179626165, guid: 81378648c08dc764e8aec3024cb47061, type: 3}
       propertyPath: m_Name
-      value: Basic Drag And Drop Variant
+      value: TennoseyDragAndDrop
       objectReference: {fileID: 0}
     - target: {fileID: 108118163179626187, guid: 81378648c08dc764e8aec3024cb47061, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: e5589130c1750324e8770027ec9c26e3, type: 3}
+      objectReference: {fileID: 21300000, guid: 7589f6de1e9065446adf1c5a3333aa56, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 81378648c08dc764e8aec3024cb47061, type: 3}

@@ -136,6 +136,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: a115348c0435d734ca79025201fd011f, type: 2}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: dropCount
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: encyclopedia
       value: 
       objectReference: {fileID: 6558930595366591851, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}

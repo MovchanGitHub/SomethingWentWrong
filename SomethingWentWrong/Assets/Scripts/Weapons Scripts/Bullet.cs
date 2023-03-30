@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Mathematics;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -44,9 +45,13 @@ public class Bullet : MonoBehaviour, IWeaponable
         direction = Vector2.ClampMagnitude(direction, 1f);
         newPos = (Vector2)transform.position + direction * (speed * Time.deltaTime);
     }
+
+    private float z = 0f;
     
     private void Update()
     {
+        z += 5 * Time.deltaTime;
+        transform.Rotate(0, 0, z);
         newPos += direction * (speed * Time.deltaTime);
         rb.MovePosition(newPos);
     }

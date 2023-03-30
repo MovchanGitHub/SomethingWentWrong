@@ -24,7 +24,7 @@ MonoBehaviour:
     \u0445\u0440\u0430\u043D\u0438\u0442\u0441\u044F \u043C\u043D\u043E\u0433\u043E
     \u0432\u043A\u0443\u0441\u043D\u043E\u0439 \u0436\u0438\u0434\u043A\u043E\u0441\u0442\u0438"
   TypeOfThisItem: 2
-  image: {fileID: 21300000, guid: 7ade657c500ee2a4a905bf25a949156e, type: 3}
+  image: {fileID: 21300000, guid: c51d6ea5665bdb541b1c2d5de90b2d35, type: 3}
   dragAndDropElement: {fileID: 8670461016232067973, guid: 8028eb52663c16444bedc75c5d3bef87, type: 3}
   dropObject: {fileID: 1889222699780510610, guid: f3308b9aaaa6f784e904b21acc6b6290, type: 3}
   satiationEffect: 2

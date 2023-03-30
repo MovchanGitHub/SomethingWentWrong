@@ -132,9 +132,17 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 271d929f7606f5645ba920b1f52a21d4, type: 2}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: dropCount
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: encyclopedia
       value: 
       objectReference: {fileID: 6558930595366591851, guid: 77a7a5062e16b6d4f94e1c9341bc6dbd, type: 3}
+    - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: lootDropBarrier
+      value: 5
+      objectReference: {fileID: 0}
     - target: {fileID: 4614535551129017680, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Size.x
       value: 2.4584498
@@ -190,7 +198,7 @@ PrefabInstance:
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 1711205305, guid: e8136b09cad0c9948a8bcdbf6ce41a5c, type: 3}
+      objectReference: {fileID: 21300000, guid: 64820ec3f9cd9724ca8b28ee029e63d9, type: 3}
     - target: {fileID: 8467136242372608413, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1

@@ -18,7 +18,7 @@ MonoBehaviour:
   maximumAmount: 5
   itemDescription: 
   TypeOfThisItem: 1
-  image: {fileID: 21300000, guid: 12373a539fae58f45b85ce01a7edc2e6, type: 3}
+  image: {fileID: 21300000, guid: 5233963b27162834f81762b49a9c147a, type: 3}
   dragAndDropElement: {fileID: 3828294531006617850, guid: 685688e4e323f384f8306bb1e21b7fa8, type: 3}
   dropObject: {fileID: 6328004980852509893, guid: f9bd3cb45b743674e860695df86f4d2a, type: 3}
   Damage: 5
