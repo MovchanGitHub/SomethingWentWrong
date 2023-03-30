@@ -47,6 +47,8 @@ public class InventoryController : MonoBehaviour
     private SurvivalBar survivalBarScript;
     bool wasShownIncreasment = false;
 
+    [SerializeField] private ItemsBase[] startItems;
+
 
     public void UpdateWeaponBar(string key, int value)
     {
@@ -73,6 +75,11 @@ public class InventoryController : MonoBehaviour
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
 
         survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
+
+        foreach (var item in startItems)
+        {
+            insertItem(item);
+        }
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)

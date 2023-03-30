@@ -54,6 +54,12 @@ MonoBehaviour:
   canvasTransform: {fileID: 0}
   isCanvasActive: 0
   canBeOpened: 0
+  startItems:
+  - {fileID: 11400000, guid: 4c9b575d3f90e084daef152f61b78b5c, type: 2}
+  - {fileID: 11400000, guid: 933d18f2415403e449b61caec8bf35c0, type: 2}
+  - {fileID: 11400000, guid: 6df3fe1e7879505488a94b8b5a7afc42, type: 2}
+  - {fileID: 11400000, guid: e0d69f450822c3b448b31b44998930ae, type: 2}
+  - {fileID: 11400000, guid: 933d18f2415403e449b61caec8bf35c0, type: 2}
 --- !u!114 &1412961941844932375
 MonoBehaviour:
   m_ObjectHideFlags: 0
