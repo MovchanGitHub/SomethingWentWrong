@@ -67,9 +67,13 @@ public class PlayerDamagable : DamagableCharacter
 
     private void OnDestroy()
     {
-        if (GM.InventoryManager)
+        if (GM.InventoryManager != null)
         {
             GM.InventoryManager.isCanvasActive = false;
+        }
+
+        if (GM.InventoryManager.canvasTransform != null)
+        {
             GM.InventoryManager.canvasTransform.gameObject.SetActive(false);
         }
         slider.value = 0;

@@ -40,9 +40,10 @@ public class ItemGrid : MonoBehaviour
         positionOnTheGrid.x = mousePosition.x - rectTransform.position.x;
         positionOnTheGrid.y = rectTransform.position.y - mousePosition.y;
 
-        tileGridPosition.x = Mathf.Clamp((int)(positionOnTheGrid.x / tileWidth / inventoryCanvasScale.x / UICanvasScale.x), 0, gridSizeWidth - 1);
-        tileGridPosition.y = Mathf.Clamp((int)(positionOnTheGrid.y / tileHeight / inventoryCanvasScale.y/ UICanvasScale.y), 0, gridSizeHeight - 1);
+        tileGridPosition.x = (int)(positionOnTheGrid.x / tileWidth / inventoryCanvasScale.x / UICanvasScale.x);
+        tileGridPosition.y = (int)(positionOnTheGrid.y / tileHeight / inventoryCanvasScale.y/ UICanvasScale.y);
 
+        /*
         if (tileGridPosition.x > gridSizeWidth - 1)
         {
             tileGridPosition.x = gridSizeWidth - 1;
@@ -51,6 +52,11 @@ public class ItemGrid : MonoBehaviour
         {
             tileGridPosition.y = gridSizeHeight - 1;
         }
+        if (tileGridPosition.x < 0)
+            tileGridPosition.x = 0;
+        if (tileGridPosition.y < 0)
+            tileGridPosition.y = 0;
+        */
 
         return tileGridPosition;
     }
@@ -80,7 +86,14 @@ public class ItemGrid : MonoBehaviour
 
     internal InventoryItem getItem(int x, int y)
     {
-        return inventoryItemSlots[x, y];
+        if (positionCheck(x, y))
+        {
+            return inventoryItemSlots[x, y];
+        }
+        else
+        {
+            return null;
+        }
     }
 
     public Vector2 calcPosOnGrid(InventoryItem inventoryItem, int posX, int posY)
@@ -93,14 +106,18 @@ public class ItemGrid : MonoBehaviour
 
     public InventoryItem checkItem(int x, int y)
     {
-        InventoryItem item = inventoryItemSlots[x, y];
+        InventoryItem item = null;
+        if (positionCheck(x, y))
+            item = inventoryItemSlots[x, y];
 
         return item;
     }
 
     public InventoryItem PickUpItem(int x, int y)
     {
-        InventoryItem item = inventoryItemSlots[x, y];
+        InventoryItem item = null;
+        if (positionCheck(x, y))
+            item = inventoryItemSlots[x, y];
 
         if (item == null)
         {

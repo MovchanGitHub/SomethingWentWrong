@@ -25,7 +25,6 @@ public class InventoryController : MonoBehaviour
     InventoryItem overlapItem;
     RectTransform newRectTransform;
     RectTransform rectTransform;
-    private Vector2Int selectedItemPos;
 
     [SerializeField] List<ItemsBase> items;
     [SerializeField] GameObject itemPrefab;
@@ -298,6 +297,7 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            removeIncreasment();
             if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
             {
                 --ammoCounter[selectedItem.itemData.itemName];
@@ -343,6 +343,15 @@ public class InventoryController : MonoBehaviour
         gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         ItemGrid.tileWidth = ItemGrid.tileSpriteWidth * newScale;
         ItemGrid.tileHeight = ItemGrid.tileSpriteHeight * newScale;
+    }
+
+    public void deleteItem()
+    {
+        if (selectedItem != null)
+        {
+            Destroy(selectedItem.gameObject);
+            selectedItem = null;
+        }
     }
 }
 

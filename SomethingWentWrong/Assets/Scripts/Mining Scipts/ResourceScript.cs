@@ -25,7 +25,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
             slider.value = value;
             if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
             {
-                Debug.Log("Drop");
                 DropItem(((hp - value + currentDamage) / lootDropBarrier) * dropCount);
                 currentDamage = (hp - value + currentDamage) - lootDropBarrier * ((hp - value + currentDamage) / lootDropBarrier);
             }
@@ -74,9 +73,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void DropItem(int dropAmount)
     {
-        Debug.Log(dropAmount);
         int amountOfDrop = Mathf.Clamp(dropAmount, 1, dropCount * (maxHP/lootDropBarrier));
-        Debug.Log(amountOfDrop);
         while (amountOfDrop > 0)
         {
             amountOfDrop--;
