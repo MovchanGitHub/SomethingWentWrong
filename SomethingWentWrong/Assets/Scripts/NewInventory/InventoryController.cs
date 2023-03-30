@@ -72,19 +72,29 @@ public class InventoryController : MonoBehaviour
 
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
 
-        survivalBarScript = GameManager.GM.UI.GetComponentInChildren<SurvivalBar>();
+        survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)
     {
-        isCanvasActive = !isCanvasActive;
+        if (GM.PlayerMovement.isActiveAndEnabled)
+        {
+            isCanvasActive = !isCanvasActive;
+        }
 
         if (!isCanvasActive)
         {
             removeIncreasment();
+            if (selectedItem != null)
+            {
+                insertItem(selectedItem.itemData);
+                Destroy(selectedItem.gameObject);
+                selectedItem = null;
+            }
         }
 
         canvasTransform.gameObject.SetActive(isCanvasActive);
+
         if (isCanvasActive)
         {
             inputSystem.BlockPlayerInputs();
@@ -110,12 +120,12 @@ public class InventoryController : MonoBehaviour
             handleHighlight();
         }
 
-        if (Mouse.current.leftButton.wasPressedThisFrame)
+        if (Mouse.current.leftButton.wasPressedThisFrame && isCanvasActive)
         {
             onPressLeftMouseButton();
         }
 
-        if (Mouse.current.rightButton.wasPressedThisFrame)
+        if (Mouse.current.rightButton.wasPressedThisFrame && isCanvasActive)
         {
             onPressRightMouseButton();
         }
@@ -266,6 +276,11 @@ public class InventoryController : MonoBehaviour
         bool isDropComplete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
         if (isDropComplete)
         {
+            if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
+            {
+                ++ammoCounter[selectedItem.itemData.itemName];
+                UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
+            }
             selectedItem = null;
             if (overlapItem != null)
             {
@@ -282,6 +297,12 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            removeIncreasment();
+            if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
+            {
+                --ammoCounter[selectedItem.itemData.itemName];
+                UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
+            }
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }
@@ -299,33 +320,38 @@ public class InventoryController : MonoBehaviour
     private void UseItem(Vector2Int tileGridPosition)
     {
         removeIncreasment();
+        InventoryItem itemToCheck = SelectedItemGrid.checkItem(tileGridPosition.x, tileGridPosition.y);
+        if (itemToCheck != null && itemToCheck.itemData.TypeOfThisItem == ItemType.Weapon)
+        {
+            return;
+        }
+
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (item != null)
         {
-            if (item.itemData.TypeOfThisItem == ItemType.Food)
-            {
-                if (item != null)
-                {
-                    ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-                    GameManager.GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
-                    GameManager.GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-                    GameManager.GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
-                }
-                Destroy(item.gameObject);
-                SelectedItemGrid.cleanGridRef(item);
-            }
-            else 
-            {
-                SelectedItemGrid.PlaceItem(item, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
-            }
+            ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
+            GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
+            GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
+            GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            Destroy(item.gameObject);
+            SelectedItemGrid.cleanGridRef(item);
         }
-}
+    }
 
     public void changeScale(int newScale)
     {
         gameObject.transform.localScale = new Vector3(newScale, newScale, newScale);
         ItemGrid.tileWidth = ItemGrid.tileSpriteWidth * newScale;
         ItemGrid.tileHeight = ItemGrid.tileSpriteHeight * newScale;
+    }
+
+    public void deleteItem()
+    {
+        if (selectedItem != null)
+        {
+            Destroy(selectedItem.gameObject);
+            selectedItem = null;
+        }
     }
 }
 
