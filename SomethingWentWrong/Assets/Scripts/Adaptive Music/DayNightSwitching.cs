@@ -96,7 +96,7 @@ public class DayNightSwitching : MusicFaderScript
 
             if (_intenseVolume > 0.001f)
             {
-                MusicVolumeDownRoot(_intenseAudio, TransTime / 2, ref _intenseVolume);
+                MusicVolumeDownRoot(_intenseAudio, TransTime / 4, ref _intenseVolume);
             }
 
             if (_inCombat) _inCombat = !_inCombat;

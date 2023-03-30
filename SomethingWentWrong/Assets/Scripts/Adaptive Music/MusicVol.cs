@@ -9,6 +9,6 @@ public class MusicVol : MonoBehaviour
 
     public void OnChangeSlider(float value)
     {
-        audioMixer.SetFloat("GameVol", value);
+        audioMixer.SetFloat("GameVol", Mathf.Log10(value) * 20);
     }
 }

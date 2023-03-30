@@ -25,7 +25,7 @@ public class PickUpScript : MonoBehaviour
 
         float distance = Vector3.Distance(transform.position, player.position);
 
-        if (distance <= pickUpDistance && /*!InventoryManager.instance.IsInventoryFull()*/ GameManager.GM.InventoryManager.checkSpaceInInventory(itemToInventory))
+        if (distance <= pickUpDistance && /*!InventoryManager.instance.IsInventoryFull()*/ GameManager.GM.InventoryManager.checkSpaceInInventory(itemToInventory) && !GameManager.GM.InventoryManager.isCanvasActive)
         {
             transform.position = Vector3.MoveTowards(transform.position, player.position, speed * Time.deltaTime);
             if (distance < 0.1f)
