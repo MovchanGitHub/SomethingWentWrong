@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private InputSystem inputSystem;
     [SerializeField] private Camera mainCamera;
     [SerializeField] private Spawners _spawners;
+    [SerializeField] private DayNightCycle _dayNightCycle;
 
     private void Awake()
     {
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
     public InputSystem InputSystem { get { return inputSystem; } }
     public Camera Camera { get { return mainCamera; } }
     public Spawners Spawner { get { return _spawners; } }
+    public DayNightCycle Cycle { get { return _dayNightCycle; } }
 
     public void GameOver(string message)
     {

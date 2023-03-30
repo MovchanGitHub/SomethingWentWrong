@@ -27,6 +27,7 @@ public class DayNightCycle : MonoBehaviour
 
     public TextMeshProUGUI score;
     private int dayCount = 0;
+    
     public int DayCount
     {
         get => dayCount;
@@ -145,9 +146,9 @@ public class DayNightCycle : MonoBehaviour
                      currentTime = 0;
                      dayCycle = DayTime.Sunrise;
                      
-                     DayCount++;
-                     if (dayCount >= 3)
-                         GM.GameOver("Вы победили");
+                     // DayCount++;
+                     // if (dayCount >= 3)
+                     //     GM.GameOver("Вы победили");
                      // else
                      // {
                      //     вызов окна скилов
