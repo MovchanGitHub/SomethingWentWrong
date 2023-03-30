@@ -23,7 +23,7 @@ public class SurvivalWarning : MonoBehaviour
         _thirst = GM.SurvivalManager.ThirstPercent;
         _anoxaemia = GM.SurvivalManager.AnoxaemiaPercent;
         _condition = _hunger < 0.15 || _thirst < 0.15 || _anoxaemia < 0.15;
-        _IsPaused = (GM.UI.GetComponent<SettingsScript>().isOpened || GM.UI.GetComponent<EndScreen>().isOpened || GM.UI.GetComponent<InGameMenuScript>().isOpened);
+        _IsPaused = (GM.UI.GetComponent<SettingsScript>().isOpened || GM.UI.GetComponent<EndScreen>().isOpened || GM.UI.GetComponent<InGameMenuScript>().isPaused);
         if (_condition && !_IsPaused)
         {
             _warningSource.loop = true;

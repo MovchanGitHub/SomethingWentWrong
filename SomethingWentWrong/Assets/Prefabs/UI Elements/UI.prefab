@@ -811,12 +811,11 @@ GameObject:
   - component: {fileID: 7478300148616996097}
   m_Layer: 0
   m_Name: 
- Menu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4512580958124057076
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4070,7 +4069,6 @@ RectTransform:
   - {fileID: 4179934295783946525}
   - {fileID: 6523717158399822662}
   - {fileID: 591909774207578505}
-  - {fileID: 4307913357548301604}
   - {fileID: 7482615149057573415}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4258,7 +4256,6 @@ MonoBehaviour:
   healthBar: {fileID: 3330192075736641506}
   skillsMenu: {fileID: 6436228068595625841}
   weaponsBar: {fileID: 404682486970086704}
-  encyclopedia: {fileID: 0}
 --- !u!114 &404682486970086704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4941,10 +4938,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 2756128441125019882}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: -80
-  m_MaxValue: 0
-  m_WholeNumbers: 1
-  m_Value: 0
+  m_MinValue: 0.00001
+  m_MaxValue: 1
+  m_WholeNumbers: 0
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
@@ -8145,9 +8142,9 @@ MonoBehaviour:
   m_FillRect: {fileID: 5158847887357258223}
   m_HandleRect: {fileID: 0}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 100
-  m_WholeNumbers: 1
+  m_MinValue: 0.00001
+  m_MaxValue: 1
+  m_WholeNumbers: 0
   m_Value: 100
   m_OnValueChanged:
     m_PersistentCalls:
