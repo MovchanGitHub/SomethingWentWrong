@@ -52,11 +52,11 @@ MonoBehaviour:
   thirstDepletionRate: 1
   maxAnoxaemia: 120
   anoxaemiaDepletionRate: 1
-  maxStamina: 5
+  maxStamina: 10
   staminaDepletionRate: 1
   staminaRechargeRate: 2
   staminaRechargeDelay: 3
-  staminaToRush: 1
+  staminaToRush: 2
 --- !u!82 &1282869112
 AudioSource:
   m_ObjectHideFlags: 0

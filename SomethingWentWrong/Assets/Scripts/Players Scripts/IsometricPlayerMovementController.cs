@@ -25,7 +25,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public bool isRunning;
 
-    public bool usingWeapon= false;
+    public bool usingWeapon = false;
     public bool hand_to_hand;
     
     private float movementSpeed;
@@ -45,6 +45,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public bool IsMoving { get; private set; }
 
     [SerializeField] private float rushTime = 0.25f;
+
+    public float RushTime => rushTime;
+    
+    private float rushingTime = 0f;
+
+    public float RushingTime => rushingTime;
 
     private RushAttack rushAttack;
     float verticalInput; 
@@ -74,11 +80,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
         SetWalkingSpeed();
     }
 
+
     private IEnumerator StartRushing()
     {
         SetRushingSpeed();
-        _audioSource.Play();
-        yield return new WaitForSeconds(rushTime);
+         _audioSource.Play();
+        rushingTime = 0f;
+        while (rushingTime < rushTime)
+        {
+            rushingTime += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
         
         SetWalkingSpeed();
     }
@@ -205,7 +217,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (!isRushing)
+        if (!isRushing || rushingTime < 0.05f)
             return;
         
         IDamagable obj;

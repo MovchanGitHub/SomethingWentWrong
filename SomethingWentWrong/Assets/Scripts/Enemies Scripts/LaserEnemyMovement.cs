@@ -56,7 +56,7 @@ public class LaserEnemyMovement : MonoBehaviour
         }
     }
 
-    public void playFeedback(GameObject sender)
+    public void PlayFeedback(GameObject sender)
     {
         StopAllCoroutines();
         attackLogic.stopAttack();

@@ -28,27 +28,28 @@ public class RushEnemyAttack : EnemyAttack
 
     private IEnumerator RushAttack(Vector2 direction)
     {
-        if (es && es.Animator)
-           es.Animator.AttackTrigger();
+        if (isAttacking) yield break;
+        
+        isAttacking = true;
+        es.Animator.AttackTrigger();
+        enemyLogic.CanMove = false;
         yield return new WaitForSeconds(timeBeforeAttack);
 
         direction.Normalize();
         rigidBody2D.AddForce(direction * rushStrength, ForceMode2D.Impulse);
         StartCoroutine(Reset());
 
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
+        es.Animator.StopAttackTrigger();
         yield return new WaitForSeconds(timeAfterAttack);
+        
         enemyLogic.CanMove = true;
+        isAttacking = false;
     }
 
     private IEnumerator Reset()
     {
-        //if (es && es.Animator)
-        //es.Animator.IdleAnim();
         yield return new WaitForSeconds(delay);
         rigidBody2D.velocity = Vector3.zero;
-        //enemyLogic.CanMove = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

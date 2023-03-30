@@ -14,6 +14,8 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
 
     public int Damage { get { return damage; } }
 
+    protected bool isAttacking = false;
+
     [SerializeField] protected LayerMask damagableLayers;
     protected float distanceToTarget;
     protected EnemyMovement enemyLogic;
@@ -37,16 +39,18 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
             enemyLogic.CanMove = false;
-            if (es && es.Animator)
-                es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
+            es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
             StartCoroutine(Attack());
         }
     }
 
     private IEnumerator Attack()
     {
-        if (es && es.Animator)
-            es.Animator.AttackTrigger();
+        if (isAttacking) yield break;
+
+        isAttacking = true;
+        es.Animator.AttackTrigger();
+        
         yield return new WaitForSeconds(timeBeforeAttack);
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + attackRange, damagableLayers);
         foreach (Collider2D hitObject in hitObjects)
@@ -56,17 +60,25 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
                 hitObject.GetComponent<IDamagable>().GetDamage(this);
             }
         }
+        es.Animator.StopAttackTrigger();
         yield return new WaitForSeconds(timeAfterAttack);
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
+        
         enemyLogic.CanMove = true;
+        isAttacking = false;
     }
 
     public virtual void stopAttack()
     {
-        if (es && es.Animator)
-            es.Animator.StopAttackTrigger();
         StopAllCoroutines();
+        es.Animator.StopAttackTrigger();
+        StartCoroutine(StopAttackCoroutine());
+    }
+
+    protected IEnumerator StopAttackCoroutine()
+    {
+        yield return new WaitForSeconds(timeAfterAttack);
+        enemyLogic.CanMove = true;
+        isAttacking = false;
     }
 
 

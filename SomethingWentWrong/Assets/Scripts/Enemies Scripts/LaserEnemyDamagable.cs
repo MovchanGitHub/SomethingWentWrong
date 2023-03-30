@@ -36,11 +36,8 @@ public class LaserEnemyDamagable : DamagableCharacter
 
     public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        base.GetDamage(weapon);
-        if (sender != null)
-        {
-            enemyLogic.playFeedback(sender);
-        }
+        base.GetDamage(weapon); 
+        if (sender != null) enemyLogic.PlayFeedback(sender);
     }
 
 

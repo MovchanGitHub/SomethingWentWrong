@@ -7,6 +7,22 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.x
+      value: 1.3786402
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Size.y
+      value: 0.8386055
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.046192646
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720299, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.y
+      value: -0.09139556
+      objectReference: {fileID: 0}
     - target: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalScale.x
       value: 1
@@ -27,6 +43,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: RushEnemy Variant
       objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750934, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: delay
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: strength
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197558646750935, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: triggerDistance
+      value: 6
+      objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -41,11 +77,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.117981
+      value: 5.22
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.6867391
+      value: -2.28
       objectReference: {fileID: 0}
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalPosition.z
@@ -78,6 +114,22 @@ PrefabInstance:
     - target: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_MaxValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: hp
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: maxHp
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -118,12 +170,12 @@ MonoBehaviour:
   damage: 5
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 0
-  triggerAttackDistance: 3
+    m_Bits: 1536
+  triggerAttackDistance: 4
   es: {fileID: 0}
-  timeBeforeAttack: 0.1
-  timeAfterAttack: 1
-  attackRange: 0.5
+  timeBeforeAttack: 0.15
+  timeAfterAttack: 1.5
+  attackRange: 1
 --- !u!1 &474237801703479250 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 819197557229691554, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
@@ -162,3 +214,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackAnimationDuration: 0
+--- !u!1 &474237802382592934 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 819197558646750934, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+  m_PrefabInstance: {fileID: 993759577651688816}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &373166166
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 474237802382592934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76f87df2e3022f54da7c267ab9e5a012, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

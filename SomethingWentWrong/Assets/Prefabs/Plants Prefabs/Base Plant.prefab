@@ -59,7 +59,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8113208, g: 0.12255225, b: 0.019134922, a: 1}
+  m_Color: {r: 0.5773117, g: 0.7169812, b: 0.056817323, a: 1}
   m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -633,6 +633,7 @@ MonoBehaviour:
   hp: 10
   slider: {fileID: 4558170201927312784}
   damagePopupPrefab: {fileID: -1458636167758823117, guid: c63a5d69e167cfd45851b10272ea8b73, type: 3}
+  positionIndex: 0
   lootDropBarrier: 5
   creature: {fileID: 0}
   drop: {fileID: 0}
