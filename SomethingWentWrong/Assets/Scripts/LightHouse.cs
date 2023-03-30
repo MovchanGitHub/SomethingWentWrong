@@ -12,6 +12,10 @@ public class LightHouse : MonoBehaviour, IDamagable
     [SerializeField] private int maxHp;
     [SerializeField] private Slider healthBar;
     
+    public List<AudioClip> _AudioClips;
+    private AudioSource _hitSource;
+    private int _hitInd;
+    
     public int HP
     {
         get { return hp; }
@@ -34,6 +38,7 @@ public class LightHouse : MonoBehaviour, IDamagable
     private void Awake()
     {
         maxHp = HP;
+        _hitSource = GetComponent<AudioSource>();
     }
 
     public int MaxHP
@@ -59,7 +64,14 @@ public class LightHouse : MonoBehaviour, IDamagable
                 HP += weapon.Damage;
                 break;
             default:
+            {
                 HP -= weapon.Damage;
+                _hitSource.pitch = 1 + UnityEngine.Random.Range(-0.10f, 0.10f);
+                _hitSource.PlayOneShot(_AudioClips[_hitInd]);
+                _hitInd++;
+                if (_hitInd == 3)
+                    _hitInd = 0;
+            }
                 break;
         }
     }

@@ -9,16 +9,15 @@ public class MenuMusicTransition : MusicFaderScript
 {
     private AudioSource _audioSource;
     private Scene _menuScene;
-    private float _volume;
-    private const int TransTime = 500;
     public AudioMixer audioMixer;
-    
+    private float _timeToFade = 5f;
+    private float _timeElapsed;
+
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
         _audioSource = GetComponent<AudioSource>();
-        _volume = 0.0001f;
-        _audioSource.volume = _volume;
+        _audioSource.volume = 0.0001f;
         _audioSource.Play();
         _menuScene = SceneManager.GetActiveScene();
     }
@@ -32,32 +31,19 @@ public class MenuMusicTransition : MusicFaderScript
 
     private void Update()
     {
-        
         if (_menuScene != SceneManager.GetActiveScene())
         {
-            /*
-            _audioSource.volume = MathF.Sqrt(_volume);
-            _volume -= _volume / TransTime;
-            if (MathF.Sqrt(_volume) < 0.0001f)
-            {
-                Destroy(gameObject);
-            } */
-            
-            MusicVolumeDownRoot(_audioSource, TransTime / 3, ref _volume);
-            if (MathF.Sqrt(_volume) < 0.001f)
+            _audioSource.volume = Mathf.Pow(Mathf.Lerp(0, 1, _timeElapsed / _timeToFade), 2); 
+            _timeElapsed -= Time.deltaTime;
+            if (_audioSource.volume < 0.001f)
             {
                 Destroy(gameObject);
             } 
         }
-        else if (MathF.Sqrt(_volume - _volume / TransTime) < 1)
+        else if (_audioSource.volume < 1)
         {
-            /*
-            _audioSource.volume = MathF.Sqrt(_volume);
-            _volume += _volume / TransTime; */
-            
-            MusicVolumeUpRoot(_audioSource, TransTime, ref _volume);
+            _audioSource.volume = Mathf.Lerp(0, 1, _timeElapsed / _timeToFade);
+            _timeElapsed += Time.deltaTime;
         }
-        
-        
     }
 }
