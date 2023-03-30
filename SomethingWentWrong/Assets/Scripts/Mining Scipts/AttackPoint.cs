@@ -25,11 +25,20 @@ public class AttackPoint : MonoBehaviour, IWeaponable
     private Animator anim;
 
     private bool attackWithRightHand = true;
+
+    public List<AudioClip> _AudioClips;
+    private AudioSource _punchSource;
+    private int _punchInd;
+    private AudioSource _crystallHit;
+    private AudioSource _treeHit;
     
     void Awake()
     {
         startPosition = transform.localPosition;
         anim = transform.parent.GetComponentInChildren<Animator>();
+        _punchSource = GetComponents<AudioSource>()[0];
+        _crystallHit = GetComponents<AudioSource>()[1];
+        _treeHit = GetComponents<AudioSource>()[2];
     }
 
     public void TryAttack(UnityEngine.InputSystem.InputAction.CallbackContext context)
@@ -48,7 +57,14 @@ public class AttackPoint : MonoBehaviour, IWeaponable
         GameManager.GM.PlayerMovement.usingWeapon = true;
         GameManager.GM.PlayerMovement.hand_to_hand = true;
         attackWithRightHand = !attackWithRightHand;
-
+        
+        _punchSource.clip = _AudioClips[_punchInd];
+        _punchSource.pitch = 1 + Random.Range(-0.10f, 0.10f);
+        _punchSource.Play();
+        _punchInd++;
+        if (_punchInd == 3)
+            _punchInd = 0;
+        
         yield return new WaitForSeconds(0.3f);
 
         Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, attackRange, damagableLayers);
@@ -59,6 +75,23 @@ public class AttackPoint : MonoBehaviour, IWeaponable
             {
                 hitObject.GetComponent<IDamagable>().GetDamage(this, GameManager.GM.PlayerMovement.gameObject);
             }
+            
+            if (hitObject.name.Contains("Tennosey"))
+            {
+                _crystallHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
+                _crystallHit.Play();
+            }
+            else if (hitObject.name.Contains("AguaBerryPlant Variant")
+                     || hitObject.name.Contains("Bomb Fruit Plant")
+                     || hitObject.name.Contains("FrambuesaBush Variant")
+                     || hitObject.name.Contains("HomeOfBunzha Variant")
+                     || hitObject.name.Contains("Bubble Plant Variant") 
+                     || hitObject.name.Contains("Shoot Fruit Plant"))
+            {
+                _treeHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
+                _treeHit.Play();
+            }
+            
         }
         
         yield return new WaitForSeconds(0.4f);

@@ -53,6 +53,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public float lastHorizontalInput;
     private Vector2 currentPos;
     public bool isRushing;
+    private AudioSource _audioSource;
 
     private void Awake()
     {
@@ -61,6 +62,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
         attackPoint = GetComponentInChildren<AttackPoint>().gameObject;
         rushAttack = GetComponentInChildren<RushAttack>();
         startPosition = attackPoint.transform.localPosition;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -75,7 +77,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private IEnumerator StartRushing()
     {
         SetRushingSpeed();
-
+        _audioSource.Play();
         yield return new WaitForSeconds(rushTime);
         
         SetWalkingSpeed();
