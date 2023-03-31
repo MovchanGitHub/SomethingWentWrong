@@ -12,7 +12,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int hp;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
-    private int maxHP;
+    private int timesToDrop;
 
     public int positionIndex;
     
@@ -68,12 +68,16 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void Start()
     {
-        maxHP = hp;
+        timesToDrop = HP/lootDropBarrier;
     }
 
     private void DropItem(int dropAmount)
     {
-        int amountOfDrop = Mathf.Clamp(dropAmount, 1, dropCount * (maxHP/lootDropBarrier));
+        int amountOfDrop = Mathf.Clamp(dropAmount, 1, dropCount * timesToDrop);
+        if (amountOfDrop > 0)
+        {
+            timesToDrop--;
+        }
         while (amountOfDrop > 0)
         {
             amountOfDrop--;
