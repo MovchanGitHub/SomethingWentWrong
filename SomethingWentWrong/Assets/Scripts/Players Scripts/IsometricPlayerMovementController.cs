@@ -175,7 +175,6 @@ public class IsometricPlayerMovementController : MonoBehaviour
                     float tempInput = horizontalInput;
                     horizontalInput = a11 * horizontalInput + a12 * verticalInput;
                     verticalInput = a21 * tempInput + a22 * verticalInput;
-                    Debug.Log("x = " + horizontalInput + " y = " + verticalInput);
                 }
                 else if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
                 {
