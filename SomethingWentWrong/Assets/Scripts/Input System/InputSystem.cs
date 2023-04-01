@@ -12,9 +12,15 @@ public class InputSystem : MonoBehaviour
 {
     public PlayerInput playerInput;
 
+    public InputAction openInventoryInput;
+    public InputAction openEncyclopediaInput;
+
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
+
+        openInventoryInput = playerInput.actions["Open Inventory"];
+        //openEncyclopediaInput = playerInput.actions["Open Encyclopedia"];
     }
 
     private Dictionary<string, Action<InputAction.CallbackContext>> inputActions = new ();

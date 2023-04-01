@@ -71,6 +71,9 @@ public class InGameMenuScript : MonoBehaviour
         isOpened = false;
         pauseMenu.SetActive(false);
         GM.InventoryManager.canBeOpened = !isOpened;
+        GM.InputSystem.UnblockPlayerInputs();
+        GM.InputSystem.openInventoryInput.Enable();
+        //GM.InputSystem.openEncyclopediaInput.Enable();
     }
 
     public void ShowMenu()
@@ -78,6 +81,9 @@ public class InGameMenuScript : MonoBehaviour
         isOpened = true;
         pauseMenu.SetActive(true);
         GM.InventoryManager.canBeOpened = !isOpened;
+        GM.InputSystem.BlockPlayerInputs();
+        GM.InputSystem.openInventoryInput.Disable();
+        //GM.InputSystem.openEncyclopediaInput.Disable();
     }
     public void ShowHideMenu()
     {
