@@ -2,14 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static GameManager;
 
 public class SlopeMovementTriggerScript : MonoBehaviour
 {
     private IsometricPlayerMovementController controller;
     
-    private void Awake()
+    private void Start()
     {
-        controller = GetComponentInParent<IsometricPlayerMovementController>();
+        controller = GM.PlayerMovement;
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -68,12 +69,14 @@ public class SlopeMovementTriggerScript : MonoBehaviour
                 controller.a11 =  3; //controller.a12 =  0;
                 controller.a21 =  1; //controller.a22 =  1;
                 controller.normalMovement = false;
+                controller.isoRenderer.InclineMovement(true);
                 break;//
             
             case "incline-min-E"://
                 controller.a11 =  3; //controller.a12 =  0;
                 controller.a21 = -1; //controller.a22 =  1;
                 controller.normalMovement = false;
+                controller.isoRenderer.InclineMovement(true);
                 break;//
             
             case "incline-min-SW"://
@@ -104,26 +107,12 @@ public class SlopeMovementTriggerScript : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D col)
     {
-        switch (col.tag)
+        if (col.tag.Length >= 11 && col.tag.Substring(0, 11) == "incline-min")
         {
-            case "incline-max-W":
-            case "incline-max-E":
-            case "incline-max-SW":
-            case "incline-max-SE":            
-            case "incline-mid-W":            
-            case "incline-mid-E":
-            case "incline-mid-SW":            
-            case "incline-mid-SE":           
-            case "incline-min-W":            
-            case "incline-min-E":
-            case "incline-min-SW":            
-            case "incline-min-SE":            
-            case "incline-min-NE":            
-            case "incline-min-NW":
-                controller.a11 = 1;
-                controller.a21 = 0;
-                controller.normalMovement = true;
-                break;
+            controller.a11 = 1;
+            controller.a21 = 0;
+            controller.normalMovement = true;
+            controller.isoRenderer.InclineMovement(false);
         }
     }
 }

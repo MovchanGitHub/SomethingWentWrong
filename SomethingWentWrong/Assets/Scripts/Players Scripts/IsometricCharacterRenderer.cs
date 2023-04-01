@@ -72,4 +72,9 @@ public class IsometricCharacterRenderer : MonoBehaviour
     {
         _animator.speed = newSpeed;
     }
+
+    public void InclineMovement(bool inclineMovement)
+    {
+        _animator.SetBool("Incline", inclineMovement);
+    }
 }
