@@ -1,9 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
+using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
+using UnityEngine.Rendering.Universal;
 using static GameManager;
 using static AttackPoint;
 
@@ -39,7 +43,17 @@ public class IsometricPlayerMovementController : MonoBehaviour
     public int a11 = 1, a12 = 0;
     public int a21 = 0, a22 = 1;
 
-    public bool normalMovement = true; 
+    private bool normalMovement = true;
+
+    public bool NormalMovement
+    {
+        get { return normalMovement; }
+        set
+        {
+            normalMovement = value;
+            isoRenderer.InclineMovement(!normalMovement);
+        }
+    }
 
     private GameObject attackPoint;
     private Vector3 startPosition;
@@ -154,16 +168,22 @@ public class IsometricPlayerMovementController : MonoBehaviour
                     horizontalInput = playerInput.actions["Move"].ReadValue<Vector2>().x;
                     verticalInput = playerInput.actions["Move"].ReadValue<Vector2>().y;
                 }
-            
-                if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
+
+                if (!normalMovement)
                 {
-                    horizontalInput *= 2;
-                }
-                else
-                {
+                    if (horizontalInput != 0f)
+                    {
+                        if (horizontalInput > 0f) horizontalInput = 1f;
+                        else horizontalInput = -1f;
+                        verticalInput = 0f;
+                    }
                     float tempInput = horizontalInput;
                     horizontalInput = a11 * horizontalInput + a12 * verticalInput;
                     verticalInput = a21 * tempInput + a22 * verticalInput;
+                }
+                else if (Math.Abs(horizontalInput) > 0f && Math.Abs(verticalInput) > 0f)
+                {
+                    horizontalInput *= 2;
                 }
             }
             
@@ -186,8 +206,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
         inputVector = new Vector2(horizontalInput, verticalInput);
             
         inputVector = Vector2.ClampMagnitude(inputVector, 1);
-        Vector2 movement = inputVector * movementSpeed;
-        Vector2 newPos = currentPos + movement * Time.fixedDeltaTime;
+        Vector2 movement = inputVector * (movementSpeed * Time.fixedDeltaTime);
+        Vector2 newPos = currentPos + movement;
         rbody.MovePosition(newPos);
     }
 

@@ -63,7 +63,8 @@ public class DayNightCycle : MonoBehaviour
     void Start() 
     {
         //spawnSystem = GM.Rocket.GetComponentInChildren<SpawnSystem>();
-
+        DayCount = 1;
+        
         currentTime = 0;
         dayCycle = DayTime.Day;
         globalLight.color = sunriseColor;

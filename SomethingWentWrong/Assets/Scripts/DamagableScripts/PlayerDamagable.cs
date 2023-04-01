@@ -16,6 +16,7 @@ public class PlayerDamagable : DamagableCharacter
     {
         maxHp = HP;
         psl = transform.parent.GetComponentInChildren<PlayerShaderLogic>();
+        StartCoroutine(IncreaseHP());
     }
 
     public override int HP
@@ -78,5 +79,14 @@ public class PlayerDamagable : DamagableCharacter
         }
         slider.value = 0;
         GM.GameOver("ПОМЕР");
+    }
+
+    private IEnumerator IncreaseHP()
+    {
+        while (true)
+        {
+            yield return new WaitForSeconds(1.5f);
+            HP++;
+        }
     }
 }

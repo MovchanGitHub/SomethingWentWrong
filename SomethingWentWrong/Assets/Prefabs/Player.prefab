@@ -469,7 +469,7 @@ Animator:
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dfb97092b9126cf40a80350bbbf16b09, type: 2}
   m_CullingMode: 0
-  m_UpdateMode: 0
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_StabilizeFeet: 0
@@ -1524,7 +1524,6 @@ MonoBehaviour:
   a12: 0
   a21: 0
   a22: 1
-  normalMovement: 1
   rushTime: 0.25
   lastVerticalInput: 0
   lastHorizontalInput: 0
@@ -1732,7 +1731,7 @@ PrefabInstance:
       objectReference: {fileID: 2514877755678825161, guid: 74cc7696540b9cc49ab65961b1dbbe4f, type: 3}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: timeBeforeReload
-      value: 3
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 779990865073959161, guid: 75292300b563e864cac2c739d7db8ce1, type: 3}
       propertyPath: laserEmptyColor.a
