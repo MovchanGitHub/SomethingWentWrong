@@ -76,22 +76,7 @@ public class AttackPoint : MonoBehaviour, IWeaponable
                 hitObject.GetComponent<IDamagable>().GetDamage(this, GameManager.GM.PlayerMovement.gameObject);
             }
             
-            if (hitObject.name.Contains("Tennosey"))
-            {
-                _crystallHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
-                _crystallHit.Play();
-            }
-            else if (hitObject.name.Contains("AguaBerryPlant Variant")
-                     || hitObject.name.Contains("Bomb Fruit Plant")
-                     || hitObject.name.Contains("FrambuesaBush Variant")
-                     || hitObject.name.Contains("HomeOfBunzha Variant")
-                     || hitObject.name.Contains("Bubble Plant Variant") 
-                     || hitObject.name.Contains("Shoot Fruit Plant"))
-            {
-                _treeHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
-                _treeHit.Play();
-            }
-            
+            ObjectHitSound(hitObject, _crystallHit, _treeHit);
         }
         
         yield return new WaitForSeconds(0.4f);
@@ -102,5 +87,24 @@ public class AttackPoint : MonoBehaviour, IWeaponable
     private void OnDrawGizmosSelected()
     {
         Gizmos.DrawWireSphere(transform.position, attackRange);
+    }
+
+    public static void ObjectHitSound(Collider2D hitObject, AudioSource _crystallHit, AudioSource _treeHit)
+    {
+        if (hitObject.name.Contains("Tennosey"))
+        {
+            _crystallHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
+            _crystallHit.Play();
+        }
+        else if (hitObject.name.Contains("AguaBerryPlant Variant")
+                 || hitObject.name.Contains("Bomb Fruit Plant")
+                 || hitObject.name.Contains("FrambuesaBush Variant")
+                 || hitObject.name.Contains("HomeOfBunzha Variant")
+                 || hitObject.name.Contains("Bubble Plant Variant") 
+                 || hitObject.name.Contains("Shoot Fruit Plant"))
+        {
+            _treeHit.pitch = 1 + Random.Range(-0.15f, 0.15f);
+            _treeHit.Play();
+        }
     }
 }

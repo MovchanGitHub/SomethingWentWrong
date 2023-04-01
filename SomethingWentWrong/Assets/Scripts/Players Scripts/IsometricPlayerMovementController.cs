@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
 using static GameManager;
+using static AttackPoint;
 
 public class IsometricPlayerMovementController : MonoBehaviour
 {
@@ -60,6 +61,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
     private Vector2 currentPos;
     public bool isRushing;
     private AudioSource _audioSource;
+    private AudioSource _crystallHit;
+    private AudioSource _treeHit;
 
     private void Awake()
     {
@@ -69,6 +72,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
         rushAttack = GetComponentInChildren<RushAttack>();
         startPosition = attackPoint.transform.localPosition;
         _audioSource = GetComponent<AudioSource>();
+        _crystallHit = GetComponentsInChildren<AudioSource>()[4];
+        _treeHit = GetComponentsInChildren<AudioSource>()[5];
     }
 
     private void Start()
@@ -227,6 +232,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
             StopCoroutine(StartRushing());
             SetWalkingSpeed();
             obj.GetDamage(rushAttack, GameManager.GM.PlayerMovement.gameObject);
+            ObjectHitSound(col, _crystallHit, _treeHit);
         }
     }
 }
