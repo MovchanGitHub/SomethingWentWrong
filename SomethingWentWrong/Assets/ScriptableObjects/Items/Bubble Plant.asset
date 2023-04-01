@@ -26,4 +26,4 @@ MonoBehaviour:
   satiationEffect: 0
   slakingOfThirstEffect: 0
   healEffect: 0
-  oxygenRecovery: 50
+  oxygenRecovery: 25

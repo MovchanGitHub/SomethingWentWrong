@@ -24,7 +24,7 @@ public class DayNightSwitching : MusicFaderScript
 
     private bool _waveEnded;
     private bool _enemiesEnded;
-    private EnemiesSpawnSystem _enemiesScript;
+    [SerializeField] private EnemiesSpawnSystem _enemiesScript;
 
     [SerializeField] private DayNightCycle DayNightCycleScript;
 

@@ -38,6 +38,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver(string message)
     {
+        Time.timeScale = 0f;
+        
         if (UI)
             UI.GetComponent<EndScreen>().ShowDeathScreen(message);
 

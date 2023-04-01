@@ -86,8 +86,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
         rushAttack = GetComponentInChildren<RushAttack>();
         startPosition = attackPoint.transform.localPosition;
         _audioSource = GetComponent<AudioSource>();
-        _crystallHit = GetComponentsInChildren<AudioSource>()[4];
-        _treeHit = GetComponentsInChildren<AudioSource>()[5];
+        _crystallHit = GetComponentsInChildren<AudioSource>()[3];
+        _treeHit = GetComponentsInChildren<AudioSource>()[4];
     }
 
     private void Start()
