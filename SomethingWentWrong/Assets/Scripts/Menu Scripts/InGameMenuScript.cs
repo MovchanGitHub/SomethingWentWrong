@@ -7,12 +7,12 @@ using static GameManager;
 
 public class InGameMenuScript : MonoBehaviour
 {
-    GameObject pauseMenu;
+    private GameObject pauseMenu;
     // public InventoryManager inventory;
-    GameObject endScreen;
-    GameObject winScreen;
-    GameObject controlsMenu;
-    SettingsScript settingsScript;
+    private GameObject endScreen;
+    private GameObject controlsMenu;
+    private GameObject aboutWindow;
+    private SettingsScript settingsScript;
     public bool isOpened;
     public bool isPaused;
 
@@ -26,6 +26,8 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;
         controlsMenu = GM.UI.ControlsMenu;
+        aboutWindow = GM.UI.AboutGame;
+        
 
         pauseMenu.SetActive(isOpened);
         endScreen.SetActive(false);
@@ -47,6 +49,17 @@ public class InGameMenuScript : MonoBehaviour
             settingsScript.HideSettings();
             ShowMenu();
         }
+
+        else if (aboutWindow.activeSelf)
+        {
+            aboutWindow.SetActive(false);
+            ShowMenu();
+        }
+        else if (controlsMenu.activeSelf)
+        {
+            controlsMenu.SetActive(false);
+            ShowMenu();
+        }
         else
             if (isOpened)
         {
@@ -63,7 +76,7 @@ public class InGameMenuScript : MonoBehaviour
     public void PauseGame(bool state)
     {
         isPaused = state;
-        Time.timeScale = state ? 0 : 1;
+        Time.timeScale = state ? 0f : 1f;
     }
     
     public void HideMenu()
