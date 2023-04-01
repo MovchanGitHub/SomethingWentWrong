@@ -10,62 +10,66 @@ public class IsometricCharacterRenderer : MonoBehaviour
 {
     private Animator _animator;
 
-    private float screenCenterX;
-    private float screenCenterY;
+    private int _inclineId;
+    private int _mouseXId;
+    private int _mouseYId;
+    private int _isMovingId;
+    private int _shootId;
+    private int _stopShootingId;
     
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-    }
-    
-    private void Start()
-    {
-        screenCenterX = Screen.width * 0.5f;
-        screenCenterY = Screen.height * 0.5f;
+        _inclineId = Animator.StringToHash("Incline");
+        _mouseXId = Animator.StringToHash("MouseX");
+        _mouseYId = Animator.StringToHash("MouseY");
+        _isMovingId = Animator.StringToHash("IsMoving");
+        _shootId = Animator.StringToHash("Shoot");
+        _stopShootingId = Animator.StringToHash("StopShooting");
     }
 
     public void SetDirection(float x, float y)
     {
-        _animator.SetBool("IsMoving", x != 0 || y != 0);
+        _animator.SetBool(_isMovingId, x != 0 || y != 0);
         
-        if (GameManager.GM.PlayerMovement.usingWeapon 
-            && !GameManager.GM.PlayerMovement.hand_to_hand)
+        if (GM.PlayerMovement.usingWeapon 
+            && !GM.PlayerMovement.hand_to_hand)
         {
             SetDirectionToMouse();
         }
         else if (x != 0 || y != 0)
         {
-            GameManager.GM.PlayerMovement.lastHorizontalInput = x;
-            GameManager.GM.PlayerMovement.lastVerticalInput = y;
-            _animator.SetFloat("MouseX", x);
-            _animator.SetFloat("MouseY", y);
+            GM.PlayerMovement.lastHorizontalInput = x;
+            GM.PlayerMovement.lastVerticalInput = y;
+            _animator.SetFloat(_mouseXId, x);
+            _animator.SetFloat(_mouseYId, y);
         }
     }
 
     public void PlayShoot()
     {
         GM.PlayerMovement.usingWeapon = true;        
-        _animator.SetTrigger("Shoot");
-        _animator.ResetTrigger("StopShooting");
+        _animator.SetTrigger(_shootId);
+        _animator.ResetTrigger(_stopShootingId);
     }
     
     public void PlayStopShooting()
     {
         GM.PlayerMovement.usingWeapon = false;
-        _animator.ResetTrigger("Shoot");
-        _animator.SetTrigger("StopShooting");
+        _animator.ResetTrigger(_shootId);
+        _animator.SetTrigger(_stopShootingId);
     }
     
     private void SetDirectionToMouse()
     {
         Vector2 mousePos = Mouse.current.position.ReadValue();
-        _animator.SetFloat("MouseX", mousePos.x - Screen.width * 0.5f);
-        _animator.SetFloat("MouseY", mousePos.y - Screen.height * 0.5f);
+        _animator.SetFloat(_mouseXId, mousePos.x - Screen.width * 0.5f);
+        _animator.SetFloat(_mouseYId, mousePos.y - Screen.height * 0.5f);
     }
 
-    public void ChangeSpriteOrder(int new_order)
+    public void ChangeSpriteOrder(int newOrder)
     {
-        transform.GetComponent<SpriteRenderer>().sortingOrder = new_order;
+        transform.GetComponent<SpriteRenderer>().sortingOrder = newOrder;
     }
 
     public void SetAnimationsSpeed(float newSpeed)
@@ -75,6 +79,6 @@ public class IsometricCharacterRenderer : MonoBehaviour
 
     public void InclineMovement(bool inclineMovement)
     {
-        _animator.SetBool("Incline", inclineMovement);
+        _animator.SetBool(_inclineId, inclineMovement);
     }
 }
