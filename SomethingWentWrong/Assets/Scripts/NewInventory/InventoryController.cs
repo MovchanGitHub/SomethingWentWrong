@@ -76,10 +76,12 @@ public class InventoryController : MonoBehaviour
 
         survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
 
+        /*
         foreach (var item in startItems)
         {
             insertItem(item);
         }
+        */
     }
 
     public void OpenCloseInventory(InputAction.CallbackContext context)

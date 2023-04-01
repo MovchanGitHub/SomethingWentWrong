@@ -633,6 +633,7 @@ MonoBehaviour:
   hp: 10
   slider: {fileID: 4558170201927312784}
   damagePopupPrefab: {fileID: -1458636167758823117, guid: c63a5d69e167cfd45851b10272ea8b73, type: 3}
+  timesToDrop: 2
   positionIndex: 0
   lootDropBarrier: 5
   creature: {fileID: 0}
