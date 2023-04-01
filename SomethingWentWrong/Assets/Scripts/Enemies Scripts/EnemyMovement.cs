@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using static GameManager;
+using static DayNightSwitching;
 
 public class EnemyMovement : MonoBehaviour
 {

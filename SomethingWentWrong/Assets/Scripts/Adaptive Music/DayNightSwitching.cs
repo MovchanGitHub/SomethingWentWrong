@@ -1,8 +1,10 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using static EnemiesSpawnSystem;
 
 public class DayNightSwitching : MusicFaderScript
 {
@@ -19,6 +21,10 @@ public class DayNightSwitching : MusicFaderScript
     private bool _inCombat;
     public AudioMixer intenseMixer;
     public float intenseMixerVol;
+
+    private bool _waveEnded;
+    private bool _enemiesEnded;
+    private EnemiesSpawnSystem _enemiesScript;
 
     [SerializeField] private DayNightCycle DayNightCycleScript;
 
@@ -78,11 +84,12 @@ public class DayNightSwitching : MusicFaderScript
 
     private void Update()
     {
+        _enemiesEnded = _enemiesScript.ExistingEnemies == 0;
+        if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && _enemiesEnded)
+            _waveEnded = true;
         intenseMixer.SetFloat("intenseMusicVol", _dayAudio.volume * intenseMixerVol - intenseMixerVol * 2);
-
         _dayCycle = DayNightCycleScript.dayCycle;
-
-        if (_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night)
+        if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && !_waveEnded)
         {
             MusicVolumeDownRoot(_dayAudio, TransTime / 2, ref _dayVolume);
             if (_dayAudio.volume < 0.001f)
@@ -113,6 +120,7 @@ public class DayNightSwitching : MusicFaderScript
             if (_nightAudio.volume < 0.001f)
             {
                 _nightAudio.Stop();
+                _waveEnded = false;
             }
             
             MusicVolumeUpRoot(_dayAudio, TransTime, ref _dayVolume);
@@ -120,4 +128,5 @@ public class DayNightSwitching : MusicFaderScript
             CombatStarts();
         }
     }
+
 }
