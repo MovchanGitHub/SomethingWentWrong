@@ -47,28 +47,25 @@ public class InGameMenuScript : MonoBehaviour
         if (settingsScript.isOpened)
         {
             settingsScript.HideSettings();
-            ShowMenu();
         }
 
         else if (aboutWindow.activeSelf)
         {
             aboutWindow.SetActive(false);
-            ShowMenu();
+            ShowHideMenu();
         }
         else if (controlsMenu.activeSelf)
         {
             controlsMenu.SetActive(false);
-            ShowMenu();
+            ShowHideMenu();
         }
         else
             if (isOpened)
         {
             HideMenu();
-            PauseGame(false);
         }
         else
         {
-            PauseGame(true);
             ShowMenu();
         }
     }
@@ -78,25 +75,25 @@ public class InGameMenuScript : MonoBehaviour
         isPaused = state;
         Time.timeScale = state ? 0f : 1f;
     }
-    
+
     public void HideMenu()
     {
         isOpened = false;
         pauseMenu.SetActive(false);
-        GM.InventoryManager.canBeOpened = !isOpened;
         GM.InputSystem.UnblockPlayerInputs();
         GM.InputSystem.openInventoryInput.Enable();
         //GM.InputSystem.openEncyclopediaInput.Enable();
+        PauseGame(false);
     }
 
     public void ShowMenu()
     {
         isOpened = true;
         pauseMenu.SetActive(true);
-        GM.InventoryManager.canBeOpened = !isOpened;
         GM.InputSystem.BlockPlayerInputs();
         GM.InputSystem.openInventoryInput.Disable();
         //GM.InputSystem.openEncyclopediaInput.Disable();
+        PauseGame(true);
     }
     public void ShowHideMenu()
     {

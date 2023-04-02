@@ -35,8 +35,6 @@ public class InventoryController : MonoBehaviour
     InventoryItem itemToHighlight;
     [HideInInspector] public bool isCanvasActive = false;
 
-    [HideInInspector] public bool canBeOpened;
-
     private Dictionary<string, int> ammoCounter;
 
     public Dictionary<string, int> AmmoCounter
@@ -69,8 +67,6 @@ public class InventoryController : MonoBehaviour
     private void Start()
     {
         inputSystem = GM.InputSystem;
-
-        canBeOpened = true;
 
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
 

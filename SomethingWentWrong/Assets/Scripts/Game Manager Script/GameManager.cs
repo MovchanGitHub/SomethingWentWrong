@@ -46,8 +46,6 @@ public class GameManager : MonoBehaviour
         playerMovement.IsAbleToMove = false; 
         playerMovement.gameObject.SetActive(false);
 
-        inventoryManager.canBeOpened = false;
-
         SurvivalManager.gameObject.SetActive(false);
         
         Destroy(inputSystem);
