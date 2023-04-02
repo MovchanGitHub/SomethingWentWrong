@@ -59,8 +59,7 @@ public class SkillsScript : MonoBehaviour
 
         
         random = new Unity.Mathematics.Random();
-        //uint seed = (uint)Random.Range(1, 1000);
-        uint seed = 397;
+        uint seed = (uint)Random.Range(1, 1000);
         Debug.Log("seed = " + seed);
         random.InitState(seed);
         

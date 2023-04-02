@@ -32,19 +32,14 @@ public class SettingsScript : MonoBehaviour
     public void HideSettings()
     {
         settingsMenu.SetActive(false);
-        pauseScript.ShowMenu();
+        pauseScript.ShowHideMenu();
         isOpened = false;
     }
     public void ShowSettings()
     {
         isOpened = true;
         settingsMenu.SetActive(true);
-        pauseScript.HideMenu();
-    }
-    public void ShowHideSettings()
-    {
-        isOpened = !isOpened;
-        settingsMenu.GameObject().SetActive(isOpened);
+        pauseScript.ShowHideMenu();
     }
 
     public void SetMusicVolume(float value)

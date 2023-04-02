@@ -35,17 +35,15 @@ public class Buttons : MonoBehaviour
         Debug.Log($"Loading scene {sceneName}");
         StartCoroutine(LoadAsync(sceneName));
         GM.PlayerMovement.IsAbleToMove = true;
-        GM.InventoryManager.canBeOpened = true;
         GM.SurvivalManager.gameObject.SetActive(true);
         GM.SurvivalManager.SetDefault();
         pauseScript.PauseGame(false);
     }
-    
+
     public void OnContinueButton()
     {
         RefreshAnimation();
         pauseScript.HideMenu();
-        pauseScript.PauseGame(false);
     }
     
     public void OnButtonExit()
@@ -58,7 +56,6 @@ public class Buttons : MonoBehaviour
     {
         RefreshAnimation();
         settingsScript.ShowSettings();
-        pauseScript.HideMenu();
     }
     
     public void OnButtonControlKeys()
@@ -79,7 +76,6 @@ public class Buttons : MonoBehaviour
     public void OnButtonBack()
     {
         settingsScript.HideSettings();
-        pauseScript.ShowMenu();
     }
     
     public void OnButtonControlBack()
