@@ -110,7 +110,7 @@ public class DayNightSwitching : MusicFaderScript
         }
         else
         {
-            if (_dayCycle == DayTime.Sunrise && _dayAudio.isPlaying == false)
+            if ((_dayCycle == DayTime.Sunrise || _waveEnded) && !_dayAudio.isPlaying)
             {
                 _dayAudio.Play();
                 _intenseAudio.Play();
