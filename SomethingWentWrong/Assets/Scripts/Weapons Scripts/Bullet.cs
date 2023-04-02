@@ -46,12 +46,12 @@ public class Bullet : MonoBehaviour, IWeaponable
         newPos = (Vector2)transform.position + direction * (speed * Time.deltaTime);
     }
 
-    private float z = 0f;
+    [SerializeField] private float rotateSpeed;
+    [SerializeField] private Vector3 rotationDirection = new Vector3();
     
     private void Update()
     {
-        z += 5 * Time.deltaTime;
-        transform.Rotate(0, 0, z);
+        transform.Rotate(rotationDirection  * (rotateSpeed * Time.deltaTime));
         newPos += direction * (speed * Time.deltaTime);
         rb.MovePosition(newPos);
     }
