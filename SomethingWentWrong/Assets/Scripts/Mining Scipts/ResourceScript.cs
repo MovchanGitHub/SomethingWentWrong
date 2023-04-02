@@ -15,6 +15,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int timesToDrop;
 
     public int positionIndex;
+    private AudioSource _crystallHit;
+    private AudioSource _treeHit;
     
     public int HP
     {
@@ -45,6 +47,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         HP -=  weapon.Damage;
+        ObjectHitSound(gameObject, _crystallHit, _treeHit);
     }
 
     private void Awake()
@@ -53,6 +56,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
             positionIndex = -1;
         else
             positionIndex = GM.Spawner.Resources.PositionIndex;
+        _crystallHit = GameObject.Find("Envinronment").GetComponents<AudioSource>()[0];
+        _treeHit = GameObject.Find("Envinronment").GetComponents<AudioSource>()[1];
     }
 
 
@@ -101,5 +106,25 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         DamagePopup damagePopup = Instantiate(damagePopupPrefab, position, Quaternion.identity);
         damagePopup.setup(damageAmount);
+    }
+    
+    public static void ObjectHitSound(GameObject hitObject, AudioSource _crystallHit, AudioSource _treeHit)
+    {
+        Debug.Log(hitObject.name);
+        if (hitObject.name.Contains("Tennosey"))
+        {
+            _crystallHit.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
+            _crystallHit.Play();
+        }
+        else if (hitObject.name.Contains("AguaBerryPlant Variant")
+                 || hitObject.name.Contains("Bomb Fruit Plant")
+                 || hitObject.name.Contains("FrambuesaBush Variant")
+                 || hitObject.name.Contains("HomeOfBunzha Variant")
+                 || hitObject.name.Contains("Bubble Plant Variant") 
+                 || hitObject.name.Contains("Shoot Fruit Plant"))
+        {
+            _treeHit.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
+            _treeHit.Play();
+        }
     }
 }
