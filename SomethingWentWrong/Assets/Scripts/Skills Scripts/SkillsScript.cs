@@ -21,14 +21,16 @@ public class SkillsScript : MonoBehaviour
     GameObject[] variantsButtons;
     GameObject variantMask;
     
+    private const int ROCKET_HEALTH_BUFF = 100;
+    private const int PLAYER_HEALTH_BUFF = 50;
     private const int MAX_HEALTH = 10;
-    private const float MAX_STAMINA = 1f;
+    private const float MAX_STAMINA = 2f;
     private const float STAMINA_RECOVERY = 1f;
-    private const float MAX_ANOXEMIA = 5f;
+    private const float MAX_ANOXEMIA = 35f;
     private const float ANOXEMIA_ENDURANCE = 0.9f;
-    private const float MAX_HUNGER = 5f;
+    private const float MAX_HUNGER = 30f;
     private const float HUNGER_ENDURANCE = 0.9f;
-    private const float MAX_THIRST = 5f;
+    private const float MAX_THIRST = 20f;
     private const float THIRST_ENDURANCE = 0.9f;
 
     private bool isSkillWindowsActive;
@@ -57,7 +59,10 @@ public class SkillsScript : MonoBehaviour
 
         
         random = new Unity.Mathematics.Random();
-        random.InitState(1851936439U);
+        //uint seed = (uint)Random.Range(1, 1000);
+        uint seed = 397;
+        Debug.Log("seed = " + seed);
+        random.InitState(seed);
         
         skillsWindow.SetActive(false);
         InitSkills();
@@ -152,8 +157,8 @@ public class SkillsScript : MonoBehaviour
 
     
     public void ImproveHealth() {
+        playerDamagable.HP += PLAYER_HEALTH_BUFF;
         playerDamagable.MaxHP += MAX_HEALTH;
-        playerDamagable.HP += MAX_HEALTH;
         skillsWindow.SetActive(false);
         ph.sizeDelta = new Vector2(ph.sizeDelta.x + 5, ph.sizeDelta.y);
         playerHealthUpgradeCount++;
@@ -164,7 +169,7 @@ public class SkillsScript : MonoBehaviour
         }
     }
     public void ImproveLightHouseHealth() {
-        lightHouse.HP += MAX_HEALTH;
+        lightHouse.HP += ROCKET_HEALTH_BUFF;
         lightHouse.MaxHP += MAX_HEALTH;
         skillsWindow.SetActive(false);
         rh.sizeDelta = new Vector2(rh.sizeDelta.x + 5, rh.sizeDelta.y);

@@ -112,7 +112,6 @@ public class Buttons : MonoBehaviour
 
     public void RefreshAnimation()
     {
-        Debug.Log("anims");
         foreach (var button in buttons)
         {
             button.animator.Rebind();

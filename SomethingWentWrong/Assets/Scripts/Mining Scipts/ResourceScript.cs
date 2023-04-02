@@ -110,7 +110,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
     
     public static void ObjectHitSound(GameObject hitObject, AudioSource _crystallHit, AudioSource _treeHit)
     {
-        Debug.Log(hitObject.name);
         if (hitObject.name.Contains("Tennosey"))
         {
             _crystallHit.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);

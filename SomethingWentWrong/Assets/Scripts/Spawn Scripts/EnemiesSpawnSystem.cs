@@ -33,7 +33,7 @@ public class EnemiesSpawnSystem : MonoBehaviour
             existingEnemies = value;
             if (existingEnemies == 0)
             {
-                Debug.Log("Волна противников подавлена");
+                //Debug.Log("Волна противников подавлена");
                 GM.Cycle.DayCount++;
                 GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
                 if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)
@@ -45,7 +45,6 @@ public class EnemiesSpawnSystem : MonoBehaviour
     [SerializeField] private float timeBetweenSpawn;
     [SerializeField] private float deltaTimeBetweenSpawn;
     [SerializeField] private float minTimeBetweenSpawn;
-    //private float timePassed = 0f;
 
     [SerializeField] private float minDistanceToPlayer;
     
