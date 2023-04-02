@@ -108,11 +108,11 @@ public class Buttons : MonoBehaviour
 
     public void RefreshAnimation()
     {
-        foreach (var button in buttons)
-        {
-            button.animator.Rebind();
-            button.animator.Update(0f);
-        }
+        // foreach (var button in buttons)
+        // {
+        //     button.animator.Rebind();
+        //     button.animator.Update(0f);
+        // }
     }
 
 }

@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UIElements;
 using static GameManager;
+using Button = UnityEngine.UI.Button;
 
 public class InGameMenuScript : MonoBehaviour
 {
@@ -46,18 +48,22 @@ public class InGameMenuScript : MonoBehaviour
 
         if (settingsScript.isOpened)
         {
-            settingsScript.HideSettings();
+            var b = GM.UI.SettingsMenu.transform.GetChild(7).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
 
         else if (aboutWindow.activeSelf)
         {
-            aboutWindow.SetActive(false);
-            ShowHideMenu();
+            var b = GM.UI.AboutGame.transform.GetChild(3).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
         else if (controlsMenu.activeSelf)
         {
-            controlsMenu.SetActive(false);
-            ShowHideMenu();
+            var b = GM.UI.ControlsMenu.transform.GetChild(3).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
         else
             if (isOpened)

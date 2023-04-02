@@ -19,6 +19,8 @@ public class SkillsScript : MonoBehaviour
     LightHouse lightHouse;
 
     GameObject[] variantsButtons;
+    private GameObject[] logos;
+    private GameObject info;
     GameObject variantMask;
     
     private const int ROCKET_HEALTH_BUFF = 100;
@@ -56,7 +58,12 @@ public class SkillsScript : MonoBehaviour
         
         variantMask = skillsWindow.transform.GetChild(0).gameObject;
         variantsButtons = new GameObject[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
+        var l = skillsWindow.transform.GetChild(4);
+        logos = new GameObject[10];
+        for (int i = 0; i < 10; ++i)
+            logos[i] = l.GetChild(i).GameObject();
 
+        info = skillsWindow.transform.GetChild(5).gameObject;
         
         random = new Unity.Mathematics.Random();
         uint seed = (uint)Random.Range(1, 1000);
@@ -82,16 +89,26 @@ public class SkillsScript : MonoBehaviour
         variants = setOfVariants.ToArray();
         for (var i = 0; i < 3; ++i) {
             switch (variants[i]) {
-                case 1:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальное здоровье"; break;
-                case 2:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Починить ракету"; break;
-                case 3:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная выносливость"; break;
-                case 4:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Выносливость"; break;
-                case 5:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Кислородная выносливость"; break;
-                case 6:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный кислород"; break;
-                case 7:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Сытость"; break;
-                case 8:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная сытость"; break;
-                case 9:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Жажда"; break;
-                case 10: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная жажда"; break;
+                // case 1:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальное здоровье"; break;
+                // case 2:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Починить ракету"; break;
+                // case 3:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная выносливость"; break;
+                // case 4:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Выносливость"; break;
+                // case 5:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Кислородная выносливость"; break;
+                // case 6:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный кислород"; break;
+                // case 7:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Сытость"; break;
+                // case 8:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная сытость"; break;
+                // case 9:  variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Жажда"; break;
+                // case 10: variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная жажда"; break;
+                case 1: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 2: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 3: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 4: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 5: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 6: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 7: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 8: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 9: logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
+                case 10:logos[variants[i] - 1].transform.position = variantsButtons[i].transform.position; logos[variants[i] - 1].SetActive(true); break;
             }
         }
         _timeLeft = time;
@@ -106,6 +123,10 @@ public class SkillsScript : MonoBehaviour
             yield return null;
         }
         skillsWindow.SetActive(false);
+        foreach (var l in logos)
+        {
+            l.SetActive(false);
+        }
     }
     
     public void GetSkill() {
@@ -121,27 +142,55 @@ public class SkillsScript : MonoBehaviour
                 case 9: ImproveThrist(); break;
                 case 10: ImproveMaxThrist(); break;
         }
+        info.SetActive(false);
+        skillsWindow.SetActive(false);
         StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
     
 
     public void OnHighLight(int var)
     {
+        Vector3 pos;
         switch (var)
         {
-            case 1: 
-                variantMask.gameObject.transform.position = variantsButtons[0].gameObject.transform.position;
+            case 1:
+                pos = variantsButtons[0].gameObject.transform.position;
+                variantMask.gameObject.transform.position = pos;
                 currentVariant = 1;
+                info.transform.position = new Vector3(pos.x, pos.y - 100);
+                UpdateInfo(0);
                 break;
             case 2: 
-                variantMask.gameObject.transform.position = variantsButtons[1].gameObject.transform.position;
+                pos = variantsButtons[1].gameObject.transform.position;
+                variantMask.gameObject.transform.position = pos;
                 currentVariant = 2;
+                info.transform.position = new Vector3(pos.x, pos.y - 100);
+                UpdateInfo(1);
                 break;
-            case 3: 
-                variantMask.gameObject.transform.position = variantsButtons[2].gameObject.transform.position;
+            case 3:
+                pos = variantsButtons[2].gameObject.transform.position;
+                variantMask.gameObject.transform.position = pos;
                 currentVariant = 3;
+                info.transform.position = new Vector3(pos.x, pos.y - 100);
+                UpdateInfo(2);
                 break;
         }
+    }
+
+    private void UpdateInfo(int i)
+    {
+        switch (variants[i]) {
+            case 1:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальное здоровье"; break;
+            case 2:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальное здоровье ракеты"; break;
+            case 3:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальная выносливость"; break;
+            case 4:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Скорость восстановления выносливости"; break;
+            case 5:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Кислородная выносливость"; break;
+            case 6:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный уровень кислорода"; break;
+            case 7:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Уменьшить скорость накопления голода"; break;
+            case 8:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный уровень сытости"; break;
+            case 9:  info.GetComponentInChildren<TextMeshProUGUI>().text = "Уменьшить скорость накопления жажды"; break;
+            case 10: info.GetComponentInChildren<TextMeshProUGUI>().text = "Максимальный уровень жажды"; break;
+            }
     }
 
     // Skill debug
@@ -181,34 +230,26 @@ public class SkillsScript : MonoBehaviour
     }
     public void ImproveStamina() {
         survivalManager.IncreaseMaxStamina(MAX_STAMINA);
-        skillsWindow.SetActive(false);
     }
     public void ImproveStaminaRecovery() {
         survivalManager.IncreaseStaminaRecharging(STAMINA_RECOVERY);
-        skillsWindow.SetActive(false);
     }
     public void ImproveAnoxemia() {
         survivalManager.IncreaseAnoxemiaEndurance(ANOXEMIA_ENDURANCE);
-        skillsWindow.SetActive(false);
     }
     public void ImproveMaxAnoxemia() {
         survivalManager.IncreaseMaxAnoxemia(MAX_ANOXEMIA);
-        skillsWindow.SetActive(false);
     }
     public void ImproveHunger() {
         survivalManager.IncreaseHungerEndurance(HUNGER_ENDURANCE);
-        skillsWindow.SetActive(false);
     }
     public void ImproveMaxHunger() {
         survivalManager.IncreaseMaxHunger(MAX_HUNGER);
-        skillsWindow.SetActive(false);
     }
     public void ImproveThrist() {
         survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
-        skillsWindow.SetActive(false);
     }
     public void ImproveMaxThrist() {
         survivalManager.IncreaseMaxThirst(MAX_THIRST);
-        skillsWindow.SetActive(false);
     }
 }

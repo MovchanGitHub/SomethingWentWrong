@@ -16,6 +16,7 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] GameObject skillsMenu;
 
     [SerializeField] WeaponsBarScript weaponsBar;
+    [SerializeField] Buttons buttons;
 
     //[SerializeField] EncyclopediaManager encyclopedia;
 
@@ -37,6 +38,7 @@ public class MiniGMUI : MonoBehaviour
 
     public GameObject SkillsMenu { get { return skillsMenu; } }
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }
+    public Buttons Buttons { get { return buttons; } }
 
     //public EncyclopediaManager Encyclopedia { get { return encyclopedia; } }
 }

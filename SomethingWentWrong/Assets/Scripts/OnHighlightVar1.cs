@@ -10,6 +10,7 @@ public class OnHighlightVar1 : StateMachineBehaviour
     {
         // Debug.Log(1);
         GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().OnHighLight(1);
+        GM.UI.SkillsMenu.transform.GetChild(5).gameObject.SetActive(true);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks
@@ -18,11 +19,10 @@ public class OnHighlightVar1 : StateMachineBehaviour
     //    
     //}
 
-    // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
-    //override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    
-    //}
+     // OnStateExit is called when a transition ends and the state machine finishes evaluating this state
+    // override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    // }
 
     // OnStateMove is called right after Animator.OnAnimatorMove()
     //override public void OnStateMove(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
@@ -31,8 +31,8 @@ public class OnHighlightVar1 : StateMachineBehaviour
     //}
 
     // OnStateIK is called right after Animator.OnAnimatorIK()
-    //override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
-    //{
-    //    // Implement code that sets up animation IK (inverse kinematics)
-    //}
+    // override public void OnStateIK(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
+    // {
+    //     // GM.UI.SkillsMenu.transform.GetChild(5).gameObject.SetActive(false);
+    // }
 }
