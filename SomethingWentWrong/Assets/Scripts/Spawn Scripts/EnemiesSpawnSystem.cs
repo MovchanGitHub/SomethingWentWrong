@@ -34,8 +34,6 @@ public class EnemiesSpawnSystem : MonoBehaviour
             if (existingEnemies == 0)
             {
                 Debug.Log("Волна противников подавлена");
-                // событие происходящее при убийстве всех заспавненных врагов (e.g смена музыки)
-                // вызов окна скилов
                 GM.Cycle.DayCount++;
                 GM.UI.SkillsMenu.GetComponentInParent<SkillsScript>().InitSkills();
                 if (!GM.UI.EndScreen.GetComponentInParent<EndScreen>().isOpened)

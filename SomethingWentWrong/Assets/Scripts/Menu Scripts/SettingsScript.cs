@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using static GameManager;
 
 
@@ -11,7 +12,8 @@ public class SettingsScript : MonoBehaviour
 
     GameObject settingsMenu;
     InGameMenuScript pauseScript;
-	
+    private GameObject resolutionCB;
+    
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
     public bool isOpened;
@@ -24,7 +26,6 @@ public class SettingsScript : MonoBehaviour
     private void Start()
     {
         settingsMenu = GM.UI.SettingsMenu;
-
         settingsMenu.SetActive(false);
     }
     

@@ -33,12 +33,12 @@ public class Buttons : MonoBehaviour
     public void OnButtonLoadScene(string sceneName)
     {
         Debug.Log($"Loading scene {sceneName}");
-        pauseScript.PauseGame(false);
         StartCoroutine(LoadAsync(sceneName));
         GM.PlayerMovement.IsAbleToMove = true;
         GM.InventoryManager.canBeOpened = true;
         GM.SurvivalManager.gameObject.SetActive(true);
         GM.SurvivalManager.SetDefault();
+        pauseScript.PauseGame(false);
     }
     
     public void OnContinueButton()
@@ -70,7 +70,7 @@ public class Buttons : MonoBehaviour
     
     public void OnButtonAboutGame()
     {
-        RefreshAnimation();
+        // RefreshAnimation();
         pauseScript.ShowHideMenu();
         GM.UI.AboutGame.SetActive(true);
     }
@@ -110,11 +110,13 @@ public class Buttons : MonoBehaviour
         }
     }
 
-    private void RefreshAnimation()
+    public void RefreshAnimation()
     {
+        Debug.Log("anims");
         foreach (var button in buttons)
         {
-            button.animator.Update(1);
+            button.animator.Rebind();
+            button.animator.Update(0f);
         }
     }
 

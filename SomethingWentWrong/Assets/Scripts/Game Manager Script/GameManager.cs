@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        Time.timeScale = 1f;
         GM = this;
     }
 
@@ -40,20 +41,15 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 0f;
         
-        if (UI)
-            UI.GetComponent<EndScreen>().ShowDeathScreen(message);
+        UI.GetComponent<EndScreen>().ShowDeathScreen(message);
 
-        if (playerMovement)
-        {
-            playerMovement.IsAbleToMove = false;
-            playerMovement.gameObject.SetActive(false);
+        playerMovement.IsAbleToMove = false; 
+        playerMovement.gameObject.SetActive(false);
 
-        }
+        inventoryManager.canBeOpened = false;
 
-        if (inventoryManager)
-            inventoryManager.canBeOpened = false;
-
-        if (SurvivalManager)
-            SurvivalManager.gameObject.SetActive(false);
+        SurvivalManager.gameObject.SetActive(false);
+        
+        Destroy(inputSystem);
     }
 }
