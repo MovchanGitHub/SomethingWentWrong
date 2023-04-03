@@ -43,8 +43,6 @@ public class Buttons : MonoBehaviour
 
     public void OnContinueButton()
     {
-        RefreshAnimation();
-        
         pauseScript.HideMenu();
         EventSystem.current.SetSelectedGameObject(pauseScript.transform.GetChild(0).gameObject);
     }
@@ -57,13 +55,11 @@ public class Buttons : MonoBehaviour
 
     public void OnButtonSettings()
     {
-        RefreshAnimation();
         settingsScript.ShowSettings();
     }
     
     public void OnButtonControlKeys()
     {
-        RefreshAnimation();
         pauseScript.ShowHideMenu();
         GM.UI.ControlsMenu.SetActive(true);
     }
@@ -83,7 +79,6 @@ public class Buttons : MonoBehaviour
     
     public void OnButtonControlBack()
     {
-        RefreshAnimation();
         GM.UI.ControlsMenu.SetActive(false);
         pauseScript.ShowHideMenu();
     }
@@ -108,14 +103,4 @@ public class Buttons : MonoBehaviour
             yield return null;
         }
     }
-
-    public void RefreshAnimation()
-    {
-        // foreach (var button in buttons)
-        // {
-        //     button.animator.Rebind();
-        //     button.animator.Update(0f);
-        // }
-    }
-
 }
