@@ -43,9 +43,9 @@ public class SurvivalBar : MonoBehaviour
     {
         while (true)
         {
-            _hungerMeterIncrease.fillAmount = (float)item.satiationEffect / 100 + _hungerMeter.fillAmount;
-            _thirstMeterIncrease.fillAmount = (float)item.slakingOfThirstEffect / 100 + _thirstMeter.fillAmount;
-            _anoxaemiaMeterIncrease.fillAmount = (float)item.oxygenRecovery / 100 + _anoxaemiaMeter.fillAmount;
+            _hungerMeterIncrease.fillAmount = (float)item.satiationEffect / GM.SurvivalManager.MaxHunger + _hungerMeter.fillAmount;
+            _thirstMeterIncrease.fillAmount = (float)item.slakingOfThirstEffect / GM.SurvivalManager.MaxThirst + _thirstMeter.fillAmount;
+            _anoxaemiaMeterIncrease.fillAmount = (float)item.oxygenRecovery / GM.SurvivalManager.MaxAnoxaemia + _anoxaemiaMeter.fillAmount;
             yield return new WaitForEndOfFrame();
         }
     }
