@@ -91,6 +91,7 @@ public class SkillsScript : MonoBehaviour
             variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
         _timeLeft = time;
+        skillsWindow.transform.GetChild(0).gameObject.GetComponent<Animator>().StartPlayback();
         StartCoroutine(SkillTimeExit());
     }
 
