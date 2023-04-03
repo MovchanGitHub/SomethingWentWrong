@@ -131,15 +131,12 @@ public class SkillsScript : MonoBehaviour
         
         variantsButtons[num].GetComponentInChildren<TextMeshProUGUI>().text = SkillInfo(num);
         logos[variants[num]].SetActive(false);
-        var hs = new HashSet<int>{ 0, 1, 2 };
-        hs.Remove(num);
-        var temp = hs.ToArray();
-        
-        variantsButtons[temp[0]].GetComponentInChildren<TextMeshProUGUI>().text = "";
-        logos[variants[temp[0]]].SetActive(true);
-        variantsButtons[temp[1]].GetComponentInChildren<TextMeshProUGUI>().text = "";
-        logos[variants[temp[1]]].SetActive(true);
+    }
 
+    public void OnStateExit(int num)
+    {
+        variantsButtons[num].GetComponentInChildren<TextMeshProUGUI>().text = "";
+        logos[variants[num]].SetActive(true);
     }
 
     private string SkillInfo(int num) {
