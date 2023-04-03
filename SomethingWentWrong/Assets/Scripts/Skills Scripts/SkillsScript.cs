@@ -20,7 +20,6 @@ public class SkillsScript : MonoBehaviour
 
     GameObject[] variantsButtons;
     private GameObject[] logos;
-    // private GameObject info;
     GameObject variantMask;
     
     private const int ROCKET_HEALTH_BUFF = 100;
@@ -59,13 +58,12 @@ public class SkillsScript : MonoBehaviour
         lightHouse = GM.Rocket;
         
         variantMask = skillsWindow.transform.GetChild(0).gameObject;
-        variantsButtons = new GameObject[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
+        variantsButtons = new[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
         var l = skillsWindow.transform.GetChild(4);
         logos = new GameObject[10];
         for (int i = 0; i < 10; ++i)
             logos[i] = l.GetChild(i).GameObject();
-
-        // info = skillsWindow.transform.GetChild(5).gameObject;
+        
         
         random = new Unity.Mathematics.Random();
         uint seed = (uint)Random.Range(1, 1000);
@@ -79,11 +77,10 @@ public class SkillsScript : MonoBehaviour
         rh = GM.UI.RocketHealthSlider.GetComponent<RectTransform>();
         ph = GM.UI.PlayerHealthSlider.GetComponent<RectTransform>();
 
-        SLIDER_MARGIN = rh.sizeDelta.x / 20;
+        SLIDER_MARGIN = rh.sizeDelta.x / 10;
     }
 
-    public void InitSkills()
-    {
+    public void InitSkills() {
         currentVariant = 1;
         variantMask.gameObject.transform.position = variantsButtons[1].gameObject.transform.position;
 
@@ -95,13 +92,13 @@ public class SkillsScript : MonoBehaviour
         for (var i = 0; i < 3; ++i) {
             logos[variants[i]].transform.position = variantsButtons[i].transform.position;
             logos[variants[i]].SetActive(true);
+            variantsButtons[i].GetComponentInChildren<TextMeshProUGUI>().text = "";
         }
         _timeLeft = time;
-        StartCoroutine(SkillTime());
+        StartCoroutine(SkillTimeExit());
     }
 
-    public IEnumerator SkillTime()
-    {
+    public IEnumerator SkillTimeExit() {
         while (_timeLeft > 0)
         {
             _timeLeft -= Time.deltaTime;
@@ -116,44 +113,51 @@ public class SkillsScript : MonoBehaviour
     
     public void GetSkill() {
         switch (variants[currentVariant]) {
-                case 1: ImproveHealth(); break;
-                case 2: ImproveLightHouseHealth(); break;
-                case 3: ImproveStamina(); break;
-                case 4: ImproveStaminaRecovery(); break;
-                case 5: ImproveAnoxemia(); break;
-                case 6: ImproveMaxAnoxemia(); break;
-                case 7: ImproveHunger(); break;
-                case 8: ImproveMaxHunger(); break;
-                case 9: ImproveThrist(); break;
-                case 10: ImproveMaxThrist(); break;
+                case 0: ImproveHealth(); break;
+                case 1: ImproveLightHouseHealth(); break;
+                case 2: ImproveStamina(); break;
+                case 3: ImproveStaminaRecovery(); break;
+                case 4: ImproveAnoxemia(); break;
+                case 5: ImproveMaxAnoxemia(); break;
+                case 6: ImproveHunger(); break;
+                case 7: ImproveMaxHunger(); break;
+                case 8: ImproveThrist(); break;
+                case 9: ImproveMaxThrist(); break;
         }
         skillsWindow.SetActive(false);
         StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
     
 
-    public void OnHighLight(int num)
-    {
+    public void OnHighLight(int num) {
         variantMask.gameObject.transform.position = variantsButtons[num].gameObject.transform.position;
         currentVariant = num;
+        
+        variantsButtons[num].GetComponentInChildren<TextMeshProUGUI>().text = SkillInfo(num);
+        logos[variants[num]].SetActive(false);
+        var hs = new HashSet<int>{ 0, 1, 2 };
+        hs.Remove(num);
+        var temp = hs.ToArray();
+        
+        variantsButtons[temp[0]].GetComponentInChildren<TextMeshProUGUI>().text = "";
+        logos[variants[temp[0]]].SetActive(true);
+        variantsButtons[temp[1]].GetComponentInChildren<TextMeshProUGUI>().text = "";
+        logos[variants[temp[1]]].SetActive(true);
 
-        // variantsButtons[num].GetComponentInChildren<TextMeshProUGUI>().text = SkillInfo(num);
-        // logos[variants[num]].SetActive(false);
     }
 
-    private string SkillInfo(int num)
-    {
+    private string SkillInfo(int num) {
         switch (variants[num]) {
-            case 1:  return "Максимальное здоровье";
-            case 2:  return "Максимальное здоровье ракеты";
-            case 3:  return "Максимальная выносливость";
-            case 4:  return "Скорость восстановления выносливости";
-            case 5:  return "Уменьшить скорость расхода кислорода";
-            case 6:  return "Максимальный уровень кислорода";
-            case 7:  return "Уменьшить скорость накопления голода";
-            case 8:  return "Максимальный уровень сытости";
-            case 9:  return "Уменьшить скорость накопления жажды";
-            default: return "Максимальный уровень жажды";
+            case 0:  return "Максимальное\n здоровье";
+            case 1:  return "Максимальное\n здоровье\n ракеты";
+            case 2:  return "Максимальная\n выносливость";
+            case 3:  return "Скорость\n восстановления\n выносливости";
+            case 4:  return "Уменьшить\n скорость\n расхода\n кислорода";
+            case 5:  return "Максимальный\n уровень\n кислорода";
+            case 6:  return "Уменьшить\n скорость\n накопления\n голода";
+            case 7:  return "Максимальный\n уровень\n сытости";
+            case 8:  return "Уменьшить\n скорость\n накопления\n жажды";
+            default: return "Максимальный\n уровень\n жажды";
         }
     }
 
