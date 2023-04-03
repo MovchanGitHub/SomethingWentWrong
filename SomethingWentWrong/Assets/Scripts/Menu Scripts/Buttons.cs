@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -43,7 +44,9 @@ public class Buttons : MonoBehaviour
     public void OnContinueButton()
     {
         RefreshAnimation();
+        
         pauseScript.HideMenu();
+        EventSystem.current.SetSelectedGameObject(pauseScript.transform.GetChild(0).gameObject);
     }
     
     public void OnButtonExit()
