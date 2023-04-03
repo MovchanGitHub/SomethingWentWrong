@@ -9,26 +9,30 @@ public class SurvivalManager : MonoBehaviour
     //голод
     [Header("Hunger")] 
     [SerializeField] private float maxHunger;
+    public float MaxHunger { get => maxHunger; }
     [SerializeField] private float hungerDepletionRate;
     private float currentHunger;
     public float HungerPercent => currentHunger / maxHunger;
-    
+
     //жажда
-    [Header("Thirst")]
+    [Header("Thirst")] 
     [SerializeField] private float maxThirst;
+    public float MaxThirst { get => maxThirst; }
     [SerializeField] private float thirstDepletionRate;
     private float currentThirst;
     public float ThirstPercent => currentThirst / maxThirst;
 
     //кислородное голодание
-    [Header("Anoxaemia")] 
-    [SerializeField] private float maxAnoxaemia;
+    [Header("Anoxaemia")] [SerializeField] private float maxAnoxaemia;
+    public float MaxAnoxaemia { get => maxAnoxaemia; }
+
     [SerializeField] private float anoxaemiaDepletionRate;
     private float currentAnoxaemia;
     public float AnoxaemiaPercent => currentAnoxaemia / maxAnoxaemia;
     
     [Header("Stamina")] 
     [SerializeField] private float maxStamina;
+    public float MaxStamina { get => maxStamina; }
     [SerializeField] private float staminaDepletionRate;
     [SerializeField] private float staminaRechargeRate;
     [SerializeField] private float staminaRechargeDelay;
