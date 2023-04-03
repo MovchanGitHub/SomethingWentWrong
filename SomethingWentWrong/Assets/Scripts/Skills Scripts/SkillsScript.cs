@@ -1,13 +1,9 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Rendering;
-using UnityEngine.UI;
-using Button = UnityEngine.UIElements.Button;
 using Random = UnityEngine.Random;
 using static GameManager;
 
@@ -43,14 +39,14 @@ public class SkillsScript : MonoBehaviour
     private int currentVariant;
     
     [SerializeField] private float time;
-    private float _timeLeft = 0f;
+    private float _timeLeft;
 
     private RectTransform hb;
     private RectTransform rh;
     private RectTransform ph;
-    private int rocketHealthUpgradeCount = 0;
-    private int playerHealthUpgradeCount = 0;
-    private int summaryUpgradeCount = 0;
+    private int rocketHealthUpgradeCount;
+    private int playerHealthUpgradeCount;
+    private int summaryUpgradeCount;
 
     void Start() {
         skillsWindow = GM.UI.SkillsMenu;

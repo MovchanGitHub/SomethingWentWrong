@@ -21,7 +21,7 @@ public class EndScreen: MonoBehaviour
 
     private void Start() {
         endScreen = GM.UI.EndScreen;
-        windows = new GameObject[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
+        windows = new[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
         newScoreTitle.gameObject.SetActive(false);
     }
 
