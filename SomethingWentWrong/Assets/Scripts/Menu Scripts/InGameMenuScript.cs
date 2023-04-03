@@ -10,13 +10,12 @@ using Button = UnityEngine.UI.Button;
 public class InGameMenuScript : MonoBehaviour
 {
     private GameObject pauseMenu;
-    // public InventoryManager inventory;
     private GameObject endScreen;
     private GameObject controlsMenu;
     private GameObject aboutWindow;
     private SettingsScript settingsScript;
-    public bool isOpened;
-    public bool isPaused;
+    [HideInInspector] public bool isOpened;
+    [HideInInspector] public bool isPaused;
 
     private void Awake()
     {
@@ -38,9 +37,6 @@ public class InGameMenuScript : MonoBehaviour
 
     public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        // if (inventory.isOpened)
-        //     inventory.gameObject.SetActive(false);
-        // else 
         if (GM.InventoryManager.isCanvasActive)
         {
             GM.InventoryManager.activateInventory(false);

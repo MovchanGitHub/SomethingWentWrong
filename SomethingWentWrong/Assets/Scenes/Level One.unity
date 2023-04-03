@@ -96884,8 +96884,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
-      propertyPath: m_SizeDelta.x
+      propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2010382658837737218, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_text
+      value: 'SkillInfo
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 2457247894304293481, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_text
+      value: 'SkillInfo
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 2756128440079393889, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_Name
@@ -96974,6 +96986,12 @@ PrefabInstance:
     - target: {fileID: 2756128440079393890, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3766657057807765882, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_text
+      value: 'SkillInfo
+
+'
       objectReference: {fileID: 0}
     - target: {fileID: 4179934295783946526, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: core

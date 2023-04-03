@@ -10,7 +10,7 @@ using static GameManager;
 public class EndScreen: MonoBehaviour
 {
     private GameObject endScreen;
-    public bool isOpened;
+    [HideInInspector] public bool isOpened;
     public TextMeshProUGUI title;
     public TextMeshProUGUI newScoreTitle;
     public TextMeshProUGUI maxScore;
