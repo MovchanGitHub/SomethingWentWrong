@@ -10,7 +10,7 @@ using static GameManager;
 public class EndScreen: MonoBehaviour
 {
     private GameObject endScreen;
-    public bool isOpened;
+    [HideInInspector] public bool isOpened;
     public TextMeshProUGUI title;
     public TextMeshProUGUI newScoreTitle;
     public TextMeshProUGUI maxScore;
@@ -21,7 +21,7 @@ public class EndScreen: MonoBehaviour
 
     private void Start() {
         endScreen = GM.UI.EndScreen;
-        windows = new GameObject[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
+        windows = new[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
         newScoreTitle.gameObject.SetActive(false);
     }
 

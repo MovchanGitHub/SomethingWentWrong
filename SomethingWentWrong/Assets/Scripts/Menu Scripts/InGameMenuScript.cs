@@ -1,28 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.EventSystems;
 using static GameManager;
+using Button = UnityEngine.UI.Button;
 
 public class InGameMenuScript : MonoBehaviour
 {
     private GameObject pauseMenu;
-    // public InventoryManager inventory;
     private GameObject endScreen;
     private GameObject controlsMenu;
     private GameObject aboutWindow;
     private SettingsScript settingsScript;
-    public bool isOpened;
-    public bool isPaused;
+    [HideInInspector] public bool isOpened;
+    [HideInInspector] public bool isPaused;
 
-    private void Awake()
-    {
+    private void Awake() {
         settingsScript = GetComponent<SettingsScript>();
     }
 
-    private void Start()
-    {
+    private void Start() {
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;
         controlsMenu = GM.UI.ControlsMenu;
@@ -34,50 +30,42 @@ public class InGameMenuScript : MonoBehaviour
         controlsMenu.SetActive(false);
     }
 
-    public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context)
-    {
-        // if (inventory.isOpened)
-        //     inventory.gameObject.SetActive(false);
-        // else 
-        if (GM.InventoryManager.isCanvasActive)
-        {
+    public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context) {
+        if (GM.InventoryManager.isCanvasActive) {
             GM.InventoryManager.activateInventory(false);
         }
 
-        if (settingsScript.isOpened)
-        {
-            settingsScript.HideSettings();
+        if (settingsScript.isOpened) {
+            var b = GM.UI.SettingsMenu.transform.GetChild(7).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
 
-        else if (aboutWindow.activeSelf)
-        {
-            aboutWindow.SetActive(false);
-            ShowHideMenu();
+        else if (aboutWindow.activeSelf) {
+            var b = GM.UI.AboutGame.transform.GetChild(3).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
-        else if (controlsMenu.activeSelf)
-        {
-            controlsMenu.SetActive(false);
-            ShowHideMenu();
+        else if (controlsMenu.activeSelf) {
+            var b = GM.UI.ControlsMenu.transform.GetChild(3).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
         }
         else
-            if (isOpened)
-        {
+            if (isOpened) {
             HideMenu();
         }
-        else
-        {
+        else {
             ShowMenu();
         }
     }
 
-    public void PauseGame(bool state)
-    {
+    public void PauseGame(bool state) {
         isPaused = state;
         Time.timeScale = state ? 0f : 1f;
     }
 
-    public void HideMenu()
-    {
+    public void HideMenu() {
         isOpened = false;
         pauseMenu.SetActive(false);
         GM.InputSystem.UnblockPlayerInputs();
@@ -86,8 +74,7 @@ public class InGameMenuScript : MonoBehaviour
         PauseGame(false);
     }
 
-    public void ShowMenu()
-    {
+    public void ShowMenu() {
         isOpened = true;
         pauseMenu.SetActive(true);
         GM.InputSystem.BlockPlayerInputs();
@@ -95,8 +82,7 @@ public class InGameMenuScript : MonoBehaviour
         //GM.InputSystem.openEncyclopediaInput.Disable();
         PauseGame(true);
     }
-    public void ShowHideMenu()
-    {
+    public void ShowHideMenu() {
         isOpened = !isOpened;
         pauseMenu.SetActive(isOpened);
     }
