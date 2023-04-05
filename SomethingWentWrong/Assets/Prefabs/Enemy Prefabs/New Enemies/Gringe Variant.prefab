@@ -21,7 +21,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: timeBeforeAttack
-      value: 0.75
+      value: 0.85
       objectReference: {fileID: 0}
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: triggerAttackDistance
