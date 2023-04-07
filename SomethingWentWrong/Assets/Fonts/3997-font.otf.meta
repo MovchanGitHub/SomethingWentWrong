@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 350c382f7989046f09883b9adf83bd03
+guid: 3b09eeb639e7d40bea8f0c9316769327
 TrueTypeFontImporter:
   externalObjects: {}
   serializedVersion: 4
@@ -9,7 +9,7 @@ TrueTypeFontImporter:
   characterPadding: 1
   includeFontData: 1
   fontNames:
-  - Minecraft Rus
+  - Pixel Digivolve Cyrillic
   fallbackFontReferences: []
   customCharacters: 
   fontRenderingMode: 0
