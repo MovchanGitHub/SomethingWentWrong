@@ -21,6 +21,8 @@ public class ItemGrid : MonoBehaviour
     [HideInInspector] int gridSizeWidth = 10;
     [HideInInspector] int gridSizeHeight = 5;
 
+    private (int,int) reservedPosition;
+
     private void Start()
     {
         rectTransform = GetComponent<RectTransform>();
@@ -63,25 +65,49 @@ public class ItemGrid : MonoBehaviour
 
     public bool PlaceItem(InventoryItem inventoryItem, int posX, int posY, ref InventoryItem overlapItem)
     {
+        cleanGridRef(inventoryItem);
+
         if (!boundaryCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height))
         {
+            for (int i = reservedPosition.Item1; i < reservedPosition.Item1 + inventoryItem.itemData.width; i++)
+            {
+                for (int j = reservedPosition.Item2; j < reservedPosition.Item2 + inventoryItem.itemData.height; j++)
+                {
+                    inventoryItemSlots[i, j] = inventoryItem;
+                }
+            }
             return false;
         }
         
         if (!overlapCheck(posX, posY, inventoryItem.itemData.width, inventoryItem.itemData.height, ref overlapItem))
         {
+            for (int i = reservedPosition.Item1; i < reservedPosition.Item1 + inventoryItem.itemData.width; i++)
+            {
+                for (int j = reservedPosition.Item2; j < reservedPosition.Item2 + inventoryItem.itemData.height; j++)
+                {
+                    inventoryItemSlots[i, j] = inventoryItem;
+                }
+            }
             overlapItem = null;
             return false;
         }
+
         /*
         if (overlapItem)
         {
             cleanGridRef(overlapItem);
         }
         */
+        reservedPosition = (-1, -1);
         placeItem(inventoryItem, posX, posY);
 
         return true;
+    }
+
+    internal void ReturnItem(InventoryItem item)
+    {
+        placeItem(item, reservedPosition.Item1, reservedPosition.Item2);
+        reservedPosition = (-1, -1);
     }
 
     internal InventoryItem getItem(int x, int y)
@@ -109,6 +135,24 @@ public class ItemGrid : MonoBehaviour
         InventoryItem item = null;
         if (positionCheck(x, y))
             item = inventoryItemSlots[x, y];
+
+        return item;
+    }
+
+    public InventoryItem LeftMousePickUp(int x, int y)
+    {
+        InventoryItem item = null;
+        if (positionCheck(x, y))
+            item = inventoryItemSlots[x, y];
+
+        if (item == null)
+        {
+            return null;
+        }
+
+        reservedPosition = (item.onGridPositionX, item.onGridPositionY);
+
+        //cleanGridRef(item);
 
         return item;
     }
