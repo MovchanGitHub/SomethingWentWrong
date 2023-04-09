@@ -61,6 +61,11 @@ public class EnemyDamagable : DamagableCharacter
             esl.EnemyLaserDieShader();
             yield return new WaitForSeconds(1f);
         }
+        else if (lastWeapon.Type == WeaponType.Bomb)
+        {
+            esl.EnemyBombDieShader();
+            yield return new WaitForSeconds(0.15f);
+        }
         
         Destroy(gameObject.transform.parent.gameObject);
     }

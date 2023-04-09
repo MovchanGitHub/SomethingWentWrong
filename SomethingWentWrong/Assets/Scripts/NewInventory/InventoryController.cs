@@ -21,6 +21,10 @@ public class InventoryController : MonoBehaviour
     }
 
     InventoryItem selectedItem;
+    public InventoryItem SelectedItem
+    {
+        get => selectedItem;
+    }
     InventoryItem newItem;
     InventoryItem overlapItem;
     RectTransform newRectTransform;
@@ -40,6 +44,7 @@ public class InventoryController : MonoBehaviour
     public Dictionary<string, int> AmmoCounter
     {
         get => ammoCounter;
+        set => ammoCounter = value;
     }
 
     private SurvivalBar survivalBarScript;
@@ -92,8 +97,9 @@ public class InventoryController : MonoBehaviour
             removeEffects();
             if (selectedItem != null)
             {
-                insertItem(selectedItem.itemData);
-                Destroy(selectedItem.gameObject);
+                //insertItem(selectedItem.itemData);
+                SelectedItemGrid.ReturnItem(selectedItem);
+                //Destroy(selectedItem.gameObject);
                 selectedItem = null;
             }
         }
@@ -281,11 +287,13 @@ public class InventoryController : MonoBehaviour
         bool isDropComplete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
         if (isDropComplete)
         {
+            /*
             if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
             {
                 ++ammoCounter[selectedItem.itemData.itemName];
                 UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
             }
+            */
             selectedItem = null;
             if (overlapItem != null)
             {
@@ -299,7 +307,7 @@ public class InventoryController : MonoBehaviour
 
     private void PickUpItem(Vector2Int tileGridPosition)
     {
-        selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
+        selectedItem = selectedItemGrid.LeftMousePickUp(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
             removeEffects();
@@ -308,6 +316,7 @@ public class InventoryController : MonoBehaviour
                 --ammoCounter[selectedItem.itemData.itemName];
                 UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
             }
+            */
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }
@@ -340,6 +349,7 @@ public class InventoryController : MonoBehaviour
             GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
             GM.PlayerMovement.GetComponentInChildren<PlayerDamagable>().HP += itemToUse.healEffect;
             Destroy(item.gameObject);
+            inventoryHighlight.Show(false);
             SelectedItemGrid.cleanGridRef(item);
         }
     }
