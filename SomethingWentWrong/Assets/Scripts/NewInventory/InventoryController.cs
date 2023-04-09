@@ -316,7 +316,6 @@ public class InventoryController : MonoBehaviour
                 --ammoCounter[selectedItem.itemData.itemName];
                 UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
             }
-            */
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }

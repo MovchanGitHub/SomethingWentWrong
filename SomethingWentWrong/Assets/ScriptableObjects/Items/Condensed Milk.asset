@@ -22,6 +22,6 @@ MonoBehaviour:
   dragAndDropElement: {fileID: 0}
   dropObject: {fileID: 0}
   satiationEffect: 50
-  slakingOfThirstEffect: 10
-  healEffect: 0
+  slakingOfThirstEffect: -25
+  healEffect: 40
   oxygenRecovery: 0
