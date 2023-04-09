@@ -218,7 +218,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 36cd072e74316364c888645fd330eb62, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       DinoAttackSE_4: -1384170689
       DinoAttackSE_0: 1168340963

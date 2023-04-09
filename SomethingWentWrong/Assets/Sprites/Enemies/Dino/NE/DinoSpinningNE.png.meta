@@ -281,7 +281,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 14e60334ccf014c4fa8299519e77efff, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       DinoSpinningNE_6: -545969632
       DinoSpinningNE_1: 1054071530

@@ -449,7 +449,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 64783f45ae32292439e2a41e846cddfe, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       EyeFlyingSE_3: 1634573128
       EyeFlyingSE_7: -1966120560
