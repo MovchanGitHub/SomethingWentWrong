@@ -18,7 +18,15 @@ public class EnemyShaderLogic : MonoBehaviour
 
     public void EnemyLaserDieShader()
     {
-        StartCoroutine(FadeDecreasing());
+        StartCoroutine(FadeDecreasing(0.015f));
+    }
+    
+    public void EnemyBombDieShader()
+    {
+        _renderer.GetPropertyBlock(_propBlock);
+        _propBlock.SetInteger("_BombDeath", 1);
+        _renderer.SetPropertyBlock(_propBlock);
+        StartCoroutine(FadeDecreasing(0.1f));
     }
 
     public void ChangeDissolvingColor(Color color)
@@ -28,11 +36,11 @@ public class EnemyShaderLogic : MonoBehaviour
         _renderer.SetPropertyBlock(_propBlock);
     }
 
-    private IEnumerator FadeDecreasing()
+    private IEnumerator FadeDecreasing(float fadeDecrement)
     {
         while (fade > 0f)
         {
-            fade -= 0.015f;
+            fade -= fadeDecrement;
             
             _renderer.GetPropertyBlock(_propBlock);
             _propBlock.SetFloat("_Fade", fade);
