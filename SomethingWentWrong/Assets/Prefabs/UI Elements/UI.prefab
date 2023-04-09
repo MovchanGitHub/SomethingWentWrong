@@ -4823,6 +4823,7 @@ MonoBehaviour:
   controlsMenu: {fileID: 6922717102153382208}
   aboutGame: {fileID: 569949175596848198}
   playerHealthSlider: {fileID: 3947912227355975604}
+  playerHealthIncreaseSlider: {fileID: 3759552945076983162}
   rocketHealthSlider: {fileID: 4687340604520603842}
   healthBar: {fileID: 3330192075736641506}
   skillsMenu: {fileID: 6436228068595625841}
@@ -14385,6 +14386,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 2756128440079393890}
     m_Modifications:
+    - target: {fileID: 4749301988148422101, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -81.031
+      objectReference: {fileID: 0}
+    - target: {fileID: 4749301988148422101, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 5077163993399005933, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_Pivot.x
       value: 1
@@ -14472,6 +14481,10 @@ PrefabInstance:
     - target: {fileID: 6494633814125026281, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
       propertyPath: m_Name
       value: SurvivalBar
+      objectReference: {fileID: 0}
+    - target: {fileID: 9123161292573816166, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 81.031
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: af46f6411cfa610438b94fa0dd295265, type: 3}
