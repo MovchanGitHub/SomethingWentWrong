@@ -40,15 +40,11 @@ public class InputSystem : MonoBehaviour
         
         playerInput.actions["Sprint"].started += inputActions["PlayerRun"];
         playerInput.actions["Sprint"].canceled += inputActions["PlayerWalk"];
-
         playerInput.actions["Dash"].started += inputActions["PlayerRush"];
-
         playerInput.actions["Fists Attack"].started += inputActions["PlayerAttack"];
-
         playerInput.actions["Change Weapon"].started += inputActions["PlayerChangeWeapon"];
         playerInput.actions["Weapon Attack"].started += inputActions["PlayerShoot"];
         playerInput.actions["Weapon Attack"].canceled += inputActions["PlayerStopShooting"];
-        
         playerInput.actions["Open Inventory"].started += inputActions["InventoryClose"];
         //playerInput.actions["Open Encyclopedia"].started += inputActions["EncyclopediaOpen"];
         playerInput.actions["Open InGame Menu"].started += inputActions["MenuOpen"];
