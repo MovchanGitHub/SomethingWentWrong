@@ -338,6 +338,7 @@ public class InventoryController : MonoBehaviour
             GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
             GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
             GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            GM.PlayerMovement.GetComponentInChildren<PlayerDamagable>().HP += itemToUse.healEffect;
             Destroy(item.gameObject);
             SelectedItemGrid.cleanGridRef(item);
         }

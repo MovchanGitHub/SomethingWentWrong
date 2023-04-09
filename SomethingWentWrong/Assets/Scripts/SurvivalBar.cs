@@ -9,6 +9,7 @@ public class SurvivalBar : MonoBehaviour
     private Image _hungerMeter, _thirstMeter, _staminaMeter, _anoxaemiaMeter;
     private Image _hungerMeterIncrease, _thirstMeterIncrease, _anoxaemiaMeterIncrease;
     private Image _hungerMeterDecrease, _thirstMeterDecrease, _anoxaemiaMeterDecrease;
+    private Slider _healthSliderIncrease, _healthSlider;
     private float hungerDecreaseAmount = 0, thirstDecreaseAmount = 0, anoxaemiaDecreaseAmount = 0;
     private float HungerDecreaseAmount
     {
@@ -51,6 +52,9 @@ public class SurvivalBar : MonoBehaviour
         _anoxaemiaMeterIncrease = transform.GetChild(7).GetComponent<Image>();
         _anoxaemiaMeterDecrease = transform.GetChild(8).GetComponent<Image>();
         _anoxaemiaMeter = transform.GetChild(9).GetComponent<Image>();
+
+        _healthSliderIncrease = GM.UI.PlayerHealthIncreaseSlider.GetComponent<Slider>();
+        _healthSlider = GM.UI.PlayerHealthSlider.GetComponent<Slider>();
     }
 
     private void Update()
@@ -64,10 +68,10 @@ public class SurvivalBar : MonoBehaviour
     public void ShowEffectsFromFood (ItemTypeFood item)
     {
         RemoveEffectsFromFood();
-        StartCoroutine(UpdateIncreasmentFromFood(item));
+        StartCoroutine(UpdateEffectsFromFood(item));
     }
 
-    private IEnumerator UpdateIncreasmentFromFood(ItemTypeFood item)
+    private IEnumerator UpdateEffectsFromFood(ItemTypeFood item)
     {
         HungerDecreaseAmount = item.satiationEffect;
         ThirstDecreaseAmount = item.slakingOfThirstEffect;
@@ -89,6 +93,8 @@ public class SurvivalBar : MonoBehaviour
             else if (item.oxygenRecovery < 0)
                 _anoxaemiaMeterDecrease.fillAmount = GM.SurvivalManager.AnoxaemiaPercent;
 
+            _healthSliderIncrease.value = item.healEffect + _healthSlider.value;
+
             yield return new WaitForEndOfFrame();
         }
     }
@@ -103,6 +109,8 @@ public class SurvivalBar : MonoBehaviour
         _hungerMeterDecrease.fillAmount = 0;
         _thirstMeterDecrease.fillAmount = 0;
         _anoxaemiaMeterDecrease.fillAmount = 0;
+
+        _healthSliderIncrease.value = 0;
 
         hungerDecreaseAmount = 0;
         thirstDecreaseAmount = 0;
