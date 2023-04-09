@@ -44,6 +44,7 @@ public class SkillsScript : MonoBehaviour
     private RectTransform hb;
     private RectTransform rh;
     private RectTransform ph;
+    private RectTransform phIncr;
     private int rocketHealthUpgradeCount;
     private int playerHealthUpgradeCount;
     private int summaryUpgradeCount;
@@ -72,6 +73,7 @@ public class SkillsScript : MonoBehaviour
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
         rh = GM.UI.RocketHealthSlider.GetComponent<RectTransform>();
         ph = GM.UI.PlayerHealthSlider.GetComponent<RectTransform>();
+        phIncr = GM.UI.PlayerHealthIncreaseSlider.GetComponent<RectTransform>();
 
         SLIDER_MARGIN = rh.sizeDelta.x / 10;
     }
@@ -159,6 +161,7 @@ public class SkillsScript : MonoBehaviour
         playerDamagable.HP += PLAYER_HEALTH_BUFF;
         playerDamagable.MaxHP += MAX_HEALTH;
         ph.sizeDelta = new Vector2(ph.sizeDelta.x + SLIDER_MARGIN, ph.sizeDelta.y);
+        phIncr.sizeDelta = new Vector2(phIncr.sizeDelta.x + SLIDER_MARGIN, phIncr.sizeDelta.y);
         playerHealthUpgradeCount++;
         if (playerHealthUpgradeCount > summaryUpgradeCount)
         {
