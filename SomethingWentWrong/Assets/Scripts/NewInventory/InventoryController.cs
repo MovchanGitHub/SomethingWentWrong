@@ -89,7 +89,7 @@ public class InventoryController : MonoBehaviour
 
         if (!isCanvasActive)
         {
-            removeIncreasment();
+            removeEffects();
             if (selectedItem != null)
             {
                 insertItem(selectedItem.itemData);
@@ -161,18 +161,18 @@ public class InventoryController : MonoBehaviour
                 inventoryHighlight.setPosition(selectedItemGrid, itemToHighlight);
                 if (isCanvasActive && itemToHighlight.itemData.TypeOfThisItem == ItemType.Food)
                 {
-                    survivalBarScript.ShowIncreasmentFromFood(itemToHighlight.itemData as ItemTypeFood);
+                    survivalBarScript.ShowEffectsFromFood(itemToHighlight.itemData as ItemTypeFood);
                     wasShownIncreasment = true;
                 }
                 else
                 {
-                    removeIncreasment();
+                    removeEffects();
                 }
             }
             else
             {
                 inventoryHighlight.Show(false);
-                removeIncreasment();
+                removeEffects();
             }
         }
         else
@@ -183,11 +183,11 @@ public class InventoryController : MonoBehaviour
         }
     }
 
-    private void removeIncreasment()
+    private void removeEffects()
     {
         if (wasShownIncreasment)
         {
-            survivalBarScript.RemoveIncreasmentFromFood();
+            survivalBarScript.RemoveEffectsFromFood();
             wasShownIncreasment = false;
         }
     }
@@ -302,7 +302,7 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
-            removeIncreasment();
+            removeEffects();
             if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
             {
                 --ammoCounter[selectedItem.itemData.itemName];
@@ -324,7 +324,7 @@ public class InventoryController : MonoBehaviour
 
     private void UseItem(Vector2Int tileGridPosition)
     {
-        removeIncreasment();
+        removeEffects();
         InventoryItem itemToCheck = SelectedItemGrid.checkItem(tileGridPosition.x, tileGridPosition.y);
         if (itemToCheck != null && itemToCheck.itemData.TypeOfThisItem == ItemType.Weapon)
         {
