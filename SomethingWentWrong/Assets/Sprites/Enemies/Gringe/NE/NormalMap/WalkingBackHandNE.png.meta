@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 97a08614bb0d89845916279c21c0001a
+guid: 6079418bf9e5e464d86d6993dfaf90ef
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -105,7 +105,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: IdleForwardHandNE_0
+      name: WalkingBackHandNE_0
       rect:
         serializedVersion: 2
         x: 0
@@ -119,14 +119,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: bf7ca797d59a8254b937c07bad54318f
-      internalID: -1332097865
+      spriteID: 2fb6e795e1a745c4880652e84821e74f
+      internalID: -703569704
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: IdleForwardHandNE_1
+      name: WalkingBackHandNE_1
       rect:
         serializedVersion: 2
         x: 117
@@ -140,8 +140,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 36517cbbaafe1d544ade9df1908e03e7
-      internalID: 1434103808
+      spriteID: d35a937996044f2419cf2fe1e4c38dcf
+      internalID: -950639389
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingBackHandNE_2
+      rect:
+        serializedVersion: 2
+        x: 234
+        y: 0
+        width: 117
+        height: 117
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab10c67ddf9a7e94b8041bf929d57aaa
+      internalID: -714059462
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: WalkingBackHandNE_3
+      rect:
+        serializedVersion: 2
+        x: 351
+        y: 0
+        width: 117
+        height: 117
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd03708fe32264446887142c0a0db56d
+      internalID: -1383162087
       vertices: []
       indices: 
       edges: []
@@ -155,12 +197,12 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: d6f2c464c156ed644a28dfbe171349b1, type: 3}
-      name: _NormalMap
+    secondaryTextures: []
     nameFileIdTable:
-      IdleForwardHandNE_0: -1332097865
-      IdleForwardHandNE_1: 1434103808
+      WalkingBackHandNE_3: -1383162087
+      WalkingBackHandNE_1: -950639389
+      WalkingBackHandNE_2: -714059462
+      WalkingBackHandNE_0: -703569704
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
