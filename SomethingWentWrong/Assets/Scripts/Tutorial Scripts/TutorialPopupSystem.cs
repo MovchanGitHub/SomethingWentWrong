@@ -13,13 +13,35 @@ public class TutorialPopupSystem : MonoBehaviour
     private int rocketTrackerPopup = 2;
     private int runningButtonPopup = 3;
     private int baseButtonPopup = 4;
+    private int collectResourcesPopup = 5;
+    private int inventoryUsePopup = 6;
     private int basicInfoPopup = 10;
-    
+
+    private int currPopup = 0;
+
+    public int CurrPopup
+    {
+        get => currPopup;
+        set
+        {
+            currPopup = value;
+            Debug.Log("currPopup = " + currPopup);
+        }
+    }
+
+    private float timeBeforeShowNewPopup = 1f;
+
+    private IEnumerator HideFirstWaitShowSecond(int first, int second, float time)
+    {
+        popups[first].SetActive(false);
+        yield return new WaitForSeconds(time);
+        popups[second].SetActive(true);
+    }
+
     
     public void OnGreetingButtonClick()
     {
-        popups[greetingPopup].SetActive(false);
-        popups[walkingPopup].SetActive(true);
+        StartCoroutine(HideFirstWaitShowSecond(greetingPopup, walkingPopup, timeBeforeShowNewPopup));
     }
     
     
@@ -33,6 +55,7 @@ public class TutorialPopupSystem : MonoBehaviour
     {
         popups[rocketTrackerPopup].SetActive(false);
         GM.UI.Pointer.SetActive(true);
+        Destroy(GM.Tutorial.Triggers.transform.GetChild(0).gameObject);
     }
     
     
@@ -44,13 +67,25 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public void OnBaseButtonClick()
     {
-        popups[baseButtonPopup].SetActive(false);
+        StartCoroutine(HideFirstWaitShowSecond(baseButtonPopup, collectResourcesPopup, timeBeforeShowNewPopup));
+        GM.Tutorial.Environment.SetActive(true);
+        GM.Tutorial.Counter.SetActive(true);
     }
     
     
     public void OnWalkingButtonClick()
     {
-        popups[walkingPopup].SetActive(false);
-        popups[rocketTrackerPopup].SetActive(true);
+        StartCoroutine(HideFirstWaitShowSecond(walkingPopup, rocketTrackerPopup, 3 * timeBeforeShowNewPopup));
+    }
+    
+    
+    public void OnCollectResourcesButtonClick()
+    {
+        popups[collectResourcesPopup].SetActive(false);
+    }
+    
+    public void OnInventoryUseButtonClick()
+    {
+        popups[inventoryUsePopup].SetActive(false);
     }
 }
