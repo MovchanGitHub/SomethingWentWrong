@@ -11,6 +11,7 @@ public class BombLogic : WeaponLogic
 {
     public const string bombName = "Bomb Fruit";
     private Bomb bomb;
+    public List<AudioClip> _explosions;
 
     private void Awake()
     {

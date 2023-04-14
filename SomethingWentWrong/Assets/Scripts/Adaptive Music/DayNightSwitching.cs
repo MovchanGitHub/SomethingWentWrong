@@ -15,7 +15,7 @@ public class DayNightSwitching : MusicFaderScript
     private AudioSource _intenseAudio;
     private float _intenseVolume;
 
-    private const int TransTime = 500;
+    private const int TransTime = 100;
 
     private DayTime _dayCycle;
     private bool _inCombat;
@@ -61,14 +61,14 @@ public class DayNightSwitching : MusicFaderScript
     
     private void Awake()
     {
-        if (instance != null && instance != this)
-        {
-            Destroy(this.gameObject);
-        }
-        else
-        {
-            instance = this;
-        }
+        // if (instance != null && instance != this)
+        // {
+        //     Destroy(this.gameObject);
+        // }
+        // else
+        // {
+        //     instance = this;
+        // }
         
         _dayAudio = GetComponents<AudioSource>()[0];
         _dayAudio.Play();
@@ -82,8 +82,15 @@ public class DayNightSwitching : MusicFaderScript
         _intenseAudio.volume = _intenseVolume;
     }
 
+    private void Start()
+    {
+        
+    }
+
     private void Update()
     {
+        // Debug.Log(_dayAudio.volume);
+        // Debug.Log(_nightAudio.volume);
         _enemiesEnded = _enemiesScript.ExistingEnemies == 0;
         if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && _enemiesEnded)
             _waveEnded = true;
