@@ -24,11 +24,10 @@ public class TutorialManager : MonoBehaviour
         {
             mainedResources = value;
             _counterText.text = "добыто ресурсов: " + mainedResources + "/" + resourcesToMain;
-            if (mainedResources == resourcesToMain)
-            {
-                _counter.SetActive(false);
-                _inventoryUsePopup.SetActive(true);
-            }
+            if (mainedResources == resourcesToMain / 2)
+                _tutorialPopupSystem.OnHalfResourcesMined();
+            else if (mainedResources == resourcesToMain)
+                _tutorialPopupSystem.OnAllRecourcesMined();
         }
     }
 

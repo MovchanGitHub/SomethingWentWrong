@@ -6,12 +6,12 @@ using UnityEngine;
 
 public class TutorialTrigger : MonoBehaviour
 {
-    [SerializeField] private GameObject popup;
+    [SerializeField] private int popupIndex;
     
     private void OnTriggerEnter2D(Collider2D col)
     {
         Debug.Log("Tutorial: " + gameObject.name);
-        popup.SetActive(true);
+        GameManager.GM.Tutorial.PopupSystem.PopupTrigger(popupIndex);
         Destroy(gameObject);
     }
 }

@@ -11,10 +11,11 @@ public class TutorialPopupSystem : MonoBehaviour
     private int greetingPopup = 0;
     private int walkingPopup = 1;
     private int rocketTrackerPopup = 2;
-    private int runningButtonPopup = 3;
-    private int baseButtonPopup = 4;
+    private int runningPopup = 3;
+    private int basePopup = 4;
     private int collectResourcesPopup = 5;
-    private int inventoryUsePopup = 6;
+    private int dashPopup = 6;
+    private int inventoryUsePopup = 7;
     private int basicInfoPopup = 10;
 
     private int currPopup = 0;
@@ -61,13 +62,20 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public void OnRunningButtonClick()
     {
-        popups[runningButtonPopup].SetActive(false);
+        popups[runningPopup].SetActive(false);
     }
     
     
     public void OnBaseButtonClick()
     {
-        StartCoroutine(HideFirstWaitShowSecond(baseButtonPopup, collectResourcesPopup, timeBeforeShowNewPopup));
+        StartCoroutine(HideFirstWaitShowSecond(basePopup, collectResourcesPopup, timeBeforeShowNewPopup));
+        StartCoroutine(EnableResources());
+    }
+
+
+    private IEnumerator EnableResources()
+    {
+        yield return new WaitForSeconds(timeBeforeShowNewPopup);
         GM.Tutorial.Environment.SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
     }
@@ -87,5 +95,30 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnInventoryUseButtonClick()
     {
         popups[inventoryUsePopup].SetActive(false);
+    }
+
+
+    public void OnAllRecourcesMined()
+    {
+        GM.Tutorial.Counter.SetActive(false);
+        StartCoroutine(HideFirstWaitShowSecond(dashPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
+    }
+    
+    
+    public void OnHalfResourcesMined()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(collectResourcesPopup, dashPopup, 3 * timeBeforeShowNewPopup));
+    }
+    
+    
+    public void OnDashButtonClick()
+    {
+        popups[dashPopup].SetActive(false);
+    }
+    
+    
+    public void PopupTrigger(int popupIndex)
+    {
+        StartCoroutine(HideFirstWaitShowSecond(popupIndex-1, popupIndex, timeBeforeShowNewPopup));
     }
 }
