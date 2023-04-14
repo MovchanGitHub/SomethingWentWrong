@@ -24,11 +24,16 @@ public class Bomb : MonoBehaviour, IWeaponable
     private GameObject _area;
     [SerializeField] private Animator _animator;
     private Collider2D[] hitObjects;
-    
+
+    private AudioSource _audioSource;
+    private List<AudioClip> _explosions;
+
     private void Awake()
     {
         _collider2D = gameObject.transform.GetChild(1).gameObject;
         _area = gameObject.transform.GetChild(2).gameObject;
+        _audioSource = GameObject.Find("BombLogic").GetComponent<AudioSource>();
+        _explosions = GameObject.Find("BombLogic").GetComponent<BombLogic>()._explosions;
     }
 
     private void Start()
@@ -50,6 +55,8 @@ public class Bomb : MonoBehaviour, IWeaponable
     {
         hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, 4, damagableLayers);
 
+        _audioSource.PlayOneShot(_explosions[UnityEngine.Random.Range(0, 2)]); 
+        
         foreach (Collider2D hitObject in hitObjects)
         {
             hitObject.transform.GetComponentInParent<IDamagable>().GetDamage(this, gameObject);

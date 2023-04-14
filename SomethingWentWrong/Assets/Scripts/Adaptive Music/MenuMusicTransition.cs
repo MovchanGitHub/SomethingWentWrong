@@ -10,7 +10,7 @@ public class MenuMusicTransition : MusicFaderScript
     private AudioSource _audioSource;
     private Scene _menuScene;
     public AudioMixer audioMixer;
-    private float _timeToFade = 5f;
+    private float _timeToFade;
     private float _timeElapsed;
 
     private void Awake()
@@ -20,6 +20,9 @@ public class MenuMusicTransition : MusicFaderScript
         _audioSource.volume = 0.0001f;
         _audioSource.Play();
         _menuScene = SceneManager.GetActiveScene();
+        _timeToFade = 5f;
+        _timeElapsed = 0;
+        _audioSource.volume = 0;
     }
 
     private void Start()
@@ -31,6 +34,7 @@ public class MenuMusicTransition : MusicFaderScript
 
     private void Update()
     {
+        // Debug.Log(Time.deltaTime);
         if (_menuScene != SceneManager.GetActiveScene())
         {
             _audioSource.volume = Mathf.Pow(Mathf.Lerp(0, 1, _timeElapsed / _timeToFade), 2); 
