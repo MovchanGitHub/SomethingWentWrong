@@ -9,16 +9,17 @@ public class TutorialPopupSystem : MonoBehaviour
     [SerializeField] private GameObject[] popups;
 
     private int greetingPopup = 0;
-    private int rocketTrackerPopup = 1;
-    private int runningButtonPopup = 2;
-    private int baseButtonPopup = 3;
+    private int walkingPopup = 1;
+    private int rocketTrackerPopup = 2;
+    private int runningButtonPopup = 3;
+    private int baseButtonPopup = 4;
     private int basicInfoPopup = 10;
     
     
     public void OnGreetingButtonClick()
     {
         popups[greetingPopup].SetActive(false);
-        popups[rocketTrackerPopup].SetActive(true);
+        popups[walkingPopup].SetActive(true);
     }
     
     
@@ -44,5 +45,12 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnBaseButtonClick()
     {
         popups[baseButtonPopup].SetActive(false);
+    }
+    
+    
+    public void OnWalkingButtonClick()
+    {
+        popups[walkingPopup].SetActive(false);
+        popups[rocketTrackerPopup].SetActive(true);
     }
 }
