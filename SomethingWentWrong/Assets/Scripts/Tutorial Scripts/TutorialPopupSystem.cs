@@ -16,7 +16,12 @@ public class TutorialPopupSystem : MonoBehaviour
     private int collectResourcesPopup = 5;
     private int dashPopup = 6;
     private int inventoryUsePopup = 7;
-    private int basicInfoPopup = 10;
+    private int inventoryErasePopup = 8;
+    private int weaponablePopup = 9;
+    private int bombPopup = 10;
+    private int starPopup = 11;
+    private int laserPopup = 12;
+    private int basicInfoPopup = 20;
 
     private int currPopup = 0;
 
@@ -98,10 +103,31 @@ public class TutorialPopupSystem : MonoBehaviour
     }
 
 
-    public void OnAllRecourcesMined()
+    public void OnAllResourcesMined()
     {
         GM.Tutorial.Counter.SetActive(false);
         StartCoroutine(HideFirstWaitShowSecond(dashPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
+        StartCoroutine(ShowInventoryErasePopup());
+    }
+    
+
+    public void OnAllWeaponableResourcesMined()
+    {
+        GM.Tutorial.Counter.SetActive(false);
+        popups[laserPopup].SetActive(false);
+        popups[starPopup].SetActive(false);
+        popups[bombPopup].SetActive(false);
+    }
+
+
+    private IEnumerator ShowInventoryErasePopup()
+    {
+        yield return new WaitForSeconds(10f);
+        StartCoroutine(HideFirstWaitShowSecond(inventoryUsePopup, inventoryErasePopup, 2 * timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(10f);
+        StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponablePopup, 2 * timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
+        GM.Tutorial.ShowWeaponableResources();
     }
     
     
@@ -120,5 +146,36 @@ public class TutorialPopupSystem : MonoBehaviour
     public void PopupTrigger(int popupIndex)
     {
         StartCoroutine(HideFirstWaitShowSecond(popupIndex-1, popupIndex, timeBeforeShowNewPopup));
+    }
+
+
+    public void OnInventoryEraseButtonClick()
+    {
+        popups[inventoryErasePopup].SetActive(false);
+        
+    }
+    
+    
+    public void OnWeaponableButtonClick()
+    {
+        popups[weaponablePopup].SetActive(false);
+    }
+
+
+    public void OnLaserButtonClick()
+    {
+        popups[laserPopup].SetActive(false);
+    }
+    
+
+    public void OnStarButtonClick()
+    {
+        popups[starPopup].SetActive(false);
+    }
+    
+
+    public void OnBombButtonClick()
+    {
+        popups[bombPopup].SetActive(false);
     }
 }

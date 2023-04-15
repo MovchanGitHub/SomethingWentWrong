@@ -13,6 +13,7 @@ public class SurvivalManager : MonoBehaviour
     [SerializeField] private float hungerDepletionRate;
     private float currentHunger;
     public float HungerPercent => currentHunger / maxHunger;
+    public int hungerDamage = 2;
 
     //жажда
     [Header("Thirst")] 
@@ -21,6 +22,7 @@ public class SurvivalManager : MonoBehaviour
     [SerializeField] private float thirstDepletionRate;
     private float currentThirst;
     public float ThirstPercent => currentThirst / maxThirst;
+    public int thirstDamage = 3;
 
     //кислородное голодание
     [Header("Anoxaemia")] [SerializeField] private float maxAnoxaemia;
@@ -29,6 +31,8 @@ public class SurvivalManager : MonoBehaviour
     [SerializeField] private float anoxaemiaDepletionRate;
     private float currentAnoxaemia;
     public float AnoxaemiaPercent => currentAnoxaemia / maxAnoxaemia;
+    public int anoxaemiaDamage = 5;
+
     
     [Header("Stamina")] 
     [SerializeField] private float maxStamina;
@@ -40,6 +44,21 @@ public class SurvivalManager : MonoBehaviour
     private float currentStaminaDelayCounter;
     public float StaminaPercent => currentStamina / maxStamina;
 
+    public SurvivalPlayerDamage survivalPlayerDamage;
+
+    public int LoseHpEffect
+    {
+        get
+        {
+            int loseHpEffect = 0;
+            if (currentHunger < 0)    loseHpEffect += hungerDamage;
+            if (currentThirst < 0)    loseHpEffect += thirstDamage;
+            if (currentAnoxaemia < 0) loseHpEffect += anoxaemiaDamage;
+
+            return loseHpEffect;
+        }
+    }
+
 
     public float staminaToRush = 1;
 
@@ -48,6 +67,7 @@ public class SurvivalManager : MonoBehaviour
 
     private void Start()
     {
+        survivalPlayerDamage = GetComponent<SurvivalPlayerDamage>();
         currentHunger = maxHunger;
         currentThirst = maxThirst;
         currentAnoxaemia = maxAnoxaemia;
@@ -60,17 +80,17 @@ public class SurvivalManager : MonoBehaviour
         currentThirst    -= thirstDepletionRate    * Time.deltaTime;
         currentAnoxaemia -= anoxaemiaDepletionRate * Time.deltaTime;
 
-        if (currentHunger <= 0 || currentThirst <= 0 || currentAnoxaemia <= 0)
-        {
-            //player dies :/
-            if (currentHunger <= 0)
-                GM.GameOver("Вы умерли от голода");
-            if (currentThirst <= 0)
-                GM.GameOver("Вы умерли от жажды");
-            if (currentAnoxaemia <= 0)
-                GM.GameOver("Вы умерли от нехватки кислорода");
-            //transform.gameObject.SetActive(false);
-        }
+        // if (currentHunger <= 0 || currentThirst <= 0 || currentAnoxaemia <= 0)
+        // {
+        //     //player dies :/
+        //     if (currentHunger <= 0)
+        //         GM.GameOver("Вы умерли от голода");
+        //     if (currentThirst <= 0)
+        //         GM.GameOver("Вы умерли от жажды");
+        //     if (currentAnoxaemia <= 0)
+        //         GM.GameOver("Вы умерли от нехватки кислорода");
+        //     //transform.gameObject.SetActive(false);
+        // }
 
         //if player runs
         if (GM.PlayerMovement.IsRunning && GM.PlayerMovement.IsMoving)
