@@ -27,6 +27,15 @@ public class DayNightCycle : MonoBehaviour
     
     [SerializeField] private Material landscapeMaterial;
 
+    public bool RetroWaveEffect
+    {
+        set
+        {
+            int n = value ? 1 : 0;
+            landscapeMaterial.SetInt("_RetroWaveEffect", n);
+        }
+    }
+
 
     public TextMeshProUGUI score;
     private int dayCount = 0;
