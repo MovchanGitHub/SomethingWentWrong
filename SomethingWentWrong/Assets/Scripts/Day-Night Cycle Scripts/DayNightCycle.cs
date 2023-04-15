@@ -23,6 +23,9 @@ public class DayNightCycle : MonoBehaviour
     [SerializeField] private float sunsetDuration;
     [SerializeField] private float nightDuration;
     [SerializeField] private float midnightDuration;
+    
+    
+    [SerializeField] private Material landscapeMaterial;
 
 
     public TextMeshProUGUI score;
@@ -97,6 +100,8 @@ public class DayNightCycle : MonoBehaviour
                  yield return new WaitForNextFrameUnit();
              }
              
+             Debug.Log("it's sunset now");
+             
              while (true)
              {
                  // Sunset
@@ -111,29 +116,34 @@ public class DayNightCycle : MonoBehaviour
                      break;
                  }
              
-                 timePassedPercent = currentTime / dayDuration;
+                 timePassedPercent = currentTime / sunsetDuration;
+                 landscapeMaterial.SetFloat("_Fade", Mathf.Lerp(0, 0.2f, timePassedPercent));
                  globalLight.color = Color.Lerp(sunsetColor, nightColor, timePassedPercent);
                  globalLight.intensity = Mathf.Lerp(sunsetIntensity, nightIntensity, timePassedPercent);
                  
                  yield return new WaitForNextFrameUnit();
              }
+
+             Debug.Log("it's night now");
              
              while (true)
              {
                  // Night
                  currentTime += Time.deltaTime;
+                 currentTime = Mathf.Min(currentTime, nightDuration);
 
-                 if (currentTime >= nightDuration)
+                 if (GM.Spawner.Enemies.ExistingEnemies == 0 && currentTime >= nightDuration)
                  {
                      currentTime = 0;
                      dayCycle = DayTime.Midnight;
                      break;
                  }
              
-                 timePassedPercent = currentTime / dayDuration;
+                 timePassedPercent = currentTime / nightDuration;
+                 landscapeMaterial.SetFloat("_Fade", Mathf.Lerp(0.2f, 1f, 5 * timePassedPercent));
                  globalLight.color = Color.Lerp(nightColor, midnightColor, timePassedPercent);
                  globalLight.intensity = Mathf.Lerp(nightIntensity, midnightIntensity, timePassedPercent);
-                 
+                     
                  yield return new WaitForNextFrameUnit();
              }  
              
@@ -162,7 +172,8 @@ public class DayNightCycle : MonoBehaviour
                      break;
                  }
              
-                 timePassedPercent = currentTime / dayDuration;
+                 timePassedPercent = currentTime / midnightDuration;
+                 landscapeMaterial.SetFloat("_Fade", Mathf.Lerp(1f, 0f, 2 * timePassedPercent));
                  globalLight.color = Color.Lerp(midnightColor, sunriseColor, timePassedPercent);
                  globalLight.intensity = Mathf.Lerp(midnightIntensity, sunriseIntensity, timePassedPercent);
                  
@@ -181,12 +192,18 @@ public class DayNightCycle : MonoBehaviour
                      break;
                  }
              
-                 timePassedPercent = currentTime / dayDuration;
+                 timePassedPercent = currentTime / sunriseDuration;
                  globalLight.color = Color.Lerp(sunriseColor, dayColor, timePassedPercent);
                  globalLight.intensity = Mathf.Lerp(sunriseIntensity, dayIntensity, timePassedPercent);
                  
                  yield return new WaitForNextFrameUnit();
              }
          }
+     }
+
+
+     private void OnDestroy()
+     {
+         landscapeMaterial.SetFloat("_Fade", 0f);
      }
 }
