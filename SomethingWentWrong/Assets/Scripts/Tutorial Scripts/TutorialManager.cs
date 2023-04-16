@@ -18,10 +18,14 @@ public class TutorialManager : MonoBehaviour
     public bool laserExplained;
 
     [SerializeField] private GameObject[] weaponPopups;
+    public GameObject[] weaponInfinityPlants;
+    public GameObject[] spawnedEnemies;
 
     private int resourcesToMain = 8;
-
     private int mainedResources = 0;
+    
+    private int enemiesToKill = 3;
+    private int killedEnemies = 0;
 
     public int MainedResources
     {
@@ -41,6 +45,29 @@ public class TutorialManager : MonoBehaviour
             {
                 if (mainedResources == resourcesToMain)
                     _tutorialPopupSystem.OnAllWeaponableResourcesMined();
+            }
+        }
+    }
+
+    private int wave = 0;
+    
+    public int KilledEnemies
+    {
+        get => killedEnemies;
+        set
+        {
+            killedEnemies = value;
+            _counterText.text = "убито врагов: " + killedEnemies + "/" + enemiesToKill;
+            if (killedEnemies == enemiesToKill)
+            {
+                Counter.SetActive(false);
+                if (wave == 0)
+                    StartCoroutine(_tutorialPopupSystem.SpawnEnemies2());
+                else if (wave == 1)
+                    StartCoroutine(_tutorialPopupSystem.SpawnEnemies3());
+                else if (wave == 2)
+                    StartCoroutine(_tutorialPopupSystem.OnAllEnemiesKilled());
+                wave++;
             }
         }
     }

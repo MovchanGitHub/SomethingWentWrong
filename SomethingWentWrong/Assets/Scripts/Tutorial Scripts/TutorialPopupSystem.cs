@@ -21,7 +21,9 @@ public class TutorialPopupSystem : MonoBehaviour
     private int bombPopup = 10;
     private int starPopup = 11;
     private int laserPopup = 12;
-    private int basicInfoPopup = 20;
+    private int starDetailedPopup = 13;
+    private int laserDetailedPopup = 14;
+    private int bombDetailedPopup = 15;
 
     private int currPopup = 0;
 
@@ -51,10 +53,10 @@ public class TutorialPopupSystem : MonoBehaviour
     }
     
     
-    public void OnBasicInfoButtonClick()
-    {
-        popups[basicInfoPopup].SetActive(false);
-    }
+    // public void OnBasicInfoButtonClick()
+    // {
+    //     popups[basicInfoPopup].SetActive(false);
+    // }
     
     
     public void OnRocketTrackerButtonClick()
@@ -117,6 +119,51 @@ public class TutorialPopupSystem : MonoBehaviour
         popups[laserPopup].SetActive(false);
         popups[starPopup].SetActive(false);
         popups[bombPopup].SetActive(false);
+        popups[starDetailedPopup].SetActive(true);
+        GM.Tutorial.weaponInfinityPlants[0].SetActive(true);
+        StartCoroutine(SpawnEnemies1());
+    }
+
+
+    private IEnumerator SpawnEnemies1()
+    {
+        yield return new WaitForSeconds(15f);
+        GM.Tutorial.spawnedEnemies[0].SetActive(true);
+        GM.Tutorial.Counter.SetActive(true);
+        GM.Tutorial.KilledEnemies = 0;
+    }
+    
+
+    public IEnumerator SpawnEnemies2()
+    {
+        popups[starDetailedPopup].SetActive(false);
+        popups[laserDetailedPopup].SetActive(true);
+        GM.Tutorial.weaponInfinityPlants[0].SetActive(false);
+        GM.Tutorial.weaponInfinityPlants[1].SetActive(true);
+        yield return new WaitForSeconds(15f);
+        GM.Tutorial.spawnedEnemies[1].SetActive(true);
+        GM.Tutorial.Counter.SetActive(true);
+        GM.Tutorial.KilledEnemies = 0;
+    }
+
+    
+    public IEnumerator SpawnEnemies3()
+    {
+        popups[laserDetailedPopup].SetActive(false);
+        popups[bombDetailedPopup].SetActive(true);
+        GM.Tutorial.weaponInfinityPlants[1].SetActive(false);
+        GM.Tutorial.weaponInfinityPlants[2].SetActive(true);
+        yield return new WaitForSeconds(15f);
+        GM.Tutorial.spawnedEnemies[2].SetActive(true);
+        GM.Tutorial.Counter.SetActive(true);
+        GM.Tutorial.KilledEnemies = 0;
+    }
+
+    
+    public IEnumerator OnAllEnemiesKilled()
+    {
+        Debug.Log("Туториал закончился ты нуб");
+        yield return new WaitForSeconds(1f);
     }
 
 
@@ -177,5 +224,23 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnBombButtonClick()
     {
         popups[bombPopup].SetActive(false);
+    }
+    
+
+    public void OnBombDetailedButtonClick()
+    {
+        popups[bombDetailedPopup].SetActive(false);
+    }
+    
+
+    public void OnStarDetailedButtonClick()
+    {
+        popups[starDetailedPopup].SetActive(false);
+    }
+    
+
+    public void OnLaserDetailedButtonClick()
+    {
+        popups[laserDetailedPopup].SetActive(false);
     }
 }
