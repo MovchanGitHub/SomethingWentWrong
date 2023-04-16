@@ -9,6 +9,7 @@ using static GameManager;
 public class PlayerDamagable : DamagableCharacter
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private int minimumHealth = 20;
     private int damageNumber = 0;
     private PlayerShaderLogic psl;
 
@@ -86,7 +87,11 @@ public class PlayerDamagable : DamagableCharacter
         while (true)
         {
             yield return new WaitForSeconds(1.5f);
-            HP++;
+            int loseHpEffect = GM.SurvivalManager.LoseHpEffect;
+            if (loseHpEffect == 0 && HP < minimumHealth)
+                HP++;
+            else if (loseHpEffect != 0)
+                GetDamage(GM.SurvivalManager.survivalPlayerDamage);
         }
     }
 }

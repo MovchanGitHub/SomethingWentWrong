@@ -102,7 +102,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
         playSoundTemp.audioMixer = _audioSource.outputAudioMixerGroup;
         playSoundTemp.Play();
         
-        GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
+        if (GM.Spawner)
+            GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
         Destroy(gameObject);
 

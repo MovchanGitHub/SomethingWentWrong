@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
 using Random = UnityEngine.Random;
 using static GameManager;
 
@@ -55,6 +56,7 @@ public class SkillsScript : MonoBehaviour
         lightHouse = GM.Rocket;
         
         variantMask = skillsWindow.transform.GetChild(0).gameObject;
+        
         variantsButtons = new[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
         var l = skillsWindow.transform.GetChild(4);
         logos = new GameObject[10];
@@ -68,7 +70,6 @@ public class SkillsScript : MonoBehaviour
         random.InitState(seed);
         
         skillsWindow.SetActive(false);
-        InitSkills();
         
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
         rh = GM.UI.RocketHealthSlider.GetComponent<RectTransform>();
@@ -103,11 +104,11 @@ public class SkillsScript : MonoBehaviour
             _timeLeft -= Time.deltaTime;
             yield return null;
         }
+        GetSkill();
+        foreach (var logo in logos)
+            logo.SetActive(false);
         skillsWindow.SetActive(false);
-        foreach (var l in logos)
-        {
-            l.SetActive(false);
-        }
+
     }
     
     public void GetSkill() {
@@ -124,6 +125,9 @@ public class SkillsScript : MonoBehaviour
                 case 9: ImproveMaxThrist(); break;
         }
         skillsWindow.SetActive(false);
+        foreach (var logo in logos)
+            logo.SetActive(false);
+        variantMask.GetComponent<Image>().color = new Color(255, 240, 0, 255);
         StartCoroutine(GM.PlayerMovement.GetComponentInChildren<PlayerShaderLogic>().Upgrade());
     }
     
