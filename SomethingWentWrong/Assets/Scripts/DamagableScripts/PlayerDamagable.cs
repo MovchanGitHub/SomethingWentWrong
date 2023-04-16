@@ -9,6 +9,7 @@ using static GameManager;
 public class PlayerDamagable : DamagableCharacter
 {
     [SerializeField] private Slider slider;
+    [SerializeField] private Slider sliderIncrease;
     [SerializeField] private int minimumHealth = 20;
     private int damageNumber = 0;
     private PlayerShaderLogic psl;
@@ -45,7 +46,8 @@ public class PlayerDamagable : DamagableCharacter
         set
         {
             maxHp = value;
-            slider.maxValue = value;
+            slider.maxValue = maxHp;
+            sliderIncrease.maxValue = maxHp;
         }
     }
     
