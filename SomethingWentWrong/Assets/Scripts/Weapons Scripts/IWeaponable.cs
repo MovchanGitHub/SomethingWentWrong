@@ -12,7 +12,8 @@ public enum WeaponType
     RushAttack,
     Golem,
     Eye,
-    Dino
+    Dino,
+    SurvivalParams
 }
 
 public interface IWeaponable

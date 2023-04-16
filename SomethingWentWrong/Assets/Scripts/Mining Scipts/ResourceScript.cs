@@ -97,7 +97,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
         //     GM.UI.Encyclopedia.OpenNewCreature(creature);
         // }
 
-        GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
+        if (GM.Spawner)
+            GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
         Destroy(gameObject);
     }
