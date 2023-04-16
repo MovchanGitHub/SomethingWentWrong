@@ -183,5 +183,13 @@ PrefabInstance:
       propertyPath: m_WasSpriteAssigned
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8992865250830726430, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 067414cfb6fb549c7a88d19480bcb9c0, type: 3}
+    - target: {fileID: 8992865250830726430, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
+      propertyPath: OutputAudioMixerGroup
+      value: 
+      objectReference: {fileID: 2301694848881138442, guid: 9854a754f5e814ed09d8fabd2864ccff, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}

@@ -15,9 +15,9 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int timesToDrop;
 
     public int positionIndex;
-    private AudioSource _crystallHit;
-    private AudioSource _treeHit;
-    
+    private AudioSource _audioSource;
+    public GameObject playSound;
+
     public int HP
     {
         get { return hp; }
@@ -35,10 +35,9 @@ public class ResourceScript : MonoBehaviour, IDamagable
                 currentDamage += hp - value;
             }
 
-            if (value > 0)
-                hp = value;
-            else
-                Die();
+            hp = value;
+            if (hp <= 0)
+                StartCoroutine(Die());
         }
     }
 
@@ -47,7 +46,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
         HP -=  weapon.Damage;
-        ObjectHitSound(gameObject, _crystallHit, _treeHit);
+        if (hp > 0)
+            ObjectHitSound(_audioSource);
     }
 
     private void Awake()
@@ -56,8 +56,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
             positionIndex = -1;
         else
             positionIndex = GM.Spawner.Resources.PositionIndex;
-        _crystallHit = GameObject.Find("Envinronment").GetComponents<AudioSource>()[0];
-        _treeHit = GameObject.Find("Envinronment").GetComponents<AudioSource>()[1];
+        _audioSource = GetComponents<AudioSource>()[0];
     }
 
 
@@ -90,16 +89,25 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    private void Die()
+    private IEnumerator Die()
     {
         // if (!creature.isOpenedInEcnyclopedia)
         // {
         //     GM.UI.Encyclopedia.OpenNewCreature(creature);
         // }
 
+        GameObject playSoundObj = Instantiate(playSound, transform.position, Quaternion.identity);
+        PlaySound playSoundTemp = playSoundObj.GetComponent<PlaySound>();
+        playSoundTemp.audioClip = _audioSource.clip;
+        playSoundTemp.audioMixer = _audioSource.outputAudioMixerGroup;
+        playSoundTemp.Play();
+        
         GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
         Destroy(gameObject);
+
+        yield return new WaitForSeconds(playSoundTemp.audioClip.length * 2);
+        Destroy(playSoundObj);
     }
 
     public void spawnDamagePopup(Vector3 position, int damageAmount)
@@ -108,22 +116,9 @@ public class ResourceScript : MonoBehaviour, IDamagable
         damagePopup.setup(damageAmount);
     }
     
-    public static void ObjectHitSound(GameObject hitObject, AudioSource _crystallHit, AudioSource _treeHit)
+    public static void ObjectHitSound(AudioSource _audioSource)
     {
-        if (hitObject.name.Contains("Tennosey"))
-        {
-            _crystallHit.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
-            _crystallHit.Play();
-        }
-        else if (hitObject.name.Contains("AguaBerryPlant Variant")
-                 || hitObject.name.Contains("Bomb Fruit Plant")
-                 || hitObject.name.Contains("FrambuesaBush Variant")
-                 || hitObject.name.Contains("HomeOfBunzha Variant")
-                 || hitObject.name.Contains("Bubble Plant Variant") 
-                 || hitObject.name.Contains("Shoot Fruit Plant"))
-        {
-            _treeHit.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
-            _treeHit.Play();
-        }
+        _audioSource.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
+        _audioSource.Play();
     }
 }
