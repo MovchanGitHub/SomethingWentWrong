@@ -17,7 +17,9 @@ public class SettingsScript : MonoBehaviour
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
     public bool isOpened;
-
+    
+    public TMPro.TMP_Dropdown dropdown;
+    
     private void Awake()
     {
         pauseScript = GetComponent<InGameMenuScript>();
@@ -27,6 +29,7 @@ public class SettingsScript : MonoBehaviour
     {
         settingsMenu = GM.UI.SettingsMenu;
         settingsMenu.SetActive(false);
+        dropdown = GM.UI.SettingsMenu.GetComponentInChildren<TMPro.TMP_Dropdown>();
     }
     
     public void HideSettings()
@@ -53,14 +56,9 @@ public class SettingsScript : MonoBehaviour
     }
     public void SetResolution(int value)
     {
-        switch (value)
-        {
-            case 0: { Screen.SetResolution(1280, 720, Screen.fullScreen); } break;
-            case 1: {Screen.SetResolution(1920, 1080, Screen.fullScreen); } break;
-            case 2: {Screen.SetResolution(2560, 1440, Screen.fullScreen); } break;
-            case 3: {Screen.SetResolution(3840, 2160, Screen.fullScreen); } break;
-                
-        }
+        var options = dropdown.options;
+        var data = options[value].text.Split('X');
+        Screen.SetResolution(int.Parse(data[0]), int.Parse(data[1]), Screen.fullScreen);
     }
 
     public void SetFullscreen(bool is_fullscreen)
