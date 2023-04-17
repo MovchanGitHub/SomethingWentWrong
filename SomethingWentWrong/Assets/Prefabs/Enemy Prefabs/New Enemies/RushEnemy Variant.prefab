@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab91c211877d81c4f9ecab175d2060a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  anims:
+  - {fileID: 3664840811163927475}
   attackAnimationDuration: 0
 --- !u!1 &474237802382592934 stripped
 GameObject:

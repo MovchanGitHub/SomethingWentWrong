@@ -26,7 +26,7 @@ public class EnemyShaderLogic : MonoBehaviour
         _renderer.GetPropertyBlock(_propBlock);
         _propBlock.SetInteger("_BombDeath", 1);
         _renderer.SetPropertyBlock(_propBlock);
-        StartCoroutine(FadeDecreasing(0.1f));
+        StartCoroutine(FadeDecreasing(0.04f));
     }
 
     public void ChangeDissolvingColor(Color color)
