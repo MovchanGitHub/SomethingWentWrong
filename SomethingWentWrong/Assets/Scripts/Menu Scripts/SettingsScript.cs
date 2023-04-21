@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using static GameManager;
-
 
 
 public class SettingsScript : MonoBehaviour
@@ -12,7 +12,6 @@ public class SettingsScript : MonoBehaviour
 
     GameObject settingsMenu;
     InGameMenuScript pauseScript;
-    private GameObject resolutionCB;
     
     [SerializeField] public float musicVolume;
     [SerializeField] public float soundsVolume;
@@ -28,8 +27,11 @@ public class SettingsScript : MonoBehaviour
     private void Start()
     {
         settingsMenu = GM.UI.SettingsMenu;
+
+        GM.UI.SettingsMenu.transform.GetChild(4).GetComponent<Toggle>().isOn = Screen.fullScreen;
         settingsMenu.SetActive(false);
         dropdown = GM.UI.SettingsMenu.GetComponentInChildren<TMPro.TMP_Dropdown>();
+        
     }
     
     public void HideSettings()
@@ -52,13 +54,12 @@ public class SettingsScript : MonoBehaviour
     public void SetSoundsVolume(float value)
     {
         soundsVolume = value;
-
     }
     public void SetResolution(int value)
     {
         var options = dropdown.options;
-        var data = options[value].text.Split('X');
-        Screen.SetResolution(int.Parse(data[0]), int.Parse(data[1]), Screen.fullScreen);
+        var match = Regex.Match(options[value].text, @"(\d+)X(\d+)");
+        Screen.SetResolution(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), Screen.fullScreen);
     }
 
     public void SetFullscreen(bool is_fullscreen)
