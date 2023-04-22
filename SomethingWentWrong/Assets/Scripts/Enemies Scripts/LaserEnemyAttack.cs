@@ -13,6 +13,7 @@ public class LaserEnemyAttack : EnemyAttack
     private int attackDirection;
     private int actualAttackDirection;
     private Vector2 targetPosition;
+    [HideInInspector] public List<GameObject> damagedEntities;
 
     protected override void Update()
     {
@@ -44,12 +45,13 @@ public class LaserEnemyAttack : EnemyAttack
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
             RaycastHit2D hit = Physics2D.Raycast((Vector2)laser.transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
             timeToDamage -= Time.deltaTime;
-            if (hit)
+            if (hit && !damagedEntities.Contains(hit.transform.gameObject))
             {
                 if (timeToDamage < 0)
                 {
                     IDamagable target = hit.transform.GetComponentInChildren<IDamagable>();
                     target.GetDamage(this);
+                    damagedEntities.Add(hit.transform.gameObject);
                     timeToDamage = laserDamageSpeed;
                 }
             }
@@ -59,6 +61,7 @@ public class LaserEnemyAttack : EnemyAttack
         laser.gameObject.SetActive(false);
         yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
+        damagedEntities.Clear();
         es.Animator.StopAttackTrigger();
     }
 
