@@ -52,6 +52,8 @@ public class InventoryController : MonoBehaviour
 
     [SerializeField] private ItemsBase[] startItems;
 
+    [SerializeField] private GameObject bin;
+
 
     public void UpdateWeaponBar(string key, int value)
     {
@@ -114,6 +116,7 @@ public class InventoryController : MonoBehaviour
         {
             inputSystem.UnblockPlayerInputs();
         }
+        bin.SetActive(false);
     }
 
     private void Update()
@@ -287,6 +290,7 @@ public class InventoryController : MonoBehaviour
         bool isDropComplete = selectedItemGrid.PlaceItem(selectedItem, tileGridPosition.x, tileGridPosition.y, ref overlapItem);
         if (isDropComplete)
         {
+            bin.SetActive(false);
             /*
             if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
             {
@@ -310,12 +314,15 @@ public class InventoryController : MonoBehaviour
         selectedItem = selectedItemGrid.LeftMousePickUp(tileGridPosition.x, tileGridPosition.y);
         if (selectedItem != null)
         {
+            bin.SetActive(true);
             removeEffects();
+            /*
             if (selectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
             {
                 --ammoCounter[selectedItem.itemData.itemName];
                 UpdateWeaponBar(selectedItem.itemData.itemName, ammoCounter[selectedItem.itemData.itemName]);
             }
+            */
             rectTransform = selectedItem.GetComponent<RectTransform>();
             rectTransform.SetAsLastSibling();
         }
