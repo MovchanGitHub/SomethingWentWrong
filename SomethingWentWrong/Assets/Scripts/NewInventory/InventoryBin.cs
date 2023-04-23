@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.InputSystem;
 
 public class InventoryBin : MonoBehaviour
 {
@@ -26,7 +27,7 @@ public class InventoryBin : MonoBehaviour
             --GameManager.GM.InventoryManager.AmmoCounter[GameManager.GM.InventoryManager.SelectedItem.itemData.itemName];
             GameManager.GM.InventoryManager.UpdateWeaponBar(GameManager.GM.InventoryManager.SelectedItem.itemData.itemName, GameManager.GM.InventoryManager.AmmoCounter[GameManager.GM.InventoryManager.SelectedItem.itemData.itemName]);
         }
-        itemToDelete.transform.position = startPosition;
+        itemToDelete.transform.position = Mouse.current.position.ReadValue();
         itemToDelete.sprite = GameManager.GM.InventoryManager.SelectedItem.itemData.image;
         itemToDelete.gameObject.SetActive(true);
         isDeleting = true;
@@ -46,7 +47,7 @@ public class InventoryBin : MonoBehaviour
 
         itemToDelete.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
 
-        if (Vector2.Distance(transform.position, itemToDelete.transform.position) < 10)
+        if (Vector2.Distance(transform.position, itemToDelete.transform.position) < 2)
         {
             itemToDelete.gameObject.SetActive(false);
             itemToDelete.transform.position = startPosition;
