@@ -16,7 +16,7 @@ public class OffScreenTracker : MonoBehaviour
     
     void Update()
     {
-        distanceFromOrigin = Vector3.Distance(playerTransform.position, Vector3.zero);
+        distanceFromOrigin = Vector3.Distance(playerTransform.position, core.transform.position);
 
         Vector3 targScale = Vector3.Lerp(new Vector3(0.1f,0.1f,0.1f), new Vector3(2f,2f,2f), distanceFromOrigin/ 15);
         Arrow.transform.localScale = targScale;

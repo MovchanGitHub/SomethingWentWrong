@@ -25,7 +25,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         {
             spawnDamagePopup(transform.position, hp - value);
             slider.value = value;
-            if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
+            if ((int)(((hp - value + currentDamage) / lootDropBarrier)) >= 1)
             {
                 DropItem(((hp - value + currentDamage) / lootDropBarrier) * dropCount);
                 currentDamage = (hp - value + currentDamage) - lootDropBarrier * ((hp - value + currentDamage) / lootDropBarrier);
@@ -41,11 +41,11 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    public int MaxHP { get { throw new System.NotSupportedException("Don`t use Plants` MaxHP getter! >:("); } set { throw new System.NotSupportedException("Don`t use Plants` MaxHP setter! >:("); } }
-    
+    public int MaxHP { get; set; }
+
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        HP -=  weapon.Damage;
+        HP -= weapon.Damage;
         if (hp > 0)
             ObjectHitSound(_audioSource);
     }
@@ -70,6 +70,9 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
 
+    public int DropCount { get { return dropCount; } }
+    public GameObject Drop { get { return drop; } }
+
     private void DropItem(int dropAmount)
     {
         int amountOfDrop = Mathf.Clamp(dropAmount, 1, dropCount * timesToDrop);
@@ -91,10 +94,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private IEnumerator Die()
     {
-        // if (!creature.isOpenedInEcnyclopedia)
-        // {
-        //     GM.UI.Encyclopedia.OpenNewCreature(creature);
-        // }
+        if (!creature.isOpenedInEcnyclopedia)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenNewCreature(creature);
+        }
 
         GameObject playSoundObj = Instantiate(playSound, transform.position, Quaternion.identity);
         PlaySound playSoundTemp = playSoundObj.GetComponent<PlaySound>();

@@ -126,7 +126,7 @@ PrefabInstance:
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: creature
       value: 
-      objectReference: {fileID: 11400000, guid: e7dda06b5f7d17a4e97bf41fff75f3a6, type: 2}
+      objectReference: {fileID: 11400000, guid: 45f3334644a2f38458a85ef82db12743, type: 2}
     - target: {fileID: 4563948575474062212, guid: 20c4b516b0cea6945a33108a6a25bb6a, type: 3}
       propertyPath: timesToDrop
       value: 1

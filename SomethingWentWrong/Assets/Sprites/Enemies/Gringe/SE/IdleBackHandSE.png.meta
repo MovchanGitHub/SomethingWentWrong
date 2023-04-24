@@ -155,7 +155,9 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: 5141cb462ed663a4285f3007535cdc30, type: 3}
+      name: _NormalMap
     nameFileIdTable:
       IdleBackHandSE_1: -1165509881
       IdleBackHandSE_0: 1925713124

@@ -20,6 +20,10 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - _EmissionMap:
+        m_Texture: {fileID: 2800000, guid: b0df5f35351948246b2d914208367b1f, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -46,11 +50,15 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - _BombDeath: 0
     - _BordersWidth: 0.047
     - _Fade: 1
+    - _HasEmissionMap: 1
     - _NoiseScale: 30
     - _NormalStrength: 1.5
     - _Pixels: 24
     m_Colors:
-    - _BorderColor: {r: 766.9961, g: 0, b: 469.8353, a: 0}
+    - _AshColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0.3254902}
+    - _BorderColor: {r: 0.8784314, g: 17.066668, b: 25.97647, a: 0}
+    - _EmissionColor: {r: 8.963385, g: 6.658879, b: 6.629522, a: 0}
   m_BuildTextureStacks: []
