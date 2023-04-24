@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 71e30b4f5d2e4344da589e0a49e47896, type: 3}
+  m_Name: Bubble Plant
+  m_EditorClassIdentifier: 
+  name: "\u041F\u0443\u0437\u044B\u0440\u044C\u043A\u043E\u0432\u043E\u0435 \u0440\u0430\u0441\u0442\u0435\u043D\u0438\u0435"
+  description: "\u043A\u0430\u043A\u043E\u0435-\u0442\u043E \u043E\u043F\u0438\u0441\u0430\u043D\u0438\u0435"
+  typeOfThisCreature: 2
+  creaturePrefab: {fileID: 6650496699775323828, guid: 027de35fee3c82346802c6585feb3d92, type: 3}
+  imageSmall: {fileID: 428784093, guid: e87888a3d69adef4d95a95aa8c4eff51, type: 3}
+  imageBig: {fileID: 428784093, guid: e87888a3d69adef4d95a95aa8c4eff51, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
+  isOpenedInEcnyclopedia: 0

@@ -131,6 +131,10 @@ PrefabInstance:
       propertyPath: maxHp
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: creature
+      value: 
+      objectReference: {fileID: 11400000, guid: 6e017f33b33c5cb4fbb12baf923ff0f2, type: 2}
     - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.06
