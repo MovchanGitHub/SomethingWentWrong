@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13df92684209264e8b9be47517f4d2c, type: 3}
   m_Name: Dino
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  typeOfThisCreature: 0
-  creaturePrefub: {fileID: 0}
-  imageSmall: {fileID: 0}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
-  isOpenedInEcnyclopedia: 0
+  name: Dino
+  description: "\u043F\u0440\u0438\u043A\u043E\u043B\u044C\u043D\u044B\u0439 \u0434\u0438\u043D\u043E\u0437\u0430\u0432\u0440\u0438\u043A"
+  typeOfThisCreature: 1
+  creaturePrefab: {fileID: 474237802382592934, guid: 7054216f4587fe94b9d60a27f41a8bf2, type: 3}
+  imageSmall: {fileID: 389988996, guid: e0ec1fd46df89ad4db37c5be7edd5ca8, type: 3}
+  imageBig: {fileID: 389988996, guid: e0ec1fd46df89ad4db37c5be7edd5ca8, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
+  isOpenedInEcnyclopedia: 1

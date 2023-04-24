@@ -17,19 +17,15 @@ public class NotesManager : MonoBehaviour, ISelectHandler
     [HideInInspector] public Sprite lootSprite;
     [HideInInspector] public int lootAmount;
 
+    [HideInInspector] public int damage;
+    [HideInInspector] public float speed;
+
     private void Awake()
     {
         nameHeader = GetComponentInChildren<TMPro.TextMeshProUGUI>();
         icon = transform.GetChild(1).GetComponent<Image>();
 
-        if (creature.typeOfThisCreature == creatureType.Plant)
-        {
-            ResourceScript resourceScript = creature.creaturePrefab.GetComponent<ResourceScript>();
-            //hp = resourceScript.MaxHP;
-            lootSprite = creature.creaturePrefab.GetComponentInChildren<SpriteRenderer>().sprite;
-            lootAmount = resourceScript.DropCount;
-        }
-
+        
         if (creature.isOpenedInEcnyclopedia)
         {
             OpenUpInfoInNote();
@@ -39,6 +35,24 @@ public class NotesManager : MonoBehaviour, ISelectHandler
             nameHeader.text = "Неизвестно";
             icon.sprite = creature.imageUnknown;
         }
+    }
+
+    private void Start()
+    {
+        if (creature.typeOfThisCreature == creatureType.Plant)
+        {
+            ResourceScript resourceScript = creature.creaturePrefab.GetComponent<ResourceScript>();
+            hp = resourceScript.MaxHP;
+            lootSprite = resourceScript.Drop.GetComponentInChildren<SpriteRenderer>().sprite;
+            lootAmount = resourceScript.DropCount;
+        }
+        else if (creature.typeOfThisCreature == creatureType.Enemy)
+        {
+            hp = creature.creaturePrefab.GetComponentInChildren<EnemyDamagable>().MaxHP;
+            damage = creature.creaturePrefab.GetComponentInChildren<EnemyAttack>().Damage;
+            speed = creature.creaturePrefab.GetComponent<EnemyMovement>().speed;
+        }
+
     }
 
     public void OpenUpInfoInNote()

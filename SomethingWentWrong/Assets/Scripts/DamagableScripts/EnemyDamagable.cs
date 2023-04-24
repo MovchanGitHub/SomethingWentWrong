@@ -44,10 +44,10 @@ public class EnemyDamagable : DamagableCharacter
 
     protected override void Die()
     {
-        // if (!creature.isOpenedInEcnyclopedia)
-        // {
-        //     GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
-        // }
+        if (!creature.isOpenedInEcnyclopedia)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenNewCreature(creature);
+        }
         StartCoroutine(EnemyDie());
     }
     

@@ -51,7 +51,6 @@ public class EncyclopediaManager : MonoBehaviour
     {
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
-        //InitializeEncyclopedia();
         //selectedTab = new Color32(124, 192, 0, 255);
         //nonSelectedTab = new Color32(89, 137, 0, 255);
     }
@@ -73,48 +72,32 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemySpeedValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyName = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
+
+        InitializeEncyclopedia();
     }
 
-    //private void InitializeEncyclopedia()
-    //{
-    //    int childrenCount = enemiesTab.transform.childCount;
-    //    for (int i = 0; i < childrenCount; i++)
-    //    {
-    //        NotesManager curChild = enemiesTab.transform.GetChild(i).GetComponent<NotesManager>();
-    //        notes.Add(curChild.GetComponent<NotesManager>().creature.name, curChild.gameObject);
-    //        if (curChild.creature.isOpenedInEcnyclopedia)
-    //        {
-    //            curChild.GetComponentInChildren<Text>().text = curChild.creature.name;
-    //            curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageSmall;
-    //        }
-    //        else
-    //        {
-    //            curChild.GetComponentInChildren<Text>().text = "����������";
-    //            curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
-    //        }
-    //    }
-    //    childrenCount = plantsTab.transform.childCount;
-    //    for (int i = 0; i < childrenCount; i++)
-    //    {
-    //        NotesManager curChild = plantsTab.transform.GetChild(i).GetComponent<NotesManager>();
-    //        notes.Add(curChild.creature.name, curChild.gameObject);
-    //        if (curChild.creature.isOpenedInEcnyclopedia)
-    //        {
-    //            curChild.GetComponentInChildren<Text>().text = curChild.creature.name;
-    //            curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageSmall;
-    //        }
-    //        else
-    //        {
-    //            curChild.GetComponentInChildren<Text>().text = "����������";
-    //            curChild.icon.GetComponent<Image>().sprite = curChild.creature.imageUnknown;
-    //        }
+    private void InitializeEncyclopedia()
+    {
+        Transform enemiesNotesMask = GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0);
+        int childrenCount = enemiesNotesMask.childCount;
+        for (int i = 0; i < childrenCount; i++)
+        {
+            notes.Add(enemiesNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, enemiesNotesMask.GetChild(i).gameObject);
 
-    //    }
-    //}
+        }
+        Transform plantsNotesMask = GM.UI.Encyclopedia.PlantsTab.transform.GetChild(0);
+        childrenCount = plantsNotesMask.childCount;
+        for (int i = 0; i < childrenCount; i++)
+        {
+            notes.Add(plantsNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, plantsNotesMask.GetChild(i).gameObject);
+        }
+    }
 
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
         openedCreature.isOpenedInEcnyclopedia = true;
+        //Debug.Log(openedCreature.name);
+        //Debug.Log(notes[openedCreature.name]);
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
         //ShowNewNoteNotification(openedCreature);
@@ -128,11 +111,12 @@ public class EncyclopediaManager : MonoBehaviour
             OpenEnemy();
         StartCoroutine(DeselectNote());
 
+
+
         IEnumerator DeselectNote()
         {
             yield return new WaitForEndOfFrame();
             EventSystem.current.SetSelectedGameObject(null);
-            Debug.Log(EventSystem.current.currentSelectedGameObject);
         }
 
         void OpenPlants()
@@ -150,7 +134,7 @@ public class EncyclopediaManager : MonoBehaviour
                 extraInfoPlantName.text = curCreature.name;
                 extraInfoPlantDescription.text = curCreature.description;
                 extraInfoPlantImage.sprite = curCreature.imageBig;
-                //extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
+                extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
 
                 extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
                 extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
@@ -173,9 +157,6 @@ public class EncyclopediaManager : MonoBehaviour
         {
             NotesManager curNotesManager = ChosenNote.GetComponent<NotesManager>();
             CreaturesBase curCreature = ChosenNote.GetComponent<NotesManager>().creature;
-            Debug.Log(GM.UI.Encyclopedia.ExtraInfoEnemyPanel.activeSelf);
-            Debug.Log(extraInfoEnemyName.text);
-            Debug.Log(curNotesManager.NameHeader);
             if (GM.UI.Encyclopedia.ExtraInfoEnemyPanel.activeSelf && extraInfoEnemyName.text == curNotesManager.NameHeader)
             {
                 GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
@@ -186,10 +167,10 @@ public class EncyclopediaManager : MonoBehaviour
                 extraInfoEnemyName.text = curCreature.name;
                 extraInfoEnemyDescription.text = curCreature.description;
                 extraInfoEnemyImage.sprite = curCreature.imageBig;
-                //extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
+                extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
 
-                extraInfoEnemyDamageValue.text = "???";
-                extraInfoEnemySpeedValue.text = "???";
+                extraInfoEnemyDamageValue.text = curNotesManager.damage.ToString();
+                extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
             }
             else
             {

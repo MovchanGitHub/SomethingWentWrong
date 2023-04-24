@@ -17,7 +17,7 @@ MonoBehaviour:
     \u043B\u0430\u0437\u0435\u0440\u0430"
   typeOfThisCreature: 2
   creaturePrefab: {fileID: 6566896941847935711, guid: 0a7fe4174547f0c49929d59a9a3fa82e, type: 3}
-  imageSmall: {fileID: 21300000, guid: e5589130c1750324e8770027ec9c26e3, type: 3}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
-  isOpenedInEcnyclopedia: 0
+  imageSmall: {fileID: 21300000, guid: 02e2255468dca6a42ac73e354c60e2f1, type: 3}
+  imageBig: {fileID: 21300000, guid: 02e2255468dca6a42ac73e354c60e2f1, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
+  isOpenedInEcnyclopedia: 1

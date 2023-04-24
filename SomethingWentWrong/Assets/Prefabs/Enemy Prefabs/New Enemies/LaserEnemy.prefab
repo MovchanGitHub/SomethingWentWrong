@@ -401,6 +401,6 @@ MonoBehaviour:
   maxHp: 0
   sprite: {fileID: 4615848118547667784}
   redTime: 0.1
-  creature: {fileID: 11400000, guid: 96ffd4bd8d4377f41a5833e7bf0a1103, type: 2}
+  creature: {fileID: 11400000, guid: 6c9a872bd2d9fd746bd8e5aeb71d5c89, type: 2}
   slider: {fileID: 6759249627809127249}
   damagePopupPrefab: {fileID: -1458636167758823117, guid: c63a5d69e167cfd45851b10272ea8b73, type: 3}

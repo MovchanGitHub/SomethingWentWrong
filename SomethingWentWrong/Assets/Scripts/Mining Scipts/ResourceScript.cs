@@ -41,7 +41,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    public int MaxHP { get { throw new System.NotSupportedException("Don`t use Plants` MaxHP getter! >:("); } set { throw new System.NotSupportedException("Don`t use Plants` MaxHP setter! >:("); } }
+    public int MaxHP { get; set; }
 
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
@@ -71,6 +71,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float dropSpeed = 5f;
 
     public int DropCount { get { return dropCount; } }
+    public GameObject Drop { get { return drop; } }
 
     private void DropItem(int dropAmount)
     {
@@ -93,10 +94,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private IEnumerator Die()
     {
-        // if (!creature.isOpenedInEcnyclopedia)
-        // {
-        //     GM.UI.Encyclopedia.OpenNewCreature(creature);
-        // }
+        if (!creature.isOpenedInEcnyclopedia)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenNewCreature(creature);
+        }
 
         GameObject playSoundObj = Instantiate(playSound, transform.position, Quaternion.identity);
         PlaySound playSoundTemp = playSoundObj.GetComponent<PlaySound>();
