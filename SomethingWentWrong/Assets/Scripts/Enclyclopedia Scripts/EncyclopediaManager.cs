@@ -83,13 +83,14 @@ public class EncyclopediaManager : MonoBehaviour
         for (int i = 0; i < childrenCount; i++)
         {
             notes.Add(enemiesNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, enemiesNotesMask.GetChild(i).gameObject);
-
+            enemiesNotesMask.GetChild(i).GetComponent<NotesManager>().InitializeNote();
         }
         Transform plantsNotesMask = GM.UI.Encyclopedia.PlantsTab.transform.GetChild(0);
         childrenCount = plantsNotesMask.childCount;
         for (int i = 0; i < childrenCount; i++)
         {
             notes.Add(plantsNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, plantsNotesMask.GetChild(i).gameObject);
+            plantsNotesMask.GetChild(i).GetComponent<NotesManager>().InitializeNote();
         }
     }
 

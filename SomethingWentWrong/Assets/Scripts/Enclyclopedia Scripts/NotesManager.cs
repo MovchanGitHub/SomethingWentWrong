@@ -20,23 +20,6 @@ public class NotesManager : MonoBehaviour, ISelectHandler
     [HideInInspector] public int damage;
     [HideInInspector] public float speed;
 
-    private void Awake()
-    {
-        nameHeader = GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        icon = transform.GetChild(1).GetComponent<Image>();
-
-        
-        if (creature.isOpenedInEcnyclopedia)
-        {
-            OpenUpInfoInNote();
-        }
-        else
-        {
-            nameHeader.text = "Неизвестно";
-            icon.sprite = creature.imageUnknown;
-        }
-    }
-
     private void Start()
     {
         if (creature.typeOfThisCreature == creatureType.Plant)
@@ -53,6 +36,22 @@ public class NotesManager : MonoBehaviour, ISelectHandler
             speed = creature.creaturePrefab.GetComponent<EnemyMovement>().speed;
         }
 
+    }
+
+    public void InitializeNote()
+    {
+        nameHeader = GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        icon = transform.GetChild(1).GetComponent<Image>();
+
+        if (creature.isOpenedInEcnyclopedia)
+        {
+            OpenUpInfoInNote();
+        }
+        else
+        {
+            nameHeader.text = "Неизвестно";
+            icon.sprite = creature.imageUnknown;
+        }
     }
 
     public void OpenUpInfoInNote()
