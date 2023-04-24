@@ -104,7 +104,7 @@ public class SkillsScript : MonoBehaviour
             _timeLeft -= Time.deltaTime;
             yield return null;
         }
-        if (skillsWindow.active)
+        if (skillsWindow.activeSelf)
             GetSkill();
         foreach (var logo in logos)
             logo.SetActive(false);
