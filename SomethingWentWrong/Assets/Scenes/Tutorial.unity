@@ -95395,7 +95395,7 @@ MonoBehaviour:
   - {fileID: 473683287}
   - {fileID: 1975162363}
   menuButton: {fileID: 514645358}
-  enemiesToKill: 3
+  enemiesToKill: 2
 --- !u!4 &1000047928
 Transform:
   m_ObjectHideFlags: 0
@@ -103871,8 +103871,8 @@ Transform:
   m_Children:
   - {fileID: 1265915363}
   - {fileID: 951520}
-  - {fileID: 530581650}
   - {fileID: 1161663825}
+  - {fileID: 530581650}
   m_Father: {fileID: 0}
   m_RootOrder: 23
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
