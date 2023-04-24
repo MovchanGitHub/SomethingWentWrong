@@ -9,16 +9,9 @@ public class InventoryBin : MonoBehaviour
 
     private bool isDeleting = false;
 
-    private Vector2 startPosition;
-
     [SerializeField] private float speed = 100;
 
     public Image itemToDelete;
-
-    private void Start()
-    {
-        startPosition = itemToDelete.transform.position;
-    }
 
     public void onBinClick()
     {
@@ -29,6 +22,7 @@ public class InventoryBin : MonoBehaviour
         }
         itemToDelete.transform.position = Mouse.current.position.ReadValue();
         itemToDelete.sprite = GameManager.GM.InventoryManager.SelectedItem.itemData.image;
+        itemToDelete.transform.localScale = new Vector3(GameManager.GM.InventoryManager.SelectedItem.itemData.width, GameManager.GM.InventoryManager.SelectedItem.itemData.height, itemToDelete.transform.localScale.z);
         itemToDelete.gameObject.SetActive(true);
         isDeleting = true;
         GameManager.GM.InventoryManager.deleteItem();
@@ -50,7 +44,6 @@ public class InventoryBin : MonoBehaviour
         if (Vector2.Distance(transform.position, itemToDelete.transform.position) < 2)
         {
             itemToDelete.gameObject.SetActive(false);
-            itemToDelete.transform.position = startPosition;
             isDeleting = false;
             if (GameManager.GM.InventoryManager.SelectedItem == null)
             {
