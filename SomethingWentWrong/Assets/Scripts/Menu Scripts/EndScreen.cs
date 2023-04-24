@@ -9,6 +9,8 @@ using static GameManager;
 
 public class EndScreen: MonoBehaviour
 {
+
+    public Color TutorialWinColor;
     private GameObject endScreen;
     [HideInInspector] public bool isOpened;
     public TextMeshProUGUI title;
@@ -31,20 +33,23 @@ public class EndScreen: MonoBehaviour
     }
     
     public void ShowDeathScreen(string message) {
-        var days = dayNightCycle.DayCount;
-        foreach (var window in windows)
-            window.SetActive(false);
+        if (!GM.IsTutorial)
+        {
+            var days = dayNightCycle.DayCount;
+            foreach (var window in windows)
+                window.SetActive(false);
         
-        if (MaxScore < days) {
-            MaxScore = days;
-            newScoreTitle.gameObject.SetActive(true);
+            if (MaxScore < days) {
+                MaxScore = days;
+                newScoreTitle.gameObject.SetActive(true);
+            }
+        
+            maxScore.text = $"Рекорд: {MaxScore}";
         }
-        
-        maxScore.text = $"Рекорд: {MaxScore}";
 
         isOpened = true;
-        if (message == "Вы победили")
-            title.color = Color.green;
+        if (message == "Вы прошли обучение!\nно какой ценой...")
+            title.color = TutorialWinColor;
         title.text = message;
         endScreen.SetActive(true);
     }

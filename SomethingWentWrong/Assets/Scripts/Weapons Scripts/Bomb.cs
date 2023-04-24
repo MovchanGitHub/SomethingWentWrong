@@ -55,7 +55,7 @@ public class Bomb : MonoBehaviour, IWeaponable
     {
         hitObjects = Physics2D.OverlapCircleAll(_area.transform.position, 4, damagableLayers);
 
-        _audioSource.PlayOneShot(_explosions[UnityEngine.Random.Range(0, 2)]); 
+        //_audioSource.PlayOneShot(_explosions[UnityEngine.Random.Range(0, 2)]); 
         
         foreach (Collider2D hitObject in hitObjects)
         {

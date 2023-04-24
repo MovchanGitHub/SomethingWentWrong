@@ -16,6 +16,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private Spawners _spawners;
     [SerializeField] private DayNightCycle _dayNightCycle;
     [SerializeField] private TutorialManager _tutorialManager;
+    [SerializeField] private bool _isTutorial;
 
     private void Awake()
     {
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
     public Spawners Spawner { get { return _spawners; } }
     public DayNightCycle Cycle { get { return _dayNightCycle; } }
     public TutorialManager Tutorial { get { return _tutorialManager; } }
+    public bool IsTutorial { get { return _isTutorial; } }
 
     public void GameOver(string message)
     {

@@ -6,7 +6,7 @@ using static GameManager;
 
 public class TutorialPopupSystem : MonoBehaviour
 {
-    [SerializeField] private GameObject[] popups;
+    public GameObject[] popups;
 
     private int greetingPopup = 0;
     private int walkingPopup = 1;
@@ -24,6 +24,8 @@ public class TutorialPopupSystem : MonoBehaviour
     private int starDetailedPopup = 13;
     private int laserDetailedPopup = 14;
     private int bombDetailedPopup = 15;
+    public int bombDeathPopup1 = 16;
+    private int bombDeathPopup2 = 17;
 
     private int currPopup = 0;
 
@@ -35,6 +37,11 @@ public class TutorialPopupSystem : MonoBehaviour
             currPopup = value;
             Debug.Log("currPopup = " + currPopup);
         }
+    }
+
+    public GameObject CurrentPopupObject
+    {
+        get => popups[currPopup];
     }
 
     private float timeBeforeShowNewPopup = 1f;
@@ -127,7 +134,7 @@ public class TutorialPopupSystem : MonoBehaviour
 
     private IEnumerator SpawnEnemies1()
     {
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(20f);
         GM.Tutorial.spawnedEnemies[0].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
@@ -140,10 +147,11 @@ public class TutorialPopupSystem : MonoBehaviour
         popups[laserDetailedPopup].SetActive(true);
         GM.Tutorial.weaponInfinityPlants[0].SetActive(false);
         GM.Tutorial.weaponInfinityPlants[1].SetActive(true);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(20f);
         GM.Tutorial.spawnedEnemies[1].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
+        GM.Tutorial.enemiesToKill = 2;
     }
 
     
@@ -153,17 +161,18 @@ public class TutorialPopupSystem : MonoBehaviour
         popups[bombDetailedPopup].SetActive(true);
         GM.Tutorial.weaponInfinityPlants[1].SetActive(false);
         GM.Tutorial.weaponInfinityPlants[2].SetActive(true);
-        yield return new WaitForSeconds(15f);
+        yield return new WaitForSeconds(20f);
         GM.Tutorial.spawnedEnemies[2].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
+        GM.Tutorial.enemiesToKill = 4;
     }
 
     
     public IEnumerator OnAllEnemiesKilled()
     {
-        Debug.Log("Туториал закончился ты нуб");
         yield return new WaitForSeconds(1f);
+        GM.Tutorial.OnLearnedWeapon();
     }
 
 
@@ -171,7 +180,7 @@ public class TutorialPopupSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(10f);
         StartCoroutine(HideFirstWaitShowSecond(inventoryUsePopup, inventoryErasePopup, 2 * timeBeforeShowNewPopup));
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(18f);
         StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponablePopup, 2 * timeBeforeShowNewPopup));
         yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
         GM.Tutorial.ShowWeaponableResources();
@@ -242,5 +251,18 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnLaserDetailedButtonClick()
     {
         popups[laserDetailedPopup].SetActive(false);
+    }
+
+    public void OnBombDeathAcceptButtonClick()
+    {
+        popups[bombDeathPopup1].SetActive(false);
+        popups[bombDeathPopup2].SetActive(false);
+        GM.Tutorial.LastTextAppearence();
+    }
+    
+    
+    public void OnBombDeathDeclineButtonClick()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(bombDeathPopup1, bombDeathPopup2, timeBeforeShowNewPopup / 2));
     }
 }
