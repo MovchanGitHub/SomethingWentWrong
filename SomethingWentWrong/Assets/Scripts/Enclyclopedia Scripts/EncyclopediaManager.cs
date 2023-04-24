@@ -29,6 +29,13 @@ public class EncyclopediaManager : MonoBehaviour
     private Image extraInfoPlantLootIcon;
     private TMPro.TextMeshProUGUI extraInfoPlantLootValue;
 
+    private Image extraInfoEnemyImage;
+    private TMPro.TextMeshProUGUI extraInfoEnemyHpValue;
+    private TMPro.TextMeshProUGUI extraInfoEnemyDamageValue;
+    private TMPro.TextMeshProUGUI extraInfoEnemySpeedValue;
+    private TMPro.TextMeshProUGUI extraInfoEnemyName;
+    private TMPro.TextMeshProUGUI extraInfoEnemyDescription;
+
     private Dictionary<string, GameObject> notes;
 
     private Color32 selectedTab;
@@ -59,6 +66,13 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoPlantDescription = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(5).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoPlantLootIcon = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(6).GetComponent<Image>();
         extraInfoPlantLootValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
+
+        extraInfoEnemyImage = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(0).GetComponent<Image>();
+        extraInfoEnemyHpValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoEnemyDamageValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(4).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoEnemySpeedValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoEnemyName = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
     }
 
     //private void InitializeEncyclopedia()
@@ -190,8 +204,38 @@ public class EncyclopediaManager : MonoBehaviour
 
         void OpenEnemy()
         {
-            GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(true);
+            NotesManager curNotesManager = ChosenNote.GetComponent<NotesManager>();
+            CreaturesBase curCreature = ChosenNote.GetComponent<NotesManager>().creature;
+            Debug.Log(GM.UI.Encyclopedia.ExtraInfoEnemyPanel.activeSelf);
+            Debug.Log(extraInfoEnemyName.text);
+            Debug.Log(curNotesManager.NameHeader);
+            if (GM.UI.Encyclopedia.ExtraInfoEnemyPanel.activeSelf && extraInfoEnemyName.text == curNotesManager.NameHeader)
+            {
+                GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
+                return;
+            }
+            if (curCreature.isOpenedInEcnyclopedia)
+            {
+                extraInfoEnemyName.text = curCreature.name;
+                extraInfoEnemyDescription.text = curCreature.description;
+                extraInfoEnemyImage.sprite = curCreature.imageBig;
+                //extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
 
+                extraInfoEnemyDamageValue.text = "???";
+                extraInfoEnemySpeedValue.text = "???";
+            }
+            else
+            {
+                extraInfoEnemyName.text = "Неизвестно";
+                extraInfoEnemyDescription.text = "???";
+                extraInfoEnemyImage.sprite = curCreature.imageUnknown;
+                extraInfoEnemyHpValue.text = "???";
+
+                extraInfoEnemyDamageValue.text = "???";
+                extraInfoEnemySpeedValue.text = "???";
+            }
+
+            GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(true);
         }
     }
 
@@ -263,19 +307,21 @@ public class EncyclopediaManager : MonoBehaviour
     //    notification.transform.GetComponentsInChildren<Image>()[1].sprite = openedCreature.imageSmall;
     //}
 
-    //public void OpenPlantsTab()
-    //{
-    //    plantsTab.SetActive(true);
-    //    plantsTabHeader.GetComponent<Image>().color = selectedTab;
-    //    enemiesTab.SetActive(false);
-    //    enemiesTabHeader.GetComponent<Image>().color = nonSelectedTab;
-    //}
+    public void OpenPlantsTab()
+    {
+        GM.UI.Encyclopedia.PlantsTab.SetActive(true);
+        //plantsTabHeader.GetComponent<Image>().color = selectedTab;
+        GM.UI.Encyclopedia.EnemiesTab.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
+        //enemiesTabHeader.GetComponent<Image>().color = nonSelectedTab;
+    }
 
-    //public void OpenEnemiesTab()
-    //{
-    //    plantsTab.SetActive(false);
-    //    plantsTabHeader.GetComponent<Image>().color = nonSelectedTab;
-    //    enemiesTab.SetActive(true);
-    //    enemiesTabHeader.GetComponent<Image>().color = selectedTab;
-    //}
+    public void OpenEnemiesTab()
+    {
+        GM.UI.Encyclopedia.PlantsTab.SetActive(false);
+        //plantsTabHeader.GetComponent<Image>().color = nonSelectedTab;
+        GM.UI.Encyclopedia.EnemiesTab.SetActive(true);
+        GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
+        //enemiesTabHeader.GetComponent<Image>().color = selectedTab;
+    }
 }
