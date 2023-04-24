@@ -23,12 +23,17 @@ public class EnvironmentSpawnScript : MonoBehaviour
 
     private int spawnedResources;
 
-    [SerializeField] private int minDistanceToPlayer;
+    [SerializeField] private int minDistanceToPlayerX = 13;
+    [SerializeField] private int minDistanceToPlayerY = 8;
 
     private int probabilitesSum = 0;
 
+    private double windowLength;
+
     private void Awake()
     {
+        windowLength =
+            Math.Sqrt(minDistanceToPlayerX * minDistanceToPlayerX / 4 + minDistanceToPlayerY * minDistanceToPlayerY / 4);
         for (int i = 0; i < resourcesProbabilities.Count; ++i)
         {
             probabilitesSum += resourcesProbabilities[i];
@@ -80,25 +85,18 @@ public class EnvironmentSpawnScript : MonoBehaviour
         while (spawnedResources != simultaneouslyAmount)
         {
             positionIndex = UnityEngine.Random.Range(0, spawnPointsAmount);
-            
-            if (isBusy[positionIndex] || 
-                Vector2.Distance(GM.PlayerMovement.transform.position, spawnPoints[positionIndex].position) < 
-                minDistanceToPlayer)
+            int startIndex = positionIndex;
+            Vector2 cameraPoints = GM.Camera.WorldToViewportPoint(spawnPoints[positionIndex].position);
+            while (isBusy[positionIndex] || (cameraPoints.x > 0f && cameraPoints.y < 0f && cameraPoints.x > 1f && cameraPoints.y > 1f))
             {
-                int startIndex = positionIndex;
-                while (isBusy[positionIndex] ||
-                       Vector2.Distance(GM.PlayerMovement.transform.position, spawnPoints[positionIndex].position) <
-                       minDistanceToPlayer)
-                {
-                    positionIndex++;
-                    if (positionIndex == spawnPointsAmount)
-                        positionIndex = 0;
+                positionIndex++;
+                if (positionIndex == spawnPointsAmount)
+                    positionIndex = 0;
 
-                    if (positionIndex == startIndex)
-                    {
-                        Debug.LogError("it is impossible to spawn a resource");
-                        return;
-                    }
+                if (positionIndex == startIndex)
+                {
+                    Debug.LogError("it is impossible to spawn a resource");
+                    return;
                 }
             }
             

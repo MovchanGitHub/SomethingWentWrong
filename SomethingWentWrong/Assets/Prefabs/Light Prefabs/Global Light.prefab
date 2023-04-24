@@ -125,15 +125,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentTime: 0
-  cycleDuration: 10
   dayCycle: 0
-  sunriseColor: {r: 0.5803922, g: 0.21960784, b: 1, a: 1}
-  dayColor: {r: 0.7882353, g: 0.73333335, b: 1, a: 0.9411765}
-  sunsetColor: {r: 0.6509804, g: 0.33333334, b: 1, a: 0.9411765}
-  nightColor: {r: 0.5568628, g: 0.098039225, b: 1, a: 0.9411765}
-  midnightColor: {r: 0.23137257, g: 0.36078432, b: 1, a: 0.9411765}
-  sunriseIntensity: 0.35
-  dayIntensity: 0.5
-  sunsetIntensity: 0.4
-  nightIntensity: 0.2
-  midnightIntensity: 0.1
+  sunriseDuration: 10
+  dayDuration: 10
+  sunsetDuration: 10
+  nightDuration: 10
+  midnightDuration: 10
+  landscapeMaterial: {fileID: 2100000, guid: 9164dd5115c66494a81b2492171570fe, type: 2}
+  score: {fileID: 0}
+  sunriseColor: {r: 0.68949026, g: 0.43873262, b: 0.9811321, a: 1}
+  dayColor: {r: 0.8486111, g: 0.8215913, b: 0.9528302, a: 0.9411765}
+  sunsetColor: {r: 0.7335311, g: 0.5339444, b: 0.9528302, a: 0.9411765}
+  nightColor: {r: 0.62686145, g: 0.3674973, b: 0.8773585, a: 0.9411765}
+  midnightColor: {r: 0.43510142, g: 0.5159166, b: 0.9150943, a: 0.9411765}
+  sunriseIntensity: 0.5
+  dayIntensity: 0.55
+  sunsetIntensity: 0.45
+  nightIntensity: 0.45
+  midnightIntensity: 0.35
+  ess: {fileID: 0}

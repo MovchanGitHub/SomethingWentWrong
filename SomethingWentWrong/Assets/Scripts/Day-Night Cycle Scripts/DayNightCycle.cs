@@ -78,7 +78,7 @@ public class DayNightCycle : MonoBehaviour
         DayCount = 1;
         
         currentTime = 0;
-        dayCycle = DayTime.Day;
+        dayCycle = DayTime.Sunrise;
         globalLight.color = sunriseColor;
         globalLight.intensity = sunriseIntensity;
 
@@ -89,6 +89,25 @@ public class DayNightCycle : MonoBehaviour
      {
          while (true)
          {
+             while (true)
+             {
+                 // Sunrise
+                 currentTime += Time.deltaTime;
+
+                 if (currentTime >= sunriseDuration)
+                 {
+                     currentTime = 0;
+                     dayCycle = DayTime.Day;
+                     break;
+                 }
+             
+                 timePassedPercent = currentTime / sunriseDuration;
+                 globalLight.color = Color.Lerp(sunriseColor, dayColor, timePassedPercent);
+                 globalLight.intensity = Mathf.Lerp(sunriseIntensity, dayIntensity, timePassedPercent);
+                 
+                 yield return new WaitForNextFrameUnit();
+             }
+             
              while (true)
              {
                  // Day
@@ -185,25 +204,6 @@ public class DayNightCycle : MonoBehaviour
                  landscapeMaterial.SetFloat("_Fade", Mathf.Lerp(1f, 0f, 2 * timePassedPercent));
                  globalLight.color = Color.Lerp(midnightColor, sunriseColor, timePassedPercent);
                  globalLight.intensity = Mathf.Lerp(midnightIntensity, sunriseIntensity, timePassedPercent);
-                 
-                 yield return new WaitForNextFrameUnit();
-             }
-             
-             while (true)
-             {
-                 // Sunrise
-                 currentTime += Time.deltaTime;
-
-                 if (currentTime >= sunriseDuration)
-                 {
-                     currentTime = 0;
-                     dayCycle = DayTime.Day;
-                     break;
-                 }
-             
-                 timePassedPercent = currentTime / sunriseDuration;
-                 globalLight.color = Color.Lerp(sunriseColor, dayColor, timePassedPercent);
-                 globalLight.intensity = Mathf.Lerp(sunriseIntensity, dayIntensity, timePassedPercent);
                  
                  yield return new WaitForNextFrameUnit();
              }

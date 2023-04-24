@@ -15,6 +15,9 @@ public class LightHouse : MonoBehaviour, IDamagable
     public List<AudioClip> _AudioClips;
     private AudioSource _hitSource;
     private int _hitInd;
+    private RocketSkins _rocketSkins;
+    
+    public int laserRepairingEffect = 5;
     
     public int HP
     {
@@ -29,6 +32,7 @@ public class LightHouse : MonoBehaviour, IDamagable
                 else
                     hp = value;
                 healthBar.value = value;
+                _rocketSkins.ChangeSpriteAccordingToHP(hp);
             }
             else
                 Die();
@@ -37,6 +41,7 @@ public class LightHouse : MonoBehaviour, IDamagable
 
     private void Awake()
     {
+        _rocketSkins = GetComponentInChildren<RocketSkins>();
         maxHp = HP;
         _hitSource = GetComponent<AudioSource>();
     }
@@ -61,7 +66,7 @@ public class LightHouse : MonoBehaviour, IDamagable
             case WeaponType.Fists: // игрок не ломает ракету кулаками
                 break;
             case WeaponType.Laser: // ракета чинится от лазера (сварка)
-                HP += weapon.Damage;
+                HP += laserRepairingEffect;
                 break;
             default:
             {

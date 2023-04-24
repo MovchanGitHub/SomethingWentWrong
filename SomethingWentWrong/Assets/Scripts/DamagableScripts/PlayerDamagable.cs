@@ -24,7 +24,8 @@ public class PlayerDamagable : DamagableCharacter
     public override int HP
     {
         get { return hp; }
-        set {
+        set
+        {
             if (value > 0)
             {
                 if (value > maxHp)
@@ -33,7 +34,7 @@ public class PlayerDamagable : DamagableCharacter
                     hp = value;
             }
             else
-                Destroy(gameObject);
+                Die();
             slider.value = hp;
         }
     }
@@ -68,6 +69,20 @@ public class PlayerDamagable : DamagableCharacter
     //     if (damageNumber == 0)
     //         sprite.color = Color.white;
     // }
+    
+    protected override void Die()
+    {
+        slider.value = 0;
+        if (GM.IsTutorial && lastWeapon.Type == WeaponType.Bomb)
+        {
+            GM.GameOver("Вы прошли обучение!\nно какой ценой...");
+        }
+        else
+        {
+            GM.GameOver("ПОМЕР");
+        }
+        Destroy(gameObject);
+    }
 
     private void OnDestroy()
     {
@@ -80,8 +95,6 @@ public class PlayerDamagable : DamagableCharacter
         {
             GM.InventoryManager.canvasTransform.gameObject.SetActive(false);
         }
-        slider.value = 0;
-        GM.GameOver("ПОМЕР");
     }
 
     private IEnumerator IncreaseHP()

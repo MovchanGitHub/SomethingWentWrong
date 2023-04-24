@@ -21,10 +21,12 @@ public class TutorialManager : MonoBehaviour
     public GameObject[] weaponInfinityPlants;
     public GameObject[] spawnedEnemies;
 
+    public GameObject menuButton;
+
     private int resourcesToMain = 8;
     private int mainedResources = 0;
     
-    private int enemiesToKill = 3;
+    public int enemiesToKill = 2;
     private int killedEnemies = 0;
 
     public int MainedResources
@@ -107,5 +109,17 @@ public class TutorialManager : MonoBehaviour
         weaponPopups[2].SetActive(false);
         weaponPopups[3].SetActive(false);
         weaponPopups[ind].SetActive(true);
+    }
+
+    public void LastTextAppearence()
+    {
+        _counter.SetActive(true);
+        _counterText.text = "подорваться на своей бомбе";
+    }
+
+    public void OnLearnedWeapon()
+    {
+        _tutorialPopupSystem.popups[_tutorialPopupSystem.bombDeathPopup1].SetActive(true);
+        menuButton.SetActive(false);
     }
 }

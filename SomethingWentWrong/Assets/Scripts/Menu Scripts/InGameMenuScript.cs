@@ -13,6 +13,7 @@ public class InGameMenuScript : MonoBehaviour
     private SettingsScript settingsScript;
     [HideInInspector] public bool isOpened;
     [HideInInspector] public bool isPaused;
+    private bool showTutorialPopupAfterHidingMenu = false;
 
     private void Awake() {
         settingsScript = GetComponent<SettingsScript>();
@@ -70,6 +71,11 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         GM.InputSystem.UnblockPlayerInputs();
         GM.InputSystem.openInventoryInput.Enable();
+        if (GM.IsTutorial && showTutorialPopupAfterHidingMenu)
+        {
+            GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(true);
+            showTutorialPopupAfterHidingMenu = false;
+        }
         //GM.InputSystem.openEncyclopediaInput.Enable();
         PauseGame(false);
     }
@@ -79,6 +85,11 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(true);
         GM.InputSystem.BlockPlayerInputs();
         GM.InputSystem.openInventoryInput.Disable();
+        if (GM.IsTutorial && GM.Tutorial.PopupSystem.CurrentPopupObject.activeInHierarchy)
+        {
+            GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(false);
+            showTutorialPopupAfterHidingMenu = true;
+        }
         //GM.InputSystem.openEncyclopediaInput.Disable();
         PauseGame(true);
     }

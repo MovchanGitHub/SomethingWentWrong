@@ -180,7 +180,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   type: 1
-  damage: 30
+  damage: 25
   lifeTime: 1
   beforeAnimTime: 0.3
   damagableLayers:
