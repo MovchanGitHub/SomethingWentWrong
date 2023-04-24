@@ -12,11 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e30b4f5d2e4344da589e0a49e47896, type: 3}
   m_Name: Shoot Fruit Plant
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  typeOfThisCreature: 0
-  creaturePrefab: {fileID: 0}
-  imageSmall: {fileID: 0}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
+  name: "\u041A\u043E\u0441\u043C\u0438\u0447\u0435\u0441\u043A\u0438\u0435 \u0437\u0432\u0435\u0437\u0434\u043E\u0447\u043A\u0438"
+  description: "\u041F\u0440\u0438\u043A\u043E\u043B\u044C\u043D\u043E \u0432\u0440\u0430\u0449\u0430\u044E\u0442\u0441\u044F
+    \u0432 \u043F\u043E\u043B\u0435\u0442\u0435"
+  typeOfThisCreature: 2
+  creaturePrefab: {fileID: 8716238004322928414, guid: 82bfb69dc64480d4eb607adbb340b54d, type: 3}
+  imageSmall: {fileID: 21300000, guid: 158d9a0c87b05c54fb499582a44f806b, type: 3}
+  imageBig: {fileID: 21300000, guid: 158d9a0c87b05c54fb499582a44f806b, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 0

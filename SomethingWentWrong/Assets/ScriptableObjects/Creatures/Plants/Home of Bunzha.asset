@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e30b4f5d2e4344da589e0a49e47896, type: 3}
   m_Name: Home of Bunzha
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  typeOfThisCreature: 0
-  creaturePrefab: {fileID: 0}
-  imageSmall: {fileID: 0}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
+  name: "\u041F\u0430\u0441\u0441\u0438\u0444\u0438\u043A\u0430"
+  description: "\u0411\u044B\u0432\u0448\u0430\u044F \u0431\u0443\u043D\u0436\u0430"
+  typeOfThisCreature: 2
+  creaturePrefab: {fileID: 2395056891212650645, guid: 75e551f79e9a66f458cdf0d22322726f, type: 3}
+  imageSmall: {fileID: 21300000, guid: 85dc7e962880c9948a38f0c6da82830d, type: 3}
+  imageBig: {fileID: 21300000, guid: 85dc7e962880c9948a38f0c6da82830d, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 0

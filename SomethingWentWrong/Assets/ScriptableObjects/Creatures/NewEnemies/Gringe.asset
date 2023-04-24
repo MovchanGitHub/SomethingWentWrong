@@ -16,7 +16,7 @@ MonoBehaviour:
   description: "\u0411\u043E\u043B\u044C\u0448\u043E\u0439 \u0438 \u0433\u0440\u0438\u043D\u0436\u043E\u0432\u044B\u0439"
   typeOfThisCreature: 1
   creaturePrefab: {fileID: 2235180739808042379, guid: 626f3724c7f3d3849859ec06f40aa581, type: 3}
-  imageSmall: {fileID: 0}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
+  imageSmall: {fileID: -288337615, guid: 421506d9ffb137e4e8e272f99a4d0a70, type: 3}
+  imageBig: {fileID: -288337615, guid: 421506d9ffb137e4e8e272f99a4d0a70, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 0

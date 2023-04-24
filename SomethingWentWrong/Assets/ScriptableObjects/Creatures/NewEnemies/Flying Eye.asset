@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d13df92684209264e8b9be47517f4d2c, type: 3}
   m_Name: Flying Eye
   m_EditorClassIdentifier: 
-  name: 
-  description: 
-  typeOfThisCreature: 0
-  creaturePrefab: {fileID: 0}
-  imageSmall: {fileID: 0}
-  imageBig: {fileID: 0}
-  imageUnknown: {fileID: 0}
+  name: "\u0413\u043B\u0430\u0437\u0438\u043A \u043B\u0435\u0442\u0430\u044E\u0449\u0438\u0439"
+  description: "\u0421\u0430\u043D\u044F"
+  typeOfThisCreature: 1
+  creaturePrefab: {fileID: 4615848117298448186, guid: 474e53a489b68f34fb027b97549ddf3f, type: 3}
+  imageSmall: {fileID: 1008169706, guid: 6cba7ac819ecc1747a3df3243aeee901, type: 3}
+  imageBig: {fileID: 1008169706, guid: 6cba7ac819ecc1747a3df3243aeee901, type: 3}
+  imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 0
