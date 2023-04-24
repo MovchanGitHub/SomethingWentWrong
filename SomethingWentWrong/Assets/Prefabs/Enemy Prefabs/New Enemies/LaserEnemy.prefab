@@ -358,7 +358,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cac621e1dc16445be950042749229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 5
+  damage: 15
   damagableLayers:
     serializedVersion: 2
     m_Bits: 576
@@ -369,6 +369,7 @@ MonoBehaviour:
   attackRange: 2
   laser: {fileID: 1197105545250727984}
   laserDamageSpeed: 0.08
+  damagedEntities: []
 --- !u!114 &6759249627809127249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}

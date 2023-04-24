@@ -15,6 +15,11 @@ public class InventoryBin : MonoBehaviour
 
     public void onBinClick()
     {
+        if (GameManager.GM.InventoryManager.SelectedItem == null)
+        {
+            return;
+        }
+
         if (GameManager.GM.InventoryManager.SelectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
         {
             --GameManager.GM.InventoryManager.AmmoCounter[GameManager.GM.InventoryManager.SelectedItem.itemData.itemName];
@@ -40,6 +45,7 @@ public class InventoryBin : MonoBehaviour
         float distanceThisFrame = speed * Time.deltaTime;
 
         itemToDelete.transform.Translate(direction.normalized * distanceThisFrame, Space.World);
+        itemToDelete.transform.localScale = new Vector3(itemToDelete.transform.localScale.x - 0.5f * Time.deltaTime, itemToDelete.transform.localScale.y - 0.5f * Time.deltaTime, itemToDelete.transform.localScale.z);
 
         if (Vector2.Distance(transform.position, itemToDelete.transform.position) < 2)
         {
