@@ -20,7 +20,7 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] WeaponsBarScript weaponsBar;
     [SerializeField] Buttons buttons;
 
-    //[SerializeField] EncyclopediaManager encyclopedia;
+    [SerializeField] MiniGMEncyclopedia encyclopedia;
 
     private void Awake()
     {
@@ -44,5 +44,5 @@ public class MiniGMUI : MonoBehaviour
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }
     public Buttons Buttons { get { return buttons; } }
 
-    //public EncyclopediaManager Encyclopedia { get { return encyclopedia; } }
+    public MiniGMEncyclopedia Encyclopedia { get { return encyclopedia; } }
 }

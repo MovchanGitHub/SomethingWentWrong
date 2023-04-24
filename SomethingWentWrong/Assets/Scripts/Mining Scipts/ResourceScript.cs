@@ -25,7 +25,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         {
             spawnDamagePopup(transform.position, hp - value);
             slider.value = value;
-            if ((int)(((hp - value + currentDamage) / lootDropBarrier) ) >= 1)
+            if ((int)(((hp - value + currentDamage) / lootDropBarrier)) >= 1)
             {
                 DropItem(((hp - value + currentDamage) / lootDropBarrier) * dropCount);
                 currentDamage = (hp - value + currentDamage) - lootDropBarrier * ((hp - value + currentDamage) / lootDropBarrier);
@@ -42,10 +42,10 @@ public class ResourceScript : MonoBehaviour, IDamagable
     }
 
     public int MaxHP { get { throw new System.NotSupportedException("Don`t use Plants` MaxHP getter! >:("); } set { throw new System.NotSupportedException("Don`t use Plants` MaxHP setter! >:("); } }
-    
+
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        HP -=  weapon.Damage;
+        HP -= weapon.Damage;
         if (hp > 0)
             ObjectHitSound(_audioSource);
     }
@@ -69,6 +69,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
+
+    public int DropCount { get { return dropCount; } }
 
     private void DropItem(int dropAmount)
     {
