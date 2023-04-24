@@ -14,7 +14,7 @@ public class Buttons : MonoBehaviour
     InGameMenuScript pauseScript;
     SettingsScript settingsScript;
 
-    [SerializeField] GameObject loadingScreen;
+    GameObject loadingScreen;
     Slider slider;
     TextMeshProUGUI progressText;
 
@@ -23,7 +23,9 @@ public class Buttons : MonoBehaviour
         settingsScript = GetComponent<SettingsScript>();
     }
 
-    private void Start() {
+    private void Start()
+    {
+        loadingScreen = GM.UI.LoadingScreen;
         slider = loadingScreen.GetComponentInChildren<Slider>();
         progressText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
     }

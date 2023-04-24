@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UIElements;
+using static GameManager;
+using Slider = UnityEngine.UI.Slider;
 
 public class SoundsVol : MonoBehaviour
 {
@@ -10,7 +12,7 @@ public class SoundsVol : MonoBehaviour
     
     private void Start()
     {
-        audioMixer.SetFloat("GameVol", GetComponent<Slider>().value);
+        audioMixer.SetFloat("GameVol", GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>().value);
     }
 
     public void OnChangeSlider(float value)

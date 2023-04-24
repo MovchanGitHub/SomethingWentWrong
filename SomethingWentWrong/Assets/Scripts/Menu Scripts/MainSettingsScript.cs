@@ -17,8 +17,6 @@ public class MainSettingsScript : MonoBehaviour
 
     private void Awake()
     {
-        Settings.SetActive(false);
-        Backgound.SetActive(false);
     }
 
     private void Update()

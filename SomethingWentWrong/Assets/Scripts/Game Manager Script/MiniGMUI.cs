@@ -14,6 +14,7 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] GameObject rocketHealthSlider;
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject pointer;
+    [SerializeField] GameObject loadingScreen;
 
     [SerializeField] GameObject skillsMenu;
 
@@ -39,6 +40,7 @@ public class MiniGMUI : MonoBehaviour
     public GameObject ControlsMenu { get { return controlsMenu; } }
     public GameObject AboutGame { get { return aboutGame; } }
     public GameObject Pointer { get { return pointer; } }
+    public GameObject LoadingScreen { get { return loadingScreen; } }
 
     public GameObject SkillsMenu { get { return skillsMenu; } }
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }

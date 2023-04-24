@@ -6,11 +6,12 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using static GameManager;
 
 public class MainButtons : MonoBehaviour
 {
     private MainMenuScript mainMenu;
-    private MainSettingsScript settings;
+    private GameObject settings;
     public GameObject aboutGame;
     private Button[] buttons;
     public Animator backAnimator;
@@ -20,7 +21,7 @@ public class MainButtons : MonoBehaviour
     private void Start()
     {
         mainMenu = GetComponentInParent<MainMenuScript>();
-        settings = GetComponentInParent<MainSettingsScript>();
+        settings = GM.UI.SettingsMenu;
         buttons = GetComponentsInChildren<Button>();
     }
     
@@ -51,7 +52,7 @@ public class MainButtons : MonoBehaviour
             button.animator.Update(1);
         }
         
-        settings.ShowHideSettings();
+        settings.SetActive(true);
         mainMenu.ShowHideMenu();
     }
     public void OnButtonAboutGame()
@@ -74,7 +75,7 @@ public class MainButtons : MonoBehaviour
     public void OnButtonBack()
     {
         backAnimator.Update(1);
-        settings.ShowHideSettings();
+        settings.SetActive(false);
         mainMenu.ShowHideMenu();
     }
 
