@@ -97004,6 +97004,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2756128440079393889, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_Name
       value: UI
@@ -97104,6 +97116,98 @@ PrefabInstance:
       propertyPath: dayNightCycle
       value: 
       objectReference: {fileID: 1353670125}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[0].m_Text
+      value: "\u0410\u0432\u0442\u043E"
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[1].m_Text
+      value: 3840X2160 (16:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[2].m_Text
+      value: 3440X1440 (21:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[3].m_Text
+      value: 2880X1800 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[4].m_Text
+      value: 2560X1600 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[5].m_Text
+      value: 2560X1440 (16:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[6].m_Text
+      value: 2560X1080 (21:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[7].m_Text
+      value: 2048X1536 (4:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[8].m_Text
+      value: 1920X1440 (4:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[9].m_Text
+      value: 1920X1200 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[10].m_Text
+      value: 1920X1080 (16:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[11].m_Text
+      value: 1680X1050 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[12].m_Text
+      value: 1600X1200 (4:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[13].m_Text
+      value: 1600X900 (16:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[14].m_Text
+      value: 1440X900 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[15].m_Text
+      value: 1400X1050 (4:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[16].m_Text
+      value: 1366X768 (16:9)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[17].m_Text
+      value: 1280X1024 (5:4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[18].m_Text
+      value: 1280X960 (4:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[19].m_Text
+      value: 1280X800 (16:10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[20].m_Text
+      value: 1280X768 (5:3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9127722796128301584, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Options.m_Options.Array.data[21].m_Text
+      value: 1280X720 (16:9)
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
 --- !u!4 &1648092115 stripped
