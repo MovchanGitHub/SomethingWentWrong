@@ -122,44 +122,11 @@ public class EncyclopediaManager : MonoBehaviour
 
     public void OpenExtraInfo(GameObject ChosenNote)
     {
-        ////Second time on the same Note?
-        //if (panelWithExtraInfo.activeSelf == true && panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text == ChosenNote.GetComponent<NotesManager>().nameHeader.GetComponent<Text>().text)
-        //{
-        //    panelWithExtraInfo.SetActive(false);
-        //}
-        ////Common case - opening the extraInfo
-        //else
-        //{
         if (GM.UI.Encyclopedia.PlantsTab.activeSelf)
             OpenPlants();
         else
             OpenEnemy();
         StartCoroutine(DeselectNote());
-        //CreaturesBase curCreature = ChosenNote.GetComponent<NotesManager>().creature;
-        //if (curCreature.isOpenedInEcnyclopedia)
-        //{
-        //    if (curCreature.typeOfThisCreature == creatureType.Enemy)
-        //    {
-        //        ShowEnemyStats(ChosenNote);
-        //    }
-        //    else
-        //    {
-        //        ShowPlantStats(ChosenNote);
-        //    }
-
-        //    panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = curCreature.name;
-        //    panelWithExtraInfo.transform.GetChild(4).gameObject.GetComponent<Text>().text = curCreature.description;
-        //    panelWithExtraInfo.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = curCreature.imageBig;
-        //}
-        //else
-        //{
-        //    extraInfoPlantPanel.SetActive(false);
-        //    extraInfoEnemyPanel.SetActive(false);
-        //    panelWithExtraInfo.transform.GetChild(3).gameObject.GetComponent<Text>().text = "����������";
-        //    panelWithExtraInfo.transform.GetChild(4).gameObject.GetComponent<Text>().text = "???";
-        //    panelWithExtraInfo.transform.GetChild(0).gameObject.GetComponent<Image>().sprite = curCreature.imageUnknown;
-        //}
-        //}
 
         IEnumerator DeselectNote()
         {
@@ -250,7 +217,9 @@ public class EncyclopediaManager : MonoBehaviour
     public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
         isOpened = !isOpened;
-        GM.UI.Encyclopedia.EncyclopediaScript.gameObject.SetActive(isOpened);
+        GetComponent<Image>().enabled = isOpened;               //redo after getting parent for EncyclopediaPanel
+        transform.GetChild(0).gameObject.SetActive(isOpened);
+        transform.GetChild(1).gameObject.SetActive(isOpened);
         HideExtraInfo();
         if (isOpened)
             inputSystem.BlockPlayerInputs();
