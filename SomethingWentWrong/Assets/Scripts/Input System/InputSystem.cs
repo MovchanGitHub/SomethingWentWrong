@@ -20,7 +20,7 @@ public class InputSystem : MonoBehaviour
         playerInput = GetComponent<PlayerInput>();
 
         openInventoryInput = playerInput.actions["Open Inventory"];
-        //openEncyclopediaInput = playerInput.actions["Open Encyclopedia"];
+        openEncyclopediaInput = playerInput.actions["Open Encyclopedia"];
     }
 
     private Dictionary<string, Action<InputAction.CallbackContext>> inputActions = new ();

@@ -38,6 +38,13 @@ public class EncyclopediaManager : MonoBehaviour
 
     private Dictionary<string, GameObject> notes;
 
+    Coroutine newNoteCoroutine;
+    private Queue<CreaturesBase> notificationsToShowUp;
+    private Image notificationImage;
+    private TMPro.TextMeshProUGUI notificationHeader;
+    [SerializeField] TMPro.TMP_ColorGradient firstGradient;
+    [SerializeField] TMPro.TMP_ColorGradient secondGradient;
+
     //private Color32 selectedTab;
     //private Color32 nonSelectedTab;
 
@@ -51,6 +58,7 @@ public class EncyclopediaManager : MonoBehaviour
     {
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
+        notificationsToShowUp = new Queue<CreaturesBase>();
         //selectedTab = new Color32(124, 192, 0, 255);
         //nonSelectedTab = new Color32(89, 137, 0, 255);
     }
@@ -72,6 +80,9 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemySpeedValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyName = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
+
+        notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
+        notificationHeader =  GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
 
         InitializeEncyclopedia();
     }
@@ -99,7 +110,9 @@ public class EncyclopediaManager : MonoBehaviour
         openedCreature.isOpenedInEcnyclopedia = true;
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
-        //ShowNewNoteNotification(openedCreature);
+        notificationsToShowUp.Enqueue(openedCreature);
+        if (newNoteCoroutine == null)
+            newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
 
     public void OpenExtraInfo(GameObject ChosenNote)
@@ -173,6 +186,24 @@ public class EncyclopediaManager : MonoBehaviour
             inputSystem.BlockPlayerInputs();
         else
             inputSystem.UnblockPlayerInputs();
+    }
+
+    private IEnumerator ShowNewNotification()
+    {
+        GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
+        while (notificationsToShowUp.Count != 0)
+        {
+            CreaturesBase curCreature = notificationsToShowUp.Dequeue();
+            notificationImage.sprite = curCreature.imageSmall;
+            for (int i = 0; i < 3; i++)
+            {
+                notificationHeader.colorGradientPreset = firstGradient;
+                yield return new WaitForSeconds(0.75f);
+                notificationHeader.colorGradientPreset = secondGradient;
+                yield return new WaitForSeconds(0.75f);
+            }
+        }
+        GM.UI.Encyclopedia.NewNoteNotification.SetActive(false);
     }
 
     //private void ShowNewNoteNotification(CreaturesBase openedCreature)

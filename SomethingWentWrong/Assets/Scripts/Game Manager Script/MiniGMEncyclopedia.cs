@@ -14,7 +14,7 @@ public class MiniGMEncyclopedia : MonoBehaviour
     [SerializeField] private GameObject extraInfoPlantPanel;
     [SerializeField] private GameObject extraInfoEnemyPanel;
     [SerializeField] private GameObject extraInfoLorePanel;
-    //[SerializeField] private GameObject newNoteNotification;
+    [SerializeField] private GameObject newNoteNotification;
 
     private void Awake()
     {
@@ -29,6 +29,7 @@ public class MiniGMEncyclopedia : MonoBehaviour
     public GameObject ExtraInfoPlantPanel { get { return extraInfoPlantPanel; } }
     public GameObject ExtraInfoEnemyPanel { get { return extraInfoEnemyPanel; } }
     public GameObject ExtraInfoLorePanel { get { return extraInfoLorePanel; } }
+    public GameObject NewNoteNotification { get { return newNoteNotification; } }
     //public GameObject PlantsTabHeader { get { return plantsTabHeader; } }
     //public GameObject EnemiesTabHeader { get { return enemiesTabHeader; } }
 }
