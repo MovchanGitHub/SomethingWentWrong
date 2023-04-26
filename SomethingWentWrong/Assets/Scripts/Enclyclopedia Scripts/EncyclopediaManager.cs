@@ -191,6 +191,13 @@ public class EncyclopediaManager : MonoBehaviour
     private IEnumerator ShowNewNotification()
     {
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
+        while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
+        {
+            GM.UI.Encyclopedia.NewNoteNotification.transform.localScale += new Vector3(0.1f, 0.1f, 0);
+            yield return new WaitForSeconds(0.03f);
+        }
+        notificationImage.gameObject.SetActive(true);
+        notificationHeader.gameObject.SetActive(true);
         while (notificationsToShowUp.Count != 0)
         {
             CreaturesBase curCreature = notificationsToShowUp.Dequeue();
@@ -203,6 +210,13 @@ public class EncyclopediaManager : MonoBehaviour
                 yield return new WaitForSeconds(0.75f);
             }
         }
+        while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x >= 0.01)
+        {
+            GM.UI.Encyclopedia.NewNoteNotification.transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+            yield return new WaitForSeconds(0.03f);
+        }
+        notificationImage.gameObject.SetActive(false);
+        notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(false);
     }
 
