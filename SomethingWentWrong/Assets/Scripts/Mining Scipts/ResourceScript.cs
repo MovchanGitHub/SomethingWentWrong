@@ -13,6 +13,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
     [SerializeField] private int timesToDrop;
+    public int TimesToDrop { get { return timesToDrop; } }
 
     public int positionIndex;
     private AudioSource _audioSource;
@@ -69,8 +70,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private int dropCount = 1;
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
-
-    public int DropCount { get { return dropCount; } }
     public GameObject Drop { get { return drop; } }
 
     private void DropItem(int dropAmount)

@@ -110,15 +110,15 @@ public class EncyclopediaManager : MonoBehaviour
             OpenPlants();
         else
             OpenEnemy();
-        StartCoroutine(DeselectNote());
+        //StartCoroutine(DeselectNote());
 
 
 
-        IEnumerator DeselectNote()
-        {
-            yield return new WaitForEndOfFrame();
-            EventSystem.current.SetSelectedGameObject(null);
-        }
+        //IEnumerator DeselectNote()
+        //{
+        //    yield return new WaitForEndOfFrame();
+        //    EventSystem.current.SetSelectedGameObject(null);
+        //}
 
         void OpenPlants()
         {
@@ -130,26 +130,13 @@ public class EncyclopediaManager : MonoBehaviour
                 GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
                 return;
             }
-            if (curCreature.isOpenedInEcnyclopedia)
-            {
-                extraInfoPlantName.text = curCreature.name;
-                extraInfoPlantDescription.text = curCreature.description;
-                extraInfoPlantImage.sprite = curCreature.imageBig;
-                extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
+            extraInfoPlantName.text = curCreature.name;
+            extraInfoPlantDescription.text = curCreature.description;
+            extraInfoPlantImage.sprite = curCreature.imageBig;
+            extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
 
-                extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
-                extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
-            }
-            else
-            {
-                extraInfoPlantName.text = "Неизвестно";
-                extraInfoPlantDescription.text = "???";
-                extraInfoPlantImage.sprite = curCreature.imageUnknown;
-                extraInfoPlantHpValue.text = "???";
-
-                extraInfoPlantLootIcon.sprite = null;
-                extraInfoPlantLootValue.text = "???";
-            }
+            extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
+            extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
 
             GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(true);
         }
@@ -163,26 +150,13 @@ public class EncyclopediaManager : MonoBehaviour
                 GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
                 return;
             }
-            if (curCreature.isOpenedInEcnyclopedia)
-            {
-                extraInfoEnemyName.text = curCreature.name;
-                extraInfoEnemyDescription.text = curCreature.description;
-                extraInfoEnemyImage.sprite = curCreature.imageBig;
-                extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
+            extraInfoEnemyName.text = curCreature.name;
+            extraInfoEnemyDescription.text = curCreature.description;
+            extraInfoEnemyImage.sprite = curCreature.imageBig;
+            extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
 
-                extraInfoEnemyDamageValue.text = curNotesManager.damage.ToString();
-                extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
-            }
-            else
-            {
-                extraInfoEnemyName.text = "Неизвестно";
-                extraInfoEnemyDescription.text = "???";
-                extraInfoEnemyImage.sprite = curCreature.imageUnknown;
-                extraInfoEnemyHpValue.text = "???";
-
-                extraInfoEnemyDamageValue.text = "???";
-                extraInfoEnemySpeedValue.text = "???";
-            }
+            extraInfoEnemyDamageValue.text = curNotesManager.damage.ToString();
+            extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
 
             GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(true);
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
 
-public class NotesManager : MonoBehaviour, ISelectHandler
+public class NotesManager : MonoBehaviour
 {
     public CreaturesBase creature;
     private TMPro.TextMeshProUGUI nameHeader;
@@ -27,7 +27,7 @@ public class NotesManager : MonoBehaviour, ISelectHandler
             ResourceScript resourceScript = creature.creaturePrefab.GetComponent<ResourceScript>();
             hp = resourceScript.MaxHP;
             lootSprite = resourceScript.Drop.GetComponentInChildren<SpriteRenderer>().sprite;
-            lootAmount = resourceScript.DropCount;
+            lootAmount = resourceScript.TimesToDrop;
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)
         {
@@ -51,6 +51,7 @@ public class NotesManager : MonoBehaviour, ISelectHandler
         {
             nameHeader.text = "Неизвестно";
             icon.sprite = creature.imageUnknown;
+            GetComponent<Button>().interactable = false;
         }
     }
 
@@ -58,36 +59,12 @@ public class NotesManager : MonoBehaviour, ISelectHandler
     {
         nameHeader.text = creature.name;
         icon.sprite = creature.imageSmall;
+        GetComponent<Button>().interactable = true;
     }
 
-    public void OnSelect(BaseEventData eventData)
+
+    public void OnSelect()
     {
-        //if (EventSystem.current.currentSelectedGameObject == gameObject)
-        //{
-        //    Debug.Log(EventSystem.current.currentSelectedGameObject);
-        //    StartCoroutine(DeselectNote());
-        //}
-        //else
-            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.OpenExtraInfo(gameObject);
+        GameManager.GM.UI.Encyclopedia.EncyclopediaScript.OpenExtraInfo(gameObject);
     }
-
-    //private IEnumerator DeselectNote()
-    //{
-    //    yield return new WaitForEndOfFrame();
-    //    EventSystem.current.SetSelectedGameObject(null);
-    //    Debug.Log(EventSystem.current.currentSelectedGameObject);
-    //}
-
-    //public void OnDeselect(BaseEventData eventData)
-    //{
-    //    Debug.Log("Deselect Event");
-    //    GameManager.GM.UI.Encyclopedia.EncyclopediaScript.HideExtraInfo();
-    //}
-
-    //private void Start()
-    //{
-    //    nameHeader.GetComponent<Text>().text = creature.name;
-    //    icon.GetComponent<Image>().sprite = creature.imageSmall;
-    //}
-
 }
