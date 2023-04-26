@@ -34,16 +34,12 @@ public class LoreManager : MonoBehaviour
 
     public void ShowUpLoreNote()
     {
-        if (notePanel.activeSelf && noteText.text == loreText)
+        if (isAvailable)
         {
-            notePanel.SetActive(false);
-            return;
+            noteText.text = loreText;
+            notePanel.SetActive(true);
         }
-        noteText.text = loreText;
-        notePanel.SetActive(true);
     }
-
-    public void CloseNote() => notePanel.SetActive(false);
 
     public void UnlockNote()
     {
