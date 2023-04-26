@@ -38,8 +38,8 @@ public class EncyclopediaManager : MonoBehaviour
 
     private Dictionary<string, GameObject> notes;
 
-    private Color32 selectedTab;
-    private Color32 nonSelectedTab;
+    //private Color32 selectedTab;
+    //private Color32 nonSelectedTab;
 
     //[SerializeField] private List<NotesManager> enemiesNotes;
     //[SerializeField] private List<NotesManager> plantsNotes;
@@ -201,7 +201,7 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = !isOpened;
         GetComponent<Image>().enabled = isOpened;               //redo after getting parent for EncyclopediaPanel
         transform.GetChild(0).gameObject.SetActive(isOpened);
-        transform.GetChild(1).gameObject.SetActive(isOpened);
+        //transform.GetChild(1).gameObject.SetActive(isOpened);
         HideExtraInfo();
         if (isOpened)
             inputSystem.BlockPlayerInputs();
