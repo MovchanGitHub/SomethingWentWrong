@@ -15,12 +15,13 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] GameObject healthBar;
     [SerializeField] GameObject pointer;
     [SerializeField] GameObject loadingScreen;
-
     [SerializeField] GameObject skillsMenu;
+    [SerializeField] GameObject confirmExit;
 
     [SerializeField] WeaponsBarScript weaponsBar;
     [SerializeField] Buttons buttons;
-
+    [SerializeField] InGameMenuScript menuScript;
+    [SerializeField] SettingsScript settings;
     [SerializeField] MiniGMEncyclopedia encyclopedia;
 
     private void Awake()
@@ -41,10 +42,12 @@ public class MiniGMUI : MonoBehaviour
     public GameObject AboutGame { get { return aboutGame; } }
     public GameObject Pointer { get { return pointer; } }
     public GameObject LoadingScreen { get { return loadingScreen; } }
+    public GameObject ConfirmExit { get { return confirmExit; } }
 
     public GameObject SkillsMenu { get { return skillsMenu; } }
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }
     public Buttons Buttons { get { return buttons; } }
-
+    public SettingsScript SettingsScript { get { return settings; } }
+    public InGameMenuScript InGameMenuScript  { get { return menuScript; } }
     public MiniGMEncyclopedia Encyclopedia { get { return encyclopedia; } }
 }

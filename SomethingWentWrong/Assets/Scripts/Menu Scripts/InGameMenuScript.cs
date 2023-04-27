@@ -10,21 +10,25 @@ public class InGameMenuScript : MonoBehaviour
     private GameObject endScreen;
     private GameObject controlsMenu;
     private GameObject aboutWindow;
+    private GameObject confirmExit;
     private SettingsScript settingsScript;
     [HideInInspector] public bool isOpened;
     [HideInInspector] public bool isPaused;
     private bool showTutorialPopupAfterHidingMenu = false;
 
-    private void Awake() {
-        settingsScript = GetComponent<SettingsScript>();
+    private void Awake()
+    {
+        PauseGame(false);
     }
 
     private void Start() {
+        settingsScript = GM.UI.SettingsScript;
+
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;
         controlsMenu = GM.UI.ControlsMenu;
         aboutWindow = GM.UI.AboutGame;
-        
+        confirmExit = GM.UI.ConfirmExit;
 
         pauseMenu.SetActive(isOpened);
         endScreen.SetActive(false);
@@ -48,6 +52,12 @@ public class InGameMenuScript : MonoBehaviour
             b.onClick.Invoke();
         }
         else if (controlsMenu.activeSelf) {
+            var b = GM.UI.ControlsMenu.transform.GetChild(3).GetComponent<Button>();
+            EventSystem.current.SetSelectedGameObject(b.GameObject());
+            b.onClick.Invoke();
+        }
+        else if (confirmExit.activeSelf)
+        {
             var b = GM.UI.ControlsMenu.transform.GetChild(3).GetComponent<Button>();
             EventSystem.current.SetSelectedGameObject(b.GameObject());
             b.onClick.Invoke();
