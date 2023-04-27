@@ -113,6 +113,8 @@ public class EncyclopediaManager : MonoBehaviour
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
         notificationsToShowUp.Enqueue(openedCreature);
+        Debug.Log(notificationsToShowUp.Count);
+        Debug.Log(newNoteCoroutine);
         if (newNoteCoroutine == null)
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
@@ -205,12 +207,12 @@ public class EncyclopediaManager : MonoBehaviour
         {
             CreaturesBase curCreature = notificationsToShowUp.Dequeue();
             notificationImage.sprite = curCreature.imageSmall;
-            for (int i = 0; i < 3; i++)
+            for (int i = 0; i < 4; i++)
             {
                 notificationHeader.colorGradientPreset = firstGradient;
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.5f);
                 notificationHeader.colorGradientPreset = secondGradient;
-                yield return new WaitForSeconds(0.75f);
+                yield return new WaitForSeconds(0.5f);
             }
         }
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x >= 0.01)
@@ -221,6 +223,7 @@ public class EncyclopediaManager : MonoBehaviour
         notificationImage.gameObject.SetActive(false);
         notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(false);
+        newNoteCoroutine = null;
     }
 
     //private void ShowNewNoteNotification(CreaturesBase openedCreature)
