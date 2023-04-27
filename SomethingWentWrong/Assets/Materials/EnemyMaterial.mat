@@ -60,5 +60,5 @@ Material:
     m_Colors:
     - _AshColor: {r: 0.0754717, g: 0.0754717, b: 0.0754717, a: 0.3254902}
     - _BorderColor: {r: 2.018105, g: 36.325893, b: 55.06544, a: 0}
-    - _EmissionColor: {r: 11.279578, g: 10.163269, b: 1.6387308, a: 0}
+    - _EmissionColor: {r: 0.6752844, g: 0.6434313, b: 0.06052077, a: 0}
   m_BuildTextureStacks: []
