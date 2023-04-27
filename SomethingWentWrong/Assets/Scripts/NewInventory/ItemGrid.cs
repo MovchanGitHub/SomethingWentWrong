@@ -122,6 +122,21 @@ public class ItemGrid : MonoBehaviour
         }
     }
 
+    public void clearGrid()
+    {
+        for (int i = 0; i < gridSizeWidth; i++)
+        {
+            for (int j = 0; j < gridSizeHeight; j++)
+            {
+                if (inventoryItemSlots[i, j])
+                {
+                    Destroy(inventoryItemSlots[i, j].gameObject);
+                    cleanGridRef(inventoryItemSlots[i, j]);
+                }
+            }
+        }
+    }
+
     public Vector2 calcPosOnGrid(InventoryItem inventoryItem, int posX, int posY)
     {
         Vector2 pos = new Vector2();

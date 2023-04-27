@@ -155,7 +155,11 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures: []
+    secondaryTextures:
+    - texture: {fileID: 2800000, guid: f07e3609a2814b545a698d74bdd80da9, type: 3}
+      name: _NormalMap
+    - texture: {fileID: 2800000, guid: 7bd6d8c979b89164888d81ea6b349664, type: 3}
+      name: _EmissionMap
     nameFileIdTable:
       GringeIdleNW_1: -35532364
       GringeIdleNW_0: 506328837

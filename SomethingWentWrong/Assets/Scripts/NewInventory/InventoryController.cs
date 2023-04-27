@@ -77,7 +77,8 @@ public class InventoryController : MonoBehaviour
 
         ammoCounter = new Dictionary<string, int>{ { "bullet", 0}, { "bomb", 0}, { "crystal", 0} };
 
-        survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
+        if (!GM.IsTutorial) survivalBarScript = GM.UI.GetComponentInChildren<SurvivalBar>();
+        else survivalBarScript = GM.Tutorial.surivalBar.GetComponent<SurvivalBar>();
 
         /*
         foreach (var item in startItems)
@@ -210,6 +211,11 @@ public class InventoryController : MonoBehaviour
         newRectTransform.SetParent(canvasTransform);
 
         inventoryItem.Set(item);
+    }
+
+    public void clearInventory()
+    {
+        SelectedItemGrid.clearGrid();
     }
 
     public bool checkSpaceInInventory(ItemsBase item)
