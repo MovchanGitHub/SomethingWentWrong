@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
+using UnityEditor.Rendering;
 using UnityEngine;
 using static GameManager;
 
@@ -26,6 +27,11 @@ public class TutorialPopupSystem : MonoBehaviour
     private int bombDetailedPopup = 15;
     public int bombDeathPopup1 = 16;
     private int bombDeathPopup2 = 17;
+    
+    //extra popups
+    private int survivalBarPopup = 18;
+    private int hpBarPopup = 19;
+    private int weaponBarPopup = 20;
 
     private int currPopup = 0;
 
@@ -34,8 +40,8 @@ public class TutorialPopupSystem : MonoBehaviour
         get => currPopup;
         set
         {
-            currPopup = value;
-            Debug.Log("currPopup = " + currPopup);
+            currPopup = value; 
+            //Debug.Log("currPopup = " + currPopup);
         }
     }
 
@@ -82,10 +88,27 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public void OnBaseButtonClick()
     {
-        StartCoroutine(HideFirstWaitShowSecond(basePopup, collectResourcesPopup, timeBeforeShowNewPopup));
-        StartCoroutine(EnableResources());
+        StartCoroutine(ShowHPBar());
+    }
+    
+    private IEnumerator ShowHPBar()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(basePopup, hpBarPopup, timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(timeBeforeShowNewPopup);
+        GM.Tutorial.hpBar.SetActive(true);
+    }
+    
+    public void OnWeaponBarPopupButtonClicked()
+    {
+        StartCoroutine(CloseWeaponBarPopup());
     }
 
+    private IEnumerator CloseWeaponBarPopup()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(weaponBarPopup, weaponablePopup, 2 * timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
+        GM.Tutorial.ShowWeaponableResources();
+    }
 
     private IEnumerator EnableResources()
     {
@@ -115,8 +138,15 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnAllResourcesMined()
     {
         GM.Tutorial.Counter.SetActive(false);
-        StartCoroutine(HideFirstWaitShowSecond(dashPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
-        StartCoroutine(ShowInventoryErasePopup());
+        StartCoroutine(ShowSurvivalBar());
+    }
+
+
+    private IEnumerator ShowSurvivalBar()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(dashPopup, survivalBarPopup, timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(timeBeforeShowNewPopup);
+        GM.Tutorial.surivalBar.SetActive(true);
     }
     
 
@@ -138,6 +168,7 @@ public class TutorialPopupSystem : MonoBehaviour
         GM.Tutorial.spawnedEnemies[0].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
+        GM.Tutorial.enemiesToKill = 2;
     }
     
 
@@ -164,8 +195,8 @@ public class TutorialPopupSystem : MonoBehaviour
         yield return new WaitForSeconds(20f);
         GM.Tutorial.spawnedEnemies[2].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
+        GM.Tutorial.enemiesToKill = 3;
         GM.Tutorial.KilledEnemies = 0;
-        GM.Tutorial.enemiesToKill = 4;
     }
 
     
@@ -178,12 +209,16 @@ public class TutorialPopupSystem : MonoBehaviour
 
     private IEnumerator ShowInventoryErasePopup()
     {
+        StartCoroutine(HideFirstWaitShowSecond(survivalBarPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
         yield return new WaitForSeconds(10f);
         StartCoroutine(HideFirstWaitShowSecond(inventoryUsePopup, inventoryErasePopup, 2 * timeBeforeShowNewPopup));
-        yield return new WaitForSeconds(18f);
-        StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponablePopup, 2 * timeBeforeShowNewPopup));
         yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
-        GM.Tutorial.ShowWeaponableResources();
+        Debug.Log("очистить инвентарь и кинуть мусор");
+        yield return new WaitForSeconds(15f - 2 * timeBeforeShowNewPopup);
+        StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponBarPopup, 2 * timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
+        Debug.Log("спрятать жизненные показатели");
+        GM.Tutorial.weaponBar.SetActive(true);
     }
     
     
@@ -264,5 +299,18 @@ public class TutorialPopupSystem : MonoBehaviour
     public void OnBombDeathDeclineButtonClick()
     {
         StartCoroutine(HideFirstWaitShowSecond(bombDeathPopup1, bombDeathPopup2, timeBeforeShowNewPopup / 2));
+    }
+
+    
+    public void OnSurvivalBarButtonClick()
+    {
+        StartCoroutine(ShowInventoryErasePopup());
+    }
+    
+    
+    public void OnHPBarButtonClick()
+    {
+        StartCoroutine(HideFirstWaitShowSecond(hpBarPopup, collectResourcesPopup, timeBeforeShowNewPopup));
+        StartCoroutine(EnableResources());
     }
 }

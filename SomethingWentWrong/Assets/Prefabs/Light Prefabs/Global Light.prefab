@@ -127,7 +127,7 @@ MonoBehaviour:
   currentTime: 0
   dayCycle: 0
   sunriseDuration: 10
-  dayDuration: 10
+  dayDuration: 15
   sunsetDuration: 10
   nightDuration: 10
   midnightDuration: 10
