@@ -26,14 +26,14 @@ public class Bomb : MonoBehaviour, IWeaponable
     private Collider2D[] hitObjects;
 
     private AudioSource _audioSource;
-    private List<AudioClip> _explosions;
+    public List<AudioClip> _explosions;
+    public GameObject playSound;
 
     private void Awake()
     {
         _collider2D = gameObject.transform.GetChild(1).gameObject;
         _area = gameObject.transform.GetChild(2).gameObject;
-        _audioSource = GameObject.Find("BombLogic").GetComponent<AudioSource>();
-        _explosions = GameObject.Find("BombLogic").GetComponent<BombLogic>()._explosions;
+        _audioSource = GetComponent<AudioSource>();
     }
 
     private void Start()
@@ -61,7 +61,12 @@ public class Bomb : MonoBehaviour, IWeaponable
         {
             hitObject.transform.GetComponentInParent<IDamagable>().GetDamage(this, gameObject);
         }
-
+        GameObject playSoundObj = Instantiate(playSound, transform.position, Quaternion.identity);
+        PlaySound playSoundTemp = playSoundObj.GetComponent<PlaySound>();
+        playSoundTemp.audioClip = _explosions[UnityEngine.Random.Range(0, 2)];
+        playSoundTemp.audioMixer = _audioSource.outputAudioMixerGroup;
+        playSoundTemp.Play();
+        
         Destroy(gameObject);
     }
 

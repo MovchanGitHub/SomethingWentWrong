@@ -37,7 +37,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
             hp = value;
             if (hp <= 0)
-                StartCoroutine(Die());
+                Die();
         }
     }
 
@@ -47,7 +47,13 @@ public class ResourceScript : MonoBehaviour, IDamagable
     {
         HP -= weapon.Damage;
         if (hp > 0)
-            ObjectHitSound(_audioSource);
+        {
+            GameObject playSoundObj = Instantiate(playSound, transform.position, Quaternion.identity);
+            PlaySound playSoundTemp = playSoundObj.GetComponent<PlaySound>();
+            playSoundTemp.audioClip = _audioSource.clip;
+            playSoundTemp.audioMixer = _audioSource.outputAudioMixerGroup;
+            playSoundTemp.Play();
+        }
     }
 
     private void Awake()
@@ -92,7 +98,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    private IEnumerator Die()
+    private void Die()
     {
         if (!creature.isOpenedInEcnyclopedia)
         {
@@ -109,9 +115,6 @@ public class ResourceScript : MonoBehaviour, IDamagable
             GM.Spawner.Resources.PurgePointWithIndex(positionIndex);
         
         Destroy(gameObject);
-
-        yield return new WaitForSeconds(playSoundTemp.audioClip.length * 2);
-        Destroy(playSoundObj);
     }
 
     public void spawnDamagePopup(Vector3 position, int damageAmount)

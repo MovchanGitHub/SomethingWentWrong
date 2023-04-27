@@ -24,9 +24,16 @@ public class PlaySound : MonoBehaviour
 
     public void Play()
     {
+        StartCoroutine(PlayCor());
+    }
+    
+    private IEnumerator PlayCor()
+    {
         audioSource.clip = audioClip;
         audioSource.outputAudioMixerGroup = audioMixer;
         audioSource.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
         audioSource.Play();
+        yield return new WaitForSeconds(audioClip.length * 2);
+        Destroy(gameObject);
     }
 }
