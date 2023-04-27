@@ -46,6 +46,10 @@ public class EndScreen: MonoBehaviour
         
             maxScore.text = $"Рекорд: {MaxScore}";
         }
+        else
+        {
+            GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(false);
+        }
 
         isOpened = true;
         if (message == "Вы прошли обучение!\nно какой ценой...")

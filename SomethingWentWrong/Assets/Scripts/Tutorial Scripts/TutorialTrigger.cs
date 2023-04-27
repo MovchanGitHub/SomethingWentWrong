@@ -10,7 +10,7 @@ public class TutorialTrigger : MonoBehaviour
     
     private void OnTriggerEnter2D(Collider2D col)
     {
-        Debug.Log("Tutorial: " + gameObject.name);
+        //Debug.Log("Tutorial: " + gameObject.name);
         GameManager.GM.Tutorial.PopupSystem.PopupTrigger(popupIndex);
         Destroy(gameObject);
     }
