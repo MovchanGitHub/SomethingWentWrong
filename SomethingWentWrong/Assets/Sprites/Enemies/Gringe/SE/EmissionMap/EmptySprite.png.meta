@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 46021df11c3dfd549baf203f0401420e
+guid: 97440f49b6702f54d99baabbdf5485d1
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -103,91 +103,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: WalkingForwardHandNW_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 117
-        height: 117
-      alignment: 9
-      pivot: {x: 0.5, y: -0.08}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7b490f3196cda554fb1b6d92a7135fbe
-      internalID: -148982725
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkingForwardHandNW_1
-      rect:
-        serializedVersion: 2
-        x: 117
-        y: 0
-        width: 117
-        height: 117
-      alignment: 9
-      pivot: {x: 0.5, y: -0.08}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 56ba924dbf49bae43b6a5dbac14e48f8
-      internalID: -1047285967
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkingForwardHandNW_2
-      rect:
-        serializedVersion: 2
-        x: 234
-        y: 0
-        width: 117
-        height: 117
-      alignment: 9
-      pivot: {x: 0.5, y: -0.08}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 326a81d2f2d88004f8ee66718381d5a3
-      internalID: -600689501
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: WalkingForwardHandNW_3
-      rect:
-        serializedVersion: 2
-        x: 351
-        y: 0
-        width: 117
-        height: 117
-      alignment: 9
-      pivot: {x: 0.5, y: -0.08}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 05654c6277b2e834c8003bb75431f089
-      internalID: -1340730866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -197,14 +113,8 @@ TextureImporter:
     indices: 
     edges: []
     weights: []
-    secondaryTextures:
-    - texture: {fileID: 2800000, guid: 65d172d5307727c4891457a66c629674, type: 3}
-      name: _NormalMap
-    nameFileIdTable:
-      WalkingForwardHandNW_0: -148982725
-      WalkingForwardHandNW_2: -600689501
-      WalkingForwardHandNW_1: -1047285967
-      WalkingForwardHandNW_3: -1340730866
+    secondaryTextures: []
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

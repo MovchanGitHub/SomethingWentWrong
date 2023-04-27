@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: c106fb84db10a7242901347214153b20
+guid: 12161a1df4c16d549bb5e557ee8a7014
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,11 +42,11 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 7
-  spritePivot: {x: 0.5, y: 0}
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 24
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
@@ -105,22 +105,22 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Rocket2_0
+      name: Rocket3_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 64
         height: 128
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 758d5093133da2a4a80ed9d5871d2381
-      internalID: -141853760
+      spriteID: e9b9deff622dee642a033d2a2855b539
+      internalID: -73772136
       vertices: []
       indices: 
       edges: []
@@ -129,16 +129,16 @@ TextureImporter:
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 1537655665
+    internalID: 0
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures:
-    - texture: {fileID: 2800000, guid: e1f679bbd28e0e845880f8f2e729edc3, type: 3}
+    - texture: {fileID: 2800000, guid: f305fda5a47388b42990cd28d07cc076, type: 3}
       name: _NormalMap
     nameFileIdTable:
-      Rocket2_0: -141853760
+      Rocket3_0: -73772136
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
