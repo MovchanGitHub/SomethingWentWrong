@@ -38,6 +38,13 @@ public class EncyclopediaManager : MonoBehaviour
 
     private Dictionary<string, GameObject> notes;
 
+    Image backgrounds;
+    Queue<Coroutine> ShadingAnims = new Queue<Coroutine>();
+    Queue<Coroutine> DeShadingAnims = new Queue<Coroutine>();
+    Queue<Coroutine> OpeningAnims = new Queue<Coroutine>();
+    //Dictionary<openingAnims, Queue<Coroutine>> = new Dictionary<openingAnims, Queue<Coroutine>> 
+    Queue<Coroutine> ClosingAnims = new Queue<Coroutine>();
+
     Coroutine newNoteCoroutine;
     private Queue<CreaturesBase> notificationsToShowUp;
     private Image notificationImage;
@@ -58,6 +65,7 @@ public class EncyclopediaManager : MonoBehaviour
     {
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
+        backgrounds = GetComponent<Image>();
         notificationsToShowUp = new Queue<CreaturesBase>();
         //selectedTab = new Color32(124, 192, 0, 255);
         //nonSelectedTab = new Color32(89, 137, 0, 255);
@@ -183,14 +191,78 @@ public class EncyclopediaManager : MonoBehaviour
         if (GM.IsTutorial)
             return;
         isOpened = !isOpened;
-        Time.timeScale = isOpened ? 0f : 1f;
-        GetComponent<Image>().enabled = isOpened;
-        transform.GetChild(0).gameObject.SetActive(isOpened);
-        HideExtraInfo();
+        //Time.timeScale = isOpened ? 0f : 1f;
+        //GetComponent<Image>().enabled = isOpened;
+        //transform.GetChild(0).gameObject.SetActive(isOpened);
+        //HideExtraInfo();
+        //if (isOpened)
+        //    inputSystem.BlockPlayerInputs();
+        //else
+        //    inputSystem.UnblockPlayerInputs();
         if (isOpened)
+        {
+            Time.timeScale = 0f;
+            ShadingAnims.Enqueue(StartCoroutine(ShadeBackground()));
+            OpeningAnims.Enqueue(StartCoroutine(AnimateOpeningElement(transform.GetChild(0).gameObject)));
             inputSystem.BlockPlayerInputs();
+        }
         else
+        {
+            Time.timeScale = 1f;
+            DeShadingAnims.Enqueue(StartCoroutine(DeShadeBackground()));
+            HideExtraInfo();
+            ClosingAnims.Enqueue(StartCoroutine(AnimateClosingElement(transform.GetChild(0).gameObject)));
             inputSystem.UnblockPlayerInputs();
+        }
+    }
+
+    private IEnumerator ShadeBackground()
+    {
+        if (DeShadingAnims.Count != 0)
+            StopCoroutine(DeShadingAnims.Dequeue());
+        //backgrounds.enabled = true;
+        while (backgrounds.color.a <= 0.75f)
+        {
+            backgrounds.color = new Color(backgrounds.color.r, backgrounds.color.g, backgrounds.color.b, backgrounds.color.a + 0.06f);
+            //Debug.Log(backgrounds.color.a);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+    private IEnumerator DeShadeBackground()
+    {
+        if (ShadingAnims.Count != 0)
+            StopCoroutine(ShadingAnims.Dequeue());
+        while (backgrounds.color.a > 0f)
+        {
+            backgrounds.color = new Color(backgrounds.color.r, backgrounds.color.g, backgrounds.color.b, backgrounds.color.a - 0.01f);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        //backgrounds.enabled = false;
+    }
+
+    private IEnumerator AnimateOpeningElement(GameObject element)
+    {
+        if (ClosingAnims.Count != 0)
+            StopCoroutine(ClosingAnims.Dequeue());
+        element.SetActive(true);
+        while (element.transform.localScale.x <= 1)
+        {
+            element.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+            //Debug.Log(element.transform.localScale.x);
+            yield return new WaitForSecondsRealtime(0.005f);
+            //Debug.Log(element.transform.localScale.x <= 1);
+        }
+    }
+    private IEnumerator AnimateClosingElement(GameObject element)
+    {
+        if (OpeningAnims.Count != 0)
+            StopCoroutine(OpeningAnims.Dequeue());
+        while (element.transform.localScale.x > 0)
+        {
+            element.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
+            yield return new WaitForSecondsRealtime(0.005f);
+        }
+        element.SetActive(false);
     }
 
     private IEnumerator ShowNewNotification()
