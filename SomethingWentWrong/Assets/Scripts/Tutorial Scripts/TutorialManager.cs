@@ -29,6 +29,12 @@ public class TutorialManager : MonoBehaviour
     public int enemiesToKill = 2;
     private int killedEnemies = 0;
 
+    public GameObject weaponBar;
+    public GameObject surivalBar;
+    public GameObject hpBar;
+
+    public bool endOfTutorial = false;
+
     public int MainedResources
     {
         get => mainedResources;
@@ -59,8 +65,8 @@ public class TutorialManager : MonoBehaviour
         set
         {
             killedEnemies = value;
-            _counterText.text = "убито врагов: " + killedEnemies + "/" + enemiesToKill;
-            if (killedEnemies == enemiesToKill)
+            _counterText.text = "убито врагов: " + killedEnemies + "/2";
+            if (killedEnemies == 2)
             {
                 Counter.SetActive(false);
                 if (wave == 0)
@@ -119,6 +125,7 @@ public class TutorialManager : MonoBehaviour
 
     public void OnLearnedWeapon()
     {
+        endOfTutorial = true;
         _tutorialPopupSystem.popups[_tutorialPopupSystem.bombDeathPopup1].SetActive(true);
         menuButton.SetActive(false);
     }
