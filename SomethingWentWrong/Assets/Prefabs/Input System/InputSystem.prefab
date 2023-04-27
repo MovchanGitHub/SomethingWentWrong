@@ -46,6 +46,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerInput: {fileID: 0}
+  openInventoryInput:
+    m_Name: Open Inventory Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 6602e6dd-5c22-4398-9105-0f760e23df55
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
+  openEncyclopediaInput:
+    m_Name: Open Encyclopedia Input
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 04ec4f01-b2bc-4918-a732-aaa48752f158
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!114 &627019797
 MonoBehaviour:
   m_ObjectHideFlags: 0

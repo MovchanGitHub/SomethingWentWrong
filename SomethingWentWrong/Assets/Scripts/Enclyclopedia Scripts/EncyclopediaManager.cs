@@ -38,8 +38,22 @@ public class EncyclopediaManager : MonoBehaviour
 
     private Dictionary<string, GameObject> notes;
 
-    private Color32 selectedTab;
-    private Color32 nonSelectedTab;
+    Image backgrounds;
+    Queue<Coroutine> ShadingAnims = new Queue<Coroutine>();
+    Queue<Coroutine> DeShadingAnims = new Queue<Coroutine>();
+    Queue<Coroutine> OpeningAnims = new Queue<Coroutine>();
+    //Dictionary<openingAnims, Queue<Coroutine>> = new Dictionary<openingAnims, Queue<Coroutine>> 
+    Queue<Coroutine> ClosingAnims = new Queue<Coroutine>();
+
+    Coroutine newNoteCoroutine;
+    private Queue<CreaturesBase> notificationsToShowUp;
+    private Image notificationImage;
+    private TMPro.TextMeshProUGUI notificationHeader;
+    [SerializeField] TMPro.TMP_ColorGradient firstGradient;
+    [SerializeField] TMPro.TMP_ColorGradient secondGradient;
+
+    //private Color32 selectedTab;
+    //private Color32 nonSelectedTab;
 
     //[SerializeField] private List<NotesManager> enemiesNotes;
     //[SerializeField] private List<NotesManager> plantsNotes;
@@ -51,6 +65,8 @@ public class EncyclopediaManager : MonoBehaviour
     {
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
+        backgrounds = GetComponent<Image>();
+        notificationsToShowUp = new Queue<CreaturesBase>();
         //selectedTab = new Color32(124, 192, 0, 255);
         //nonSelectedTab = new Color32(89, 137, 0, 255);
     }
@@ -72,6 +88,9 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemySpeedValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(6).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyName = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
+
+        notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
+        notificationHeader =  GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
 
         InitializeEncyclopedia();
     }
@@ -96,12 +115,16 @@ public class EncyclopediaManager : MonoBehaviour
 
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
+        if (GM.IsTutorial)
+            return;
         openedCreature.isOpenedInEcnyclopedia = true;
-        //Debug.Log(openedCreature.name);
-        //Debug.Log(notes[openedCreature.name]);
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
-        //ShowNewNoteNotification(openedCreature);
+        notificationsToShowUp.Enqueue(openedCreature);
+        Debug.Log(notificationsToShowUp.Count);
+        Debug.Log(newNoteCoroutine);
+        if (newNoteCoroutine == null)
+            newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
 
     public void OpenExtraInfo(GameObject ChosenNote)
@@ -110,15 +133,6 @@ public class EncyclopediaManager : MonoBehaviour
             OpenPlants();
         else
             OpenEnemy();
-        StartCoroutine(DeselectNote());
-
-
-
-        IEnumerator DeselectNote()
-        {
-            yield return new WaitForEndOfFrame();
-            EventSystem.current.SetSelectedGameObject(null);
-        }
 
         void OpenPlants()
         {
@@ -130,26 +144,13 @@ public class EncyclopediaManager : MonoBehaviour
                 GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
                 return;
             }
-            if (curCreature.isOpenedInEcnyclopedia)
-            {
-                extraInfoPlantName.text = curCreature.name;
-                extraInfoPlantDescription.text = curCreature.description;
-                extraInfoPlantImage.sprite = curCreature.imageBig;
-                extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
+            extraInfoPlantName.text = curCreature.name;
+            extraInfoPlantDescription.text = curCreature.description;
+            extraInfoPlantImage.sprite = curCreature.imageBig;
+            extraInfoPlantHpValue.text = curNotesManager.hp.ToString();
 
-                extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
-                extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
-            }
-            else
-            {
-                extraInfoPlantName.text = "Неизвестно";
-                extraInfoPlantDescription.text = "???";
-                extraInfoPlantImage.sprite = curCreature.imageUnknown;
-                extraInfoPlantHpValue.text = "???";
-
-                extraInfoPlantLootIcon.sprite = null;
-                extraInfoPlantLootValue.text = "???";
-            }
+            extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
+            extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
 
             GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(true);
         }
@@ -163,26 +164,13 @@ public class EncyclopediaManager : MonoBehaviour
                 GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
                 return;
             }
-            if (curCreature.isOpenedInEcnyclopedia)
-            {
-                extraInfoEnemyName.text = curCreature.name;
-                extraInfoEnemyDescription.text = curCreature.description;
-                extraInfoEnemyImage.sprite = curCreature.imageBig;
-                extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
+            extraInfoEnemyName.text = curCreature.name;
+            extraInfoEnemyDescription.text = curCreature.description;
+            extraInfoEnemyImage.sprite = curCreature.imageBig;
+            extraInfoEnemyHpValue.text = curNotesManager.hp.ToString();
 
-                extraInfoEnemyDamageValue.text = curNotesManager.damage.ToString();
-                extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
-            }
-            else
-            {
-                extraInfoEnemyName.text = "Неизвестно";
-                extraInfoEnemyDescription.text = "???";
-                extraInfoEnemyImage.sprite = curCreature.imageUnknown;
-                extraInfoEnemyHpValue.text = "???";
-
-                extraInfoEnemyDamageValue.text = "???";
-                extraInfoEnemySpeedValue.text = "???";
-            }
+            extraInfoEnemyDamageValue.text = curNotesManager.damage.ToString();
+            extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
 
             GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(true);
         }
@@ -192,64 +180,123 @@ public class EncyclopediaManager : MonoBehaviour
     {
         GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
         GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
     }
 
+    public void CloseLoreNote() => GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
 
 
     public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
+        if (GM.IsTutorial)
+            return;
         isOpened = !isOpened;
-        GetComponent<Image>().enabled = isOpened;               //redo after getting parent for EncyclopediaPanel
-        transform.GetChild(0).gameObject.SetActive(isOpened);
-        transform.GetChild(1).gameObject.SetActive(isOpened);
-        HideExtraInfo();
+        //Time.timeScale = isOpened ? 0f : 1f;
+        //GetComponent<Image>().enabled = isOpened;
+        //transform.GetChild(0).gameObject.SetActive(isOpened);
+        //HideExtraInfo();
+        //if (isOpened)
+        //    inputSystem.BlockPlayerInputs();
+        //else
+        //    inputSystem.UnblockPlayerInputs();
         if (isOpened)
+        {
+            Time.timeScale = 0f;
+            ShadingAnims.Enqueue(StartCoroutine(ShadeBackground()));
+            OpeningAnims.Enqueue(StartCoroutine(AnimateOpeningElement(transform.GetChild(0).gameObject)));
             inputSystem.BlockPlayerInputs();
+        }
         else
+        {
+            Time.timeScale = 1f;
+            DeShadingAnims.Enqueue(StartCoroutine(DeShadeBackground()));
+            HideExtraInfo();
+            ClosingAnims.Enqueue(StartCoroutine(AnimateClosingElement(transform.GetChild(0).gameObject)));
             inputSystem.UnblockPlayerInputs();
-
-        //GameManager.GM.PlayerMovement.IsAbleToMove = !isOpened;
+        }
     }
 
+    private IEnumerator ShadeBackground()
+    {
+        if (DeShadingAnims.Count != 0)
+            StopCoroutine(DeShadingAnims.Dequeue());
+        //backgrounds.enabled = true;
+        while (backgrounds.color.a <= 0.75f)
+        {
+            backgrounds.color = new Color(backgrounds.color.r, backgrounds.color.g, backgrounds.color.b, backgrounds.color.a + 0.06f);
+            //Debug.Log(backgrounds.color.a);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+    }
+    private IEnumerator DeShadeBackground()
+    {
+        if (ShadingAnims.Count != 0)
+            StopCoroutine(ShadingAnims.Dequeue());
+        while (backgrounds.color.a > 0f)
+        {
+            backgrounds.color = new Color(backgrounds.color.r, backgrounds.color.g, backgrounds.color.b, backgrounds.color.a - 0.01f);
+            yield return new WaitForSecondsRealtime(0.01f);
+        }
+        //backgrounds.enabled = false;
+    }
 
-    //public void ShowPlantStats (GameObject ChosenNote)
-    //{
-    //    extraInfoPlantPanel.SetActive(true);
-    //    extraInfoEnemyPanel.SetActive(false);
-    //    GameObject lootPanel = extraInfoPlantPanel.transform.GetChild(1).gameObject;
-    //    for (int i = 0; i < lootPanel.transform.childCount; i++)
-    //    {
-    //        Destroy(lootPanel.transform.GetChild(i).gameObject);
-    //    }
-    //    CreatureTypePlant temporary = ChosenNote.GetComponent<NotesManager>().creature as CreatureTypePlant;
-    //    for (int i = 0; i < temporary.lootSprites.Count; i++)
-    //    {
-    //        GameObject tempObject = Instantiate(LootIcon);
-    //        tempObject.GetComponent<Image>().sprite = temporary.lootSprites[i];
-    //        tempObject.transform.GetChild(0).GetComponent<Text>().text = temporary.lootAmount[i].ToString();
-    //        tempObject.transform.SetParent(lootPanel.transform);
-    //    }
-    //}
-    //public void ShowEnemyStats(GameObject ChosenNote)
-    //{
-    //    extraInfoEnemyPanel.SetActive(true);
-    //    extraInfoPlantPanel.SetActive(false);
-    //    GameObject specialAbilitiesPanel = extraInfoEnemyPanel.transform.GetChild(1).GetChild(2).gameObject;
-    //    for (int i = 0; i < specialAbilitiesPanel.transform.childCount; i++)
-    //    {
-    //        Destroy(extraInfoEnemyPanel.transform.GetChild(1).GetChild(2).GetChild(i).gameObject);
-    //    }
-    //    CreatureTypeEnemy temporary = ChosenNote.GetComponent<NotesManager>().creature as CreatureTypeEnemy;
-    //    extraInfoEnemyPanel.transform.GetChild(1).GetChild(0).gameObject.GetComponent<Text>().text = temporary.healthPoints.ToString();
-    //    extraInfoEnemyPanel.transform.GetChild(1).GetChild(1).gameObject.GetComponent<Text>().text = temporary.damagePoints.ToString();
-    //    for (int i = 0; i < temporary.listOfSpecialAbilities.Count; i++)
-    //    {
-    //        GameObject tempObject = Instantiate(iconOfSpecialAbility);
-    //        tempObject.GetComponent<Image>().sprite = temporary.listOfSpecialAbilities[i];
-    //        tempObject.transform.SetParent(specialAbilitiesPanel.transform);
+    private IEnumerator AnimateOpeningElement(GameObject element)
+    {
+        if (ClosingAnims.Count != 0)
+            StopCoroutine(ClosingAnims.Dequeue());
+        element.SetActive(true);
+        while (element.transform.localScale.x <= 1)
+        {
+            element.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+            //Debug.Log(element.transform.localScale.x);
+            yield return new WaitForSecondsRealtime(0.005f);
+            //Debug.Log(element.transform.localScale.x <= 1);
+        }
+    }
+    private IEnumerator AnimateClosingElement(GameObject element)
+    {
+        if (OpeningAnims.Count != 0)
+            StopCoroutine(OpeningAnims.Dequeue());
+        while (element.transform.localScale.x > 0)
+        {
+            element.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
+            yield return new WaitForSecondsRealtime(0.005f);
+        }
+        element.SetActive(false);
+    }
 
-    //    }
-    //}
+    private IEnumerator ShowNewNotification()
+    {
+        GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
+        while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
+        {
+            GM.UI.Encyclopedia.NewNoteNotification.transform.localScale += new Vector3(0.1f, 0.1f, 0);
+            yield return new WaitForSeconds(0.03f);
+        }
+        notificationImage.gameObject.SetActive(true);
+        notificationHeader.gameObject.SetActive(true);
+        while (notificationsToShowUp.Count != 0)
+        {
+            CreaturesBase curCreature = notificationsToShowUp.Dequeue();
+            notificationImage.sprite = curCreature.imageSmall;
+            for (int i = 0; i < 4; i++)
+            {
+                notificationHeader.colorGradientPreset = firstGradient;
+                yield return new WaitForSeconds(0.5f);
+                notificationHeader.colorGradientPreset = secondGradient;
+                yield return new WaitForSeconds(0.5f);
+            }
+        }
+        while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x >= 0.01)
+        {
+            GM.UI.Encyclopedia.NewNoteNotification.transform.localScale -= new Vector3(0.1f, 0.1f, 0);
+            yield return new WaitForSeconds(0.03f);
+        }
+        notificationImage.gameObject.SetActive(false);
+        notificationHeader.gameObject.SetActive(false);
+        GM.UI.Encyclopedia.NewNoteNotification.SetActive(false);
+        newNoteCoroutine = null;
+    }
 
     //private void ShowNewNoteNotification(CreaturesBase openedCreature)
     //{
@@ -261,18 +308,28 @@ public class EncyclopediaManager : MonoBehaviour
     public void OpenPlantsTab()
     {
         GM.UI.Encyclopedia.PlantsTab.SetActive(true);
-        //plantsTabHeader.GetComponent<Image>().color = selectedTab;
+        GM.UI.Encyclopedia.LoreTab.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
         GM.UI.Encyclopedia.EnemiesTab.SetActive(false);
         GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
-        //enemiesTabHeader.GetComponent<Image>().color = nonSelectedTab;
     }
 
     public void OpenEnemiesTab()
     {
         GM.UI.Encyclopedia.PlantsTab.SetActive(false);
-        //plantsTabHeader.GetComponent<Image>().color = nonSelectedTab;
-        GM.UI.Encyclopedia.EnemiesTab.SetActive(true);
         GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
-        //enemiesTabHeader.GetComponent<Image>().color = selectedTab;
+        GM.UI.Encyclopedia.LoreTab.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
+        GM.UI.Encyclopedia.EnemiesTab.SetActive(true);
+    }
+
+    public void OpenLoreTab()
+    {
+
+        GM.UI.Encyclopedia.PlantsTab.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
+        GM.UI.Encyclopedia.LoreTab.SetActive(true);
+        GM.UI.Encyclopedia.EnemiesTab.SetActive(false);
+        GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
     }
 }

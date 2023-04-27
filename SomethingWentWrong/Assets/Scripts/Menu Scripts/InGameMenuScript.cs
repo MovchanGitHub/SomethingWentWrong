@@ -32,6 +32,18 @@ public class InGameMenuScript : MonoBehaviour
     }
 
     public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context) {
+        if (GM.UI.Encyclopedia.ExtraInfoLorePanel.activeSelf)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.CloseLoreNote();
+            return;
+        }
+
+        if (GM.UI.Encyclopedia.transform.GetChild(0).gameObject.activeSelf && !GM.IsTutorial)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenCloseEncyclopedia(context);
+            return;
+        }
+
         if (GM.InventoryManager.isCanvasActive) {
             GM.InventoryManager.activateInventory(false);
         }
@@ -71,6 +83,7 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         GM.InputSystem.UnblockPlayerInputs();
         GM.InputSystem.openInventoryInput.Enable();
+        GM.InputSystem.openEncyclopediaInput.Enable();
         if (GM.IsTutorial && showTutorialPopupAfterHidingMenu)
         {
             GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(true);
@@ -85,6 +98,7 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(true);
         GM.InputSystem.BlockPlayerInputs();
         GM.InputSystem.openInventoryInput.Disable();
+        GM.InputSystem.openEncyclopediaInput.Disable();
         if (GM.IsTutorial && GM.Tutorial.PopupSystem.CurrentPopupObject.activeInHierarchy)
         {
             GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(false);

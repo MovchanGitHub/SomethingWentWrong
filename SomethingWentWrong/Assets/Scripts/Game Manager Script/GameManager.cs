@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TutorialManager _tutorialManager;
     [SerializeField] private bool _isTutorial;
 
+    [SerializeField] private DaysRecordSave daysRecord;
     private void Awake()
     {
         Time.timeScale = 1f;
