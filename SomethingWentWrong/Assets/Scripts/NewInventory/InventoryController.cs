@@ -213,6 +213,11 @@ public class InventoryController : MonoBehaviour
         inventoryItem.Set(item);
     }
 
+    public void clearInventory()
+    {
+        SelectedItemGrid.clearGrid();
+    }
+
     public bool checkSpaceInInventory(ItemsBase item)
     {
         createItem(item);

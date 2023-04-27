@@ -34,6 +34,7 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float strength = 15;
     [SerializeField] private float delay = 0.3f;
 
+
     [HideInInspector] public EnemyScript es;
 
     private void Awake()
@@ -59,12 +60,18 @@ public class EnemyMovement : MonoBehaviour
         if (distance < triggerDistance)
         {
             actualTarget = playerTarget;
-            es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            if (canMove)
+            {
+                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            }
         }
         else
         {
             actualTarget = rocketTarget;
-            es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            if (canMove)
+            {
+                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+            }
         }
     }
 

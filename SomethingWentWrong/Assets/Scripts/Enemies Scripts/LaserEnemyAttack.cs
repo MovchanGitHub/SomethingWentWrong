@@ -35,13 +35,13 @@ public class LaserEnemyAttack : EnemyAttack
     {
         es.Animator.AttackTrigger();
         yield return new WaitForSeconds(timeBeforeAttack);
-        laser.gameObject.SetActive(true);
         Quaternion startRotation = Quaternion.Euler(Vector3.forward * angle);
         Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 100)); //160
         float rate = 1f;
         laser.transform.rotation = startRotation;
+        laser.gameObject.SetActive(true);
         for (float t = 0; t < 1; t += rate * Time.deltaTime)
-        {
+        {   /*
             Vector2 laserDirection = laser.transform.rotation * Vector2.one;
             RaycastHit2D hit = Physics2D.Raycast((Vector2)laser.transform.position, laserDirection.normalized, laser.transform.localScale.x, damagableLayers);
             timeToDamage -= Time.deltaTime;
@@ -55,6 +55,7 @@ public class LaserEnemyAttack : EnemyAttack
                     timeToDamage = laserDamageSpeed;
                 }
             }
+            */
             laser.transform.rotation = Quaternion.Lerp(startRotation, endRotation, Mathf.SmoothStep(0f, 1f, t));
             yield return null;
         }
