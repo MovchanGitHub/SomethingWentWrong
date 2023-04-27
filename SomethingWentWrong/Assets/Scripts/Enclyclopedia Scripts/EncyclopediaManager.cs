@@ -107,6 +107,8 @@ public class EncyclopediaManager : MonoBehaviour
 
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
+        if (GM.IsTutorial)
+            return;
         openedCreature.isOpenedInEcnyclopedia = true;
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
@@ -176,7 +178,8 @@ public class EncyclopediaManager : MonoBehaviour
 
     public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-
+        if (GM.IsTutorial)
+            return;
         isOpened = !isOpened;
         Time.timeScale = isOpened ? 0f : 1f;
         GetComponent<Image>().enabled = isOpened;

@@ -38,7 +38,7 @@ public class InGameMenuScript : MonoBehaviour
             return;
         }
 
-        if (GM.UI.Encyclopedia.transform.GetChild(0).gameObject.activeSelf)
+        if (GM.UI.Encyclopedia.transform.GetChild(0).gameObject.activeSelf && !GM.IsTutorial)
         {
             GM.UI.Encyclopedia.EncyclopediaScript.OpenCloseEncyclopedia(context);
             return;
