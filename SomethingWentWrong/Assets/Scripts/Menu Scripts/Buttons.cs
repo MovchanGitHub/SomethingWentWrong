@@ -69,7 +69,6 @@ public class Buttons : MonoBehaviour
     /// Exit
     public void OnButtonExit() {
         Debug.Log("Quit application");
-        EventSystem.current.SetSelectedGameObject(pauseScript.transform.GetChild(7).gameObject);
         Application.Quit();
     }
     
@@ -90,12 +89,12 @@ public class Buttons : MonoBehaviour
 
     public void OnButtonConfirmExit()
     {
-        pauseScript.HideMenu();
+        GM.UI.PauseMenu.SetActive(false);
         GM.UI.ConfirmExit.SetActive(true);
     }
     public void OnButtonCancelExit()
     {
         GM.UI.ConfirmExit.SetActive(false);
-        pauseScript.ShowMenu();
+        GM.UI.PauseMenu.SetActive(true);
     }
 }

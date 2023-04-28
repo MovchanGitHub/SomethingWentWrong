@@ -76,6 +76,7 @@ public class MainButtons : MonoBehaviour
     {
         backAnimator.Update(1);
         settings.SetActive(false);
+        GM.UI.GetComponent<SettingsScript>().SaveSettings();
         mainMenu.ShowHideMenu();
     }
 

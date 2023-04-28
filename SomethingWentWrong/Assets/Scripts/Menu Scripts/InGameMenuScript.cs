@@ -58,7 +58,7 @@ public class InGameMenuScript : MonoBehaviour
         }
         else if (confirmExit.activeSelf)
         {
-            var b = GM.UI.ControlsMenu.transform.GetChild(3).GetComponent<Button>();
+            var b = GM.UI.ConfirmExit.transform.GetChild(2).GetComponent<Button>();
             EventSystem.current.SetSelectedGameObject(b.GameObject());
             b.onClick.Invoke();
         }
