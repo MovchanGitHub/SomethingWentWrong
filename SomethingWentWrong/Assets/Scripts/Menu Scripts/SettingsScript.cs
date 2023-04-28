@@ -7,14 +7,17 @@ using static GameManager;
 
 public class SettingsScript : MonoBehaviour
 {
+    [HideInInspector] public bool isOpened;
 
-    GameObject settingsMenu;
-    InGameMenuScript pauseScript;
+    private GameObject settingsMenu;
+    private InGameMenuScript pauseScript;
+    private TMPro.TMP_Dropdown resolutionDropdown;
+    private Slider musicSlider;
+    private Slider soundsSlider;
+    private Toggle fullscreenToggle;
+    private Toggle retroWaveToggle;
     
-    public bool isOpened;
     
-    public TMPro.TMP_Dropdown dropdown;
-
     private string filePath;
     private int baseWidth;
     private int baseHeight;
@@ -23,36 +26,39 @@ public class SettingsScript : MonoBehaviour
     
     private void Awake()
     {
-        pauseScript = GetComponent<InGameMenuScript>();
-        LoadSettings();
     }
 
     private void Start()
     {
+        pauseScript = GM.UI.InGameMenuScript;
+        settingsMenu = GM.UI.SettingsMenu;
+        resolutionDropdown = settingsMenu.GetComponentInChildren<TMPro.TMP_Dropdown>();
+        musicSlider = GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>();
+        soundsSlider = GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>();
+        fullscreenToggle = GM.UI.SettingsMenu.transform.GetChild(4).GetComponent<Toggle>();
+        retroWaveToggle = GM.UI.SettingsMenu.transform.GetChild(8).GetComponent<Toggle>();
+        
+        
         baseWidth = Screen.width;
         baseHeight = Screen.height;
-        settingsMenu = GM.UI.SettingsMenu;
         
-        // GM.UI.SettingsMenu.transform.GetChild(4).GetComponent<Toggle>().isOn = Screen.fullScreen;
-        settingsMenu.SetActive(false);
-        dropdown = GM.UI.SettingsMenu.GetComponentInChildren<TMPro.TMP_Dropdown>();
-
         filePath = Application.persistentDataPath + "/save.gamesave";
         LoadSettings();
+        settingsMenu.SetActive(false);
     }
     
     public void HideSettings()
     {
+        SaveSettings();
         settingsMenu.SetActive(false);
         pauseScript.ShowHideMenu();
         isOpened = false;
-        SaveSettings();
     }
     public void ShowSettings()
     {
         isOpened = true;
         settingsMenu.SetActive(true);
-        LoadSettings();
+        LoadSettings(); // костыль, зато какой!!!
         pauseScript.ShowHideMenu();
     }
 
@@ -64,55 +70,80 @@ public class SettingsScript : MonoBehaviour
             Screen.SetResolution(baseWidth, baseHeight, Screen.fullScreen);
             return;
         }
-        var options = dropdown.options;
+        var options = resolutionDropdown.options;
         var match = Regex.Match(options[value].text, @"(\d+)X(\d+)");
         Screen.SetResolution(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), Screen.fullScreen);
-        SaveSettings();
     }
 
-    public void SetFullscreen(bool is_fullscreen)
+    private bool fullscreen = true;
+    
+    public bool Fullscreen {
+        set => Screen.fullScreen = fullscreen = value;
+    }
+
+    public void ChangeFullscreen()
     {
-        Screen.SetResolution(Screen.width, Screen.height, is_fullscreen);
-        Debug.Log($"Is full screen - {is_fullscreen}");
+        Fullscreen = !fullscreen;
         SaveSettings();
     }
 
 
     public void SaveSettings()
     {
-        Debug.Log("Saveing settings");
+        var music =  GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value;
+        var sounds = GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>().value;
+        
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = new FileStream(filePath, FileMode.Create);
-
-        // var GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value;
-        // GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>().value;
-        Save save = new Save(resolutionVariant, Screen.fullScreen, 100, 100);
+        
+        Save save = new Save(
+            music, 
+            sounds,
+            resolutionVariant, 
+            fullscreen,
+            retroWaveToggle.isOn
+            );
+        Debug.Log(save.ToString());
         bf.Serialize(fs, save);
         fs.Close();
+        Debug.Log("Settings saved");
     }
 
     public void LoadSettings()
     {
         if (!File.Exists(filePath))
             return;
-        Debug.Log("Loading settings");
         BinaryFormatter bf = new BinaryFormatter();
         FileStream fs = new FileStream(filePath, FileMode.Open);
-
         Save save = (Save)bf.Deserialize(fs);
         fs.Close();
         
-        Debug.Log(save.resolutionVariant);
-        Debug.Log(save.isFullscreen);
-        Debug.Log(save.musicVolume);
-        Debug.Log(save.soundsVolume);
-        GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value = save.musicVolume;
-        GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>().value = save.soundsVolume;
-        GM.UI.SettingsMenu.transform.GetChild(4).GetComponent<Toggle>().isOn = save.isFullscreen;
-        GM.UI.SettingsMenu.transform.GetChild(6).GetComponent<TMPro.TMP_Dropdown>().value = save.resolutionVariant;
-        GM.UI.SettingsMenu.transform.GetChild(6).GetComponent<TMPro.TMP_Dropdown>().RefreshShownValue();
-        SetResolution(save.resolutionVariant);
-        SetFullscreen(save.isFullscreen);
+        var musicVolume = save.musicVolume;
+        var soundsVolume = save.soundsVolume;
+        var saveResolutionVariant = save.resolutionVariant;
+        var isFullScreen = save.isFullscreen;
+        var isRetroWave = save.isRetroWave;
+        
+        var musicVolumeScript = GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<MusicVol>().audioMixer;
+        var soundsVolumeScript = GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<SoundsVol>().audioMixer;
+        var retroWaveScript = GM.UI.SettingsMenu.transform.GetChild(8).GetComponent<SetRetroWaveEffect>();
+        
+        // Music & Sounds
+        musicSlider.value = musicVolume;
+        musicVolumeScript.SetFloat("GameVol", Mathf.Log10(musicVolume) * 20);
+        soundsSlider.value = soundsVolume;
+        soundsVolumeScript.SetFloat("GameVol", Mathf.Log10(soundsVolume) * 20);
+        // Resolution
+        resolutionDropdown.value = saveResolutionVariant;
+        resolutionDropdown.RefreshShownValue();
+        SetResolution(saveResolutionVariant);
+        // Fullscreen
+        fullscreenToggle.isOn = isFullScreen;
+        Screen.SetResolution(Screen.width, Screen.height, isFullScreen);
+        // RetroWave
+        retroWaveToggle.isOn = isRetroWave;
+        retroWaveScript.RetroWaveEffect = isRetroWave;
+        Debug.Log("Loading settings");
     }
 }
 
@@ -121,15 +152,27 @@ public class Save
 {
     public int resolutionVariant;
     public bool isFullscreen;
+    public bool isRetroWave;
     public float musicVolume;
     public float soundsVolume;
     
-
-    public Save(int resolutionVariant, bool isFullscreen, float musicVolume, float soundsVolume)
+    public Save(
+        float musicVolume, 
+        float soundsVolume,
+        int resolutionVariant, 
+        bool isFullscreen, 
+        bool isRetroWave
+        )
     {
-        this.resolutionVariant = resolutionVariant;
-        this.isFullscreen = isFullscreen;
         this.musicVolume = musicVolume;
         this.soundsVolume = soundsVolume;
+        this.resolutionVariant = resolutionVariant;
+        this.isFullscreen = isFullscreen;
+        this.isRetroWave = isRetroWave;
+    }
+
+    public override string ToString()
+    {
+        return $"resolutionVariant{resolutionVariant}\nisFullscreen {isFullscreen}\nisRetroWave {isRetroWave}\nmusicVolume {musicVolume}\nsoundsVolume {soundsVolume}\n";
     }
 }

@@ -1,30 +1,28 @@
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.EventSystems;
-using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using static GameManager;
 
 public class Buttons : MonoBehaviour
 {
-    InGameMenuScript pauseScript;
-    SettingsScript settingsScript;
+    private InGameMenuScript pauseScript;
+    private SettingsScript settingsScript;
 
-    GameObject loadingScreen;
-    Slider slider;
-    TextMeshProUGUI progressText;
+    private GameObject loadingScreen;
+    private Slider slider;
+    private TextMeshProUGUI progressText;
 
-    private void Awake() {
-        pauseScript = GetComponent<InGameMenuScript>();
-        settingsScript = GetComponent<SettingsScript>();
+    private void Awake()
+    {
     }
 
     private void Start()
     {
+        pauseScript = GM.UI.InGameMenuScript;
+        settingsScript = GM.UI.SettingsScript;
         loadingScreen = GM.UI.LoadingScreen;
         slider = loadingScreen.GetComponentInChildren<Slider>();
         progressText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
@@ -42,35 +40,33 @@ public class Buttons : MonoBehaviour
         pauseScript.HideMenu();
         EventSystem.current.SetSelectedGameObject(pauseScript.transform.GetChild(0).gameObject);
     }
-
+    /// Settings 
     public void OnButtonSettings() {
         settingsScript.ShowSettings();
     }
-    
+    public void OnButtonSettingsBack() {
+        settingsScript.HideSettings();
+    }
+    /// Controls
     public void OnButtonControlKeys() {
         pauseScript.ShowHideMenu();
         GM.UI.ControlsMenu.SetActive(true);
     }
-    
     public void OnButtonControlBack() {
         GM.UI.ControlsMenu.SetActive(false);
         pauseScript.ShowHideMenu();
     }
-    
+    /// AboutGame
     public void OnButtonAboutGame() {
         pauseScript.ShowHideMenu();
         GM.UI.AboutGame.SetActive(true);
     }
-    
     public void OnButtonAboutGameBack() {
         GM.UI.AboutGame.SetActive(false);
         pauseScript.ShowHideMenu();
     }
     
-    public void OnButtonBack() {
-        settingsScript.HideSettings();
-    }
-    
+    /// Exit
     public void OnButtonExit() {
         Debug.Log("Quit application");
         Application.Quit();
@@ -80,6 +76,8 @@ public class Buttons : MonoBehaviour
         loadingScreen.SetActive(true);
         
         var oper = SceneManager.LoadSceneAsync(sceneName);
+        yield return new WaitForSecondsRealtime(2);
+
         while (!oper.isDone) {
             float progress = Mathf.Clamp01(oper.progress / .9f);
             slider.value = progress;
@@ -87,5 +85,16 @@ public class Buttons : MonoBehaviour
             
             yield return null;
         }
+    }
+
+    public void OnButtonConfirmExit()
+    {
+        GM.UI.PauseMenu.SetActive(false);
+        GM.UI.ConfirmExit.SetActive(true);
+    }
+    public void OnButtonCancelExit()
+    {
+        GM.UI.ConfirmExit.SetActive(false);
+        GM.UI.PauseMenu.SetActive(true);
     }
 }
