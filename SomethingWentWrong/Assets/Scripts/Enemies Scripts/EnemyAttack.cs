@@ -40,6 +40,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         {
             enemyLogic.CanMove = false;
             es.Animator.ChangeXY(enemyLogic.actualTarget.transform.position - transform.position);
+            enemyLogic.attackPoint.transform.localPosition = new Vector3(0 - 1 * Math.Sign(enemyLogic.direction.x), 1 - 1 * Math.Sign(enemyLogic.direction.y), enemyLogic.attackPoint.transform.position.z);
             StartCoroutine(Attack());
         }
     }
@@ -52,7 +53,7 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         es.Animator.AttackTrigger();
         
         yield return new WaitForSeconds(timeBeforeAttack);
-        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(transform.position, triggerAttackDistance + attackRange, damagableLayers);
+        Collider2D[] hitObjects = Physics2D.OverlapCircleAll(enemyLogic.attackPoint.transform.position, 1.2f, damagableLayers);
         foreach (Collider2D hitObject in hitObjects)
         {
             if (hitObject.GetComponent<IDamagable>() != null)
@@ -79,6 +80,11 @@ public class EnemyAttack : MonoBehaviour, IWeaponable
         yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
         isAttacking = false;
+    }
+
+    private void OnDrawGizmosSelected()
+    {
+        Gizmos.DrawWireSphere(enemyLogic.attackPoint.transform.position, 1.2f);
     }
 
 

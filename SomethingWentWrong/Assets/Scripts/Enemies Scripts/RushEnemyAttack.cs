@@ -22,6 +22,7 @@ public class RushEnemyAttack : EnemyAttack
         if (distanceToTarget < triggerAttackDistance && enemyLogic.CanMove)
         {
             enemyLogic.CanMove = false;
+            enemyLogic.rotateSprite();
             StartCoroutine(RushAttack(direction));
         }
     }
