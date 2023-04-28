@@ -174,6 +174,6 @@ public class Save
 
     public override string ToString()
     {
-        return $"resolutionVariant {resolutionVariant}\nisFullscreen {isFullscreen}\nisRetroWave {isRetroWave}\nmusicVolume {musicVolume}\nsoundsVolume {soundsVolume}\n";
+        return $"resolutionVariant{resolutionVariant}\nisFullscreen {isFullscreen}\nisRetroWave {isRetroWave}\nmusicVolume {musicVolume}\nsoundsVolume {soundsVolume}\n";
     }
 }
