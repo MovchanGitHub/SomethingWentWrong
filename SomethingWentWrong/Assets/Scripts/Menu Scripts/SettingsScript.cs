@@ -130,9 +130,9 @@ public class SettingsScript : MonoBehaviour
         
         // Music & Sounds
         musicSlider.value = musicVolume;
-        musicVolumeScript.SetFloat("GameVol", Mathf.Log10(musicVolume) * 20);
+        // musicVolumeScript.SetFloat("GameVol", Mathf.Log10(musicVolume) * 20);
         soundsSlider.value = soundsVolume;
-        soundsVolumeScript.SetFloat("GameVol", Mathf.Log10(soundsVolume) * 20);
+        // soundsVolumeScript.SetFloat("GameVol", Mathf.Log10(soundsVolume) * 20);
         // Resolution
         resolutionDropdown.value = saveResolutionVariant;
         resolutionDropdown.RefreshShownValue();
