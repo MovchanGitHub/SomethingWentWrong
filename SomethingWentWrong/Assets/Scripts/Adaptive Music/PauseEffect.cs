@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Audio;
-using static GameManager;
+
 public class PauseEffect : MonoBehaviour
 {
     public AudioMixer audioMixer;
@@ -20,9 +20,9 @@ public class PauseEffect : MonoBehaviour
         audioMixer.SetFloat("DryVol", _dryValue);
         audioMixer.SetFloat("WetVol", _wetValue);
 
-        _inGameMenuScript = GM.UI.GetComponent<InGameMenuScript>();
-        _settingsScript = GM.UI.GetComponent<SettingsScript>();
-        _deathScreen = GM.UI.GetComponent<EndScreen>();
+        _inGameMenuScript = GetComponent<InGameMenuScript>();
+        _settingsScript = GetComponent<SettingsScript>();
+        _deathScreen = GetComponent<EndScreen>();
     }
 
     void Update()

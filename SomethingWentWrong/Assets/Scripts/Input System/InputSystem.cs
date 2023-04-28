@@ -37,7 +37,7 @@ public class InputSystem : MonoBehaviour
         inputActions["InventoryClose"] = GM.InventoryManager.OpenCloseInventory;
         if (!GM.IsTutorial)
             inputActions["EncyclopediaOpen"] = GM.UI.Encyclopedia.EncyclopediaScript.OpenCloseEncyclopedia;
-        inputActions["MenuOpen"] = GM.UI.InGameMenuScript.EscapeIsPressed;
+        inputActions["MenuOpen"] = GM.UI.GetComponent<InGameMenuScript>().EscapeIsPressed;
         
         playerInput.actions["Sprint"].started += inputActions["PlayerRun"];
         playerInput.actions["Sprint"].canceled += inputActions["PlayerWalk"];

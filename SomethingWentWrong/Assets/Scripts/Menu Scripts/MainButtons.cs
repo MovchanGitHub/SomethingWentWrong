@@ -76,7 +76,6 @@ public class MainButtons : MonoBehaviour
     {
         backAnimator.Update(1);
         settings.SetActive(false);
-        GM.UI.GetComponent<SettingsScript>().SaveSettings();
         mainMenu.ShowHideMenu();
     }
 
@@ -91,7 +90,6 @@ public class MainButtons : MonoBehaviour
         loadingScreen.SetActive(true);
         
         var oper = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSecondsRealtime(2);
         while (!oper.isDone)
         {
             float progress = Mathf.Clamp01(oper.progress / .9f);
