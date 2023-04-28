@@ -31,7 +31,8 @@ public class PlaySound : MonoBehaviour
     {
         audioSource.clip = audioClip;
         audioSource.outputAudioMixerGroup = audioMixer;
-        audioSource.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
+        if (!audioClip.name.Contains("Click"))
+            audioSource.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
         audioSource.Play();
         yield return new WaitForSeconds(audioClip.length * 2);
         Destroy(gameObject);

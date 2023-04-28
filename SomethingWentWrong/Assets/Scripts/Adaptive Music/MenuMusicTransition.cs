@@ -15,6 +15,14 @@ public class MenuMusicTransition : MusicFaderScript
 
     private void Awake()
     {
+        
+    }
+
+    private void Start()
+    {
+        audioMixer.SetFloat("Cutoff", 22000f);
+        audioMixer.SetFloat("DryVol", 0f);
+        audioMixer.SetFloat("WetVol", -10000f);
         DontDestroyOnLoad(gameObject);
         _audioSource = GetComponent<AudioSource>();
         _audioSource.volume = 0.0001f;
@@ -25,20 +33,15 @@ public class MenuMusicTransition : MusicFaderScript
         _audioSource.volume = 0;
     }
 
-    private void Start()
-    {
-        audioMixer.SetFloat("Cutoff", 22000f);
-        audioMixer.SetFloat("DryVol", 0f);
-        audioMixer.SetFloat("WetVol", -10000f);
-    }
-
     private void Update()
     {
-        // Debug.Log(Time.deltaTime);
+        Debug.Log(Time.timeScale);
         if (_menuScene != SceneManager.GetActiveScene())
         {
-            _audioSource.volume = Mathf.Pow(Mathf.Lerp(0, 1, _timeElapsed / _timeToFade), 2); 
+            _audioSource.volume = Mathf.Pow(Mathf.Lerp(0, 1, _timeElapsed / _timeToFade), 2);
             _timeElapsed -= Time.deltaTime;
+            if (_timeElapsed < 0)
+                _timeElapsed = 0;
             if (_audioSource.volume < 0.001f)
             {
                 Destroy(gameObject);
