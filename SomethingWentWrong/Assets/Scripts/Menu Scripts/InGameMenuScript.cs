@@ -36,11 +36,12 @@ public class InGameMenuScript : MonoBehaviour
     }
 
     public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context) {
-        if (GM.UI.Encyclopedia.ExtraInfoLorePanel.activeSelf)
-        {
-            GM.UI.Encyclopedia.EncyclopediaScript.CloseLoreNote();
-            return;
-        }
+        // TODO Fix this
+        // if (GM.UI.Encyclopedia.ExtraInfoLorePanel.activeSelf)
+        // {
+        //     GM.UI.Encyclopedia.EncyclopediaScript.CloseLoreNote();
+        //     return;
+        // }
 
         if (GM.UI.Encyclopedia.transform.GetChild(0).gameObject.activeSelf && !GM.IsTutorial)
         {
@@ -74,8 +75,7 @@ public class InGameMenuScript : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(b.GameObject());
             b.onClick.Invoke();
         }
-        else
-            if (isOpened) {
+        else if (isOpened) {
             HideMenu();
         }
         else {

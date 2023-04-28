@@ -10,7 +10,7 @@ using static GameManager;
 
 public class SkillsScript : MonoBehaviour
 {
-    GameObject skillsWindow;
+    private GameObject skillsWindow;
     [SerializeField] PlayerDamagable playerDamagable;
     SurvivalManager survivalManager;
     LightHouse lightHouse;
@@ -69,7 +69,6 @@ public class SkillsScript : MonoBehaviour
         Debug.Log("seed = " + seed);
         random.InitState(seed);
         
-        skillsWindow.SetActive(false);
         
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
         rh = GM.UI.RocketHealthSlider.GetComponent<RectTransform>();

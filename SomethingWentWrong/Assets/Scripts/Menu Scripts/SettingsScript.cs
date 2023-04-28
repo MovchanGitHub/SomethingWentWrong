@@ -43,6 +43,7 @@ public class SettingsScript : MonoBehaviour
         baseHeight = Screen.height;
         
         filePath = Application.persistentDataPath + "/save.gamesave";
+        // Debug.Log(filePath); // uncomment to show save path
         LoadSettings();
         settingsMenu.SetActive(false);
     }
