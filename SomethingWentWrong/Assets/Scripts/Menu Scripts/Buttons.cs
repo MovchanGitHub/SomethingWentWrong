@@ -12,7 +12,7 @@ public class Buttons : MonoBehaviour
     private SettingsScript settingsScript;
 
     private GameObject loadingScreen;
-    private Slider slider;
+    private Slider progressSlider;
     private TextMeshProUGUI progressText;
 
     private void Awake()
@@ -24,7 +24,7 @@ public class Buttons : MonoBehaviour
         pauseScript = GM.UI.InGameMenuScript;
         settingsScript = GM.UI.SettingsScript;
         loadingScreen = GM.UI.LoadingScreen;
-        slider = loadingScreen.GetComponentInChildren<Slider>();
+        progressSlider = loadingScreen.GetComponentInChildren<Slider>();
         progressText = loadingScreen.GetComponentInChildren<TextMeshProUGUI>();
     }
 
@@ -75,14 +75,21 @@ public class Buttons : MonoBehaviour
     IEnumerator LoadAsync(string sceneName) {
         loadingScreen.SetActive(true);
         
-        var oper = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSecondsRealtime(2);
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        asyncOperation.allowSceneActivation = false;
 
-        while (!oper.isDone) {
-            float progress = Mathf.Clamp01(oper.progress / .9f);
-            slider.value = progress;
-            progressText.text = (int)progress * 100 + "%";
-            
+        var progress = 0f;
+        while (!asyncOperation.isDone) {
+            progress = Mathf.MoveTowards(progress, asyncOperation.progress, Time. deltaTime);
+            progressSlider.value = progress;
+            progressText.text = (int)(progress * 100) + "%";
+            if (progress >= 0.9f)
+            {
+                progressSlider.value = 1;
+                progressText.text =  "100%";
+                yield return new WaitForSecondsRealtime(1);
+                asyncOperation. allowSceneActivation = true;
+            }
             yield return null;
         }
     }

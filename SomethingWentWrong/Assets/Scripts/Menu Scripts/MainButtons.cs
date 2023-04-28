@@ -16,37 +16,37 @@ public class MainButtons : MonoBehaviour
     private Button[] buttons;
     public Animator backAnimator;
     
-
+    private GameObject loadingScreen;
+    private Slider progressSlider;
+    private TextMeshProUGUI progressText;
      
-    private void Start()
-    {
+    private void Start() {
         mainMenu = GetComponentInParent<MainMenuScript>();
         settings = GM.UI.SettingsMenu;
         buttons = GetComponentsInChildren<Button>();
+        loadingScreen = GM.UI.LoadingScreen;
+        progressSlider = loadingScreen.GetComponentInChildren<Slider>();
+        progressText = loadingScreen.transform.GetChild(0).GetComponentInChildren<TextMeshProUGUI>();
     }
     
-    public void OnButtonLoadScene(string sceneName)
-    {
+    public void OnButtonLoadScene(string sceneName) {
         Debug.Log($"Loading scene {sceneName}");
         StartCoroutine(LoadAsync(sceneName));
     }
 
    
     
-    public void OnContinueButton()
-    {
+    public void OnContinueButton() {
         StartCoroutine(LoadAsync("Level One"));
 
     }
     
-    public void OnButtonExit()
-    {
+    public void OnButtonExit() {
         Debug.Log("Quit application");
         Application.Quit();
     }
 
-    public void OnButtonSettings()
-    {
+    public void OnButtonSettings() {
         foreach (var button in buttons)
         {
             button.animator.Update(1);
@@ -55,8 +55,7 @@ public class MainButtons : MonoBehaviour
         settings.SetActive(true);
         mainMenu.ShowHideMenu();
     }
-    public void OnButtonAboutGame()
-    {
+    public void OnButtonAboutGame() {
         foreach (var button in buttons)
         {
             button.animator.Update(1);
@@ -65,39 +64,36 @@ public class MainButtons : MonoBehaviour
         aboutGame.SetActive(true);
         mainMenu.ShowHideMenu();
     }
-    public void OnButtonAboutGameBack()
-    {
+    public void OnButtonAboutGameBack() {
         aboutGame.SetActive(false);
         mainMenu.ShowHideMenu();
     }
-    
-    
-    public void OnButtonBack()
-    {
+
+    public void OnButtonBack() {
         backAnimator.Update(1);
         settings.SetActive(false);
         GM.UI.GetComponent<SettingsScript>().SaveSettings();
         mainMenu.ShowHideMenu();
     }
-
-
-    public GameObject loadingScreen;
-    public Slider slider;
-    public TextMeshProUGUI progressText;
     
-    
-    IEnumerator LoadAsync(string sceneName)
-    {
+    IEnumerator LoadAsync(string sceneName) {
         loadingScreen.SetActive(true);
         
-        var oper = SceneManager.LoadSceneAsync(sceneName);
-        yield return new WaitForSecondsRealtime(2);
-        while (!oper.isDone)
-        {
-            float progress = Mathf.Clamp01(oper.progress / .9f);
-            slider.value = progress;
-            progressText.text = (int)progress * 100 + "%";
-            
+        var asyncOperation = SceneManager.LoadSceneAsync(sceneName);
+        asyncOperation.allowSceneActivation = false;
+
+        var progress = 0f;
+        while (!asyncOperation.isDone) {
+            progress = Mathf.MoveTowards(progress, asyncOperation.progress, Time. deltaTime);
+            progressSlider.value = progress;
+            progressText.text = (int)(progress * 100) + "%";
+            if (progress >= 0.9f)
+            {
+                progressSlider.value = 1;
+                progressText.text =  "100%";
+                yield return new WaitForSecondsRealtime(1);
+                asyncOperation. allowSceneActivation = true;
+            }
             yield return null;
         }
     }
