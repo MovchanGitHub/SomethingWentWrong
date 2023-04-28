@@ -38,7 +38,6 @@ public class SettingsScript : MonoBehaviour
         dropdown = GM.UI.SettingsMenu.GetComponentInChildren<TMPro.TMP_Dropdown>();
 
         filePath = Application.persistentDataPath + "/save.gamesave";
-        // Debug.Log(filePath); // uncomment to show save path
         LoadSettings();
     }
     

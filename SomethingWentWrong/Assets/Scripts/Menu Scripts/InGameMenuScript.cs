@@ -65,12 +65,12 @@ public class InGameMenuScript : MonoBehaviour
             EventSystem.current.SetSelectedGameObject(b.GameObject());
             b.onClick.Invoke();
         }
-        else if (confirmExit.activeSelf)
-        {
-            var b = GM.UI.ConfirmExit.transform.GetChild(2).GetComponent<Button>();
-            EventSystem.current.SetSelectedGameObject(b.GameObject());
-            b.onClick.Invoke();
-        }
+        // else if (confirmExit.activeSelf)
+        // {
+        //     var b = GM.UI.ConfirmExit.transform.GetChild(2).GetComponent<Button>();
+        //     EventSystem.current.SetSelectedGameObject(b.GameObject());
+        //     b.onClick.Invoke();
+        // }
         else if (isOpened) {
             HideMenu();
         }
