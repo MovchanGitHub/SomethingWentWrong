@@ -1580,8 +1580,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -105, y: -65.39533}
-  m_SizeDelta: {x: 200, y: 41.6047}
+  m_AnchoredPosition: {x: -105, y: -50}
+  m_SizeDelta: {x: 180, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &2753983432998967025
 CanvasRenderer:
@@ -1667,7 +1667,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2087006452621477670}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: OnButtonCancelExit
+        m_MethodName: OnButtonExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -5780,10 +5780,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 28
   m_fontSizeBase: 28
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 10
   m_fontSizeMax: 32
   m_fontStyle: 0
@@ -6013,7 +6013,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 450, y: 250}
+  m_SizeDelta: {x: 450, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &9004688378424817506
 CanvasRenderer:
@@ -7380,8 +7380,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 105, y: -65.39533}
-  m_SizeDelta: {x: 200, y: 41.6047}
+  m_AnchoredPosition: {x: 105, y: -50}
+  m_SizeDelta: {x: 180, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &1758280296645459260
 CanvasRenderer:
@@ -7467,7 +7467,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2087006452621477670}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: OnButtonExit
+        m_MethodName: OnButtonCancelExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -8129,7 +8129,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 9.16626, y: 100}
+  m_AnchoredPosition: {x: 0, y: 75}
   m_SizeDelta: {x: 544, y: 0}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!222 &5363556700785295335
@@ -9774,8 +9774,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75}
-  m_SizeDelta: {x: 450, y: 250}
+  m_AnchoredPosition: {x: 0, y: -140}
+  m_SizeDelta: {x: 450, y: 175}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8384095071815629014
 CanvasRenderer:
@@ -11101,10 +11101,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 32
+  m_fontSize: 28
   m_fontSizeBase: 28
   m_fontWeight: 400
-  m_enableAutoSizing: 1
+  m_enableAutoSizing: 0
   m_fontSizeMin: 10
   m_fontSizeMax: 32
   m_fontStyle: 0
@@ -12574,6 +12574,10 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143547506620216029, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_PixelsPerUnitMultiplier
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 5143547506620216031, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -12666,6 +12670,14 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143547506651478744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2756128440079393895}
+    - target: {fileID: 5143547506651478744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: set_Fullscreen
+      objectReference: {fileID: 0}
     - target: {fileID: 5143547506740428053, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -12674,6 +12686,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143547506787014724, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2756128440079393895}
     - target: {fileID: 5143547506841395028, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -12687,16 +12703,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507334509591, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 2087006452621477670}
+    - target: {fileID: 5143547507334509591, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: Buttons, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507524304302, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_Size
-      value: 0.81333333
+      value: 0.81333345
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507960091744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.0000019073486
+      value: 0.0000076293945
       objectReference: {fileID: 0}
     - target: {fileID: 5143547508013926674, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchorMax.x
