@@ -201,6 +201,12 @@ public class EncyclopediaManager : MonoBehaviour
         //    inputSystem.UnblockPlayerInputs();
         if (isOpened)
         {
+            if (newNoteCoroutine != null)
+            {
+                StopCoroutine(newNoteCoroutine);
+                StartCoroutine(AnimateClosingElement(GM.UI.Encyclopedia.NewNoteNotification));
+                newNoteCoroutine = null;
+            }
             Time.timeScale = 0f;
             ShadingAnims.Enqueue(StartCoroutine(ShadeBackground()));
             OpeningAnims.Enqueue(StartCoroutine(AnimateOpeningElement(transform.GetChild(0).gameObject)));
@@ -267,6 +273,8 @@ public class EncyclopediaManager : MonoBehaviour
 
     private IEnumerator ShowNewNotification()
     {
+        notificationImage.gameObject.SetActive(true);
+        notificationHeader.gameObject.SetActive(true);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
         {
