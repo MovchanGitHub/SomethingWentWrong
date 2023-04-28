@@ -1556,7 +1556,7 @@ GameObject:
   - component: {fileID: 6651939918328538169}
   - component: {fileID: 3813965044481694399}
   m_Layer: 0
-  m_Name: Continue
+  m_Name: Exit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1576,7 +1576,7 @@ RectTransform:
   m_Children:
   - {fileID: 2656786823833417932}
   m_Father: {fileID: 1972067729915706399}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1667,7 +1667,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2087006452621477670}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: OnContinueButton
+        m_MethodName: OnButtonCancelExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1822,7 +1822,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2087006452621477670}
         m_TargetAssemblyTypeName: Buttons, Assembly-CSharp
-        m_MethodName: OnButtonExit
+        m_MethodName: OnButtonConfirmExit
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -4279,11 +4279,11 @@ MonoBehaviour:
   pointer: {fileID: 0}
   loadingScreen: {fileID: 6079274577111843358}
   skillsMenu: {fileID: 6436228068595625841}
-  confirmExit: {fileID: 0}
+  confirmExit: {fileID: 7209801224861245561}
   weaponsBar: {fileID: 404682486970086704}
   buttons: {fileID: 2087006452621477670}
-  menuScript: {fileID: 0}
-  settings: {fileID: 0}
+  menuScript: {fileID: 2756128440079393894}
+  settings: {fileID: 2756128440079393895}
   encyclopedia: {fileID: 1067236091158149165}
 --- !u!114 &404682486970086704
 MonoBehaviour:
@@ -7356,7 +7356,7 @@ GameObject:
   - component: {fileID: 5689191593283023459}
   - component: {fileID: 7754740379066621209}
   m_Layer: 0
-  m_Name: Exit
+  m_Name: Cancel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7376,7 +7376,7 @@ RectTransform:
   m_Children:
   - {fileID: 233788238132137026}
   m_Father: {fileID: 1972067729915706399}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -9767,8 +9767,8 @@ RectTransform:
   m_Children:
   - {fileID: 4288577733637769210}
   - {fileID: 248112074660180060}
-  - {fileID: 7886046383497238328}
   - {fileID: 154150975561675688}
+  - {fileID: 7886046383497238328}
   m_Father: {fileID: 591909774207578505}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -12686,9 +12686,17 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143547507334509591, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Buttons, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 5143547507524304302, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_Size
+      value: 0.81333333
+      objectReference: {fileID: 0}
     - target: {fileID: 5143547507960091744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000005722046
+      value: 0.0000019073486
       objectReference: {fileID: 0}
     - target: {fileID: 5143547508013926674, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchorMax.x
