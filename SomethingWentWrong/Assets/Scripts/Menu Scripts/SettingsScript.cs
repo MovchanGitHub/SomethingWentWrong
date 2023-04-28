@@ -38,10 +38,31 @@ public class SettingsScript : MonoBehaviour
         fullscreenToggle = GM.UI.SettingsMenu.transform.GetChild(4).GetComponent<Toggle>();
         retroWaveToggle = GM.UI.SettingsMenu.transform.GetChild(8).GetComponent<Toggle>();
         
-        
         baseWidth = Screen.width;
         baseHeight = Screen.height;
+        var defaultResolutionPath = Application.persistentDataPath + "/default_resolution.gamesave";
+        if (!File.Exists(defaultResolutionPath)) {
+            var bf = new BinaryFormatter();
+            var fs = new FileStream(defaultResolutionPath, FileMode.Create);
         
+            var save = new SaveDefaultResolution(
+                baseWidth,
+                baseHeight
+            );
+            
+            bf.Serialize(fs, save);
+            fs.Close();
+        }
+        else {
+            var bf = new BinaryFormatter();
+            var fs = new FileStream(defaultResolutionPath, FileMode.Open);
+            var save = (SaveDefaultResolution)bf.Deserialize(fs);
+            baseWidth = save.width;
+            baseHeight = save.height;
+            fs.Close();
+        }
+            
+
         filePath = Application.persistentDataPath + "/save.gamesave";
         LoadSettings();
         settingsMenu.SetActive(false);
@@ -93,10 +114,10 @@ public class SettingsScript : MonoBehaviour
         var music =  GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value;
         var sounds = GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<Slider>().value;
         
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream fs = new FileStream(filePath, FileMode.Create);
+        var bf = new BinaryFormatter();
+        var fs = new FileStream(filePath, FileMode.Create);
         
-        Save save = new Save(
+        var save = new Save(
             music, 
             sounds,
             resolutionVariant, 
@@ -113,9 +134,9 @@ public class SettingsScript : MonoBehaviour
     {
         if (!File.Exists(filePath))
             return;
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream fs = new FileStream(filePath, FileMode.Open);
-        Save save = (Save)bf.Deserialize(fs);
+        var bf = new BinaryFormatter();
+        var fs = new FileStream(filePath, FileMode.Open);
+        var save = (Save)bf.Deserialize(fs);
         fs.Close();
         
         var musicVolume = save.musicVolume;
@@ -176,3 +197,15 @@ public class Save
         return $"resolutionVariant{resolutionVariant}\nisFullscreen {isFullscreen}\nisRetroWave {isRetroWave}\nmusicVolume {musicVolume}\nsoundsVolume {soundsVolume}\n";
     }
 }
+
+[System.Serializable]
+public class SaveDefaultResolution {
+    public int width;
+    public int height;
+    
+    public SaveDefaultResolution(int width, int height) {
+        this.width = width;
+        this.height = height;
+    }
+}
+
