@@ -56,9 +56,9 @@ public class SettingsScript : MonoBehaviour
     }
     public void ShowSettings()
     {
-        LoadSettings(); // костыль, зато какой!!!
         isOpened = true;
         settingsMenu.SetActive(true);
+        LoadSettings(); // костыль, зато какой!!!
         pauseScript.ShowHideMenu();
     }
 
