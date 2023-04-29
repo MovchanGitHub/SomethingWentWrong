@@ -149,7 +149,7 @@ public class SkillsScript : MonoBehaviour
     private string SkillInfo(int num) {
         switch (variants[num]) {
             case 0:  return "Максимальное здоровье";
-            case 1:  return "Максимальное здоровье ракеты";
+            case 1:  return "Максимальная прочность ракеты";
             case 2:  return "Максимальная выносливость";
             case 3:  return "Скорость восстановления выносливости";
             case 4:  return "Уменьшить скорость расхода кислорода";
