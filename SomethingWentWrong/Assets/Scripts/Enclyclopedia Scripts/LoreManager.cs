@@ -37,7 +37,8 @@ public class LoreManager : MonoBehaviour
         if (isAvailable)
         {
             noteText.text = loreText;
-            notePanel.SetActive(true);
+            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.coroutineToStop = StartCoroutine(GameManager.GM.UI.Encyclopedia.EncyclopediaScript.AnimateOpeningElement(notePanel));
+            //notePanel.SetActive(true);
         }
     }
 
