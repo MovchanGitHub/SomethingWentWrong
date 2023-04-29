@@ -60,7 +60,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (CanMove)
         {
-            attackPoint.transform.localPosition = new Vector3(0 - 1 * Math.Sign(direction.x), 1 - 1 * Math.Sign(direction.y), attackPoint.transform.position.z);
+            attackPoint.transform.localPosition = new Vector3(0 - 0.8f * Math.Sign(direction.x), 1 - 0.8f * Math.Sign(direction.y), attackPoint.transform.position.z);
             transform.position = Vector2.MoveTowards(transform.position, actualTarget.transform.position, speed * Time.deltaTime);
         }
 
