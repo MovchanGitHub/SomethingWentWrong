@@ -12488,6 +12488,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
+--- !u!1 &4969574708924123677 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 901726084585298264, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
+  m_PrefabInstance: {fileID: 5221056006407656261}
+  m_PrefabAsset: {fileID: 0}
 --- !u!224 &8513676439564335803 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4490736835143739902, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
@@ -12604,6 +12609,10 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 5143547506639006956, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5143547506651478744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -12654,15 +12663,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507524304302, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_Size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507524304302, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_Value
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5143547507960091744, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0.000015258789
+      value: -0.000017166138
       objectReference: {fileID: 0}
     - target: {fileID: 5143547508013926674, guid: 1f1db594d7970436d8b6f5ff1dcb05f2, type: 3}
       propertyPath: m_AnchorMax.x
@@ -12850,7 +12859,7 @@ PrefabInstance:
     - target: {fileID: 8768074013937024299, guid: a360b4e5f8219514db855b03d502e9be, type: 3}
       propertyPath: newNoteNotification
       value: 
-      objectReference: {fileID: 901726084585298264, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
+      objectReference: {fileID: 4969574708924123677}
     - target: {fileID: 9176443692905156355, guid: a360b4e5f8219514db855b03d502e9be, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: 0.0006713867

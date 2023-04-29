@@ -59,7 +59,7 @@ public class EncyclopediaManager : MonoBehaviour
     //[SerializeField] private List<NotesManager> plantsNotes;
 
 
-    private bool isOpened;
+    [HideInInspector]public bool isOpened;
 
     private void Awake()
     {
@@ -273,8 +273,8 @@ public class EncyclopediaManager : MonoBehaviour
 
     private IEnumerator ShowNewNotification()
     {
-        notificationImage.gameObject.SetActive(true);
-        notificationHeader.gameObject.SetActive(true);
+        notificationImage.gameObject.SetActive(false);
+        notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
         {
