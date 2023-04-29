@@ -36,6 +36,18 @@ public class InGameMenuScript : MonoBehaviour
     }
 
     public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context) {
+        if (GM.UI.Encyclopedia.ExtraInfoLorePanel.activeSelf)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.CloseLoreNote();
+            return;
+        }
+
+        if (GM.UI.Encyclopedia.EncyclopediaScript.isOpened && !GM.IsTutorial)
+        {
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenCloseEncyclopedia(context);
+            return;
+        }
+
         if (GM.InventoryManager.isCanvasActive) {
             GM.InventoryManager.activateInventory(false);
         }

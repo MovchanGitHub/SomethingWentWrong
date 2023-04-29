@@ -1357,7 +1357,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3086577716698926489}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
@@ -1392,8 +1392,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223c59cf937742745bff3a450103e4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  firstGradient: {fileID: 0}
-  secondGradient: {fileID: 0}
+  firstGradient: {fileID: 11400000, guid: 4139875b686b646569cec651374f3979, type: 2}
+  secondGradient: {fileID: 11400000, guid: 7969128c3f2904f0ca1d972477cd8e92, type: 2}
 --- !u!114 &8768074013937024299
 MonoBehaviour:
   m_ObjectHideFlags: 0
