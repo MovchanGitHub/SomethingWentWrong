@@ -1304,12 +1304,12 @@ GameObject:
   - component: {fileID: 678483639}
   - component: {fileID: 678483638}
   m_Layer: 0
-  m_Name: About
+  m_Name: AboutGame
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &678483637
 RectTransform:
   m_ObjectHideFlags: 0

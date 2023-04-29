@@ -124,10 +124,10 @@ public class SettingsScript : MonoBehaviour
             fullscreen,
             retroWaveToggle.isOn
             );
-        Debug.Log(save.ToString());
+        // Debug.Log(save.ToString());
         bf.Serialize(fs, save);
         fs.Close();
-        Debug.Log("Settings saved");
+        // Debug.Log("Settings saved");
     }
 
     public void LoadSettings()
@@ -164,7 +164,7 @@ public class SettingsScript : MonoBehaviour
         // RetroWave
         retroWaveToggle.isOn = isRetroWave;
         retroWaveScript.RetroWaveEffect = isRetroWave;
-        Debug.Log("Loading settings");
+        // Debug.Log("Loading settings");
     }
 }
 
