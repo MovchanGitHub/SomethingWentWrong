@@ -40,8 +40,8 @@ TagManager:
   - Player
   - DamagableObjectCollider
   - PlayerCollider
-  - 
-  - 
+  - Rocket
+  - PlayerRocketCollider
   - 
   - 
   - 

@@ -186,7 +186,7 @@ MonoBehaviour:
   beforeAnimTime: 0.3
   damagableLayers:
     serializedVersion: 2
-    m_Bits: 3072
+    m_Bits: 7168
   _animator: {fileID: 2902573315146067540}
   _explosions:
   - {fileID: 8300000, guid: b9346ef2708814596a51d1c92a09c348, type: 3}

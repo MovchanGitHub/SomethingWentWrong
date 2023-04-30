@@ -142,8 +142,7 @@ public class InventoryController : MonoBehaviour
 
         if (Mouse.current.rightButton.wasPressedThisFrame && isCanvasActive)
         {
-            //onPressRightMouseButton();
-            clearInventory();
+            onPressRightMouseButton();
         }
     }
 
