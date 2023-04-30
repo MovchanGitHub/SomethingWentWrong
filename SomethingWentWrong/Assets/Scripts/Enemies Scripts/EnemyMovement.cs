@@ -34,6 +34,8 @@ public class EnemyMovement : MonoBehaviour
     [SerializeField] private float strength = 15;
     [SerializeField] private float delay = 0.3f;
 
+    public GameObject attackPoint;
+    public Vector2 direction;
 
     [HideInInspector] public EnemyScript es;
 
@@ -52,8 +54,13 @@ public class EnemyMovement : MonoBehaviour
     void Update()
     {
         distance = Vector2.Distance(transform.position, playerTarget.transform.position);
+        var heading = transform.position - actualTarget.transform.position;
+        var d = heading.magnitude;
+        direction = heading / d;
+
         if (CanMove)
         {
+            attackPoint.transform.localPosition = new Vector3(0 - 0.8f * Math.Sign(direction.x), 1 - 0.8f * Math.Sign(direction.y), attackPoint.transform.position.z);
             transform.position = Vector2.MoveTowards(transform.position, actualTarget.transform.position, speed * Time.deltaTime);
         }
 
@@ -62,7 +69,7 @@ public class EnemyMovement : MonoBehaviour
             actualTarget = playerTarget;
             if (canMove)
             {
-                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+                rotateSprite();
             }
         }
         else
@@ -70,9 +77,14 @@ public class EnemyMovement : MonoBehaviour
             actualTarget = rocketTarget;
             if (canMove)
             {
-                es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
+                rotateSprite();
             }
         }
+    }
+
+    public void rotateSprite()
+    {
+        es.Animator.ChangeXY(actualTarget.transform.position - transform.position);
     }
 
     public void PlayFeedback(GameObject sender)

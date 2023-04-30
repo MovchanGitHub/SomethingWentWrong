@@ -26,7 +26,7 @@ public class DamagePopup : MonoBehaviour
         actualDisapearTimer = disappearTimer;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         transform.position += moveVector * Time.deltaTime;
 
