@@ -41,6 +41,9 @@ public class EncyclopediaManager : MonoBehaviour
 
     private Dictionary<string, GameObject> notes;
 
+    private ScrollRect scrollRectPlants;
+    private ScrollRect scrollRectLore;
+
     private Image backgrounds;
     public Coroutine coroutineToStop = null;
     private Coroutine shadeCoroutineToStop = null;
@@ -68,7 +71,7 @@ public class EncyclopediaManager : MonoBehaviour
     //[SerializeField] private List<NotesManager> plantsNotes;
 
 
-    [HideInInspector]public bool isOpened;
+    [HideInInspector] public bool isOpened;
 
     private void Awake()
     {
@@ -102,7 +105,10 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
 
         notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
-        notificationHeader =  GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
+        notificationHeader = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
+
+        scrollRectPlants = GM.UI.Encyclopedia.PlantsTab.GetComponent<ScrollRect>();
+        scrollRectLore = GM.UI.Encyclopedia.LoreTab.GetComponent<ScrollRect>();
 
         allElemsToClose = new GameObject[] { transform.GetChild(0).gameObject,
                                              GM.UI.Encyclopedia.PlantsTab,
@@ -141,8 +147,6 @@ public class EncyclopediaManager : MonoBehaviour
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
         notificationsToShowUp.Enqueue(openedCreature);
-        Debug.Log(notificationsToShowUp.Count);
-        Debug.Log(newNoteCoroutine);
         if (newNoteCoroutine == null)
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
@@ -236,6 +240,8 @@ public class EncyclopediaManager : MonoBehaviour
                 newNoteCoroutine = null;
             }
             Time.timeScale = 0f;
+            foreach (GameObject elem in allElemsToClose)
+                elem.transform.localScale = Vector3.zero;
             shadeCoroutineToStop = StartCoroutine(ShadeBackground());
             coroutineToStop = StartCoroutine(AnimateOpeningElement(transform.GetChild(0).gameObject));
             inputSystem.BlockPlayerInputs();
@@ -285,12 +291,28 @@ public class EncyclopediaManager : MonoBehaviour
         }
         coroutineToStop = null;
     }
+
+    //public IEnumerator AnimateOpeningElement(GameObject element, ScrollRect scrollRect)
+    //{
+    //    if (coroutineToStop != null)
+    //        StopCoroutine(coroutineToStop);
+    //    element.SetActive(true);
+    //    while (element.transform.localScale.x <= 1)
+    //    {
+    //        element.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+    //        yield return new WaitForSecondsRealtime(0.005f);
+    //    }
+    //    scrollRect.verticalNormalizedPosition = 0;
+    //    coroutineToStop = null;
+    //}
+
     private IEnumerator AnimateOpenCloseMultipleElement(GameObject[] elementsToOpen, GameObject[] elementsToClose)
     {
         if (coroutineToStop != null)
             StopCoroutine(coroutineToStop);
         foreach (GameObject elem in elementsToOpen)
             elem.SetActive(true);
+        elementsToOpen[0].transform.GetChild(0).gameObject.SetActive(false);
         while (elementsToOpen[0].transform.localScale.x <= 1)
         {
             foreach (GameObject elem in elementsToOpen)
@@ -302,6 +324,29 @@ public class EncyclopediaManager : MonoBehaviour
         }
         foreach (GameObject elem in elementsToClose)
             elem.SetActive(false);
+        elementsToOpen[0].transform.GetChild(0).gameObject.SetActive(true);
+        coroutineToStop = null;
+    }
+    private IEnumerator AnimateOpenCloseMultipleElement(GameObject[] elementsToOpen, GameObject[] elementsToClose, ScrollRect scrollRect)
+    {
+        if (coroutineToStop != null)
+            StopCoroutine(coroutineToStop);
+        foreach (GameObject elem in elementsToOpen)
+            elem.SetActive(true);
+        elementsToOpen[0].transform.GetChild(0).gameObject.SetActive(false);
+        while (elementsToOpen[0].transform.localScale.x <= 1)
+        {
+            foreach (GameObject elem in elementsToOpen)
+                elem.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+            foreach (GameObject elem in elementsToClose)
+                if (elem.transform.localScale.x > 0)
+                    elem.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
+            yield return new WaitForSecondsRealtime(0.005f);
+        }
+        foreach (GameObject elem in elementsToClose)
+            elem.SetActive(false);
+        elementsToOpen[0].transform.GetChild(0).gameObject.SetActive(true);
+        scrollRect.verticalNormalizedPosition = 1;
         coroutineToStop = null;
     }
     private IEnumerator AnimateOpenCloseMultipleElement(GameObject[] elementsToClose)
@@ -380,7 +425,7 @@ public class EncyclopediaManager : MonoBehaviour
                                         new GameObject[] { GM.UI.Encyclopedia.LoreTab,
                                                            GM.UI.Encyclopedia.ExtraInfoLorePanel,
                                                            GM.UI.Encyclopedia.EnemiesTab,
-                                                           GM.UI.Encyclopedia.ExtraInfoEnemyPanel}));
+                                                           GM.UI.Encyclopedia.ExtraInfoEnemyPanel}, scrollRectPlants));
         //GM.UI.Encyclopedia.PlantsTab.SetActive(true);
         //GM.UI.Encyclopedia.LoreTab.SetActive(false);
         //GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
@@ -408,7 +453,7 @@ public class EncyclopediaManager : MonoBehaviour
                                         new GameObject[] { GM.UI.Encyclopedia.EnemiesTab,
                                                            GM.UI.Encyclopedia.ExtraInfoEnemyPanel,
                                                            GM.UI.Encyclopedia.PlantsTab,
-                                                           GM.UI.Encyclopedia.ExtraInfoPlantPanel}));
+                                                           GM.UI.Encyclopedia.ExtraInfoPlantPanel}, scrollRectLore));
         //GM.UI.Encyclopedia.PlantsTab.SetActive(false);
         //GM.UI.Encyclopedia.ExtraInfoPlantPanel.SetActive(false);
         //GM.UI.Encyclopedia.LoreTab.SetActive(true);

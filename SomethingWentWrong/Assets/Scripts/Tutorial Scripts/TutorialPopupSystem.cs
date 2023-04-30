@@ -227,7 +227,7 @@ public class TutorialPopupSystem : MonoBehaviour
     {
         StartCoroutine(HideFirstWaitShowSecond(survivalBarPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
         yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
-        Debug.Log("разрешить открывать инвентарь на Tab");
+        GM.InputSystem.openInventoryInput.Enable();
         GM.Tutorial.checkForEating = true;
         GM.Tutorial.CheckForEatingActive();
     }
