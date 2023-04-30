@@ -5,15 +5,16 @@ using UnityEngine;
 
 public class EnemyShaderLogic : MonoBehaviour
 {
-    private Renderer _renderer;
-    private MaterialPropertyBlock _propBlock;
+    [SerializeField] private List<Renderer> _renderers;
+    private List<MaterialPropertyBlock> _propBlocks;
 
     private float fade = 1f;
     
     private void Start()
     {
-        _renderer = GetComponent<Renderer>();
-        _propBlock = new MaterialPropertyBlock();
+        _propBlocks = new List<MaterialPropertyBlock>();
+        for (int i = 0; i < _renderers.Count; ++i)
+            _propBlocks.Add(new MaterialPropertyBlock());
     }
 
     public void EnemyLaserDieShader()
@@ -23,17 +24,24 @@ public class EnemyShaderLogic : MonoBehaviour
     
     public void EnemyBombDieShader()
     {
-        _renderer.GetPropertyBlock(_propBlock);
-        _propBlock.SetInteger("_BombDeath", 1);
-        _renderer.SetPropertyBlock(_propBlock);
+        for (int i = 0; i < _renderers.Count; ++i)
+        {
+            _renderers[i].GetPropertyBlock(_propBlocks[i]);
+            _propBlocks[i].SetInteger("_BombDeath", 1);
+            _renderers[i].SetPropertyBlock(_propBlocks[i]);
+        }
+        
         StartCoroutine(FadeDecreasing(0.04f));
     }
 
     public void ChangeDissolvingColor(Color color)
     {
-        _renderer.GetPropertyBlock(_propBlock);
-        _propBlock.SetColor("_BorderColor", color);
-        _renderer.SetPropertyBlock(_propBlock);
+        for (int i = 0; i < _renderers.Count; ++i)
+        {
+            _renderers[i].GetPropertyBlock(_propBlocks[i]);
+            _propBlocks[i].SetColor("_BorderColor", color);
+            _renderers[i].SetPropertyBlock(_propBlocks[i]);
+        }
     }
 
     private IEnumerator FadeDecreasing(float fadeDecrement)
@@ -42,9 +50,12 @@ public class EnemyShaderLogic : MonoBehaviour
         {
             fade -= fadeDecrement;
             
-            _renderer.GetPropertyBlock(_propBlock);
-            _propBlock.SetFloat("_Fade", fade);
-            _renderer.SetPropertyBlock(_propBlock);
+            for (int i = 0; i < _renderers.Count; ++i)
+            {
+                _renderers[i].GetPropertyBlock(_propBlocks[i]);
+                _propBlocks[i].SetFloat("_Fade", fade);
+                _renderers[i].SetPropertyBlock(_propBlocks[i]);
+            }
             
             yield return new WaitForSeconds(0.05f);
         }

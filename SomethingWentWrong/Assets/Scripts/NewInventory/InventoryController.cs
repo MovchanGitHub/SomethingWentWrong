@@ -252,7 +252,7 @@ public class InventoryController : MonoBehaviour
         }
 
         selectedItemGrid.placeItem(itemToInsert, posOnGrid.Value.x, posOnGrid.Value.y);
-        if (item.TypeOfThisItem == ItemType.Weapon)
+        if (item.TypeOfThisItem == ItemType.Weapon && item.itemName != "spaceTrash")
         {
             UpdateWeaponBar(item.itemName, ++ammoCounter[item.itemName]);
         }
@@ -260,6 +260,8 @@ public class InventoryController : MonoBehaviour
 
     private void onPressLeftMouseButton()
     {
+        if (GM.IsTutorial && GM.Tutorial.checkForEating) return;
+        
         Vector2Int tileGridPosition = getTileGridPosition();
 
         if (selectedItem == null)
@@ -359,6 +361,11 @@ public class InventoryController : MonoBehaviour
         InventoryItem item = SelectedItemGrid.PickUpItem(tileGridPosition.x, tileGridPosition.y);
         if (item != null)
         {
+            if (GM.IsTutorial)
+            {
+                GM.Tutorial.InventoryEatSomething();
+            }
+            
             ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
             GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
             GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);

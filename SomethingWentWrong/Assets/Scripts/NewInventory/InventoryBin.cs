@@ -19,8 +19,11 @@ public class InventoryBin : MonoBehaviour
         {
             return;
         }
+        
+        if (GameManager.GM.IsTutorial && GameManager.GM.Tutorial.checkForErasing)
+            GameManager.GM.Tutorial.InventoryEraseSomething();
 
-        if (GameManager.GM.InventoryManager.SelectedItem.itemData.TypeOfThisItem == ItemType.Weapon)
+        if (GameManager.GM.InventoryManager.SelectedItem.itemData.TypeOfThisItem == ItemType.Weapon && GameManager.GM.InventoryManager.SelectedItem.itemData.itemName != "spaceTrash")
         {
             --GameManager.GM.InventoryManager.AmmoCounter[GameManager.GM.InventoryManager.SelectedItem.itemData.itemName];
             GameManager.GM.InventoryManager.UpdateWeaponBar(GameManager.GM.InventoryManager.SelectedItem.itemData.itemName, GameManager.GM.InventoryManager.AmmoCounter[GameManager.GM.InventoryManager.SelectedItem.itemData.itemName]);

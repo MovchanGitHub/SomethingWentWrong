@@ -34,7 +34,10 @@ public class PlayerDamagable : DamagableCharacter
                     hp = value;
             }
             else
+            {
+                hp = 0;
                 Die();
+            }
             slider.value = hp;
         }
     }
@@ -73,13 +76,41 @@ public class PlayerDamagable : DamagableCharacter
     protected override void Die()
     {
         slider.value = 0;
+        if (GM.IsTutorial) GM.Tutorial.Counter.SetActive(false);
+        
         if (GM.IsTutorial && lastWeapon.Type == WeaponType.Bomb && GM.Tutorial.endOfTutorial)
-        {
             GM.GameOver("Вы прошли обучение!\nно какой ценой...");
-        }
         else
         {
-            GM.GameOver("ПОМЕР");
+            switch (lastWeapon.Type)
+            {
+                case WeaponType.Gringe:
+                    GM.GameOver("Умер от гринжа");
+                    break;
+                case WeaponType.Eye:
+                    GM.GameOver("Решил потрогать лазер");
+                    break;
+                case WeaponType.Dino:
+                    GM.GameOver("Исцарапан досмерти");
+                    break;
+                case WeaponType.Bomb:
+                    GM.GameOver("Смерть это не выход");
+                    break;
+                default:
+                    switch (UnityEngine.Random.Range(1, 3))
+                    {
+                        case 1:
+                            GM.GameOver("УМЕР");
+                            break;
+                        case 2:
+                            GM.GameOver("ПОТРАЧЕНО");
+                            break;
+                        default:
+                            GM.GameOver("ПОМЕР");
+                            break;
+                    }
+                    break;
+            }
         }
         Destroy(gameObject);
     }

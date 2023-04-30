@@ -34,7 +34,7 @@ public class EnemyDamagable : DamagableCharacter
     //new
     public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        if (weapon.Type == WeaponType.Enemy) return;
+        if (weapon.Type == WeaponType.Gringe || weapon.Type == WeaponType.Eye || weapon.Type == WeaponType.Dino) return;
         base.GetDamage(weapon, null);
         if (sender != null)
         {

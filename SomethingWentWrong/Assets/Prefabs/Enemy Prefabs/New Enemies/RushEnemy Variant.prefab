@@ -231,6 +231,14 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 1.58
       objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 474237801703479252}
     - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Radius
       value: 1.3663218
@@ -259,6 +267,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf8de7d46aa18f64ca10a631916947c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 8
   damage: 5
   damagableLayers:
     serializedVersion: 2
@@ -308,8 +317,6 @@ MonoBehaviour:
   anims:
   - {fileID: 3664840811163927475}
   attackAnimationDuration: 0
---- !u!4 &474237802382592921 stripped
-Transform:
   m_CorrespondingSourceObject: {fileID: 819197558646750953, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_PrefabInstance: {fileID: 993759577651688816}
   m_PrefabAsset: {fileID: 0}

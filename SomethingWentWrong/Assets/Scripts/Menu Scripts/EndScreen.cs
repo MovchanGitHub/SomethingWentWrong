@@ -60,7 +60,11 @@ public class EndScreen: MonoBehaviour
 
         isOpened = true;
         if (message == "Вы прошли обучение!\nно какой ценой...")
+        {
+            GM.Tutorial.endGameButtons[0].SetActive(false);
+            GM.Tutorial.endGameButtons[1].SetActive(true);
             title.color = TutorialWinColor;
+        }
         title.text = message;
         endScreen.SetActive(true);
     }

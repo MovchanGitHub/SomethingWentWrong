@@ -16,9 +16,9 @@ public class CameraShake : MonoBehaviour
 
             transform.localPosition = new Vector3(x, y, originalPos.z);
 
-            elapsed += Time.deltaTime;
+            elapsed += 0.02f;
 
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSecondsRealtime(0.02f);
         }
 
         transform.localPosition = originalPos;

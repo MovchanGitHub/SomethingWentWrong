@@ -164,7 +164,9 @@ public class TutorialPopupSystem : MonoBehaviour
 
     private IEnumerator SpawnEnemies1()
     {
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(1f);
+        GM.InventoryManager.clearInventory();
+        yield return new WaitForSeconds(15f);
         GM.Tutorial.spawnedEnemies[0].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
@@ -174,11 +176,13 @@ public class TutorialPopupSystem : MonoBehaviour
 
     public IEnumerator SpawnEnemies2()
     {
+        yield return new WaitForSeconds(1f);
+        GM.InventoryManager.clearInventory();
         popups[starDetailedPopup].SetActive(false);
         popups[laserDetailedPopup].SetActive(true);
         GM.Tutorial.weaponInfinityPlants[0].SetActive(false);
         GM.Tutorial.weaponInfinityPlants[1].SetActive(true);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(15f);
         GM.Tutorial.spawnedEnemies[1].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.KilledEnemies = 0;
@@ -188,11 +192,13 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public IEnumerator SpawnEnemies3()
     {
+        yield return new WaitForSeconds(1f);
+        GM.InventoryManager.clearInventory();
         popups[laserDetailedPopup].SetActive(false);
         popups[bombDetailedPopup].SetActive(true);
         GM.Tutorial.weaponInfinityPlants[1].SetActive(false);
         GM.Tutorial.weaponInfinityPlants[2].SetActive(true);
-        yield return new WaitForSeconds(20f);
+        yield return new WaitForSeconds(15f);
         GM.Tutorial.spawnedEnemies[2].SetActive(true);
         GM.Tutorial.Counter.SetActive(true);
         GM.Tutorial.enemiesToKill = 3;
@@ -206,21 +212,43 @@ public class TutorialPopupSystem : MonoBehaviour
         GM.Tutorial.OnLearnedWeapon();
     }
 
+    private void InventoryInsertSpaceTrash()
+    {
+        GM.InventoryManager.clearInventory();
+        GM.InventoryManager.insertItem(GM.Tutorial.spaceTrash[0]);
+        GM.InventoryManager.insertItem(GM.Tutorial.spaceTrash[1]);
+        GM.InventoryManager.insertItem(GM.Tutorial.spaceTrash[0]);
+        GM.InventoryManager.insertItem(GM.Tutorial.spaceTrash[0]);
+        GM.Tutorial.checkForErasing = true;
+    }
 
-    private IEnumerator ShowInventoryErasePopup()
+
+    private IEnumerator ShowInventoryUsePopup()
     {
         StartCoroutine(HideFirstWaitShowSecond(survivalBarPopup, inventoryUsePopup, 2 * timeBeforeShowNewPopup));
-        yield return new WaitForSeconds(10f);
+        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
+        Debug.Log("разрешить открывать инвентарь на Tab");
+        GM.Tutorial.checkForEating = true;
+        GM.Tutorial.CheckForEatingActive();
+    }
+
+    public IEnumerator HideInventoryUsePopup()
+    {
+        yield return new WaitForSeconds(5f);
         StartCoroutine(HideFirstWaitShowSecond(inventoryUsePopup, inventoryErasePopup, 2 * timeBeforeShowNewPopup));
         yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
-        Debug.Log("очистить инвентарь и кинуть мусор");
-        yield return new WaitForSeconds(15f - 2 * timeBeforeShowNewPopup);
-        StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponBarPopup, 2 * timeBeforeShowNewPopup));
-        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
-        Debug.Log("спрятать жизненные показатели");
-        GM.Tutorial.weaponBar.SetActive(true);
+        GM.Tutorial.CheckForErasingActive();
+        InventoryInsertSpaceTrash();
     }
     
+    public IEnumerator HideInventoryErasePopup()
+    {
+        yield return new WaitForSeconds(5f);
+        StartCoroutine(HideFirstWaitShowSecond(inventoryErasePopup, weaponBarPopup, 2 * timeBeforeShowNewPopup));
+        yield return new WaitForSeconds(2 * timeBeforeShowNewPopup);
+        GM.Tutorial.surivalBar.SetActive(false);
+        GM.Tutorial.weaponBar.SetActive(true);
+    }
     
     public void OnHalfResourcesMined()
     {
@@ -304,7 +332,7 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public void OnSurvivalBarButtonClick()
     {
-        StartCoroutine(ShowInventoryErasePopup());
+        StartCoroutine(ShowInventoryUsePopup());
     }
     
     

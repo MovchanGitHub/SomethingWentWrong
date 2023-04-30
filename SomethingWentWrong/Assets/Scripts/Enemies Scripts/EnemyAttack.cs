@@ -6,7 +6,7 @@ using UnityEngine;
 public class EnemyAttack : MonoBehaviour, IWeaponable
 {
     // IWeaponable's implementation
-    protected WeaponType type = WeaponType.Enemy;
+    public WeaponType type;
 
     public WeaponType Type { get { return type; } }
 

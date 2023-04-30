@@ -302,6 +302,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: type
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: damage
       value: 20
       objectReference: {fileID: 0}
@@ -435,19 +439,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Value
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_MaxValue
-      value: 40
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: hp
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: maxHp
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: creature
@@ -457,8 +465,45 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 2235180738624815609}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 7062773418188550505}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.data[2]
+      value: 
+      objectReference: {fileID: 7647516503000925887}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _objectsWithRenderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _objectsWithRenderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 2235180738624815615}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _objectsWithRenderers.Array.data[1]
+      value: 
+      objectReference: {fileID: 8324019911158908830}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _objectsWithRenderers.Array.data[2]
+      value: 
+      objectReference: {fileID: 5292087716048850632}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+--- !u!212 &2235180738624815609 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 819197557229691556, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+  m_PrefabInstance: {fileID: 1466672492831318877}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2235180738624815614 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 819197557229691555, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}

@@ -10,7 +10,7 @@ public enum WeaponType
     Enemy,
     Fists,
     RushAttack,
-    Golem,
+    Gringe,
     Eye,
     Dino,
     SurvivalParams
