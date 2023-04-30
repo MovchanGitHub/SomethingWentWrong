@@ -178,6 +178,17 @@
                 },
                 {
                     "name": "",
+                    "id": "46279af3-7c1c-4bf5-acea-b8fadde4ec43",
+                    "path": "<Keyboard>/f",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Fists Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
                     "id": "063567eb-1ad5-4277-a066-b35014197c93",
                     "path": "<Mouse>/leftButton",
                     "interactions": "",
@@ -432,28 +443,6 @@
                 },
                 {
                     "name": "",
-                    "id": "50d1ac83-541c-420c-995c-7cc594257fc8",
-                    "path": "<Keyboard>/q",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Change Weapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "b4a4c276-f977-4636-86ac-ae55c0a70695",
-                    "path": "<Keyboard>/e",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "",
-                    "action": "Change Weapon",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
                     "id": "59bad0be-5a37-4d12-b6a0-0e445303cfc4",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
@@ -482,6 +471,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Open InGame Menu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "50d1ac83-541c-420c-995c-7cc594257fc8",
+                    "path": "<Keyboard>/q",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Weapon",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "b4a4c276-f977-4636-86ac-ae55c0a70695",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Change Weapon",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
