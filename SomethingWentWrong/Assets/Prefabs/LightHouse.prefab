@@ -255,7 +255,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595097352886105431}
-  - component: {fileID: 6041686528798239151}
+  - component: {fileID: 1350293490}
   m_Layer: 10
   m_Name: LightHouseCollider
   m_TagString: Untagged
@@ -278,8 +278,8 @@ Transform:
   m_Father: {fileID: 322748558391231247}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!60 &6041686528798239151
-PolygonCollider2D:
+--- !u!70 &1350293490
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -291,32 +291,9 @@ PolygonCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0, y: 0}
-    oldSize: {x: 0, y: 0}
-    newSize: {x: 0, y: 0}
-    adaptiveTilingThreshold: 0
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  m_Points:
-    m_Paths:
-    - - {x: 0.84532124, y: 0.58076286}
-      - {x: 0.043852452, y: 0.6656356}
-      - {x: -1.219213, y: 0.49049664}
-      - {x: -1.3966775, y: 0.0327155}
-      - {x: -1.3869509, y: -0.2606218}
-      - {x: -1.2252092, y: -0.51229084}
-      - {x: -0.9429681, y: -0.67749786}
-      - {x: 0.14681923, y: -0.7052563}
-      - {x: 1.1242772, y: -0.60758084}
-      - {x: 1.295301, y: -0.51431865}
-      - {x: 1.3764646, y: -0.2761737}
-      - {x: 1.3845391, y: -0.11209822}
-      - {x: 1.4235015, y: 0.05710131}
-      - {x: 1.3332676, y: 0.32033253}
+  m_Offset: {x: 0.05594182, y: -0.053339433}
+  m_Size: {x: 3.2335668, y: 1.5493952}
+  m_Direction: 1
 --- !u!1 &5039453115786968518
 GameObject:
   m_ObjectHideFlags: 0
@@ -373,7 +350,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.03435254, y: 0.7878096}
+  m_Offset: {x: -0.044353545, y: 0.8711482}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -384,7 +361,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2.8663192, y: 1.547019}
+  m_Size: {x: 3.0863338, y: 1.6736939}
   m_EdgeRadius: 0
 --- !u!50 &8443322486531353248
 Rigidbody2D:

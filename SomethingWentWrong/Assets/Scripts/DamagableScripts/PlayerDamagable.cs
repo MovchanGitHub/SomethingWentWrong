@@ -76,10 +76,10 @@ public class PlayerDamagable : DamagableCharacter
     protected override void Die()
     {
         slider.value = 0;
+        if (GM.IsTutorial) GM.Tutorial.Counter.SetActive(false);
+        
         if (GM.IsTutorial && lastWeapon.Type == WeaponType.Bomb && GM.Tutorial.endOfTutorial)
-        {
             GM.GameOver("Вы прошли обучение!\nно какой ценой...");
-        }
         else
         {
             switch (lastWeapon.Type)

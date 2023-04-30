@@ -35,6 +35,32 @@ public class TutorialManager : MonoBehaviour
 
     public bool endOfTutorial = false;
 
+    public List<ItemsBase> spaceTrash;
+    
+    public List<GameObject> endGameButtons; // 1 - tutorial / 2 - level one
+
+    public void InventoryEatSomething()
+    {
+        if (!checkForEating) return;
+            
+        
+        _counter.SetActive(false);
+        checkForEating = false;
+        StartCoroutine(PopupSystem.HideInventoryUsePopup());
+    }
+    
+    public void InventoryEraseSomething()
+    {
+        if (!checkForErasing) return;
+        
+        _counter.SetActive(false);
+        checkForErasing = false;
+        StartCoroutine(PopupSystem.HideInventoryErasePopup());
+    }
+
+    [HideInInspector] public bool checkForEating = false;
+    [HideInInspector] public bool checkForErasing = false;
+
     public int MainedResources
     {
         get => mainedResources;
@@ -128,5 +154,17 @@ public class TutorialManager : MonoBehaviour
         endOfTutorial = true;
         _tutorialPopupSystem.popups[_tutorialPopupSystem.bombDeathPopup1].SetActive(true);
         menuButton.SetActive(false);
+    }
+
+    public void CheckForEatingActive()
+    {
+        _counter.SetActive(true);
+        _counterText.text = "использовать предмет в инвентаре";
+    }
+    
+    public void CheckForErasingActive()
+    {
+        _counter.SetActive(true);
+        _counterText.text = "выбросить предмет в чёрную дыру";
     }
 }

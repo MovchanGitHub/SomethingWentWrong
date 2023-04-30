@@ -87,7 +87,8 @@ public class EnvironmentSpawnScript : MonoBehaviour
             positionIndex = UnityEngine.Random.Range(0, spawnPointsAmount);
             int startIndex = positionIndex;
             Vector2 cameraPoints = GM.Camera.WorldToViewportPoint(spawnPoints[positionIndex].position);
-            while (isBusy[positionIndex] || (cameraPoints.x > 0f && cameraPoints.y < 0f && cameraPoints.x > 1f && cameraPoints.y > 1f))
+            //Debug.Log(cameraPoints.x + " " + cameraPoints.y);
+            while (isBusy[positionIndex] || (cameraPoints.x > -0.1f && cameraPoints.y > -0.1f && cameraPoints.x < 1.1f && cameraPoints.y < 1.1f))
             {
                 positionIndex++;
                 if (positionIndex == spawnPointsAmount)
@@ -98,6 +99,8 @@ public class EnvironmentSpawnScript : MonoBehaviour
                     Debug.LogError("it is impossible to spawn a resource");
                     return;
                 }
+                
+                cameraPoints = GM.Camera.WorldToViewportPoint(spawnPoints[positionIndex].position);
             }
             
             //Debug.Log("spawned resource at position " + positionIndex);
