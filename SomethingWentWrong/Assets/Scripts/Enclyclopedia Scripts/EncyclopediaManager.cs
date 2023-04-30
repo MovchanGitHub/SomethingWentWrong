@@ -28,6 +28,9 @@ public class EncyclopediaManager : MonoBehaviour
     private TMPro.TextMeshProUGUI extraInfoPlantDescription;
     private Image extraInfoPlantLootIcon;
     private TMPro.TextMeshProUGUI extraInfoPlantLootValue;
+    private TMPro.TextMeshProUGUI extraInfoPlantHungerValue;
+    private TMPro.TextMeshProUGUI extraInfoPlantThirstValue;
+    private TMPro.TextMeshProUGUI extraInfoPlantOxigenValue;
 
     private Image extraInfoEnemyImage;
     private TMPro.TextMeshProUGUI extraInfoEnemyHpValue;
@@ -54,6 +57,9 @@ public class EncyclopediaManager : MonoBehaviour
     private TMPro.TextMeshProUGUI notificationHeader;
     [SerializeField] TMPro.TMP_ColorGradient firstGradient;
     [SerializeField] TMPro.TMP_ColorGradient secondGradient;
+
+    [SerializeField] TMPro.TMP_ColorGradient PositiveGradient;
+    [SerializeField] TMPro.TMP_ColorGradient NegativeGradient;
 
     //private Color32 selectedTab;
     //private Color32 nonSelectedTab;
@@ -84,6 +90,9 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoPlantDescription = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(5).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoPlantLootIcon = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(6).GetComponent<Image>();
         extraInfoPlantLootValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(7).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoPlantHungerValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(9).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoPlantThirstValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(11).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoPlantOxigenValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(13).GetComponent<TMPro.TextMeshProUGUI>();
 
         extraInfoEnemyImage = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(0).GetComponent<Image>();
         extraInfoEnemyHpValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
@@ -147,9 +156,8 @@ public class EncyclopediaManager : MonoBehaviour
 
         void OpenPlants()
         {
-
             NotesManager curNotesManager = ChosenNote.GetComponent<NotesManager>();
-            CreatureTypePlant curCreature = ChosenNote.GetComponent<NotesManager>().creature as CreatureTypePlant;
+            CreatureTypePlant curCreature = curNotesManager.creature as CreatureTypePlant;
             if (GM.UI.Encyclopedia.ExtraInfoPlantPanel.activeSelf && extraInfoPlantName.text == curNotesManager.NameHeader)
             {
                 coroutineToStop = StartCoroutine(AnimateClosingElement(GM.UI.Encyclopedia.ExtraInfoPlantPanel));
@@ -162,6 +170,13 @@ public class EncyclopediaManager : MonoBehaviour
 
             extraInfoPlantLootIcon.sprite = curNotesManager.lootSprite;
             extraInfoPlantLootValue.text = curNotesManager.lootAmount.ToString();
+
+            extraInfoPlantHungerValue.text = curNotesManager.hungerReplenishment.ToString();
+            SetGradientForValue(curNotesManager.hungerReplenishment, extraInfoPlantHungerValue);
+            extraInfoPlantThirstValue.text = curNotesManager.thirstReplenishment.ToString();
+            SetGradientForValue(curNotesManager.thirstReplenishment, extraInfoPlantThirstValue);
+            extraInfoPlantOxigenValue.text = curNotesManager.oxigenReplenishment.ToString();
+            SetGradientForValue(curNotesManager.oxigenReplenishment, extraInfoPlantOxigenValue);
 
             coroutineToStop = StartCoroutine(AnimateOpeningElement(GM.UI.Encyclopedia.ExtraInfoPlantPanel));
         }
@@ -184,6 +199,16 @@ public class EncyclopediaManager : MonoBehaviour
             extraInfoEnemySpeedValue.text = curNotesManager.speed.ToString();
 
             coroutineToStop = StartCoroutine(AnimateOpeningElement(GM.UI.Encyclopedia.ExtraInfoEnemyPanel));
+        }
+
+        void SetGradientForValue(int value, TMPro.TextMeshProUGUI textToPaint)
+        {
+            if (value < 0)
+                textToPaint.colorGradientPreset = NegativeGradient;
+            else if (value > 0)
+                textToPaint.colorGradientPreset = PositiveGradient;
+            else
+                textToPaint.colorGradientPreset = firstGradient;
         }
     }
 
