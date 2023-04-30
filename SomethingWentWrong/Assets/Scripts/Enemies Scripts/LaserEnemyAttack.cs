@@ -27,6 +27,7 @@ public class LaserEnemyAttack : EnemyAttack
             angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg + attackDirection * 60; //80
             actualAttackDirection = attackDirection;
             enemyLogic.CanMove = false;
+            enemyLogic.rotateSprite();
             StartCoroutine(LaserAttack(angle));
         }
     }

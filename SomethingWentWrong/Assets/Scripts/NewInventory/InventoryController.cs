@@ -142,7 +142,8 @@ public class InventoryController : MonoBehaviour
 
         if (Mouse.current.rightButton.wasPressedThisFrame && isCanvasActive)
         {
-            onPressRightMouseButton();
+            //onPressRightMouseButton();
+            clearInventory();
         }
     }
 
@@ -216,6 +217,9 @@ public class InventoryController : MonoBehaviour
     public void clearInventory()
     {
         SelectedItemGrid.clearGrid();
+        UpdateWeaponBar("crystal", 0);
+        UpdateWeaponBar("bomb", 0);
+        UpdateWeaponBar("bullet", 0);
     }
 
     public bool checkSpaceInInventory(ItemsBase item)
