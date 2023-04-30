@@ -65,12 +65,15 @@ public class LightHouse : MonoBehaviour, IDamagable
         {
             case WeaponType.Fists: // игрок не ломает ракету кулаками
                 break;
+            case WeaponType.RushAttack: // игрок не ломает ракету рывком
+                break;
             case WeaponType.Laser: // ракета чинится от лазера (сварка)
                 HP += laserRepairingEffect;
                 break;
             default:
             {
                 HP -= weapon.Damage;
+                lastWeapon = weapon;
                 _hitSource.pitch = 1 + UnityEngine.Random.Range(-0.10f, 0.10f);
                 _hitSource.PlayOneShot(_AudioClips[_hitInd]);
                 _hitInd++;
@@ -83,11 +86,25 @@ public class LightHouse : MonoBehaviour, IDamagable
     
     // LightHouse unique methods
     public bool active = false;
+    private IWeaponable lastWeapon;
 
     private void Die()
     {
         healthBar.value = 0;
-        GM.GameOver("Ракета уничтожена");
+        
+        switch (lastWeapon.Type)
+        {
+            case WeaponType.Bomb:
+                GM.GameOver("ракета была взорвана");
+                break;
+            case WeaponType.Bullet:
+                GM.GameOver("сломал свою ракету");
+                break;
+            default:
+                GM.GameOver("Ракета уничтожена");
+                break;
+        }
+        
         GM.UnlinkRocket();
         Destroy(gameObject);
     }

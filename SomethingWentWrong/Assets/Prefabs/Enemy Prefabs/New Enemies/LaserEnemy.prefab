@@ -283,6 +283,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.x
       value: -0.1
       objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: _renderers.Array.data[0]
+      value: 
+      objectReference: {fileID: 4615848118547667784}
     m_RemovedComponents:
     - {fileID: 819197557132720298, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
     - {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
@@ -371,6 +379,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54cac621e1dc16445be950042749229c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  type: 7
   damage: 10
   damagableLayers:
     serializedVersion: 2
