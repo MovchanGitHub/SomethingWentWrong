@@ -347,19 +347,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Value
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_MaxValue
-      value: 40
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_WholeNumbers
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: hp
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: maxHp
-      value: 40
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 2346137773388899309, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: creature

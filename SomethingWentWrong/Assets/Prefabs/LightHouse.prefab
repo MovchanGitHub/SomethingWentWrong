@@ -240,10 +240,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   skins:
+  - {fileID: -1661930800, guid: bc2d3200cb511364d9dfa77508ccdff2, type: 3}
   - {fileID: 21300000, guid: c106fb84db10a7242901347214153b20, type: 3}
+  - {fileID: -73772136, guid: 12161a1df4c16d549bb5e557ee8a7014, type: 3}
   - {fileID: 21300000, guid: b6d16c9d299e7ff4587fc2241b95e540, type: 3}
   - {fileID: 21300000, guid: 6c069cbe0ede0a54f911e0721b5cd257, type: 3}
-  thresholdsHP: 4b000000af000000
+  thresholdsHP: 320000007d000000c8000000fa000000
 --- !u!1 &1218821162395364665
 GameObject:
   m_ObjectHideFlags: 0

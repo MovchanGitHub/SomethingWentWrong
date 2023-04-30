@@ -412,7 +412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20
-  maxHp: 0
+  maxHp: 20
   sprite: {fileID: 4615848118547667784}
   redTime: 0.1
   creature: {fileID: 11400000, guid: 6c9a872bd2d9fd746bd8e5aeb71d5c89, type: 2}
