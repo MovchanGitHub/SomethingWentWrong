@@ -128,6 +128,8 @@ public class SurvivalManager : MonoBehaviour
         currentHunger += hungerAmount;
         if (currentHunger > maxHunger)
             currentHunger = maxHunger;
+        else if (currentHunger < 0)
+            currentHunger = 0;
     }
 
     public void ReplenishThirst(float thirstAmount)
@@ -135,6 +137,8 @@ public class SurvivalManager : MonoBehaviour
         currentThirst += thirstAmount;
         if (currentThirst > maxThirst)
             currentThirst = maxThirst;
+        else if (currentThirst < 0)
+            currentThirst = 0;
     }
 
     public void ReplenishAnoxaemia(float anoxaemiaAmount)
@@ -142,6 +146,8 @@ public class SurvivalManager : MonoBehaviour
         currentAnoxaemia += anoxaemiaAmount;
         if (currentAnoxaemia > maxAnoxaemia)
             currentAnoxaemia = maxAnoxaemia;
+        else if (currentAnoxaemia < 0)
+            currentAnoxaemia = 0;
     }
     
     public void ReplenishStamina(float staminaAmount)
