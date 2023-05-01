@@ -18,10 +18,11 @@ public class EndScreen: MonoBehaviour
     public TextMeshProUGUI title;
     public TextMeshProUGUI newScoreTitle;
     public TextMeshProUGUI maxScore;
+    public TextMeshProUGUI currentScore;
     public DayNightCycle dayNightCycle;
     GameObject[] windows;
 
-    [SerializeField] private int MaxScore;
+    public int MaxScore;
     private string scorePath;
 
     
@@ -42,10 +43,12 @@ public class EndScreen: MonoBehaviour
         if (!GM.IsTutorial)
         {
             var days = dayNightCycle.DayCount;
+            currentScore.text = $"Прожито: {days}";
             foreach (var window in windows)
                 window.SetActive(false);
         
-            if (MaxScore < days) {
+            if (MaxScore < days)
+            {
                 MaxScore = days;
                 newScoreTitle.gameObject.SetActive(true);
                 SaveScore();

@@ -50,3 +50,10 @@ MonoBehaviour:
   inventoryManager: {fileID: 0}
   ui: {fileID: 0}
   inputSystem: {fileID: 0}
+  mainCamera: {fileID: 0}
+  _spawners: {fileID: 0}
+  _dayNightCycle: {fileID: 0}
+  _tutorialManager: {fileID: 0}
+  _isTutorial: 0
+  _attackPoint: {fileID: 0}
+  daysRecord: {fileID: 0}

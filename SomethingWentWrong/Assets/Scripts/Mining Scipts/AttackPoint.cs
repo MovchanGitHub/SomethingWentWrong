@@ -11,7 +11,11 @@ public class AttackPoint : MonoBehaviour, IWeaponable
 
     private int damage = 5;
 
-    public int Damage { get { return damage; } }
+    public int Damage
+    {
+        get => damage;
+        set => damage = value;
+    }
     
     
     // AttackPoint's unique methods
