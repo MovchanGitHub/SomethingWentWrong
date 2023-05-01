@@ -22,6 +22,7 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] Buttons buttons;
     [SerializeField] InGameMenuScript menuScript;
     [SerializeField] SettingsScript settings;
+    [SerializeField] EndScreen endScreenScript;
     [SerializeField] MiniGMEncyclopedia encyclopedia;
 
     private void Awake()
@@ -48,6 +49,7 @@ public class MiniGMUI : MonoBehaviour
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }
     public Buttons Buttons { get { return buttons; } }
     public SettingsScript SettingsScript { get { return settings; } }
+    public EndScreen EndScreenScript { get { return endScreenScript; } }
     public InGameMenuScript InGameMenuScript  { get { return menuScript; } }
     public MiniGMEncyclopedia Encyclopedia { get { return encyclopedia; } }
 }

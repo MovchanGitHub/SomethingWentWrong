@@ -22,7 +22,7 @@ public class EndScreen: MonoBehaviour
     public DayNightCycle dayNightCycle;
     GameObject[] windows;
 
-    private int MaxScore;
+    public int MaxScore;
     private string scorePath;
 
     
