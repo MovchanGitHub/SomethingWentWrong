@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using UnityEditor;
 using static GameManager;
 using UnityEngine.EventSystems;
+using UnityEngine.Audio;
 
 public class EncyclopediaManager : MonoBehaviour
 {
@@ -60,6 +61,10 @@ public class EncyclopediaManager : MonoBehaviour
 
 
     [HideInInspector]public bool isOpened;
+    
+    public AudioClip[] Notes;
+    public AudioClip OpenSound;
+    public AudioSource AudioSource;
 
     private void Awake()
     {
@@ -201,6 +206,12 @@ public class EncyclopediaManager : MonoBehaviour
         //    inputSystem.UnblockPlayerInputs();
         if (isOpened)
         {
+            
+            AudioSource.pitch = 1 + Random.Range(-0.15f, 0.15f);
+            AudioSource.volume = 1f;
+            AudioSource.clip = OpenSound;
+            AudioSource.Play();
+            
             if (newNoteCoroutine != null)
             {
                 StopCoroutine(newNoteCoroutine);
@@ -214,6 +225,7 @@ public class EncyclopediaManager : MonoBehaviour
         }
         else
         {
+            AudioSource.volume = 0f;
             Time.timeScale = 1f;
             DeShadingAnims.Enqueue(StartCoroutine(DeShadeBackground()));
             HideExtraInfo();
@@ -273,6 +285,9 @@ public class EncyclopediaManager : MonoBehaviour
 
     private IEnumerator ShowNewNotification()
     {
+        AudioSource.clip = Notes[Random.Range(0, 3)];
+        AudioSource.Play();
+        
         notificationImage.gameObject.SetActive(false);
         notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);

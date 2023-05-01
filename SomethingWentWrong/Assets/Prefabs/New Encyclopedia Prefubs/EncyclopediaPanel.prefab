@@ -2529,6 +2529,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223c59cf937742745bff3a450103e4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  firstGradient: {fileID: 0}
+  secondGradient: {fileID: 0}
+  isOpened: 0
+  Notes:
+  - {fileID: 8300000, guid: 5eb010055a9884cda82c075debeb97dd, type: 3}
+  - {fileID: 8300000, guid: 0c2d2dae90bb247a0935a7f6909dee84, type: 3}
+  - {fileID: 8300000, guid: 2ec5798111d1e4646b008158f313a0c5, type: 3}
+  Mixer: {fileID: 1375778638810669228, guid: 9854a754f5e814ed09d8fabd2864ccff, type: 2}
+  playSound: {fileID: 2726176823688432947, guid: a36709904aa6b459abc32ee6603a22fd, type: 3}
 --- !u!114 &1067236091439509221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2544,11 +2553,11 @@ MonoBehaviour:
   encyclopediaScript: {fileID: 7116830294445542559}
   plantsTab: {fileID: 8049708731904069868}
   enemiesTab: {fileID: 5478594728121574102}
-  plantsTabHeader: {fileID: 6185641850797629978}
-  enemiesTabHeader: {fileID: 4610728793416031182}
+  loreTab: {fileID: 0}
   extraInfoPlantPanel: {fileID: 8136288073952818204}
-  lootPrefab: {fileID: 6758025456749379612, guid: 48c3d3864e4fbd242970d7fd668c853e, type: 3}
   extraInfoEnemyPanel: {fileID: 1726631966270044070}
+  extraInfoLorePanel: {fileID: 0}
+  newNoteNotification: {fileID: 0}
 --- !u!1 &8049708731904069868
 GameObject:
   m_ObjectHideFlags: 0
