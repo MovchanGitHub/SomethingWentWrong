@@ -92,10 +92,10 @@ public class SkillsScript : MonoBehaviour
 
         var setOfVariants = new HashSet<int>();
         while (setOfVariants.Count != 3)
-            setOfVariants.Add(accessedSkills[random.NextInt(0, accessedSkills.Count - 1)]);
+            setOfVariants.Add(accessedSkills[random.NextInt(0, accessedSkills.Count)]);
         variants = setOfVariants.ToArray();
-        // Debug.Log(String.Join(" ", accessedSkills));
-        // Debug.Log(String.Join(" ", variants));
+        Debug.Log(String.Join(" ", accessedSkills));
+        Debug.Log(String.Join(" ", variants));
         
         for (var i = 0; i < 3; ++i) {
             logos[variants[i]].transform.position = variantsButtons[i].transform.position;
