@@ -4007,6 +4007,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerDamagable: {fileID: 0}
+  SPEED_IMPROVE: 0.1
   time: 10
 --- !u!114 &1306443031
 MonoBehaviour:
@@ -4037,7 +4038,8 @@ MonoBehaviour:
   buttons: {fileID: 2087006452621477670}
   menuScript: {fileID: 2756128440079393894}
   settings: {fileID: 2756128440079393895}
-  endScreenScript: {fileID: 0}
+  skillsScript: {fileID: 4307913357667752237}
+  endScreenScript: {fileID: 8573898485305061012}
   encyclopedia: {fileID: 364172397291881062}
 --- !u!114 &404682486970086704
 MonoBehaviour:
@@ -4286,7 +4288,7 @@ GameObject:
   m_Icon: {fileID: 2800000, guid: 77ce8d84dca3d1844b2754be0661b808, type: 3}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2007551454964785976
 RectTransform:
   m_ObjectHideFlags: 0
@@ -11824,6 +11826,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: NewNotNotificationPanel
       objectReference: {fileID: 0}
+    - target: {fileID: 1838047906911507952, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.1000061
+      objectReference: {fileID: 0}
     - target: {fileID: 4490736835143739902, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -11907,6 +11913,10 @@ PrefabInstance:
     - target: {fileID: 4490736835143739902, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6833986027903703368, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.1255951
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be1325d1a2ab43f4d8764bb3698a3c81, type: 3}
@@ -12223,6 +12233,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Control
       objectReference: {fileID: 0}
+    - target: {fileID: 5852178754711157744, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
+      propertyPath: m_text
+      value: "\u041F\u0435\u0440\u0435\u0434\u0432\u0438\u0436\u0435\u043D\u0438\u0435:\t\tW,
+        A, S, D\n\u0411\u043B\u0438\u0436\u043D\u0438\u0439 \u0431\u043E\u0439:\t\t\t\u041F\u0440\u043E\u0431\u0435\u043B
+        / F\n\u0420\u044B\u0432\u043E\u043A:\t\t\t\t\u041F\u041A\u041C\n\u0418\u0441\u043F\u043E\u043B\u044C\u0437\u043E\u0432\u0430\u0442\u044C
+        \u043E\u0440\u0443\u0436\u0438\u0435:\t\u041B\u041A\u041C\n\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C:\t\t\tTAB\n\u0421\u043C\u0435\u043D\u0438\u0442\u044C
+        \u043E\u0440\u0443\u0436\u0438\u0435:\t\tQ, E\n\u044D\u043D\u0446\u0438\u043A\u043B\u043E\u043F\u0435\u0434\u0438\u044F:\t\to"
+      objectReference: {fileID: 0}
+    - target: {fileID: 5852178754711157744, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
+      propertyPath: m_fontSize
+      value: 18
+      objectReference: {fileID: 0}
     - target: {fileID: 7489187646545188765, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -12245,11 +12267,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8522050944297759433, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_AnchorMax.x
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8522050944297759433, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_AnchorMax.y
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8522050944297759433, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_AnchorMin.x
@@ -12265,7 +12287,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8522050944297759433, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_SizeDelta.y
-      value: -0.000091552734
+      value: -0.000030517578
       objectReference: {fileID: 0}
     - target: {fileID: 8522050944297759433, guid: 4c2b772c3cef3404fbc944e98d65e6f1, type: 3}
       propertyPath: m_LocalPosition.x
