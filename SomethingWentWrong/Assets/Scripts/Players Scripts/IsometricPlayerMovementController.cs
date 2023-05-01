@@ -233,8 +233,8 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public void ImproveSpeed() 
     {
-        movementSpeedMax += 0.1f * movementSpeedMax;
-        runningAnimationSpeed += 0.1f * runningAnimationSpeed;
+        movementSpeedMax += GM.UI.SkillsScript.SPEED_IMPROVE * movementSpeedMax;
+        runningAnimationSpeed += GM.UI.SkillsScript.SPEED_IMPROVE * runningAnimationSpeed;
     }
 
     public bool IsRunning

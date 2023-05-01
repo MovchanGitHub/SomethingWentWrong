@@ -7,7 +7,6 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
-using System.Linq;
 using static GameManager;
 
 public class SkillsScript : MonoBehaviour
@@ -21,9 +20,10 @@ public class SkillsScript : MonoBehaviour
     private GameObject[] logos;
     GameObject variantMask;
     
-    private const int ROCKET_HEALTH_BUFF = 100;
-    private const int PLAYER_HEALTH_BUFF = 50;
-    private const int MAX_HEALTH = 10;
+    private const int PLAYER_HEALTH_BUFF = 25;
+    private const int ROCKET_HEALTH_BUFF = 60;
+    private const int MAX_HEALTH_IMPROVE = 10;
+    private const int MAX_ROCKET_HEALTH_IMPROVE = 30;
     private const float MAX_STAMINA = 2f;
     private const float STAMINA_RECOVERY = 1f;
     private const float MAX_ANOXEMIA = 35f;
@@ -32,6 +32,8 @@ public class SkillsScript : MonoBehaviour
     private const float HUNGER_ENDURANCE = 0.9f;
     private const float MAX_THIRST = 20f;
     private const float THIRST_ENDURANCE = 0.9f;
+    public float SPEED_IMPROVE = 0.1f;
+    private const int FISTS_DAMAGE = 1;
 
     private float SLIDER_MARGIN;
 
@@ -71,6 +73,7 @@ public class SkillsScript : MonoBehaviour
         uint seed = (uint)Random.Range(1, 1000);
         Debug.Log("seed = " + seed);
         random.InitState(seed);
+        
         accessedSkills = Enumerable.Range(0, 12).ToList();
         
         
@@ -81,6 +84,7 @@ public class SkillsScript : MonoBehaviour
 
         SLIDER_MARGIN = rh.sizeDelta.x / 10;
     }
+    
 
     public void InitSkills() {
         currentVariant = 1;
@@ -90,6 +94,8 @@ public class SkillsScript : MonoBehaviour
         while (setOfVariants.Count != 3)
             setOfVariants.Add(accessedSkills[random.NextInt(0, accessedSkills.Count - 1)]);
         variants = setOfVariants.ToArray();
+        // Debug.Log(String.Join(" ", accessedSkills));
+        // Debug.Log(String.Join(" ", variants));
         
         for (var i = 0; i < 3; ++i) {
             logos[variants[i]].transform.position = variantsButtons[i].transform.position;
@@ -114,21 +120,21 @@ public class SkillsScript : MonoBehaviour
         skillsWindow.SetActive(false);
 
     }
-    
-    public void GetSkill() {
+
+    private void GetSkill() {
         switch (variants[currentVariant]) {
-                case 0: ImproveHealth(); break;
-                case 1: ImproveLightHouseHealth(); break;
-                case 2: ImproveStamina(); break;
-                case 3: ImproveStaminaRecovery(); break;
-                case 4: ImproveAnoxemia(); break;
-                case 5: ImproveMaxAnoxemia(); break;
-                case 6: ImproveHunger(); break;
-                case 7: ImproveMaxHunger(); break;
-                case 8: ImproveThrist(); break;
-                case 9: ImproveMaxThrist(); break;
-                case 10: ImproveFistsDamage(); break;
-                case 11: ImproveSpeed(); break;
+                case 0: ImproveHealth(); Debug.Log($"Здоровье увеличено на {MAX_HEALTH_IMPROVE}"); break;
+                case 1: ImproveLightHouseHealth(); Debug.Log($"Прочность ракеты увеличена на {MAX_HEALTH_IMPROVE}"); break;
+                case 2: ImproveStamina(); Debug.Log($"Максимальный уровень выносливости увеличен на {MAX_STAMINA}"); break;
+                case 3: ImproveStaminaRecovery(); Debug.Log($"Скорость восстановления выносливости увеличена на {STAMINA_RECOVERY}"); break;
+                case 4: ImproveAnoxemia(); Debug.Log($"Скорость расхода кислорода уменьшен на {ANOXEMIA_ENDURANCE}"); break;
+                case 5: ImproveMaxAnoxemia(); Debug.Log($"Максимальный уровень кислорода увеличен на {MAX_ANOXEMIA}"); break;
+                case 6: ImproveHunger(); Debug.Log($"Расход сытости уменьшен на {HUNGER_ENDURANCE}"); break;
+                case 7: ImproveMaxHunger(); Debug.Log($"Максимальная сытость увеличена на {MAX_HUNGER}"); break;
+                case 8: ImproveThrist(); Debug.Log($"Скорость расхода жажды уменьшена на {THIRST_ENDURANCE}"); break;
+                case 9: ImproveMaxThrist(); Debug.Log($"Максимальный уровень жажды увеличен {MAX_THIRST}"); break;
+                case 10: ImproveFistsDamage(); Debug.Log($"Урон в ближнем бою увеличен на {FISTS_DAMAGE}"); break;
+                case 11: ImproveSpeed(); Debug.Log($"Скорость бега увеличена на {SPEED_IMPROVE}"); break;
         }
         skillsWindow.SetActive(false);
         foreach (var logo in logos)
@@ -152,30 +158,31 @@ public class SkillsScript : MonoBehaviour
         logos[variants[num]].SetActive(true);
     }
 
-    private string SkillInfo(int num) {
-        switch (variants[num]) {
-            case 0:  return "Максимальное здоровье";
-            case 1:  return "Максимальная прочность ракеты";
-            case 2:  return "Максимальная выносливость";
-            case 3:  return "Скорость восстановления выносливости";
-            case 4:  return "Уменьшить скорость расхода кислорода";
-            case 5:  return "Максимальный уровень кислорода";
-            case 6:  return "Уменьшить скорость накопления голода";
-            case 7:  return "Максимальный уровень сытости";
-            case 8:  return "Уменьшить скорость накопления жажды";
-            case 9:  return "Максимальный уровень жажды";
-            case 10:  return "Увеличить урон ближнего боя";
-            default: return "Увеличить скорость бега";
-        }
+    private string SkillInfo(int num)
+    {
+        return variants[num] switch
+        {
+            0 => "Максимальное здоровье",
+            1 => "Максимальная прочность ракеты",
+            2 => "Максимальная выносливость",
+            3 => "Скорость восстановления выносливости",
+            4 => "Уменьшить скорость расхода кислорода",
+            5 => "Максимальный уровень кислорода",
+            6 => "Уменьшить скорость накопления голода",
+            7 => "Максимальный уровень сытости",
+            8 => "Уменьшить скорость накопления жажды",
+            9 => "Максимальный уровень жажды",
+            10 => "Увеличить урон ближнего боя",
+            _ => "Увеличить скорость бега"
+        };
     }
 
     public void ImproveHealth() {
+        playerDamagable.MaxHP += MAX_HEALTH_IMPROVE;
         playerDamagable.HP += PLAYER_HEALTH_BUFF;
-        playerDamagable.MaxHP += MAX_HEALTH;
         ph.sizeDelta = new Vector2(ph.sizeDelta.x + SLIDER_MARGIN, ph.sizeDelta.y);
         phIncr.sizeDelta = new Vector2(phIncr.sizeDelta.x + SLIDER_MARGIN, phIncr.sizeDelta.y);
-        
-        if (playerHealthUpgradeCount++ == 5)
+        if (++playerHealthUpgradeCount == 5)
             accessedSkills.Remove(0);
         
         if (playerHealthUpgradeCount <= summaryUpgradeCount) return;
@@ -183,11 +190,10 @@ public class SkillsScript : MonoBehaviour
         hb.sizeDelta = new Vector2(hb.sizeDelta.x + SLIDER_MARGIN, hb.sizeDelta.y);
     }
     public void ImproveLightHouseHealth() {
+        lightHouse.MaxHP += MAX_ROCKET_HEALTH_IMPROVE;
         lightHouse.HP += ROCKET_HEALTH_BUFF;
-        lightHouse.MaxHP += MAX_HEALTH;
         rh.sizeDelta = new Vector2(rh.sizeDelta.x + SLIDER_MARGIN, rh.sizeDelta.y);
-        
-        if (rocketHealthUpgradeCount++ == 5)
+        if (++rocketHealthUpgradeCount == 5)
             accessedSkills.Remove(1);
         
         if (rocketHealthUpgradeCount <= summaryUpgradeCount) return;
@@ -202,6 +208,6 @@ public class SkillsScript : MonoBehaviour
     public void ImproveMaxHunger() => survivalManager.IncreaseMaxHunger(MAX_HUNGER);
     public void ImproveThrist() => survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
     public void ImproveMaxThrist() => survivalManager.IncreaseMaxThirst(MAX_THIRST);
-    public void ImproveFistsDamage() => GM.AttackPoint.Damage += 1;
+    public void ImproveFistsDamage() => GM.AttackPoint.Damage += FISTS_DAMAGE;
     public void ImproveSpeed() => GM.PlayerMovement.ImproveSpeed();
 }

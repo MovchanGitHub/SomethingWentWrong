@@ -52,7 +52,6 @@ public class AttackPoint : MonoBehaviour, IWeaponable
 
     private IEnumerator Attack()
     {
-        Debug.Log($"Damage {Damage}");
         anim.SetTrigger("Attack");
         anim.SetBool("RightHand", attackWithRightHand);
         GameManager.GM.PlayerMovement.usingWeapon = true;
