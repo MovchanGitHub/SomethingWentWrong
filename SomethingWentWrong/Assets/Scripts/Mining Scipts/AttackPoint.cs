@@ -11,7 +11,11 @@ public class AttackPoint : MonoBehaviour, IWeaponable
 
     private int damage = 5;
 
-    public int Damage { get { return damage; } }
+    public int Damage
+    {
+        get => damage;
+        set => damage = value;
+    }
     
     
     // AttackPoint's unique methods
@@ -48,6 +52,7 @@ public class AttackPoint : MonoBehaviour, IWeaponable
 
     private IEnumerator Attack()
     {
+        Debug.Log($"Damage {Damage}");
         anim.SetTrigger("Attack");
         anim.SetBool("RightHand", attackWithRightHand);
         GameManager.GM.PlayerMovement.usingWeapon = true;

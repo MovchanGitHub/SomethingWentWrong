@@ -231,6 +231,12 @@ public class IsometricPlayerMovementController : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, 0);
     }
 
+    public void ImproveSpeed() 
+    {
+        movementSpeedMax += 0.1f * movementSpeedMax;
+        runningAnimationSpeed += 0.1f * runningAnimationSpeed;
+    }
+
     public bool IsRunning
     {
         get { return isRunning; }

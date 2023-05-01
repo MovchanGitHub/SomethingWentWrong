@@ -1383,6 +1383,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 627019795}
     - target: {fileID: 8214218744462510591, guid: 2aa57b051db140546bdf38e97cee020c, type: 3}
+      propertyPath: _attackPoint
+      value: 
+      objectReference: {fileID: 998206386}
+    - target: {fileID: 8214218744462510591, guid: 2aa57b051db140546bdf38e97cee020c, type: 3}
       propertyPath: _dayNightCycle
       value: 
       objectReference: {fileID: 1353670125}
@@ -43696,6 +43700,17 @@ PolygonCollider2D:
       - {x: -0.42376018, y: -0.019706607}
       - {x: 0.027933836, y: -0.4241054}
       - {x: 1.0024679, y: 0.07819426}
+--- !u!114 &998206386 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 5071924728269610294, guid: 3ed17bd5d6fb7d846852314062926bd1, type: 3}
+  m_PrefabInstance: {fileID: 2130876769}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16fc8ede5b9eb7749af2f3a71b146182, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1019805274
 GameObject:
   m_ObjectHideFlags: 0
@@ -96667,6 +96682,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2286699917076147334, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.1000061
+      objectReference: {fileID: 0}
     - target: {fileID: 2455084879806962253, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -96790,6 +96809,10 @@ PrefabInstance:
     - target: {fileID: 5035752476292737096, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6408272303658868798, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 0.1255951
       objectReference: {fileID: 0}
     - target: {fileID: 6922717102153382208, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_IsActive

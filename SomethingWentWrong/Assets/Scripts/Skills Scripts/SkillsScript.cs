@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,6 +7,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 using Random = UnityEngine.Random;
+using System.Linq;
 using static GameManager;
 
 public class SkillsScript : MonoBehaviour
@@ -35,6 +37,7 @@ public class SkillsScript : MonoBehaviour
 
     private bool isSkillWindowsActive;
     private Unity.Mathematics.Random random;
+    private List<int> accessedSkills;
     private int[] variants;
 
     private int currentVariant;
@@ -59,8 +62,8 @@ public class SkillsScript : MonoBehaviour
         
         variantsButtons = new[] { skillsWindow.transform.GetChild(1).gameObject, skillsWindow.transform.GetChild(2).gameObject, skillsWindow.transform.GetChild(3).gameObject };
         var l = skillsWindow.transform.GetChild(4);
-        logos = new GameObject[10];
-        for (int i = 0; i < 10; ++i)
+        logos = new GameObject[12];
+        for (int i = 0; i < 12; ++i)
             logos[i] = l.GetChild(i).GameObject();
         
         
@@ -68,6 +71,7 @@ public class SkillsScript : MonoBehaviour
         uint seed = (uint)Random.Range(1, 1000);
         Debug.Log("seed = " + seed);
         random.InitState(seed);
+        accessedSkills = Enumerable.Range(0, 12).ToList();
         
         
         hb = GM.UI.HealthBar.GetComponent<RectTransform>();
@@ -84,7 +88,7 @@ public class SkillsScript : MonoBehaviour
 
         var setOfVariants = new HashSet<int>();
         while (setOfVariants.Count != 3)
-            setOfVariants.Add(random.NextInt(0, 9));
+            setOfVariants.Add(accessedSkills[random.NextInt(0, accessedSkills.Count - 1)]);
         variants = setOfVariants.ToArray();
         
         for (var i = 0; i < 3; ++i) {
@@ -123,6 +127,8 @@ public class SkillsScript : MonoBehaviour
                 case 7: ImproveMaxHunger(); break;
                 case 8: ImproveThrist(); break;
                 case 9: ImproveMaxThrist(); break;
+                case 10: ImproveFistsDamage(); break;
+                case 11: ImproveSpeed(); break;
         }
         skillsWindow.SetActive(false);
         foreach (var logo in logos)
@@ -157,7 +163,9 @@ public class SkillsScript : MonoBehaviour
             case 6:  return "Уменьшить скорость накопления голода";
             case 7:  return "Максимальный уровень сытости";
             case 8:  return "Уменьшить скорость накопления жажды";
-            default: return "Максимальный уровень жажды";
+            case 9:  return "Максимальный уровень жажды";
+            case 10:  return "Увеличить урон ближнего боя";
+            default: return "Увеличить скорость бега";
         }
     }
 
@@ -166,23 +174,25 @@ public class SkillsScript : MonoBehaviour
         playerDamagable.MaxHP += MAX_HEALTH;
         ph.sizeDelta = new Vector2(ph.sizeDelta.x + SLIDER_MARGIN, ph.sizeDelta.y);
         phIncr.sizeDelta = new Vector2(phIncr.sizeDelta.x + SLIDER_MARGIN, phIncr.sizeDelta.y);
-        playerHealthUpgradeCount++;
-        if (playerHealthUpgradeCount > summaryUpgradeCount)
-        {
-            summaryUpgradeCount++;
-            hb.sizeDelta = new Vector2(hb.sizeDelta.x + SLIDER_MARGIN, hb.sizeDelta.y);
-        }
+        
+        if (playerHealthUpgradeCount++ == 5)
+            accessedSkills.Remove(0);
+        
+        if (playerHealthUpgradeCount <= summaryUpgradeCount) return;
+        summaryUpgradeCount++;
+        hb.sizeDelta = new Vector2(hb.sizeDelta.x + SLIDER_MARGIN, hb.sizeDelta.y);
     }
     public void ImproveLightHouseHealth() {
         lightHouse.HP += ROCKET_HEALTH_BUFF;
         lightHouse.MaxHP += MAX_HEALTH;
         rh.sizeDelta = new Vector2(rh.sizeDelta.x + SLIDER_MARGIN, rh.sizeDelta.y);
-        rocketHealthUpgradeCount++;
-        if (rocketHealthUpgradeCount > summaryUpgradeCount)
-        {
-            summaryUpgradeCount++;
-            hb.sizeDelta = new Vector2(hb.sizeDelta.x + SLIDER_MARGIN, hb.sizeDelta.y);
-        }
+        
+        if (rocketHealthUpgradeCount++ == 5)
+            accessedSkills.Remove(1);
+        
+        if (rocketHealthUpgradeCount <= summaryUpgradeCount) return;
+        summaryUpgradeCount++;
+        hb.sizeDelta = new Vector2(hb.sizeDelta.x + SLIDER_MARGIN, hb.sizeDelta.y);
     }
     public void ImproveStamina() => survivalManager.IncreaseMaxStamina(MAX_STAMINA);
     public void ImproveStaminaRecovery() => survivalManager.IncreaseStaminaRecharging(STAMINA_RECOVERY);
@@ -192,4 +202,6 @@ public class SkillsScript : MonoBehaviour
     public void ImproveMaxHunger() => survivalManager.IncreaseMaxHunger(MAX_HUNGER);
     public void ImproveThrist() => survivalManager.IncreaseThirstEndurance(THIRST_ENDURANCE);
     public void ImproveMaxThrist() => survivalManager.IncreaseMaxThirst(MAX_THIRST);
+    public void ImproveFistsDamage() => GM.AttackPoint.Damage += 1;
+    public void ImproveSpeed() => GM.PlayerMovement.ImproveSpeed();
 }
