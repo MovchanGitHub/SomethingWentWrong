@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour, IWeaponable
 
     private void OnTriggerEnter2D(Collider2D col) 
     {
-        if (col.GetComponent<IDamagable>() != null && col.tag != "Player") 
+        if (col.GetComponent<IDamagable>() != null && col.tag != "Player" && col.tag != "Building") 
         {
             col.GetComponent<IDamagable>().GetDamage(this, gameObject);
             Destroy(gameObject);
