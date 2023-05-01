@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.SceneManagement;
 using static EnemiesSpawnSystem;
 
 public class DayNightSwitching : MusicFaderScript
@@ -29,6 +30,7 @@ public class DayNightSwitching : MusicFaderScript
     [SerializeField] private DayNightCycle DayNightCycleScript;
 
     private static DayNightSwitching instance;
+    private Scene _scene;
 
     public static DayNightSwitching Instance
     {
@@ -84,55 +86,64 @@ public class DayNightSwitching : MusicFaderScript
 
     private void Start()
     {
-        
+        _scene = SceneManager.GetActiveScene();
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Update()
     {
-        // Debug.Log(_dayAudio.volume);
-        // Debug.Log(_nightAudio.volume);
-        _enemiesEnded = _enemiesScript.ExistingEnemies == 0;
-        if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && _enemiesEnded)
-            _waveEnded = true;
-        intenseMixer.SetFloat("intenseMusicVol", _dayAudio.volume * intenseMixerVol - intenseMixerVol * 2);
-        _dayCycle = DayNightCycleScript.dayCycle;
-        if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && !_waveEnded)
+        if (_scene == SceneManager.GetActiveScene())
         {
-            MusicVolumeDownRoot(_dayAudio, TransTime / 2, ref _dayVolume);
-            if (_dayAudio.volume < 0.001f)
+            _enemiesEnded = _enemiesScript.ExistingEnemies == 0;
+            if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && _enemiesEnded)
+                _waveEnded = true;
+            intenseMixer.SetFloat("intenseMusicVol", _dayAudio.volume * intenseMixerVol - intenseMixerVol * 2);
+            _dayCycle = DayNightCycleScript.dayCycle;
+            if ((_dayCycle == DayTime.Midnight || _dayCycle == DayTime.Night) && !_waveEnded)
             {
-                _dayAudio.Stop();
-                _intenseAudio.Stop();
-            }
-            
-            if (_nightAudio.isPlaying == false) _nightAudio.Play();
-            MusicVolumeUpRoot(_nightAudio, TransTime / 2, ref _nightVolume);
+                MusicVolumeDownRoot(_dayAudio, TransTime / 2, ref _dayVolume);
+                if (_dayAudio.volume < 0.001f)
+                {
+                    _dayAudio.Stop();
+                    _intenseAudio.Stop();
+                }
 
-            if (_intenseVolume > 0.001f)
+                if (_nightAudio.isPlaying == false) _nightAudio.Play();
+                MusicVolumeUpRoot(_nightAudio, TransTime / 2, ref _nightVolume);
+
+                if (_intenseVolume > 0.001f)
+                {
+                    MusicVolumeDownRoot(_intenseAudio, TransTime / 4, ref _intenseVolume);
+                }
+
+                if (_inCombat) _inCombat = !_inCombat;
+            }
+            else
             {
-                MusicVolumeDownRoot(_intenseAudio, TransTime / 4, ref _intenseVolume);
-            }
+                if ((_dayCycle == DayTime.Sunrise || _waveEnded) && !_dayAudio.isPlaying)
+                {
+                    _dayAudio.Play();
+                    _intenseAudio.Play();
+                }
 
-            if (_inCombat) _inCombat = !_inCombat;
+                MusicVolumeDownRoot(_nightAudio, TransTime / 2, ref _nightVolume);
+                if (_nightAudio.volume < 0.001f)
+                {
+                    _nightAudio.Stop();
+                    _waveEnded = false;
+                }
+
+                MusicVolumeUpRoot(_dayAudio, TransTime, ref _dayVolume);
+
+                CombatStarts();
+            }
         }
         else
         {
-            if ((_dayCycle == DayTime.Sunrise || _waveEnded) && !_dayAudio.isPlaying)
-            {
-                _dayAudio.Play();
-                _intenseAudio.Play();
-            }
-            
-            MusicVolumeDownRoot(_nightAudio, TransTime / 2, ref _nightVolume);
-            if (_nightAudio.volume < 0.001f)
-            {
-                _nightAudio.Stop();
-                _waveEnded = false;
-            }
-            
-            MusicVolumeUpRoot(_dayAudio, TransTime, ref _dayVolume);
-            
-            CombatStarts();
+            MusicVolumeDownRoot(_dayAudio, TransTime * 2, ref _dayVolume);
+            MusicVolumeDownRoot(_nightAudio, TransTime * 2, ref _nightVolume);
+            if (_dayAudio.volume < 0.0001 && _nightAudio.volume < 0.0001)
+                Destroy(gameObject);
         }
     }
 
