@@ -96934,6 +96934,10 @@ PrefabInstance:
       propertyPath: m_SizeDelta.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2756128440079393889, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_Name
       value: UI
@@ -97044,6 +97048,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3856358985021723811, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3856358985021723811, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_SizeDelta.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4179934295783946526, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
@@ -99156,6 +99164,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2919171422484403361, guid: 4eb910ab9d87d884f900438e26b734e1, type: 3}
       propertyPath: enemiesToSpawn
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919171422484403361, guid: 4eb910ab9d87d884f900438e26b734e1, type: 3}
+      propertyPath: timeBetweenSpawn
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2919171422484403361, guid: 4eb910ab9d87d884f900438e26b734e1, type: 3}
+      propertyPath: minTimeBetweenSpawn
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2919171422484403361, guid: 4eb910ab9d87d884f900438e26b734e1, type: 3}

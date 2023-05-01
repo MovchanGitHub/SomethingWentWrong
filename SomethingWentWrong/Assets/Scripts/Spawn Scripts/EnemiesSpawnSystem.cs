@@ -76,7 +76,7 @@ public class EnemiesSpawnSystem : MonoBehaviour
     public IEnumerator SpawnEnemies()
     {
         spawnedEnemies = 0;
-        
+        existingEnemies = enemiesToSpawn;
         while (spawnedEnemies != enemiesToSpawn)
         {
             int positionIndex = FindPointFarFromPlayer();
@@ -98,7 +98,6 @@ public class EnemiesSpawnSystem : MonoBehaviour
             //Debug.Log("spawned enemy at position " + positionIndex);
             
             spawnedEnemies++;
-            existingEnemies++;
             yield return new WaitForSeconds(timeBetweenSpawn);
         }
 

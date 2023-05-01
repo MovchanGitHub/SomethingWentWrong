@@ -93,6 +93,8 @@ public class DayNightCycle : MonoBehaviour
      {
          while (true)
          {
+             sunriseDuration += 3f;
+             
              while (true)
              {
                  // Sunrise
