@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &6282623205285367893
+--- !u!1 &8710212026870762345
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,11 +8,11 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 6282623205285367896}
-  - component: {fileID: 6282623205285367897}
-  - component: {fileID: 6282623205285367898}
-  - component: {fileID: 6282623205285367899}
-  - component: {fileID: 6282623205285367892}
+  - component: {fileID: 3863520574865954592}
+  - component: {fileID: 5210329533379361209}
+  - component: {fileID: 4454596824676785656}
+  - component: {fileID: 6267156852559254244}
+  - component: {fileID: 7985402343823624096}
   m_Layer: 0
   m_Name: DayNight Music
   m_TagString: Untagged
@@ -20,13 +20,13 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &6282623205285367896
+--- !u!4 &3863520574865954592
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282623205285367893}
+  m_GameObject: {fileID: 8710212026870762345}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -35,17 +35,17 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!82 &6282623205285367897
+--- !u!82 &5210329533379361209
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282623205285367893}
+  m_GameObject: {fileID: 8710212026870762345}
   m_Enabled: 1
   serializedVersion: 4
-  OutputAudioMixerGroup: {fileID: -9177207155956855917, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
-  m_audioClip: {fileID: 8300000, guid: 8ca7c9e0145c84e94a40628229736c31, type: 3}
+  OutputAudioMixerGroup: {fileID: -6654009480498189041, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
+  m_audioClip: {fileID: 8300000, guid: c464c5b67701240b38f16a248903c62b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -131,13 +131,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &6282623205285367898
+--- !u!82 &4454596824676785656
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282623205285367893}
+  m_GameObject: {fileID: 8710212026870762345}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: -9177207155956855917, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
@@ -227,18 +227,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!82 &6282623205285367899
+--- !u!82 &6267156852559254244
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282623205285367893}
+  m_GameObject: {fileID: 8710212026870762345}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 8238182674137721881, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
   m_audioClip: {fileID: 8300000, guid: 8fde4d808755243e69e496e017c01cb9, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 0
   m_Pitch: 1
   Loop: 0
@@ -323,13 +323,13 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6282623205285367892
+--- !u!114 &7985402343823624096
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6282623205285367893}
+  m_GameObject: {fileID: 8710212026870762345}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 23050919949d545f1b54eb5504d835dd, type: 3}
@@ -337,4 +337,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   intenseMixer: {fileID: 24100000, guid: ec67e5ac124044a34a8cbdff6323a532, type: 2}
   intenseMixerVol: 12
+  _enemiesScript: {fileID: 0}
   DayNightCycleScript: {fileID: 0}

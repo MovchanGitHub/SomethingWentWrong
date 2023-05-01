@@ -13,7 +13,7 @@ public class MusicVol : MonoBehaviour
 
     private void Start()
     {
-        audioMixer.SetFloat("GameVol", GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value);
+        audioMixer.SetFloat("GameVol", Mathf.Log10(GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<Slider>().value)  * 20);
     }
 
     public void OnChangeSlider(float value)

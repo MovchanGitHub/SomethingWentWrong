@@ -1,6 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
+using Random = UnityEngine.Random;
 
 
 public class LaserEnemyAttack : EnemyAttack
@@ -14,6 +17,13 @@ public class LaserEnemyAttack : EnemyAttack
     private int actualAttackDirection;
     private Vector2 targetPosition;
     [HideInInspector] public List<GameObject> damagedEntities;
+
+    private AudioSource _audioSource;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     protected override void Update()
     {
@@ -36,6 +46,9 @@ public class LaserEnemyAttack : EnemyAttack
     {
         es.Animator.AttackTrigger();
         yield return new WaitForSeconds(timeBeforeAttack);
+        _audioSource.volume = 0.65f;
+        _audioSource.pitch = 1.7f + Random.Range(-0.15f, 0.15f);
+        _audioSource.Play();
         Quaternion startRotation = Quaternion.Euler(Vector3.forward * angle);
         Quaternion endRotation = Quaternion.Euler(Vector3.forward * (angle + (-1) * actualAttackDirection * 100)); //160
         float rate = 1f;
@@ -61,6 +74,7 @@ public class LaserEnemyAttack : EnemyAttack
             yield return null;
         }
         laser.gameObject.SetActive(false);
+        _audioSource.volume = 0f;
         yield return new WaitForSeconds(timeAfterAttack);
         enemyLogic.CanMove = true;
         damagedEntities.Clear();

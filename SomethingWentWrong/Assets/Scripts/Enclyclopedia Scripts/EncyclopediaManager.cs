@@ -72,6 +72,9 @@ public class EncyclopediaManager : MonoBehaviour
 
 
     [HideInInspector] public bool isOpened;
+    public AudioClip[] Notes;
+    public AudioClip Open;
+    public AudioSource NotesSource;
 
     private void Awake()
     {
@@ -233,6 +236,10 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = !isOpened;
         if (isOpened)
         {
+            NotesSource.volume = 1;
+            NotesSource.clip = Open;
+            NotesSource.pitch = 1;
+            NotesSource.Play();
             if (newNoteCoroutine != null)
             {
                 StopCoroutine(newNoteCoroutine);
@@ -248,6 +255,7 @@ public class EncyclopediaManager : MonoBehaviour
         }
         else
         {
+            NotesSource.volume = 0;
             Time.timeScale = 1f;
             shadeCoroutineToStop = StartCoroutine(DeShadeBackground());
             HideExtraInfo();
@@ -379,6 +387,10 @@ public class EncyclopediaManager : MonoBehaviour
 
     private IEnumerator ShowNewNotification()
     {
+        NotesSource.volume = 1;
+        NotesSource.clip = Notes[Random.Range(0, Notes.Length)];
+        NotesSource.pitch = 1 + Random.Range(-0.15f, 0.15f);
+        NotesSource.Play();
         notificationImage.gameObject.SetActive(false);
         notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);

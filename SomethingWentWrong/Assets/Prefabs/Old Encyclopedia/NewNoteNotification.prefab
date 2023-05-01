@@ -440,3 +440,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 887c8eb6bc137db43a2ca782abc9d37f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Notes:
+  - {fileID: 8300000, guid: 5eb010055a9884cda82c075debeb97dd, type: 3}
+  - {fileID: 8300000, guid: 0c2d2dae90bb247a0935a7f6909dee84, type: 3}
+  - {fileID: 8300000, guid: 2ec5798111d1e4646b008158f313a0c5, type: 3}
+  Mixer: {fileID: 1375778638810669228, guid: 9854a754f5e814ed09d8fabd2864ccff, type: 2}
+  playSound: {fileID: 2726176823688432947, guid: a36709904aa6b459abc32ee6603a22fd, type: 3}

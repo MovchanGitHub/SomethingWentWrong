@@ -11,7 +11,9 @@ public class BulletLogic : WeaponLogic
     private Bullet bullet;
     public Transform shotpoint;
 
-	
+
+    public AudioSource BulletSource;
+
     private void Start()
     {
         bullet = projectileSample.GetComponent<Bullet>();
@@ -19,6 +21,7 @@ public class BulletLogic : WeaponLogic
 
     private IEnumerator ThrowBullet()
     {
+        BulletSource.Play();
         GM.PlayerMovement.isoRenderer.PlayShoot();
         Instantiate(bullet, shotpoint.position, transform.rotation)
             .direction = Vector2.ClampMagnitude(GM.Camera.ScreenToWorldPoint(Mouse.current.position.ReadValue()) - transform.position, 1);

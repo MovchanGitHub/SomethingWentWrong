@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.InputSystem;
 using static GameManager;
 
@@ -43,6 +44,10 @@ public class LaserLogic : WeaponLogic
     private float usedTime;
 
     private float timeToDamage;
+    
+    private AudioSource audioSource;
+    private float _timeToFade;
+    private float _timeElapsed;
 
     private void Start()
     {
@@ -53,6 +58,8 @@ public class LaserLogic : WeaponLogic
         _laserPropBlock = new MaterialPropertyBlock();
         laser = projectileSample.GetComponent<Laser>();
         laser.LaserColor = laserColor;
+        audioSource = GetComponent<AudioSource>();
+        _timeToFade = 0.5f;
     }
 
     private bool allowReuseLaser = true;
@@ -61,9 +68,14 @@ public class LaserLogic : WeaponLogic
     
     IEnumerator EnableLaser()
     {
+        audioSource.volume = 1;
         if (!allowReuseLaser)
             yield break;
-
+        
+        audioSource.time = 0f;
+        audioSource.pitch = 1 + UnityEngine.Random.Range(-0.15f, 0.15f);
+        audioSource.Play();
+        
         allowReuseLaser = false;
         isShooting = true;
         GM.PlayerMovement.isoRenderer.PlayShoot();
@@ -180,6 +192,7 @@ public class LaserLogic : WeaponLogic
 
     void DisableLaser()
     {
+        audioSource.volume = 0f;
         isShooting = false;
         GM.PlayerMovement.isoRenderer.PlayStopShooting();
         
