@@ -109,14 +109,14 @@ public class InventoryController : MonoBehaviour
 
         canvasTransform.gameObject.SetActive(isCanvasActive);
 
-        if (isCanvasActive)
-        {
-            inputSystem.BlockPlayerInputs();
-        }
-        else
-        {
-            inputSystem.UnblockPlayerInputs();
-        }
+        //if (isCanvasActive)
+        //{
+        //    inputSystem.BlockPlayerInputs();
+        //}
+        //else
+        //{
+        //    inputSystem.UnblockPlayerInputs();
+        //}
         bin.SetActive(false);
     }
 
