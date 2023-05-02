@@ -13,6 +13,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
     [SerializeField] private int timesToDrop;
+    private IWeaponable lastWeapon;
     public int TimesToDrop { get { return timesToDrop; } }
 
     public int positionIndex;
@@ -46,6 +47,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
+        lastWeapon = weapon;
         HP -= weapon.Damage;
         if (hp > 0)
         {
@@ -99,7 +101,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (!creature.isOpenedInEcnyclopedia)
+        if (!creature.isOpenedInEcnyclopedia && lastWeapon.Type != WeaponType.Gringe && lastWeapon.Type != WeaponType.Dino && lastWeapon.Type != WeaponType.Eye)
         {
             GM.UI.Encyclopedia.EncyclopediaScript.OpenNewCreature(creature);
         }
