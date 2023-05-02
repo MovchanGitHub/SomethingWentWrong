@@ -14,6 +14,7 @@ public class NotesManager : MonoBehaviour
 
     [HideInInspector] public int hp;
 
+    [HideInInspector] public ItemType lootType;
     [HideInInspector] public Sprite lootSprite;
     [HideInInspector] public int lootAmount;
     [HideInInspector] public int hungerReplenishment;
@@ -31,10 +32,15 @@ public class NotesManager : MonoBehaviour
             hp = resourceScript.MaxHP;
             lootSprite = resourceScript.Drop.GetComponentInChildren<SpriteRenderer>().sprite;
             lootAmount = resourceScript.TimesToDrop;
-            ItemTypeFood dropItem = resourceScript.Drop.GetComponent<PickUpScript>().itemToInventory as ItemTypeFood;
-            hungerReplenishment = dropItem?.satiationEffect ?? 0;
-            thirstReplenishment = dropItem?.slakingOfThirstEffect ?? 0;
-            oxigenReplenishment = dropItem?.oxygenRecovery ?? 0;
+            lootType = resourceScript.Drop.GetComponent<PickUpScript>().itemToInventory.TypeOfThisItem;
+            if (lootType == ItemType.Food)
+            {
+                
+                ItemTypeFood dropItem = resourceScript.Drop.GetComponent<PickUpScript>().itemToInventory as ItemTypeFood;
+                hungerReplenishment = dropItem?.satiationEffect ?? 0;
+                thirstReplenishment = dropItem?.slakingOfThirstEffect ?? 0;
+                oxigenReplenishment = dropItem?.oxygenRecovery ?? 0;
+            }
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)
         {
