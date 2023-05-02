@@ -372,9 +372,9 @@ public class InventoryManager : MonoBehaviour
         if ((!Input.GetMouseButtonUp(1)) && (CellCode.item.TypeOfThisItem == ItemType.Food))
         {
             ItemTypeFood temporary = CellCode.item as ItemTypeFood;
-            SurvivalManagerCode.ReplenishHunger(temporary.satiationEffect);
-            SurvivalManagerCode.ReplenishThirst(temporary.slakingOfThirstEffect);
-            SurvivalManagerCode.ReplenishAnoxaemia(temporary.oxygenRecovery);
+            SurvivalManagerCode.CurrentHunger += temporary.satiationEffect;
+            SurvivalManagerCode.CurrentThirst += temporary.slakingOfThirstEffect;
+            SurvivalManagerCode.CurrentAnoxaemia += temporary.oxygenRecovery;
         }
 
         CellCode.amount--;

@@ -366,9 +366,9 @@ public class InventoryController : MonoBehaviour
             }
             
             ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-            GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
-            GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-            GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            GM.SurvivalManager.CurrentHunger += itemToUse.satiationEffect;
+            GM.SurvivalManager.CurrentThirst += itemToUse.slakingOfThirstEffect;
+            GM.SurvivalManager.CurrentAnoxaemia += itemToUse.oxygenRecovery;
             GM.PlayerMovement.GetComponentInChildren<PlayerDamagable>().HP += itemToUse.healEffect;
             Destroy(item.gameObject);
             inventoryHighlight.Show(false);
