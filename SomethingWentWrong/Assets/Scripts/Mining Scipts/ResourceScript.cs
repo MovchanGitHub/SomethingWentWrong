@@ -10,9 +10,11 @@ public class ResourceScript : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    [SerializeField] private int maxHp;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
     [SerializeField] private int timesToDrop;
+    private IWeaponable lastWeapon;
     public int TimesToDrop { get { return timesToDrop; } }
 
     public int positionIndex;
@@ -42,10 +44,11 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    public int MaxHP { get; set; }
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
 
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
+        lastWeapon = weapon;
         HP -= weapon.Damage;
         if (hp > 0)
         {
@@ -64,6 +67,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
         else
             positionIndex = GM.Spawner.Resources.PositionIndex;
         _audioSource = GetComponents<AudioSource>()[0];
+
+        //MaxHP = HP;
     }
 
 
@@ -77,6 +82,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
     public GameObject Drop { get { return drop; } }
+    public int DropCount { get { return dropCount; } }
 
     private void DropItem(int dropAmount)
     {
@@ -99,7 +105,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 
     private void Die()
     {
-        if (!creature.isOpenedInEcnyclopedia)
+        if (!creature.isOpenedInEcnyclopedia && lastWeapon.Type != WeaponType.Gringe && lastWeapon.Type != WeaponType.Dino && lastWeapon.Type != WeaponType.Eye)
         {
             GM.UI.Encyclopedia.EncyclopediaScript.OpenNewCreature(creature);
         }

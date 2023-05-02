@@ -8,6 +8,7 @@ using UnityEngine;
 using UnityEngine.XR;
 using UnityEngine.InputSystem;
 using UnityEngine.Rendering.Universal;
+using UnityEngine.EventSystems;
 using static GameManager;
 using static AttackPoint;
 
@@ -112,7 +113,7 @@ public class IsometricPlayerMovementController : MonoBehaviour
 
     public void Rush(UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (!GM.SurvivalManager.CanRush())
+        if (!GM.SurvivalManager.CanRush() || EventSystem.current.IsPointerOverGameObject())
             return;
         
         horizontalInput = lastHorizontalInput;

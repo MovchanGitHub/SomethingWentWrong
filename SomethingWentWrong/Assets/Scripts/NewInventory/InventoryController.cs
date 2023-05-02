@@ -109,14 +109,14 @@ public class InventoryController : MonoBehaviour
 
         canvasTransform.gameObject.SetActive(isCanvasActive);
 
-        if (isCanvasActive)
-        {
-            inputSystem.BlockPlayerInputs();
-        }
-        else
-        {
-            inputSystem.UnblockPlayerInputs();
-        }
+        //if (isCanvasActive)
+        //{
+        //    inputSystem.BlockPlayerInputs();
+        //}
+        //else
+        //{
+        //    inputSystem.UnblockPlayerInputs();
+        //}
         bin.SetActive(false);
     }
 
@@ -366,9 +366,9 @@ public class InventoryController : MonoBehaviour
             }
             
             ItemTypeFood itemToUse = item.itemData as ItemTypeFood;
-            GM.SurvivalManager.ReplenishHunger(itemToUse.satiationEffect);
-            GM.SurvivalManager.ReplenishThirst(itemToUse.slakingOfThirstEffect);
-            GM.SurvivalManager.ReplenishAnoxaemia(itemToUse.oxygenRecovery);
+            GM.SurvivalManager.CurrentHunger += itemToUse.satiationEffect;
+            GM.SurvivalManager.CurrentThirst += itemToUse.slakingOfThirstEffect;
+            GM.SurvivalManager.CurrentAnoxaemia += itemToUse.oxygenRecovery;
             GM.PlayerMovement.GetComponentInChildren<PlayerDamagable>().HP += itemToUse.healEffect;
             Destroy(item.gameObject);
             inventoryHighlight.Show(false);

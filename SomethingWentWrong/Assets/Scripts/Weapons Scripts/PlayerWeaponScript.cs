@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using static GameManager;
 public class PlayerWeaponScript : MonoBehaviour
 {
@@ -41,7 +42,7 @@ public class PlayerWeaponScript : MonoBehaviour
 
     public void Attack (UnityEngine.InputSystem.InputAction.CallbackContext context)
     {
-        if (weaponLogics[CurrWeapon].ReadyToFire && !GM.PlayerMovement.usingWeapon)
+        if (weaponLogics[CurrWeapon].ReadyToFire && !GM.PlayerMovement.usingWeapon && !EventSystem.current.IsPointerOverGameObject())
             if (!weaponLogics[currWeapon].UseWeapon());
                 //weaponLogics[currWeapon].CanNotUseWeapon();
     }

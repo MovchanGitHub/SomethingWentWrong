@@ -12,6 +12,18 @@ public class SurvivalManager : MonoBehaviour
     public float MaxHunger { get => maxHunger; }
     [SerializeField] private float hungerDepletionRate;
     private float currentHunger;
+    public float CurrentHunger
+    {
+        get { return currentHunger; }
+        set
+        {
+            currentHunger = value;
+            if (currentHunger < 0)
+                currentHunger = 0;
+            else if (currentHunger > MaxHunger)
+                currentHunger = MaxHunger;
+        }
+    }
     public float HungerPercent => currentHunger / maxHunger;
     public int hungerDamage = 2;
 
@@ -21,6 +33,18 @@ public class SurvivalManager : MonoBehaviour
     public float MaxThirst { get => maxThirst; }
     [SerializeField] private float thirstDepletionRate;
     private float currentThirst;
+    public float CurrentThirst
+    {
+        get { return currentThirst; }
+        set
+        {
+            currentThirst = value;
+            if (currentThirst < 0)
+                currentThirst = 0;
+            else if (currentThirst > MaxThirst)
+                currentThirst = MaxThirst;
+        }
+    }
     public float ThirstPercent => currentThirst / maxThirst;
     public int thirstDamage = 3;
 
@@ -30,6 +54,18 @@ public class SurvivalManager : MonoBehaviour
 
     [SerializeField] private float anoxaemiaDepletionRate;
     private float currentAnoxaemia;
+    public float CurrentAnoxaemia
+    {
+        get { return currentAnoxaemia; }
+        set
+        {
+            currentAnoxaemia = value;
+            if (currentAnoxaemia < 0)
+                currentAnoxaemia = 0;
+            else if (currentAnoxaemia > MaxAnoxaemia)
+                currentAnoxaemia = MaxAnoxaemia;
+        }
+    }
     public float AnoxaemiaPercent => currentAnoxaemia / maxAnoxaemia;
     public int anoxaemiaDamage = 5;
 
@@ -76,9 +112,12 @@ public class SurvivalManager : MonoBehaviour
 
     private void Update()
     {
-        currentHunger    -= hungerDepletionRate    * Time.deltaTime;
-        currentThirst    -= thirstDepletionRate    * Time.deltaTime;
-        currentAnoxaemia -= anoxaemiaDepletionRate * Time.deltaTime;
+        CurrentHunger    -= hungerDepletionRate    * Time.deltaTime;
+        CurrentThirst    -= thirstDepletionRate    * Time.deltaTime;
+        CurrentAnoxaemia -= anoxaemiaDepletionRate * Time.deltaTime;
+        //Debug.Log(CurrentHunger);
+        Debug.Log(CurrentThirst);
+        //Debug.Log(CurrentAnoxaemia);
 
         // if (currentHunger <= 0 || currentThirst <= 0 || currentAnoxaemia <= 0)
         // {
@@ -123,32 +162,32 @@ public class SurvivalManager : MonoBehaviour
         currentAnoxaemia = maxAnoxaemia;
     }
 
-    public void ReplenishHunger(float hungerAmount)
-    {
-        currentHunger += hungerAmount;
-        if (currentHunger > maxHunger)
-            currentHunger = maxHunger;
-        else if (currentHunger < 0)
-            currentHunger = 0;
-    }
+    //public void ReplenishHunger(float hungerAmount)
+    //{
+    //    currentHunger += hungerAmount;
+    //    if (currentHunger > maxHunger)
+    //        currentHunger = maxHunger;
+    //    else if (currentHunger < 0)
+    //        currentHunger = 0;
+    //}
 
-    public void ReplenishThirst(float thirstAmount)
-    {
-        currentThirst += thirstAmount;
-        if (currentThirst > maxThirst)
-            currentThirst = maxThirst;
-        else if (currentThirst < 0)
-            currentThirst = 0;
-    }
+    //public void ReplenishThirst(float thirstAmount)
+    //{
+    //    currentThirst += thirstAmount;
+    //    if (currentThirst > maxThirst)
+    //        currentThirst = maxThirst;
+    //    else if (currentThirst < 0)
+    //        currentThirst = 0;
+    //}
 
-    public void ReplenishAnoxaemia(float anoxaemiaAmount)
-    {
-        currentAnoxaemia += anoxaemiaAmount;
-        if (currentAnoxaemia > maxAnoxaemia)
-            currentAnoxaemia = maxAnoxaemia;
-        else if (currentAnoxaemia < 0)
-            currentAnoxaemia = 0;
-    }
+    //public void ReplenishAnoxaemia(float anoxaemiaAmount)
+    //{
+    //    currentAnoxaemia += anoxaemiaAmount;
+    //    if (currentAnoxaemia > maxAnoxaemia)
+    //        currentAnoxaemia = maxAnoxaemia;
+    //    else if (currentAnoxaemia < 0)
+    //        currentAnoxaemia = 0;
+    //}
     
     public void ReplenishStamina(float staminaAmount)
     {
