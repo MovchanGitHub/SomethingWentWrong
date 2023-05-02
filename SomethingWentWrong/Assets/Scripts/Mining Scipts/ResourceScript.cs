@@ -10,6 +10,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
 {
     // IDamagable's implementation
     [SerializeField] private int hp;
+    [SerializeField] private int maxHp;
     [SerializeField] private Slider slider;
     [SerializeField] private DamagePopup damagePopupPrefab;
     [SerializeField] private int timesToDrop;
@@ -43,7 +44,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
         }
     }
 
-    public int MaxHP { get; set; }
+    public int MaxHP { get { return maxHp; } set { maxHp = value; } }
 
     public void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
@@ -66,6 +67,8 @@ public class ResourceScript : MonoBehaviour, IDamagable
         else
             positionIndex = GM.Spawner.Resources.PositionIndex;
         _audioSource = GetComponents<AudioSource>()[0];
+
+        //MaxHP = HP;
     }
 
 
@@ -79,6 +82,7 @@ public class ResourceScript : MonoBehaviour, IDamagable
     [SerializeField] private float spread = 2f;
     [SerializeField] private float dropSpeed = 5f;
     public GameObject Drop { get { return drop; } }
+    public int DropCount { get { return dropCount; } }
 
     private void DropItem(int dropAmount)
     {

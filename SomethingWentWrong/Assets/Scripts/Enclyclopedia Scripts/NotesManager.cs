@@ -29,9 +29,9 @@ public class NotesManager : MonoBehaviour
         if (creature.typeOfThisCreature == creatureType.Plant)
         {
             ResourceScript resourceScript = creature.creaturePrefab.GetComponent<ResourceScript>();
-            hp = resourceScript.MaxHP;
+            hp = resourceScript.HP;
             lootSprite = resourceScript.Drop.GetComponentInChildren<SpriteRenderer>().sprite;
-            lootAmount = resourceScript.TimesToDrop;
+            lootAmount = resourceScript.TimesToDrop * resourceScript.DropCount;
             lootType = resourceScript.Drop.GetComponent<PickUpScript>().itemToInventory.TypeOfThisItem;
             if (lootType == ItemType.Food)
             {
