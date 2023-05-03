@@ -10,18 +10,6 @@ public class EncyclopediaManager : MonoBehaviour
 {
     private InputSystem inputSystem;
 
-    //[SerializeField] private GameObject mainPanel;//
-    //[SerializeField] private GameObject panelWithExtraInfo;//
-    //[SerializeField] private GameObject extraInfoEnemyPanel;
-    //[SerializeField] private GameObject extraInfoPlantPanel;
-    //[SerializeField] private GameObject iconOfSpecialAbility;//
-    //[SerializeField] private GameObject LootIcon;
-    //[SerializeField] private GameObject newNoteNotification;
-    //[SerializeField] private GameObject plantsTab;
-    //[SerializeField] private GameObject enemiesTab;
-    //[SerializeField] private GameObject plantsTabHeader;
-    //[SerializeField] private GameObject enemiesTabHeader;
-
     private Image extraInfoPlantImage;
     private TMPro.TextMeshProUGUI extraInfoPlantHpValue;
     private TMPro.TextMeshProUGUI extraInfoPlantName;
@@ -42,6 +30,8 @@ public class EncyclopediaManager : MonoBehaviour
     private TMPro.TextMeshProUGUI extraInfoEnemyName;
     private TMPro.TextMeshProUGUI extraInfoEnemyDescription;
 
+    public AspectRatioFitter aspectRatioFitter;
+
     private Dictionary<string, GameObject> notes;
 
     private ScrollRect scrollRectPlants;
@@ -50,28 +40,18 @@ public class EncyclopediaManager : MonoBehaviour
     private Image backgrounds;
     public Coroutine coroutineToStop = null;
     private Coroutine shadeCoroutineToStop = null;
-    private GameObject[] allElemsToClose;
-    //Queue<Coroutine> ShadingAnims = new Queue<Coroutine>();
-    //Queue<Coroutine> DeShadingAnims = new Queue<Coroutine>();
-    //Queue<Coroutine> OpeningAnims = new Queue<Coroutine>();
-    ////Dictionary<openingAnims, Queue<Coroutine>> = new Dictionary<openingAnims, Queue<Coroutine>> 
-    //Queue<Coroutine> ClosingAnims = new Queue<Coroutine>();
+    private GameObject[] allElemsToClose; 
 
     Coroutine newNoteCoroutine;
     private Queue<CreaturesBase> notificationsToShowUp;
     private Image notificationImage;
     private TMPro.TextMeshProUGUI notificationHeader;
+    private CreaturesBase notificationCreature;
     [SerializeField] TMPro.TMP_ColorGradient firstGradient;
     [SerializeField] TMPro.TMP_ColorGradient secondGradient;
 
     [SerializeField] TMPro.TMP_ColorGradient PositiveGradient;
     [SerializeField] TMPro.TMP_ColorGradient NegativeGradient;
-
-    //private Color32 selectedTab;
-    //private Color32 nonSelectedTab;
-
-    //[SerializeField] private List<NotesManager> enemiesNotes;
-    //[SerializeField] private List<NotesManager> plantsNotes;
 
 
     [HideInInspector] public bool isOpened;
@@ -84,9 +64,8 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
         backgrounds = GetComponent<Image>();
+        aspectRatioFitter = transform.GetChild(0).GetComponent<AspectRatioFitter>();
         notificationsToShowUp = new Queue<CreaturesBase>();
-        //selectedTab = new Color32(124, 192, 0, 255);
-        //nonSelectedTab = new Color32(89, 137, 0, 255);
     }
 
     private void Start()
@@ -115,6 +94,8 @@ public class EncyclopediaManager : MonoBehaviour
 
         notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
         notificationHeader = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
+        notificationCreature = GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().openedCreature;
+
 
         scrollRectPlants = GM.UI.Encyclopedia.PlantsTab.GetComponent<ScrollRect>();
         scrollRectLore = GM.UI.Encyclopedia.LoreTab.GetComponent<ScrollRect>();
@@ -160,11 +141,36 @@ public class EncyclopediaManager : MonoBehaviour
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
 
+    //private void FixedUpdate()
+    //{
+    //    Debug.Log(GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().fastCoroutine);
+    //}
+
+    public IEnumerator GoToNewCreatureCoroutine (CreaturesBase openedCreature)
+    {
+        yield return null;
+        //OpenCloseEncyclopedia();
+        //while (coroutineToStop != null)
+        //{
+        //    Debug.Log(55);
+        //    yield return new WaitForSecondsRealtime(0.2f);
+        //    Debug.Log(coroutineToStop);
+        //}
+        //Debug.Log(0);
+        //yield return new WaitUntil(() => coroutineToStop == null);
+        //Debug.Log(1);
+        //OpenPlantsTab();
+        //yield return new WaitUntil(() => coroutineToStop == null);
+        //Debug.Log(2);
+        //OpenExtraInfo(notes[openedCreature.name]);
+        //Debug.Log(3);
+    }
+
     public void OpenExtraInfo(GameObject ChosenNote)
     {
         if (GM.UI.Encyclopedia.PlantsTab.activeSelf)
             OpenPlants();
-        else
+        else if (GM.UI.Encyclopedia.EnemiesTab.activeSelf)
             OpenEnemy();
 
         void OpenPlants()
@@ -254,7 +260,7 @@ public class EncyclopediaManager : MonoBehaviour
     public void CloseLoreNote() => coroutineToStop = StartCoroutine(AnimateClosingElement(GM.UI.Encyclopedia.ExtraInfoLorePanel));
 
 
-    public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context = default)
     {
         if (GM.IsTutorial)
             return;
@@ -430,6 +436,7 @@ public class EncyclopediaManager : MonoBehaviour
         {
             CreaturesBase curCreature = notificationsToShowUp.Dequeue();
             notificationImage.sprite = curCreature.imageSmall;
+            notificationCreature = curCreature;
             for (int i = 0; i < 4; i++)
             {
                 notificationHeader.colorGradientPreset = firstGradient;

@@ -25,4 +25,4 @@ MonoBehaviour:
   imageSmall: {fileID: 428784093, guid: e87888a3d69adef4d95a95aa8c4eff51, type: 3}
   imageBig: {fileID: 428784093, guid: e87888a3d69adef4d95a95aa8c4eff51, type: 3}
   imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
-  isOpenedInEcnyclopedia: 0
+  isOpenedInEcnyclopedia: 1

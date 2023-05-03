@@ -115,9 +115,6 @@ public class SurvivalManager : MonoBehaviour
         CurrentHunger    -= hungerDepletionRate    * Time.deltaTime;
         CurrentThirst    -= thirstDepletionRate    * Time.deltaTime;
         CurrentAnoxaemia -= anoxaemiaDepletionRate * Time.deltaTime;
-        //Debug.Log(CurrentHunger);
-        Debug.Log(CurrentThirst);
-        //Debug.Log(CurrentAnoxaemia);
 
         // if (currentHunger <= 0 || currentThirst <= 0 || currentAnoxaemia <= 0)
         // {
