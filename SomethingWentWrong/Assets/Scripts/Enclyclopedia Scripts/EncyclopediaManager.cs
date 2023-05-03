@@ -46,6 +46,7 @@ public class EncyclopediaManager : MonoBehaviour
     private Queue<CreaturesBase> notificationsToShowUp;
     private Image notificationImage;
     private TMPro.TextMeshProUGUI notificationHeader;
+    private CreaturesBase notificationCreature;
     [SerializeField] TMPro.TMP_ColorGradient firstGradient;
     [SerializeField] TMPro.TMP_ColorGradient secondGradient;
 
@@ -93,6 +94,8 @@ public class EncyclopediaManager : MonoBehaviour
 
         notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
         notificationHeader = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
+        notificationCreature = GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().openedCreature;
+
 
         scrollRectPlants = GM.UI.Encyclopedia.PlantsTab.GetComponent<ScrollRect>();
         scrollRectLore = GM.UI.Encyclopedia.LoreTab.GetComponent<ScrollRect>();
@@ -138,11 +141,36 @@ public class EncyclopediaManager : MonoBehaviour
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
     }
 
+    //private void FixedUpdate()
+    //{
+    //    Debug.Log(GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().fastCoroutine);
+    //}
+
+    public IEnumerator GoToNewCreatureCoroutine (CreaturesBase openedCreature)
+    {
+        yield return null;
+        //OpenCloseEncyclopedia();
+        //while (coroutineToStop != null)
+        //{
+        //    Debug.Log(55);
+        //    yield return new WaitForSecondsRealtime(0.2f);
+        //    Debug.Log(coroutineToStop);
+        //}
+        //Debug.Log(0);
+        //yield return new WaitUntil(() => coroutineToStop == null);
+        //Debug.Log(1);
+        //OpenPlantsTab();
+        //yield return new WaitUntil(() => coroutineToStop == null);
+        //Debug.Log(2);
+        //OpenExtraInfo(notes[openedCreature.name]);
+        //Debug.Log(3);
+    }
+
     public void OpenExtraInfo(GameObject ChosenNote)
     {
         if (GM.UI.Encyclopedia.PlantsTab.activeSelf)
             OpenPlants();
-        else
+        else if (GM.UI.Encyclopedia.EnemiesTab.activeSelf)
             OpenEnemy();
 
         void OpenPlants()
@@ -232,7 +260,7 @@ public class EncyclopediaManager : MonoBehaviour
     public void CloseLoreNote() => coroutineToStop = StartCoroutine(AnimateClosingElement(GM.UI.Encyclopedia.ExtraInfoLorePanel));
 
 
-    public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context)
+    public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context = default)
     {
         if (GM.IsTutorial)
             return;
@@ -408,6 +436,7 @@ public class EncyclopediaManager : MonoBehaviour
         {
             CreaturesBase curCreature = notificationsToShowUp.Dequeue();
             notificationImage.sprite = curCreature.imageSmall;
+            notificationCreature = curCreature;
             for (int i = 0; i < 4; i++)
             {
                 notificationHeader.colorGradientPreset = firstGradient;

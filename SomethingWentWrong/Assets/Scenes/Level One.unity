@@ -43440,6 +43440,17 @@ PolygonCollider2D:
       - {x: 1.5637734, y: -1.0066937}
       - {x: 2.5645883, y: -1.4628911}
       - {x: 2.94241, y: -1.3646865}
+--- !u!114 &883326098 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3169232962789995703, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+  m_PrefabInstance: {fileID: 1645047657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 682c876ecbdffaa49aa8858e4aaa4c08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &884785601 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1218821162395364665, guid: 323d0d5d77f931d4caa5305171aacba1, type: 3}
@@ -96941,6 +96952,34 @@ PrefabInstance:
     - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_SizeDelta.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 883326098}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: GoToNewCreature
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: NewNoteNotificationFastEncOpen, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 1302751720791103438, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
     - target: {fileID: 2756128440079393889, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_Name
