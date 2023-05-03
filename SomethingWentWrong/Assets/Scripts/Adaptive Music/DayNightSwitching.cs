@@ -31,6 +31,8 @@ public class DayNightSwitching : MusicFaderScript
 
     private static DayNightSwitching instance;
     private Scene _scene;
+    private float _dayTime;
+    private float _nightTime;
 
     public static DayNightSwitching Instance
     {
@@ -88,6 +90,8 @@ public class DayNightSwitching : MusicFaderScript
     {
         _scene = SceneManager.GetActiveScene();
         DontDestroyOnLoad(gameObject);
+        _dayTime = 0f;
+        _nightTime = 0f;
     }
 
     private void Update()
@@ -104,11 +108,17 @@ public class DayNightSwitching : MusicFaderScript
                 MusicVolumeDownRoot(_dayAudio, TransTime / 2, ref _dayVolume);
                 if (_dayAudio.volume < 0.001f)
                 {
+                    if (_dayAudio.isPlaying)
+                        _dayTime = _dayAudio.time;
                     _dayAudio.Stop();
                     _intenseAudio.Stop();
                 }
 
-                if (_nightAudio.isPlaying == false) _nightAudio.Play();
+                if (_nightAudio.isPlaying == false)
+                {
+                    _nightAudio.time = _nightTime;
+                    _nightAudio.Play();
+                }
                 MusicVolumeUpRoot(_nightAudio, TransTime / 2, ref _nightVolume);
 
                 if (_intenseVolume > 0.001f)
@@ -122,6 +132,7 @@ public class DayNightSwitching : MusicFaderScript
             {
                 if ((_dayCycle == DayTime.Sunrise || _waveEnded) && !_dayAudio.isPlaying)
                 {
+                    _dayAudio.time = _dayTime;
                     _dayAudio.Play();
                     _intenseAudio.Play();
                 }
@@ -129,6 +140,8 @@ public class DayNightSwitching : MusicFaderScript
                 MusicVolumeDownRoot(_nightAudio, TransTime / 2, ref _nightVolume);
                 if (_nightAudio.volume < 0.001f)
                 {
+                    if (_nightAudio.isPlaying)
+                        _nightTime = _nightAudio.time;
                     _nightAudio.Stop();
                     _waveEnded = false;
                 }
