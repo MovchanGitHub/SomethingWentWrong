@@ -10,18 +10,6 @@ public class EncyclopediaManager : MonoBehaviour
 {
     private InputSystem inputSystem;
 
-    //[SerializeField] private GameObject mainPanel;//
-    //[SerializeField] private GameObject panelWithExtraInfo;//
-    //[SerializeField] private GameObject extraInfoEnemyPanel;
-    //[SerializeField] private GameObject extraInfoPlantPanel;
-    //[SerializeField] private GameObject iconOfSpecialAbility;//
-    //[SerializeField] private GameObject LootIcon;
-    //[SerializeField] private GameObject newNoteNotification;
-    //[SerializeField] private GameObject plantsTab;
-    //[SerializeField] private GameObject enemiesTab;
-    //[SerializeField] private GameObject plantsTabHeader;
-    //[SerializeField] private GameObject enemiesTabHeader;
-
     private Image extraInfoPlantImage;
     private TMPro.TextMeshProUGUI extraInfoPlantHpValue;
     private TMPro.TextMeshProUGUI extraInfoPlantName;
@@ -42,6 +30,8 @@ public class EncyclopediaManager : MonoBehaviour
     private TMPro.TextMeshProUGUI extraInfoEnemyName;
     private TMPro.TextMeshProUGUI extraInfoEnemyDescription;
 
+    public AspectRatioFitter aspectRatioFitter;
+
     private Dictionary<string, GameObject> notes;
 
     private ScrollRect scrollRectPlants;
@@ -50,12 +40,7 @@ public class EncyclopediaManager : MonoBehaviour
     private Image backgrounds;
     public Coroutine coroutineToStop = null;
     private Coroutine shadeCoroutineToStop = null;
-    private GameObject[] allElemsToClose;
-    //Queue<Coroutine> ShadingAnims = new Queue<Coroutine>();
-    //Queue<Coroutine> DeShadingAnims = new Queue<Coroutine>();
-    //Queue<Coroutine> OpeningAnims = new Queue<Coroutine>();
-    ////Dictionary<openingAnims, Queue<Coroutine>> = new Dictionary<openingAnims, Queue<Coroutine>> 
-    //Queue<Coroutine> ClosingAnims = new Queue<Coroutine>();
+    private GameObject[] allElemsToClose; 
 
     Coroutine newNoteCoroutine;
     private Queue<CreaturesBase> notificationsToShowUp;
@@ -66,12 +51,6 @@ public class EncyclopediaManager : MonoBehaviour
 
     [SerializeField] TMPro.TMP_ColorGradient PositiveGradient;
     [SerializeField] TMPro.TMP_ColorGradient NegativeGradient;
-
-    //private Color32 selectedTab;
-    //private Color32 nonSelectedTab;
-
-    //[SerializeField] private List<NotesManager> enemiesNotes;
-    //[SerializeField] private List<NotesManager> plantsNotes;
 
 
     [HideInInspector] public bool isOpened;
@@ -84,9 +63,8 @@ public class EncyclopediaManager : MonoBehaviour
         isOpened = false;
         notes = new Dictionary<string, GameObject>();
         backgrounds = GetComponent<Image>();
+        aspectRatioFitter = transform.GetChild(0).GetComponent<AspectRatioFitter>();
         notificationsToShowUp = new Queue<CreaturesBase>();
-        //selectedTab = new Color32(124, 192, 0, 255);
-        //nonSelectedTab = new Color32(89, 137, 0, 255);
     }
 
     private void Start()

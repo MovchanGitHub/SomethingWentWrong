@@ -109,10 +109,10 @@ RectTransform:
   m_Father: {fileID: 548336964004811344}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.00048828, y: -0.000017166}
-  m_SizeDelta: {x: 412.5, y: 160.3}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0.00048828125, y: -0.000015258789}
+  m_SizeDelta: {x: 0.0039978027, y: -0.002822876}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8291749647455590646
 CanvasRenderer:
@@ -912,7 +912,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: -154.30023, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &3513096834124833776
 MonoBehaviour:
@@ -1535,6 +1535,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 223c59cf937742745bff3a450103e4a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  aspectRatioFitter: {fileID: 0}
   firstGradient: {fileID: 11400000, guid: 4139875b686b646569cec651374f3979, type: 2}
   secondGradient: {fileID: 11400000, guid: 7969128c3f2904f0ca1d972477cd8e92, type: 2}
   PositiveGradient: {fileID: 11400000, guid: 5cf8ae092ca54931b443bec5148f3c59, type: 2}
