@@ -216,8 +216,11 @@ public class InventoryController : MonoBehaviour
     public void clearInventory()
     {
         SelectedItemGrid.clearGrid();
+        ammoCounter["crystal"] = 0;
         UpdateWeaponBar("crystal", 0);
+        ammoCounter["bomb"] = 0;
         UpdateWeaponBar("bomb", 0);
+        ammoCounter["bullet"] = 0;
         UpdateWeaponBar("bullet", 0);
     }
 
