@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Rendering;
 using UnityEditor;
 using static GameManager;
 using UnityEngine.EventSystems;
+using System.Runtime.Serialization.Json;
+using Newtonsoft.Json;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class EncyclopediaManager : MonoBehaviour
 {
@@ -59,6 +64,10 @@ public class EncyclopediaManager : MonoBehaviour
     public AudioClip Open;
     public AudioSource NotesSource;
 
+    string pathForSaves;
+    Dictionary<string, bool> boolSaves = new Dictionary<string, bool>();
+    BinaryFormatter formatter = new BinaryFormatter();
+
     private void Awake()
     {
         isOpened = false;
@@ -66,6 +75,9 @@ public class EncyclopediaManager : MonoBehaviour
         backgrounds = GetComponent<Image>();
         aspectRatioFitter = transform.GetChild(0).GetComponent<AspectRatioFitter>();
         notificationsToShowUp = new Queue<CreaturesBase>();
+
+        pathForSaves = Application.persistentDataPath + "/encyclopediaBools.gamesave";
+        Debug.Log(pathForSaves);
     }
 
     private void Start()
@@ -117,22 +129,36 @@ public class EncyclopediaManager : MonoBehaviour
         int childrenCount = enemiesNotesMask.childCount;
         for (int i = 0; i < childrenCount; i++)
         {
-            notes.Add(enemiesNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, enemiesNotesMask.GetChild(i).gameObject);
-            enemiesNotesMask.GetChild(i).GetComponent<NotesManager>().InitializeNote();
+            var temp = enemiesNotesMask.GetChild(i).GetComponent<NotesManager>();
+            notes.Add(temp.creature.name, enemiesNotesMask.GetChild(i).gameObject);
+            boolSaves.Add(temp.creature.name, false);
+            temp.InitializeNote();
         }
         Transform plantsNotesMask = GM.UI.Encyclopedia.PlantsTab.transform.GetChild(0);
         childrenCount = plantsNotesMask.childCount;
         for (int i = 0; i < childrenCount; i++)
         {
-            notes.Add(plantsNotesMask.GetChild(i).GetComponent<NotesManager>().creature.name, plantsNotesMask.GetChild(i).gameObject);
-            plantsNotesMask.GetChild(i).GetComponent<NotesManager>().InitializeNote();
+            var temp = plantsNotesMask.GetChild(i).GetComponent<NotesManager>();
+            notes.Add(temp.creature.name, plantsNotesMask.GetChild(i).gameObject);
+            boolSaves.Add(temp.creature.name, false);
+            temp.InitializeNote();
         }
+
+        if (File.Exists(pathForSaves))
+            LoadBoolInfo();
+        else
+            SaveBoolInfo();
+
+        foreach (var elem in boolSaves)
+            Debug.Log(elem);
     }
 
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
         if (GM.IsTutorial)
             return;
+        boolSaves[openedCreature.name] = true;
+        SaveBoolInfo();
         openedCreature.isOpenedInEcnyclopedia = true;
         NotesManager curNoteCode = notes[openedCreature.name].GetComponent<NotesManager>();
         curNoteCode.OpenUpInfoInNote();
@@ -503,5 +529,43 @@ public class EncyclopediaManager : MonoBehaviour
         //GM.UI.Encyclopedia.LoreTab.SetActive(true);
         //GM.UI.Encyclopedia.EnemiesTab.SetActive(false);
         //GM.UI.Encyclopedia.ExtraInfoEnemyPanel.SetActive(false);
+    }
+
+    private void SaveBoolInfo()
+    {
+        //string jsonString = JsonSerializer.Serialize(boolSaves);
+        using (FileStream fs = new FileStream(pathForSaves, FileMode.Create))
+        {
+            formatter.Serialize(fs, boolSaves);
+            //formatter.WriteObject(fs, new boolSavesClass(boolSaves));
+        }
+    }
+
+    private void LoadBoolInfo()
+    {
+        using (FileStream fs = new FileStream(pathForSaves, FileMode.Open))
+        {
+            //fs.Seek(0, SeekOrigin.Begin);
+            //var temp = formatter.ReadObject(fs) as boolSavesClass;
+            //boolSaves = temp.boolSaves;
+            boolSaves = (Dictionary<string, bool>) formatter.Deserialize(fs);
+        }
+
+        foreach(var note in notes.Values)
+        {
+            var noteScript = note.GetComponent<NotesManager>();
+            noteScript.creature.isOpenedInEcnyclopedia = boolSaves[noteScript.creature.name];
+            noteScript.InitializeNote();
+        }
+    }
+
+    public class boolSavesClass
+    {
+        public Dictionary<string, bool> boolSaves;
+
+        public boolSavesClass (Dictionary<string, bool> boolSaves)
+        {
+            this.boolSaves = boolSaves;
+        }
     }
 }

@@ -20,7 +20,7 @@ MonoBehaviour:
     \u043D\u0435 \u043F\u043E\u043A\u0430\u0436\u0435\u0442\u0441\u044F."
   typeOfThisCreature: 1
   creaturePrefab: {fileID: 2235180739808042379, guid: 626f3724c7f3d3849859ec06f40aa581, type: 3}
-  imageSmall: {fileID: -288337615, guid: 421506d9ffb137e4e8e272f99a4d0a70, type: 3}
-  imageBig: {fileID: -288337615, guid: 421506d9ffb137e4e8e272f99a4d0a70, type: 3}
+  imageSmall: {fileID: 569046640, guid: 2342c9a1e40a1ac43b5f9242b312bfef, type: 3}
+  imageBig: {fileID: 569046640, guid: 2342c9a1e40a1ac43b5f9242b312bfef, type: 3}
   imageUnknown: {fileID: 21300000, guid: 49b2ef3b88e2b2c4ca4bb05ee3b262e7, type: 3}
   isOpenedInEcnyclopedia: 1
