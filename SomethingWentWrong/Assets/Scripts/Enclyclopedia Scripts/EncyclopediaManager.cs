@@ -77,7 +77,6 @@ public class EncyclopediaManager : MonoBehaviour
         notificationsToShowUp = new Queue<CreaturesBase>();
 
         pathForSaves = Application.persistentDataPath + "/encyclopediaBools.gamesave";
-        Debug.Log(pathForSaves);
     }
 
     private void Start()
@@ -148,9 +147,6 @@ public class EncyclopediaManager : MonoBehaviour
             LoadBoolInfo();
         else
             SaveBoolInfo();
-
-        foreach (var elem in boolSaves)
-            Debug.Log(elem);
     }
 
     public void OpenNewCreature(CreaturesBase openedCreature)
@@ -556,16 +552,6 @@ public class EncyclopediaManager : MonoBehaviour
             var noteScript = note.GetComponent<NotesManager>();
             noteScript.creature.isOpenedInEcnyclopedia = boolSaves[noteScript.creature.name];
             noteScript.InitializeNote();
-        }
-    }
-
-    public class boolSavesClass
-    {
-        public Dictionary<string, bool> boolSaves;
-
-        public boolSavesClass (Dictionary<string, bool> boolSaves)
-        {
-            this.boolSaves = boolSaves;
         }
     }
 }

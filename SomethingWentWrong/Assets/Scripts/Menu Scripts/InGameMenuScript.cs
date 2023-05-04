@@ -16,6 +16,8 @@ public class InGameMenuScript : MonoBehaviour
     [HideInInspector] public bool isPaused;
     private bool showTutorialPopupAfterHidingMenu = false;
 
+    public bool isAvailableToOpenInventoryTutorial;
+
     private void Awake()
     {
         PauseGame(false);
@@ -23,6 +25,8 @@ public class InGameMenuScript : MonoBehaviour
 
     private void Start() {
         settingsScript = GM.UI.SettingsScript;
+        if (GM.IsTutorial)
+            isAvailableToOpenInventoryTutorial = false;
 
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;
@@ -93,12 +97,13 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(false);
         GM.InputSystem.UnblockPlayerInputs();
         GM.InputSystem.openInventoryInput.Enable();
+        if (!GM.IsTutorial || isAvailableToOpenInventoryTutorial)
+            GM.InputSystem.openEncyclopediaInput.Enable();
         if (GM.IsTutorial && showTutorialPopupAfterHidingMenu)
         {
             GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(true);
             showTutorialPopupAfterHidingMenu = false;
         }
-        //GM.InputSystem.openEncyclopediaInput.Enable();
         PauseGame(false);
     }
 
@@ -107,12 +112,12 @@ public class InGameMenuScript : MonoBehaviour
         pauseMenu.SetActive(true);
         GM.InputSystem.BlockPlayerInputs();
         GM.InputSystem.openInventoryInput.Disable();
+        GM.InputSystem.openEncyclopediaInput.Disable();
         if (GM.IsTutorial && GM.Tutorial.PopupSystem.CurrentPopupObject.activeInHierarchy)
         {
             GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(false);
             showTutorialPopupAfterHidingMenu = true;
         }
-        //GM.InputSystem.openEncyclopediaInput.Disable();
         PauseGame(true);
     }
     public void ShowHideMenu() {
