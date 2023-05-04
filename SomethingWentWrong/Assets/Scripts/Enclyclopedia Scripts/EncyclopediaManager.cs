@@ -148,22 +148,22 @@ public class EncyclopediaManager : MonoBehaviour
 
     public IEnumerator GoToNewCreatureCoroutine (CreaturesBase openedCreature)
     {
-        yield return null;
-        //OpenCloseEncyclopedia();
-        //while (coroutineToStop != null)
-        //{
-        //    Debug.Log(55);
-        //    yield return new WaitForSecondsRealtime(0.2f);
-        //    Debug.Log(coroutineToStop);
-        //}
-        //Debug.Log(0);
-        //yield return new WaitUntil(() => coroutineToStop == null);
-        //Debug.Log(1);
-        //OpenPlantsTab();
-        //yield return new WaitUntil(() => coroutineToStop == null);
-        //Debug.Log(2);
-        //OpenExtraInfo(notes[openedCreature.name]);
-        //Debug.Log(3);
+        //yield return null;
+        OpenCloseEncyclopedia();
+        while (coroutineToStop != null)
+        {
+            Debug.Log(55);
+            yield return new WaitForSecondsRealtime(0.2f);
+            Debug.Log(coroutineToStop);
+        }
+        Debug.Log(0);
+        yield return new WaitUntil(() => coroutineToStop == null);
+        Debug.Log(1);
+        OpenPlantsTab();
+        yield return new WaitUntil(() => coroutineToStop == null);
+        Debug.Log(2);
+        OpenExtraInfo(notes[openedCreature.name]);
+        Debug.Log(3);
     }
 
     public void OpenExtraInfo(GameObject ChosenNote)
@@ -325,8 +325,8 @@ public class EncyclopediaManager : MonoBehaviour
         element.SetActive(true);
         while (element.transform.localScale.x <= 1)
         {
-            element.transform.localScale += new Vector3(0.025f, 0.025f, 0);
-            yield return new WaitForSecondsRealtime(0.005f);
+            element.transform.localScale += new Vector3(0.04f, 0.04f, 0);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         coroutineToStop = null;
     }
@@ -355,11 +355,11 @@ public class EncyclopediaManager : MonoBehaviour
         while (elementsToOpen[0].transform.localScale.x <= 1)
         {
             foreach (GameObject elem in elementsToOpen)
-                elem.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+                elem.transform.localScale += new Vector3(0.04f, 0.04f, 0);
             foreach (GameObject elem in elementsToClose)
                 if (elem.transform.localScale.x > 0)
-                    elem.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
-            yield return new WaitForSecondsRealtime(0.005f);
+                    elem.transform.localScale -= new Vector3(0.04f, 0.04f, 0);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         foreach (GameObject elem in elementsToClose)
             elem.SetActive(false);
@@ -376,11 +376,11 @@ public class EncyclopediaManager : MonoBehaviour
         while (elementsToOpen[0].transform.localScale.x <= 1)
         {
             foreach (GameObject elem in elementsToOpen)
-                elem.transform.localScale += new Vector3(0.025f, 0.025f, 0);
+                elem.transform.localScale += new Vector3(0.04f, 0.04f, 0);
             foreach (GameObject elem in elementsToClose)
                 if (elem.transform.localScale.x > 0)
-                    elem.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
-            yield return new WaitForSecondsRealtime(0.005f);
+                    elem.transform.localScale -= new Vector3(0.04f, 0.04f, 0);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         foreach (GameObject elem in elementsToClose)
             elem.SetActive(false);
@@ -396,8 +396,8 @@ public class EncyclopediaManager : MonoBehaviour
         {
             foreach (GameObject elem in elementsToClose)
                 if (elem.transform.localScale.x > 0)
-                    elem.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
-            yield return new WaitForSecondsRealtime(0.005f);
+                    elem.transform.localScale -= new Vector3(0.04f, 0.04f, 0);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         foreach (GameObject elem in elementsToClose)
             elem.SetActive(false);
@@ -409,8 +409,8 @@ public class EncyclopediaManager : MonoBehaviour
             StopCoroutine(coroutineToStop);
         while (element.transform.localScale.x > 0)
         {
-            element.transform.localScale -= new Vector3(0.025f, 0.025f, 0);
-            yield return new WaitForSecondsRealtime(0.005f);
+            element.transform.localScale -= new Vector3(0.04f, 0.04f, 0);
+            yield return new WaitForSecondsRealtime(0.01f);
         }
         element.SetActive(false);
         coroutineToStop = null;
