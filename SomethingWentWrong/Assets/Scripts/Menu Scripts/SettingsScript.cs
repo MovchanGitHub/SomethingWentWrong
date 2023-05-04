@@ -89,13 +89,19 @@ public class SettingsScript : MonoBehaviour
         if (value == 0)
         {
             Screen.SetResolution(baseWidth, baseHeight, Screen.fullScreen);
-            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = baseWidth / baseHeight;
+            if (baseWidth / baseHeight < 2)
+                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = baseWidth / baseHeight;
+            else
+                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = 16 / 9;
             return;
         }
         var options = resolutionDropdown.options;
         var match = Regex.Match(options[value].text, @"(\d+)X(\d+)");
         Screen.SetResolution(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), Screen.fullScreen);
-        GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value);
+        if (float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value) < 2)
+            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value);
+        else
+            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = 16 / 9;
     }
 
     private bool fullscreen = true;
