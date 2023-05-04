@@ -1544,6 +1544,8 @@ MonoBehaviour:
   Notes: []
   Open: {fileID: 0}
   NotesSource: {fileID: 0}
+  loreNotePrefab: {fileID: 6503466136342038118, guid: 9152cf5b3c6e80649b7e43b6f763d0e0, type: 3}
+  playerScriptableObject: {fileID: 11400000, guid: 2113d98308a93a34f859b2a17af6eb59, type: 2}
 --- !u!114 &8768074013937024299
 MonoBehaviour:
   m_ObjectHideFlags: 0

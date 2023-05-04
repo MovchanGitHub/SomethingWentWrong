@@ -44,9 +44,18 @@ public class NotesManager : MonoBehaviour
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)
         {
-            hp = creature.creaturePrefab.GetComponentInChildren<EnemyDamagable>().MaxHP;
-            damage = creature.creaturePrefab.GetComponentInChildren<EnemyAttack>().Damage;
-            speed = creature.creaturePrefab.GetComponent<EnemyMovement>().speed;
+            if (creature.name != "ты")
+            {
+                hp = creature.creaturePrefab.GetComponentInChildren<EnemyDamagable>().MaxHP;
+                damage = creature.creaturePrefab.GetComponentInChildren<EnemyAttack>().Damage;
+                speed = creature.creaturePrefab.GetComponent<EnemyMovement>().speed;
+            }
+            else 
+            {
+                hp = creature.creaturePrefab.GetComponentInChildren<PlayerDamagable>().MaxHP;
+                damage = creature.creaturePrefab.GetComponentInChildren<AttackPoint>().Damage;
+                speed = 4;
+            }
         }
 
     }

@@ -77,6 +77,9 @@ public class PlayerDamagable : DamagableCharacter
     {
         slider.value = 0;
         if (GM.IsTutorial) GM.Tutorial.Counter.SetActive(false);
+
+        if (GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0).childCount == 3)
+            GM.UI.Encyclopedia.EncyclopediaScript.OpenPlayerInEncyclopedia();
         
         if (GM.IsTutorial && lastWeapon.Type == WeaponType.Bomb && GM.Tutorial.endOfTutorial)
             GM.GameOver("Вы прошли обучение!\nно какой ценой...");
@@ -112,6 +115,7 @@ public class PlayerDamagable : DamagableCharacter
                     break;
             }
         }
+
         Destroy(gameObject);
     }
 
