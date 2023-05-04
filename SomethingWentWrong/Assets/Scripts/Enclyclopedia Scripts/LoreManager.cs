@@ -12,8 +12,17 @@ public class LoreManager : MonoBehaviour
     private TMPro.TextMeshProUGUI noteText;
     private GameObject notePanel;
 
-    private void Awake()
+
+    private void Start()
     {
+        noteText = GameManager.GM.UI.Encyclopedia.ExtraInfoLorePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
+        notePanel = noteText.transform.parent.gameObject;
+
+        if (GameManager.GM.UI.EndScreenScript.MaxScore >= (transform.GetSiblingIndex() + 1) * 3)
+            isAvailable = true;
+        else
+            isAvailable = false;
+
         if (isAvailable)
         {
             lockedIcon.SetActive(false);
@@ -24,12 +33,6 @@ public class LoreManager : MonoBehaviour
             lockedIcon.SetActive(true);
             unlockedIcon.SetActive(false);
         }
-    }
-
-    private void Start()
-    {
-        noteText = GameManager.GM.UI.Encyclopedia.ExtraInfoLorePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
-        notePanel = noteText.transform.parent.gameObject;
     }
 
     public void ShowUpLoreNote()
