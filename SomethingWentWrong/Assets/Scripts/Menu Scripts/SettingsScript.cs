@@ -92,7 +92,7 @@ public class SettingsScript : MonoBehaviour
             if (baseWidth / baseHeight < 2)
                 GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = baseWidth / baseHeight;
             else
-                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = 16 / 9;
+                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
             return;
         }
         var options = resolutionDropdown.options;
@@ -101,7 +101,7 @@ public class SettingsScript : MonoBehaviour
         if (float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value) < 2)
             GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value);
         else
-            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = 16 / 9;
+            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
     }
 
     private bool fullscreen = true;
