@@ -3,69 +3,15 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class LaserEnemyDamagable : DamagableCharacter
+public class LaserEnemyDamagable : EnemyDamagable
 {
-    private EnemyShaderLogic esl;
-    [SerializeField] private Slider slider;
-    [SerializeField] private DamagePopup damagePopupPrefab;
-    private LaserEnemyMovement enemyLogic;
-
-    public override int HP
-    {
-        get { return hp; }
-        set
-        {
-            spawnDamagePopup(transform.position, hp - value);
-            if (value > 0)
-                hp = value;
-            else
-                Die();
-            slider.value = hp;
-        }
-    }
-
-    private void Awake()
-    {
-        enemyLogic = GetComponentInParent<LaserEnemyMovement>();
-    }
-
-    private void Start()
-    {
-        esl = transform.parent.GetComponentInChildren<EnemyShaderLogic>();
-    }
-
     public override void GetDamage(IWeaponable weapon, GameObject sender = null)
     {
-        base.GetDamage(weapon); 
-        if (sender != null) enemyLogic.PlayFeedback(sender);
-    }
-
-
-    protected override void Die()
-    {
-        if (!creature.isOpenedInEcnyclopedia)
+        if (weapon.Type == WeaponType.Gringe || weapon.Type == WeaponType.Eye || weapon.Type == WeaponType.Dino) return;
+        base.GetDamage(weapon, null);
+        if (sender != null && weapon.Type != WeaponType.Fists)
         {
-            //GameManager.GM.UI.Encyclopedia.OpenNewCreature(creature);
+            enemyLogic.PlayFeedback(sender);
         }
-        StartCoroutine(EnemyDie());
-    }
-
-    private IEnumerator EnemyDie()
-    {
-        if (lastWeapon.Type == WeaponType.Laser)
-        {
-            Laser laser = lastWeapon as Laser;
-            esl.ChangeDissolvingColor(laser.LaserColor);
-            esl.EnemyLaserDieShader();
-            yield return new WaitForSeconds(1f);
-        }
-
-        Destroy(gameObject.transform.parent.gameObject);
-    }
-
-    public void spawnDamagePopup(Vector3 position, int damageAmount)
-    {
-        DamagePopup damagePopup = Instantiate(damagePopupPrefab, position, Quaternion.identity);
-        damagePopup.setup(damageAmount);
     }
 }

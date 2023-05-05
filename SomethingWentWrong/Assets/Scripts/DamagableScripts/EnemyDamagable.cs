@@ -6,10 +6,10 @@ using static GameManager;
 
 public class EnemyDamagable : DamagableCharacter
 {
-    private EnemyShaderLogic esl;
-    [SerializeField] private Slider slider;
-    [SerializeField] private DamagePopup damagePopupPrefab;
-    private EnemyMovement enemyLogic; //new
+    protected EnemyShaderLogic esl;
+    [SerializeField] protected Slider slider;
+    [SerializeField] protected DamagePopup damagePopupPrefab;
+    protected EnemyMovement enemyLogic; //new
 
     public override int HP
     {

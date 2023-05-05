@@ -421,7 +421,7 @@ CircleCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4615848117298448186}
-  m_Enabled: 1
+  m_Enabled: 0
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
@@ -492,31 +492,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 819197557132720296, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_PrefabInstance: {fileID: 5427003297875327468}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &8656386628999220737
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4615848118585917764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 54cac621e1dc16445be950042749229c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  type: 7
-  damage: 10
-  damagableLayers:
-    serializedVersion: 2
-    m_Bits: 4672
-  triggerAttackDistance: 1.5
-  es: {fileID: 0}
-  timeBeforeAttack: 1
-  timeAfterAttack: 0.3
-  attackRange: 2
-  laser: {fileID: 1197105545250727984}
-  laserDamageSpeed: 0.08
-  damagedEntities: []
 --- !u!82 &6679588375289035808
 AudioSource:
   m_ObjectHideFlags: 0
@@ -613,6 +588,31 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &8656386628999220737
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4615848118585917764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54cac621e1dc16445be950042749229c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 7
+  damage: 10
+  damagableLayers:
+    serializedVersion: 2
+    m_Bits: 4672
+  triggerAttackDistance: 1.5
+  es: {fileID: 0}
+  timeBeforeAttack: 1
+  timeAfterAttack: 0.3
+  attackRange: 2
+  laser: {fileID: 1197105545250727984}
+  laserDamageSpeed: 0.08
+  damagedEntities: []
 --- !u!114 &6759249627809127249 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1629523543601078973, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
@@ -629,7 +629,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 3413098130146541284, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_PrefabInstance: {fileID: 5427003297875327468}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &9102825845068390443
+--- !u!114 &7732229331950147245
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -638,7 +638,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 7209511025686890248}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3fecf34284e431447aa4c0f559189c54, type: 3}
+  m_Script: {fileID: 11500000, guid: 54ee941cd985a634db3bac325a3b8cda, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 20

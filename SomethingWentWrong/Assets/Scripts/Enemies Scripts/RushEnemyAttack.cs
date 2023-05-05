@@ -8,11 +8,13 @@ public class RushEnemyAttack : EnemyAttack
     private float rushStrength = 15;
     private float delay = 0.2f;
     private Rigidbody2D rigidBody2D;
+    private BoxCollider2D collider;
 
     protected override void Awake()
     {
         base.Awake();
         rigidBody2D = GetComponentInParent<Rigidbody2D>();
+        collider = GetComponent<BoxCollider2D>();
     }
 
     protected override void Update()
@@ -34,7 +36,10 @@ public class RushEnemyAttack : EnemyAttack
         isAttacking = true;
         es.Animator.AttackTrigger();
         enemyLogic.CanMove = false;
+
+        collider.enabled = false;
         yield return new WaitForSeconds(timeBeforeAttack);
+        collider.enabled = true;
 
         direction.Normalize();
         rigidBody2D.AddForce(direction * rushStrength, ForceMode2D.Impulse);
