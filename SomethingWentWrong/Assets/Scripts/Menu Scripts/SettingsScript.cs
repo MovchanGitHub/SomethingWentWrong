@@ -63,7 +63,7 @@ public class SettingsScript : MonoBehaviour
         }
             
 
-        filePath = Application.persistentDataPath + "/save.gamesave";
+        filePath = Application.persistentDataPath + "/resolution.gamesave";
         LoadSettings();
         settingsMenu.SetActive(false);
     }
