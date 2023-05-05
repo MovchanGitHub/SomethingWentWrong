@@ -25,7 +25,7 @@ public class SkillsScript : MonoBehaviour
     private const int MAX_HEALTH_IMPROVE = 10;
     private const int MAX_ROCKET_HEALTH_IMPROVE = 30;
     private const float MAX_STAMINA = 2f;
-    private const float STAMINA_RECOVERY = 1f;
+    private const float STAMINA_RECOVERY = 1/3f;
     private const float MAX_ANOXEMIA = 35f;
     private const float ANOXEMIA_ENDURANCE = 0.9f;
     private const float MAX_HUNGER = 30f;
@@ -94,8 +94,6 @@ public class SkillsScript : MonoBehaviour
         while (setOfVariants.Count != 3)
             setOfVariants.Add(accessedSkills[random.NextInt(0, accessedSkills.Count)]);
         variants = setOfVariants.ToArray();
-        Debug.Log(String.Join(" ", accessedSkills));
-        Debug.Log(String.Join(" ", variants));
         
         for (var i = 0; i < 3; ++i) {
             logos[variants[i]].transform.position = variantsButtons[i].transform.position;
@@ -126,7 +124,7 @@ public class SkillsScript : MonoBehaviour
                 case 0: ImproveHealth(); Debug.Log($"Здоровье увеличено на {MAX_HEALTH_IMPROVE}"); break;
                 case 1: ImproveLightHouseHealth(); Debug.Log($"Прочность ракеты увеличена на {MAX_HEALTH_IMPROVE}"); break;
                 case 2: ImproveStamina(); Debug.Log($"Максимальный уровень выносливости увеличен на {MAX_STAMINA}"); break;
-                case 3: ImproveStaminaRecovery(); Debug.Log($"Скорость восстановления выносливости увеличена на {STAMINA_RECOVERY}"); break;
+                case 3: ImproveStaminaRecovery(); Debug.Log($"Скорость восстановления выносливости увеличена на 33%"); break;
                 case 4: ImproveAnoxemia(); Debug.Log($"Скорость расхода кислорода уменьшен на {ANOXEMIA_ENDURANCE}"); break;
                 case 5: ImproveMaxAnoxemia(); Debug.Log($"Максимальный уровень кислорода увеличен на {MAX_ANOXEMIA}"); break;
                 case 6: ImproveHunger(); Debug.Log($"Расход сытости уменьшен на {HUNGER_ENDURANCE}"); break;
