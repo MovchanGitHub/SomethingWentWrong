@@ -42,7 +42,7 @@ public class LoreManager : MonoBehaviour
         if (isAvailable)
         {
             noteText.text = loreText;
-            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.coroutineToStop = StartCoroutine(GameManager.GM.UI.Encyclopedia.EncyclopediaScript.AnimateOpeningElement(notePanel));
+            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.coroutineToStop = StartCoroutine(GameManager.GM.UI.Encyclopedia.EncyclopediaScript.AnimateOpenCloseMultipleElement(new GameObject[] { notePanel }, new GameObject[] {GameManager.GM.UI.Encyclopedia.LoreTab }));
             //notePanel.SetActive(true);
         }
     }
