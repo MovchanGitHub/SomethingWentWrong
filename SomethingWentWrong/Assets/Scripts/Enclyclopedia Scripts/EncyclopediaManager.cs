@@ -152,7 +152,7 @@ public class EncyclopediaManager : MonoBehaviour
             SaveBoolInfo();
 
         //Debug.Log(boolSaves["ты"]);
-        if (boolSaves?["ты"] ?? false)
+        if (boolSaves.ContainsKey("ты") && boolSaves["ты"])
             OpenPlayerInEncyclopedia();
     }
 

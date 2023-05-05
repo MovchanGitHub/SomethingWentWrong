@@ -27,6 +27,7 @@ public class InGameMenuScript : MonoBehaviour
         settingsScript = GM.UI.SettingsScript;
         if (GM.IsTutorial)
             isAvailableToOpenInventoryTutorial = false;
+        Debug.Log(isAvailableToOpenInventoryTutorial);
 
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;
@@ -96,9 +97,9 @@ public class InGameMenuScript : MonoBehaviour
         isOpened = false;
         pauseMenu.SetActive(false);
         GM.InputSystem.UnblockPlayerInputs();
-        GM.InputSystem.openInventoryInput.Enable();
         if (!GM.IsTutorial || isAvailableToOpenInventoryTutorial)
-            GM.InputSystem.openEncyclopediaInput.Enable();
+            GM.InputSystem.openInventoryInput.Enable();
+        GM.InputSystem.openEncyclopediaInput.Enable();
         if (GM.IsTutorial && showTutorialPopupAfterHidingMenu)
         {
             GM.Tutorial.PopupSystem.CurrentPopupObject.SetActive(true);

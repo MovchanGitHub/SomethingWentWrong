@@ -18,7 +18,7 @@ public class LoreManager : MonoBehaviour
         noteText = GameManager.GM.UI.Encyclopedia.ExtraInfoLorePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         notePanel = noteText.transform.parent.gameObject;
 
-        if (GameManager.GM.UI.EndScreenScript.MaxScore >= (transform.GetSiblingIndex() + 1) * 3)
+        if (GameManager.GM.UI.EndScreenScript.MaxScore >= (transform.GetSiblingIndex()) * 3)
             isAvailable = true;
         else
             isAvailable = false;
