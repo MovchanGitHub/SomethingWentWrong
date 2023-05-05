@@ -20,6 +20,7 @@ public class NotesManager : MonoBehaviour
     [HideInInspector] public int hungerReplenishment;
     [HideInInspector] public int thirstReplenishment;
     [HideInInspector] public int oxigenReplenishment;
+    [HideInInspector] public int hpReplenishment;
 
     [HideInInspector] public int damage;
     [HideInInspector] public float speed;
@@ -40,6 +41,7 @@ public class NotesManager : MonoBehaviour
                 hungerReplenishment = dropItem?.satiationEffect ?? 0;
                 thirstReplenishment = dropItem?.slakingOfThirstEffect ?? 0;
                 oxigenReplenishment = dropItem?.oxygenRecovery ?? 0;
+                hpReplenishment = dropItem?.healEffect ?? 0;
             }
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)

@@ -2250,7 +2250,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -3574,6 +3574,8 @@ MonoBehaviour:
   buttons: {fileID: 1573521689}
   menuScript: {fileID: 0}
   settings: {fileID: 0}
+  skillsScript: {fileID: 0}
+  endScreenScript: {fileID: 0}
   encyclopedia: {fileID: 0}
 --- !u!114 &1573521688
 MonoBehaviour:

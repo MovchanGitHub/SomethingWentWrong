@@ -27,7 +27,7 @@ public class InGameMenuScript : MonoBehaviour
         settingsScript = GM.UI.SettingsScript;
         if (GM.IsTutorial)
             isAvailableToOpenInventoryTutorial = false;
-        Debug.Log(isAvailableToOpenInventoryTutorial);
+        //Debug.Log(isAvailableToOpenInventoryTutorial);
 
         pauseMenu = GM.UI.PauseMenu;
         endScreen = GM.UI.EndScreen;

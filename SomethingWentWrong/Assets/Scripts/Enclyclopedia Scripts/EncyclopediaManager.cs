@@ -27,6 +27,8 @@ public class EncyclopediaManager : MonoBehaviour
     private Image extraInfoPlantThirstImage;
     private TMPro.TextMeshProUGUI extraInfoPlantOxigenValue;
     private Image extraInfoPlantOxigenImage;
+    private TMPro.TextMeshProUGUI extraInfoPlantHpRecoveryValue;
+    private Image extraInfoPlantHpRecoveryImage;
 
     private Image extraInfoEnemyImage;
     private TMPro.TextMeshProUGUI extraInfoEnemyHpValue;
@@ -98,6 +100,8 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoPlantThirstImage = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(10).GetComponent<Image>();
         extraInfoPlantOxigenValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(13).GetComponent<TMPro.TextMeshProUGUI>();
         extraInfoPlantOxigenImage = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(12).GetComponent<Image>();
+        extraInfoPlantHpRecoveryValue = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(15).GetComponent<TMPro.TextMeshProUGUI>();
+        extraInfoPlantHpRecoveryImage = GM.UI.Encyclopedia.ExtraInfoPlantPanel.transform.GetChild(14).GetComponent<Image>();
 
         extraInfoEnemyImage = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(0).GetComponent<Image>();
         extraInfoEnemyHpValue = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(2).GetComponent<TMPro.TextMeshProUGUI>();
@@ -222,13 +226,33 @@ public class EncyclopediaManager : MonoBehaviour
                 extraInfoPlantThirstImage.gameObject.SetActive(true);
                 extraInfoPlantOxigenValue.gameObject.SetActive(true);
                 extraInfoPlantOxigenImage.gameObject.SetActive(true);
+                extraInfoPlantHpRecoveryValue.gameObject.SetActive(true);
+                extraInfoPlantHpRecoveryImage.gameObject.SetActive(true);
 
-                extraInfoPlantHungerValue.text = curNotesManager.hungerReplenishment.ToString();
-                SetGradientForValue(curNotesManager.hungerReplenishment, extraInfoPlantHungerValue);
-                extraInfoPlantThirstValue.text = curNotesManager.thirstReplenishment.ToString();
-                SetGradientForValue(curNotesManager.thirstReplenishment, extraInfoPlantThirstValue);
-                extraInfoPlantOxigenValue.text = curNotesManager.oxigenReplenishment.ToString();
-                SetGradientForValue(curNotesManager.oxigenReplenishment, extraInfoPlantOxigenValue);
+                string temp;
+                if (curNotesManager.hungerReplenishment > 0)
+                    temp = "+" + curNotesManager.hungerReplenishment.ToString();
+                else
+                    temp = curNotesManager.hungerReplenishment.ToString();
+                extraInfoPlantHungerValue.text = temp;
+                //SetGradientForValue(curNotesManager.hungerReplenishment, extraInfoPlantHungerValue);
+                if (curNotesManager.thirstReplenishment > 0)
+                    temp = "+" + curNotesManager.thirstReplenishment.ToString();
+                else
+                    temp = curNotesManager.thirstReplenishment.ToString();
+                extraInfoPlantThirstValue.text = temp;
+                //SetGradientForValue(curNotesManager.thirstReplenishment, extraInfoPlantThirstValue);
+                if (curNotesManager.oxigenReplenishment > 0)
+                    temp = "+" + curNotesManager.oxigenReplenishment.ToString();
+                else
+                    temp = curNotesManager.oxigenReplenishment.ToString();
+                extraInfoPlantOxigenValue.text = temp;
+                //SetGradientForValue(curNotesManager.oxigenReplenishment, extraInfoPlantOxigenValue);
+                if (curNotesManager.hpReplenishment > 0)
+                    temp = "+" + curNotesManager.hpReplenishment.ToString();
+                else
+                    temp = curNotesManager.hpReplenishment.ToString();
+                extraInfoPlantHpRecoveryValue.text = temp;
             }
             else
             {
@@ -238,6 +262,8 @@ public class EncyclopediaManager : MonoBehaviour
                 extraInfoPlantThirstImage.gameObject.SetActive(false);
                 extraInfoPlantOxigenValue.gameObject.SetActive(false);
                 extraInfoPlantOxigenImage.gameObject.SetActive(false);
+                extraInfoPlantHpRecoveryValue.gameObject.SetActive(false);
+                extraInfoPlantHpRecoveryImage.gameObject.SetActive(false);
             }
 
             coroutineToStop = StartCoroutine(AnimateOpeningElement(GM.UI.Encyclopedia.ExtraInfoPlantPanel));
