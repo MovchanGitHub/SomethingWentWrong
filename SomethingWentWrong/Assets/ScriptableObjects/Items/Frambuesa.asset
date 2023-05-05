@@ -25,5 +25,5 @@ MonoBehaviour:
   dropObject: {fileID: 6620836872203537301, guid: 43e16a4b581dcb746928c6651cd5bea4, type: 3}
   satiationEffect: 15
   slakingOfThirstEffect: 5
-  healEffect: 2
+  healEffect: 0
   oxygenRecovery: 0

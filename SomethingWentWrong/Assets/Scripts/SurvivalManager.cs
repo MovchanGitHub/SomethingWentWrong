@@ -87,9 +87,9 @@ public class SurvivalManager : MonoBehaviour
         get
         {
             int loseHpEffect = 0;
-            if (currentHunger < 0)    loseHpEffect += hungerDamage;
-            if (currentThirst < 0)    loseHpEffect += thirstDamage;
-            if (currentAnoxaemia < 0) loseHpEffect += anoxaemiaDamage;
+            if (currentHunger < 0.01f)    loseHpEffect += hungerDamage;
+            if (currentThirst < 0.01f)    loseHpEffect += thirstDamage;
+            if (currentAnoxaemia < 0.01f) loseHpEffect += anoxaemiaDamage;
 
             return loseHpEffect;
         }

@@ -100,13 +100,13 @@ public class PlayerDamagable : DamagableCharacter
                     GM.GameOver("Смерть это не выход");
                     break;
                 default:
-                    switch (UnityEngine.Random.Range(1, 3))
+                    switch (UnityEngine.Random.Range(1, 5))
                     {
                         case 1:
                             GM.GameOver("УМЕР");
                             break;
                         case 2:
-                            GM.GameOver("ПОТРАЧЕНО");
+                            GM.GameOver("потрачено");
                             break;
                         default:
                             GM.GameOver("ПОМЕР");

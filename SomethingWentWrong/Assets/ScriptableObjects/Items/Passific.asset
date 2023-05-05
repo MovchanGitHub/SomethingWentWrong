@@ -25,7 +25,7 @@ MonoBehaviour:
   image: {fileID: 21300000, guid: d9486ec03adc8dd45ba17af2f82ec5ea, type: 3}
   dragAndDropElement: {fileID: 8883600376185400232, guid: c9bf203542e8a1d4593c03b7e444be85, type: 3}
   dropObject: {fileID: 7100003431661896806, guid: 08d431091882a7040a7eee07cebc42cf, type: 3}
-  satiationEffect: 30
-  slakingOfThirstEffect: 15
-  healEffect: 35
+  satiationEffect: -20
+  slakingOfThirstEffect: -15
+  healEffect: 40
   oxygenRecovery: 0

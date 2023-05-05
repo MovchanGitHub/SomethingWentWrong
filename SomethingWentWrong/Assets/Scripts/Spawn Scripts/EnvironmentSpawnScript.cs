@@ -88,7 +88,7 @@ public class EnvironmentSpawnScript : MonoBehaviour
             int startIndex = positionIndex;
             Vector2 cameraPoints = GM.Camera.WorldToViewportPoint(spawnPoints[positionIndex].position);
             //Debug.Log(cameraPoints.x + " " + cameraPoints.y);
-            while (isBusy[positionIndex] || (cameraPoints.x > -0.1f && cameraPoints.y > -0.1f && cameraPoints.x < 1.1f && cameraPoints.y < 1.1f))
+            while (isBusy[positionIndex] || (cameraPoints.x > -0.2f && cameraPoints.y > -0.2f && cameraPoints.x < 1.2f && cameraPoints.y < 1.2f))
             {
                 positionIndex++;
                 if (positionIndex == spawnPointsAmount)

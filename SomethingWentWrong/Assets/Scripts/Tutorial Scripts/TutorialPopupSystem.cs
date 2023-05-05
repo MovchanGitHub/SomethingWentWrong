@@ -208,6 +208,7 @@ public class TutorialPopupSystem : MonoBehaviour
     
     public IEnumerator OnAllEnemiesKilled()
     {
+        popups[bombDetailedPopup].SetActive(false);
         yield return new WaitForSeconds(1f);
         GM.Tutorial.OnLearnedWeapon();
     }
