@@ -307,7 +307,7 @@ public class EncyclopediaManager : MonoBehaviour
         GM.UI.Encyclopedia.ExtraInfoLorePanel.SetActive(false);
     }
 
-    public void CloseLoreNote() => coroutineToStop = StartCoroutine(AnimateClosingElement(GM.UI.Encyclopedia.ExtraInfoLorePanel));
+    public void CloseLoreNote() => coroutineToStop = StartCoroutine(AnimateOpenCloseMultipleElement(new GameObject[] { GM.UI.Encyclopedia.LoreTab}, new GameObject[] { GM.UI.Encyclopedia.ExtraInfoLorePanel }));
 
 
     public void OpenCloseEncyclopedia(UnityEngine.InputSystem.InputAction.CallbackContext context = default)
@@ -382,7 +382,7 @@ public class EncyclopediaManager : MonoBehaviour
     }
 
 
-    private IEnumerator AnimateOpenCloseMultipleElement(GameObject[] elementsToOpen, GameObject[] elementsToClose)
+    public IEnumerator AnimateOpenCloseMultipleElement(GameObject[] elementsToOpen, GameObject[] elementsToClose)
     {
         if (coroutineToStop != null)
             StopCoroutine(coroutineToStop);

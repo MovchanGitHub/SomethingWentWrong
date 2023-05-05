@@ -7,7 +7,7 @@ public class LoreManager : MonoBehaviour
     [SerializeField] private string loreText;
     public bool isAvailable;
     [SerializeField] private GameObject lockedIcon;
-    [SerializeField] private GameObject unlockedIcon;
+    [SerializeField] private TMPro.TextMeshProUGUI recordToBeat;
 
     private TMPro.TextMeshProUGUI noteText;
     private GameObject notePanel;
@@ -18,20 +18,22 @@ public class LoreManager : MonoBehaviour
         noteText = GameManager.GM.UI.Encyclopedia.ExtraInfoLorePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         notePanel = noteText.transform.parent.gameObject;
 
-        if (GameManager.GM.UI.EndScreenScript.MaxScore >= (transform.GetSiblingIndex()) * 3)
+        if (GameManager.GM.UI.EndScreenScript.MaxScore >= transform.GetSiblingIndex() * 3)
             isAvailable = true;
         else
             isAvailable = false;
 
+        recordToBeat.text = $"дней прожить: {transform.GetSiblingIndex() * 3}";
+
         if (isAvailable)
         {
             lockedIcon.SetActive(false);
-            unlockedIcon.SetActive(true);
+            recordToBeat.gameObject.SetActive(false);
         }
         else
         {
             lockedIcon.SetActive(true);
-            unlockedIcon.SetActive(false);
+            recordToBeat.gameObject.SetActive(true);
         }
     }
 
@@ -40,7 +42,7 @@ public class LoreManager : MonoBehaviour
         if (isAvailable)
         {
             noteText.text = loreText;
-            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.coroutineToStop = StartCoroutine(GameManager.GM.UI.Encyclopedia.EncyclopediaScript.AnimateOpeningElement(notePanel));
+            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.coroutineToStop = StartCoroutine(GameManager.GM.UI.Encyclopedia.EncyclopediaScript.AnimateOpenCloseMultipleElement(new GameObject[] { notePanel }, new GameObject[] {GameManager.GM.UI.Encyclopedia.LoreTab }));
             //notePanel.SetActive(true);
         }
     }
@@ -49,6 +51,6 @@ public class LoreManager : MonoBehaviour
     {
         isAvailable = true;
         lockedIcon.SetActive(false);
-        unlockedIcon.SetActive(true);
+        recordToBeat.gameObject.SetActive(false);
     }
 }
