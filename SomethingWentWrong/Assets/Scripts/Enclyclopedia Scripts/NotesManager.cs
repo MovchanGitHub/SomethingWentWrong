@@ -9,7 +9,6 @@ public class NotesManager : MonoBehaviour
     public CreaturesBase creature;
     private TMPro.TextMeshProUGUI nameHeader;
     private Image icon;
-
     public string NameHeader {get {return nameHeader.text;}}
 
     [HideInInspector] public int hp;
@@ -46,7 +45,7 @@ public class NotesManager : MonoBehaviour
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)
         {
-            if (creature.name != "ты")
+            if (creature.name != "??")
             {
                 hp = creature.creaturePrefab.GetComponentInChildren<EnemyDamagable>().MaxHP;
                 damage = creature.creaturePrefab.GetComponentInChildren<EnemyAttack>().Damage;
@@ -73,7 +72,7 @@ public class NotesManager : MonoBehaviour
         }
         else
         {
-            nameHeader.text = "Неизвестно";
+            nameHeader.text = creature.noName;
             icon.sprite = creature.imageUnknown;
             GetComponent<Button>().interactable = false;
         }

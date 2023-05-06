@@ -11,7 +11,6 @@ using static GameManager;
 
 public class EndScreen: MonoBehaviour
 {
-
     public Color TutorialWinColor;
     private GameObject endScreen;
     [HideInInspector] public bool isOpened;

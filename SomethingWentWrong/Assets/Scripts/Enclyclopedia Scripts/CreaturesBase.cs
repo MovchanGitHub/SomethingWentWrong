@@ -15,12 +15,5 @@ public class CreaturesBase : ScriptableObject
     public Sprite imageBig;
     public Sprite imageUnknown;
     public bool isOpenedInEcnyclopedia;
-
-
-    //start наследуется от MonoBehaviour
-    //private void Start()
-    //{
-    //    isOpenedInEcnyclopedia = false;
-    //    Debug.Log(name);
-    //}
+    public string noName;
 }
