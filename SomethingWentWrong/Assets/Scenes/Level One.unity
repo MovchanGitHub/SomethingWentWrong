@@ -42712,6 +42712,17 @@ PolygonCollider2D:
       - {x: 0.34458923, y: 0.50906205}
       - {x: 0.8076494, y: 0.10609937}
       - {x: 1.2788405, y: 0.35206008}
+--- !u!114 &667117446 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 9201129653611205564, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+  m_PrefabInstance: {fileID: 1645047657}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &683714944
 GameObject:
   m_ObjectHideFlags: 0
@@ -97240,6 +97251,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3432534725083010732, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Name
+      value: ScoreTitle (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 4179934295783946526, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: core
       value: 
@@ -97268,10 +97283,22 @@ PrefabInstance:
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8055000230710609303, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Name
+      value: MaxScoreTitle (TMP)
+      objectReference: {fileID: 0}
+    - target: {fileID: 8304048599241999001, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: m_Name
+      value: NewScoreAlertTitle (TMP)
+      objectReference: {fileID: 0}
     - target: {fileID: 8573898485305061012, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: dayNightCycle
       value: 
       objectReference: {fileID: 1353670125}
+    - target: {fileID: 8573898485305061012, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
+      propertyPath: maxScoreTitle
+      value: 
+      objectReference: {fileID: 667117446}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
 --- !u!4 &1648092115 stripped
@@ -99340,6 +99367,10 @@ PrefabInstance:
       objectReference: {fileID: 1331560735}
     - target: {fileID: 11712503, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
       propertyPath: score
+      value: 
+      objectReference: {fileID: 1205091391}
+    - target: {fileID: 11712503, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}
+      propertyPath: scoreTitle
       value: 
       objectReference: {fileID: 1205091391}
     - target: {fileID: 11712503, guid: 5e04cc3f0697348d48694eea931ba5e9, type: 3}

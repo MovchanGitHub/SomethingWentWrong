@@ -17,13 +17,24 @@ public class EndScreen: MonoBehaviour
     [HideInInspector] public bool isOpened;
     public TextMeshProUGUI title;
     public TextMeshProUGUI newScoreTitle;
-    public TextMeshProUGUI maxScore;
+    public TextMeshProUGUI maxScoreTitle;
     public TextMeshProUGUI currentScore;
     public DayNightCycle dayNightCycle;
     GameObject[] windows;
 
-    public int MaxScore;
+    private int maxScore;
+    public int MaxScore
+    {
+        get => maxScore;
+        set
+        {
+            maxScore = value;
+            SaveScore();
+            isNewScoreAchieved = true;
+        }
+    }
     private string scorePath;
+    private bool isNewScoreAchieved = false;
 
     
     private void Start() {
@@ -47,14 +58,12 @@ public class EndScreen: MonoBehaviour
             foreach (var window in windows)
                 window.SetActive(false);
         
-            if (MaxScore < days)
+            if (isNewScoreAchieved)
             {
-                MaxScore = days;
                 newScoreTitle.gameObject.SetActive(true);
-                SaveScore();
             }
         
-            maxScore.text = $"Рекорд: {MaxScore}";
+            maxScoreTitle.text = $"Рекорд: {maxScore}";
         }
         else
         {
@@ -78,7 +87,7 @@ public class EndScreen: MonoBehaviour
             var bf = new BinaryFormatter();
             var fs = new FileStream(scorePath, FileMode.Open);
             var save = (ScoreSave)bf.Deserialize(fs);
-            MaxScore = save.score;
+            maxScore = save.score;
             fs.Close();
         }
     }
@@ -87,7 +96,7 @@ public class EndScreen: MonoBehaviour
     {
         var bf = new BinaryFormatter();
         var fs = new FileStream(scorePath, FileMode.Create);
-        var save = new ScoreSave(MaxScore);
+        var save = new ScoreSave(maxScore);
         bf.Serialize(fs, save);
         fs.Close();
     }

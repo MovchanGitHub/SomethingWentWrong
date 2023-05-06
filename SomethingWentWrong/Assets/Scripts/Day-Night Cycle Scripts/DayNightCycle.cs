@@ -37,7 +37,7 @@ public class DayNightCycle : MonoBehaviour
     }
 
 
-    public TextMeshProUGUI score;
+    public TextMeshProUGUI scoreTitle;
     private int dayCount;
     [SerializeField] private TMP_ColorGradient firstGradient;
     [SerializeField] private TMP_ColorGradient secondGradient;
@@ -48,14 +48,14 @@ public class DayNightCycle : MonoBehaviour
         get => dayCount;
         set {
             dayCount = value;
-            score.text = $"День: {value}";
+            scoreTitle.text = $"День: {value}";
             if (dayCount > GM.UI.EndScreenScript.MaxScore)
             {
-                score.colorGradientPreset = secondGradient;
-                GM.UI.EndScreenScript.SaveScore();
+                scoreTitle.colorGradientPreset = secondGradient;
+                GM.UI.EndScreenScript.MaxScore = dayCount;
             }
             else
-                score.colorGradientPreset = firstGradient;
+                scoreTitle.colorGradientPreset = firstGradient;
         }
     }
 
