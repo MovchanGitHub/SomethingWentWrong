@@ -83,7 +83,7 @@ public class EndScreen: MonoBehaviour
         }
     }
 
-    private void SaveScore()
+    public void SaveScore()
     {
         var bf = new BinaryFormatter();
         var fs = new FileStream(scorePath, FileMode.Create);

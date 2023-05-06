@@ -49,7 +49,13 @@ public class DayNightCycle : MonoBehaviour
         set {
             dayCount = value;
             score.text = $"День: {value}";
-            score.colorGradientPreset = dayCount > GM.UI.EndScreenScript.MaxScore ? secondGradient : firstGradient;
+            if (dayCount > GM.UI.EndScreenScript.MaxScore)
+            {
+                score.colorGradientPreset = secondGradient;
+                GM.UI.EndScreenScript.SaveScore();
+            }
+            else
+                score.colorGradientPreset = firstGradient;
         }
     }
 
