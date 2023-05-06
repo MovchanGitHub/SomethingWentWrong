@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
+using UnityEngine.SceneManagement;
 using static GameManager;
 
 public class SettingsScript : MonoBehaviour
@@ -63,9 +64,9 @@ public class SettingsScript : MonoBehaviour
         }
             
 
-        filePath = Application.persistentDataPath + "/resolution.gamesave";
+        filePath = Application.persistentDataPath + "/settings.gamesave";
         LoadSettings();
-        settingsMenu.SetActive(false);
+        Debug.Log("LoadSettings()");
     }
     
     public void HideSettings()
@@ -79,7 +80,7 @@ public class SettingsScript : MonoBehaviour
     {
         isOpened = true;
         settingsMenu.SetActive(true);
-        LoadSettings(); // костыль, зато какой!!!
+        // LoadSettings(); // костыль, зато какой!!!
         pauseScript.ShowHideMenu();
     }
 
@@ -89,10 +90,13 @@ public class SettingsScript : MonoBehaviour
         if (value == 0)
         {
             Screen.SetResolution(baseWidth, baseHeight, Screen.fullScreen);
-            if (baseWidth / baseHeight < 2)
-                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = baseWidth / baseHeight;
-            else
-                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
+            if (SceneManager.GetActiveScene().name == "Level One")
+            {
+                if (baseWidth / baseHeight < 2)
+                    GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = baseWidth / baseHeight;
+                else
+                    GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
+            }
             return;
         }
         var options = resolutionDropdown.options;
@@ -113,7 +117,6 @@ public class SettingsScript : MonoBehaviour
     public void ChangeFullscreen()
     {
         Fullscreen = !fullscreen;
-        SaveSettings();
     }
 
 
@@ -129,50 +132,37 @@ public class SettingsScript : MonoBehaviour
             music, 
             sounds,
             resolutionVariant, 
-            fullscreen,
+            fullscreenToggle.isOn,
             retroWaveToggle.isOn
             );
-        // Debug.Log(save.ToString());
         bf.Serialize(fs, save);
         fs.Close();
-        // Debug.Log("Settings saved");
     }
 
     public void LoadSettings()
     {
-        if (!File.Exists(filePath))
-            return;
-        var bf = new BinaryFormatter();
-        var fs = new FileStream(filePath, FileMode.Open);
+        if (!File.Exists(filePath)) return;
+        var (bf, fs) = (new BinaryFormatter(), new FileStream(filePath, FileMode.Open)) ;
         var save = (Save)bf.Deserialize(fs);
         fs.Close();
         
-        var musicVolume = save.musicVolume;
-        var soundsVolume = save.soundsVolume;
-        var saveResolutionVariant = save.resolutionVariant;
-        var isFullScreen = save.isFullscreen;
-        var isRetroWave = save.isRetroWave;
-        
-        var musicVolumeScript = GM.UI.SettingsMenu.transform.GetChild(2).GetComponent<MusicVol>().audioMixer;
-        var soundsVolumeScript = GM.UI.SettingsMenu.transform.GetChild(3).GetComponent<SoundsVol>().audioMixer;
         var retroWaveScript = GM.UI.SettingsMenu.transform.GetChild(8).GetComponent<SetRetroWaveEffect>();
         
         // Music & Sounds
-        musicSlider.value = musicVolume;
-        // musicVolumeScript.SetFloat("GameVol", Mathf.Log10(musicVolume) * 20);
-        soundsSlider.value = soundsVolume;
-        // soundsVolumeScript.SetFloat("GameVol", Mathf.Log10(soundsVolume) * 20);
+        musicSlider.value = save.musicVolume;
+        soundsSlider.value = save.soundsVolume;
+        
         // Resolution
+        var saveResolutionVariant = save.resolutionVariant;
         resolutionDropdown.value = saveResolutionVariant;
         resolutionDropdown.RefreshShownValue();
         SetResolution(saveResolutionVariant);
+        
         // Fullscreen
-        fullscreenToggle.isOn = isFullScreen;
-        Screen.SetResolution(Screen.width, Screen.height, isFullScreen);
+        fullscreenToggle.isOn = save.isFullscreen;
+        
         // RetroWave
-        retroWaveToggle.isOn = isRetroWave;
-        retroWaveScript.RetroWaveEffect = isRetroWave;
-        // Debug.Log("Loading settings");
+        retroWaveToggle.isOn = save.isRetroWave;
     }
 }
 

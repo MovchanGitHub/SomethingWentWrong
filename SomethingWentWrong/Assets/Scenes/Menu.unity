@@ -3397,7 +3397,6 @@ GameObject:
   - component: {fileID: 1573521681}
   - component: {fileID: 1573521680}
   - component: {fileID: 1573521686}
-  - component: {fileID: 1573521685}
   - component: {fileID: 1573521684}
   - component: {fileID: 1573521688}
   - component: {fileID: 1573521687}
@@ -3511,24 +3510,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   aboutGame: {fileID: 1243578568}
   backAnimator: {fileID: 493885252}
---- !u!114 &1573521685
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1573521679}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3dac2a11c381e43199ba4f5981144736, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Settings: {fileID: 0}
-  Backgound: {fileID: 0}
-  isOpened: 0
-  musicVolume: 0
-  soundsVolume: 0
-  isFullScreen: 0
 --- !u!114 &1573521686
 MonoBehaviour:
   m_ObjectHideFlags: 0
