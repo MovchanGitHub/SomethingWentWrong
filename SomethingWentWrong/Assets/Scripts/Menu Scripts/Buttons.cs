@@ -99,30 +99,9 @@ public class Buttons : MonoBehaviour
         GM.UI.PauseMenu.SetActive(false);
         GM.UI.ConfirmExit.SetActive(true);
     }
-    public void OnButtonEndScreenMenuExit()
-    {
-        GM.UI.EndScreen.SetActive(false);
-        GM.UI.EndScreenMenuExit.SetActive(true);
-    }
-    public void OnButtonEndScreenExit()
-    {
-        GM.UI.EndScreen.SetActive(false);
-        GM.UI.EndScreenExit.SetActive(true);
-    }
-    public void OnButtonEndScreenMenuCancelExit()
-    {
-        GM.UI.EndScreenMenuExit.SetActive(false);
-        GM.UI.EndScreen.SetActive(true);
-    }
-    public void OnButtonEndScreenCancelExit()
-    {
-        GM.UI.EndScreenExit.SetActive(false);
-        GM.UI.EndScreen.SetActive(true);
-    }
     public void OnButtonCancelExit()
     {
         GM.UI.ConfirmExit.SetActive(false);
         GM.UI.PauseMenu.SetActive(true);
     }
-    
 }

@@ -11,8 +11,6 @@ public class InGameMenuScript : MonoBehaviour
     private GameObject controlsMenu;
     private GameObject aboutWindow;
     private GameObject confirmExit;
-    private GameObject confirmEndScreenMenuExit;
-    private GameObject confirmEndScreenExit;
     private SettingsScript settingsScript;
     [HideInInspector] public bool isOpened;
     [HideInInspector] public bool isPaused;
@@ -36,8 +34,6 @@ public class InGameMenuScript : MonoBehaviour
         controlsMenu = GM.UI.ControlsMenu;
         aboutWindow = GM.UI.AboutGame;
         confirmExit = GM.UI.ConfirmExit;
-        confirmEndScreenMenuExit = GM.UI.EndScreenMenuExit;
-        confirmEndScreenExit = GM.UI.EndScreenExit;
 
         pauseMenu.SetActive(isOpened);
         endScreen.SetActive(false);

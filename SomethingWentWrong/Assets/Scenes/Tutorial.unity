@@ -97926,8 +97926,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 22.000008}
-  m_SizeDelta: {x: 275, y: 45}
+  m_AnchoredPosition: {x: 0, y: 30}
+  m_SizeDelta: {x: 375.1219, y: 45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1181693183
 GameObject:
@@ -103513,10 +103513,6 @@ PrefabInstance:
         \u043E\u0440\u0443\u0436\u0438\u0435:\t\u041B\u041A\u041C\n\u0418\u043D\u0432\u0435\u043D\u0442\u0430\u0440\u044C:\t\t\tTAB\n\u0421\u043C\u0435\u043D\u0438\u0442\u044C
         \u043E\u0440\u0443\u0436\u0438\u0435:\t\tQ, E\n\u044D\u043D\u0446\u0438\u043A\u043B\u043E\u043F\u0435\u0434\u0438\u044F:\t\tB"
       objectReference: {fileID: 0}
-    - target: {fileID: 549280932767158366, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -67.99999
-      objectReference: {fileID: 0}
     - target: {fileID: 591909774207578505, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -103833,10 +103829,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -0.47314453
       objectReference: {fileID: 0}
-    - target: {fileID: 4512580958124057076, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: -23
-      objectReference: {fileID: 0}
     - target: {fileID: 4698126311592889242, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -103916,10 +103908,6 @@ PrefabInstance:
     - target: {fileID: 7505341274634072119, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchoredPosition.x
       value: -0.12713623
-      objectReference: {fileID: 0}
-    - target: {fileID: 7556445771343777646, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 7616900419966263342, guid: 0dadbdd80a54f4584a052da48f13f123, type: 3}
       propertyPath: m_AnchoredPosition.x

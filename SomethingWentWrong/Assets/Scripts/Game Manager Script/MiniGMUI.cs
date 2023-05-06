@@ -17,8 +17,6 @@ public class MiniGMUI : MonoBehaviour
     [SerializeField] GameObject loadingScreen;
     [SerializeField] GameObject skillsMenu;
     [SerializeField] GameObject confirmExit;
-    [SerializeField] GameObject endScreenMenuExit;
-    [SerializeField] GameObject endScreenExit;
 
     [SerializeField] WeaponsBarScript weaponsBar;
     [SerializeField] Buttons buttons;
@@ -47,8 +45,6 @@ public class MiniGMUI : MonoBehaviour
     public GameObject Pointer { get { return pointer; } }
     public GameObject LoadingScreen { get { return loadingScreen; } }
     public GameObject ConfirmExit { get { return confirmExit; } }
-    public GameObject EndScreenMenuExit { get { return endScreenMenuExit; } }
-    public GameObject EndScreenExit { get { return endScreenExit; } }
 
     public GameObject SkillsMenu { get { return skillsMenu; } }
     public WeaponsBarScript WeaponsBarScript { get { return weaponsBar; } }
