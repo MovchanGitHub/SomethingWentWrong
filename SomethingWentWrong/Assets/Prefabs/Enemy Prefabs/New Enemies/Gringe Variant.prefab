@@ -465,6 +465,14 @@ PrefabInstance:
       propertyPath: creature
       value: 
       objectReference: {fileID: 11400000, guid: 8b15ea054fca056409f6315eec573ad2, type: 2}
+    - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.08
+      objectReference: {fileID: 0}
+    - target: {fileID: 4227029262432649401, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 3.43
+      objectReference: {fileID: 0}
     - target: {fileID: 5816978132444205243, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
       propertyPath: m_Enabled
       value: 1
@@ -501,6 +509,18 @@ PrefabInstance:
       propertyPath: _objectsWithRenderers.Array.data[2]
       value: 
       objectReference: {fileID: 5292087716048850632}
+    - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Radius
+      value: 2.7500267
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.x
+      value: -1.978878
+      objectReference: {fileID: 0}
+    - target: {fileID: 8848767162071621607, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.9629452
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1839160323895890901, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 979af1a9ea03c304b8432432f8b8b6f0, type: 3}
