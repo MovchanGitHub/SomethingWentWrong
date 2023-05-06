@@ -53,6 +53,8 @@ public class DayNightCycle : MonoBehaviour
             {
                 scoreTitle.colorGradientPreset = secondGradient;
                 GM.UI.EndScreenScript.MaxScore = dayCount;
+                if (value % 2 == 0)
+                    GM.UI.Encyclopedia.LoreTab.transform.GetChild(0).GetChild(value / 2);
             }
             else
                 scoreTitle.colorGradientPreset = firstGradient;
