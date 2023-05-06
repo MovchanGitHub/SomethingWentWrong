@@ -29,6 +29,11 @@ public class Buttons : MonoBehaviour
     }
 
     public void OnButtonLoadScene(string sceneName) {
+        if (GM.IsTutorial)
+        {
+            Destroy(GM.Tutorial.PopupSystem);
+            Destroy(GM.Tutorial);
+        }
         StartCoroutine(LoadAsync(sceneName));
         GM.PlayerMovement.IsAbleToMove = true;
         GM.SurvivalManager.gameObject.SetActive(true);
