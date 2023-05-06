@@ -102,10 +102,13 @@ public class SettingsScript : MonoBehaviour
         var options = resolutionDropdown.options;
         var match = Regex.Match(options[value].text, @"(\d+)X(\d+)");
         Screen.SetResolution(int.Parse(match.Groups[1].Value), int.Parse(match.Groups[2].Value), Screen.fullScreen);
-        if (float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value) < 2)
-            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value);
-        else
-            GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
+        if (SceneManager.GetActiveScene().name == "Level One")
+        {
+            if (float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value) < 2)
+                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = float.Parse(match.Groups[1].Value) / float.Parse(match.Groups[2].Value);
+            else
+                GM.UI.Encyclopedia.EncyclopediaScript.aspectRatioFitter.aspectRatio = (float)16 / 9;
+        }
     }
 
     private bool fullscreen = true;
