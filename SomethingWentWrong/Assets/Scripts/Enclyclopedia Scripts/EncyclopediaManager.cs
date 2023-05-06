@@ -332,6 +332,7 @@ public class EncyclopediaManager : MonoBehaviour
                 elem.transform.localScale = Vector3.zero;
             shadeCoroutineToStop = StartCoroutine(ShadeBackground());
             coroutineToStop = StartCoroutine(AnimateOpeningElement(transform.GetChild(0).gameObject));
+            inputSystem.openInventoryInput.Disable();
             inputSystem.BlockPlayerInputs();
         }
         else
@@ -341,6 +342,7 @@ public class EncyclopediaManager : MonoBehaviour
             shadeCoroutineToStop = StartCoroutine(DeShadeBackground());
             HideExtraInfo();
             coroutineToStop = StartCoroutine(AnimateOpenCloseMultipleElement(allElemsToClose));
+            inputSystem.openInventoryInput.Enable();
             inputSystem.UnblockPlayerInputs();
         }
     }
@@ -517,7 +519,8 @@ public class EncyclopediaManager : MonoBehaviour
                                         new GameObject[] { GM.UI.Encyclopedia.EnemiesTab,
                                                            GM.UI.Encyclopedia.ExtraInfoEnemyPanel,
                                                            GM.UI.Encyclopedia.PlantsTab,
-                                                           GM.UI.Encyclopedia.ExtraInfoPlantPanel}, scrollRectLore));
+                                                           GM.UI.Encyclopedia.ExtraInfoPlantPanel,
+                                                           GM.UI.Encyclopedia.ExtraInfoLorePanel}, scrollRectLore));
     }
 
 

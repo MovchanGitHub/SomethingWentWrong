@@ -18,12 +18,12 @@ public class LoreManager : MonoBehaviour
         noteText = GameManager.GM.UI.Encyclopedia.ExtraInfoLorePanel.GetComponentInChildren<TMPro.TextMeshProUGUI>();
         notePanel = noteText.transform.parent.gameObject;
 
-        if (GameManager.GM.UI.EndScreenScript.MaxScore >= transform.GetSiblingIndex() * 3)
+        if (GameManager.GM.UI.EndScreenScript.MaxScore >= transform.GetSiblingIndex() * 2)
             isAvailable = true;
         else
             isAvailable = false;
 
-        recordToBeat.text = $"дней прожить: {transform.GetSiblingIndex() * 3}";
+        recordToBeat.text = $"дней прожить: {transform.GetSiblingIndex() * 2}";
 
         if (isAvailable)
         {

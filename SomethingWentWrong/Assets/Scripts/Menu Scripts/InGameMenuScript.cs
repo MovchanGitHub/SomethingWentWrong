@@ -47,12 +47,14 @@ public class InGameMenuScript : MonoBehaviour
     public void EscapeIsPressed (UnityEngine.InputSystem.InputAction.CallbackContext context) {
         if (GM.UI.Encyclopedia.ExtraInfoLorePanel.activeSelf)
         {
+            Debug.Log(1);
             GM.UI.Encyclopedia.EncyclopediaScript.CloseLoreNote();
             return;
         }
 
         if (GM.UI.Encyclopedia.EncyclopediaScript.isOpened && !GM.IsTutorial)
         {
+            Debug.Log(2);
             GM.UI.Encyclopedia.EncyclopediaScript.OpenCloseEncyclopedia(context);
             return;
         }
