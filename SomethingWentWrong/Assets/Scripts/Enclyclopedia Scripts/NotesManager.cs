@@ -45,7 +45,7 @@ public class NotesManager : MonoBehaviour
         }
         else if (creature.typeOfThisCreature == creatureType.Enemy)
         {
-            if (creature.name != "??")
+            if (creature.name != GameManager.GM.UI.Encyclopedia.EncyclopediaScript.ti)
             {
                 hp = creature.creaturePrefab.GetComponentInChildren<EnemyDamagable>().MaxHP;
                 damage = creature.creaturePrefab.GetComponentInChildren<EnemyAttack>().Damage;

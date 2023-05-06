@@ -155,11 +155,12 @@ public class EncyclopediaManager : MonoBehaviour
         else
             SaveBoolInfo();
 
-        //Debug.Log(boolSaves["ты"]);
-        if (boolSaves.ContainsKey("ты") && boolSaves["ты"])
+        //Debug.Log(boolSaves["пїЅпїЅ"]);
+        if (boolSaves.ContainsKey(ti) && boolSaves[ti])
             OpenPlayerInEncyclopedia();
     }
 
+    public string ti;
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
         if (GM.IsTutorial)
@@ -526,13 +527,13 @@ public class EncyclopediaManager : MonoBehaviour
 
     public void OpenPlayerInEncyclopedia()
     {
-        NotesManager newNoteSctipt = Instantiate(loreNotePrefab, GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0)).GetComponent<NotesManager>();
-        newNoteSctipt.creature = playerScriptableObject;
-        newNoteSctipt.creature.isOpenedInEcnyclopedia = true;
-        if (!boolSaves.ContainsKey(newNoteSctipt.creature.name))
-            boolSaves.Add(newNoteSctipt.creature.name, true);
+        var newNoteScript = Instantiate(loreNotePrefab, GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0)).GetComponent<NotesManager>();
+        newNoteScript.creature = playerScriptableObject;
+        newNoteScript.creature.isOpenedInEcnyclopedia = true;
+        if (!boolSaves.ContainsKey(newNoteScript.creature.name))
+            boolSaves.Add(newNoteScript.creature.name, true);
         SaveBoolInfo();
-        newNoteSctipt.InitializeNote();
+        newNoteScript.InitializeNote();
     }
 
     private void SaveBoolInfo()

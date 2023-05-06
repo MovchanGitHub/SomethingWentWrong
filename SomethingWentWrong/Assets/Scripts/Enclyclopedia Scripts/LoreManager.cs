@@ -23,7 +23,7 @@ public class LoreManager : MonoBehaviour
         else
             isAvailable = false;
 
-        recordToBeat.text = $"дней прожить: {transform.GetSiblingIndex() * 2}";
+        recordToBeat.text = $"Р”РЅРµР№ РїСЂРѕР¶РёС‚СЊ: {transform.GetSiblingIndex() * 2}";
 
         if (isAvailable)
         {
