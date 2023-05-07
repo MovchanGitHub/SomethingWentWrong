@@ -35,7 +35,7 @@ public class MenuMusicTransition : MusicFaderScript
 
     private void Update()
     {
-        Debug.Log(Time.timeScale);
+        //Debug.Log(Time.timeScale);
         if (_menuScene != SceneManager.GetActiveScene())
         {
             _audioSource.volume = Mathf.Pow(Mathf.Lerp(0, 1, _timeElapsed / _timeToFade), 2);

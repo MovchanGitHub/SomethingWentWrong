@@ -51,7 +51,9 @@ public class EncyclopediaManager : MonoBehaviour
 
     Coroutine newNoteCoroutine;
     private Queue<CreaturesBase> notificationsToShowUp;
+    public bool isLoreNoteShowingUp;
     private Image notificationImage;
+    private GameObject notificationLoreNoteImage;
     private TMPro.TextMeshProUGUI notificationHeader;
     private CreaturesBase notificationCreature;
     [SerializeField] TMPro.TMP_ColorGradient firstGradient;
@@ -111,6 +113,7 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
 
         notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
+        notificationLoreNoteImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(4).gameObject;
         notificationHeader = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
         notificationCreature = GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().openedCreature;
 
@@ -161,6 +164,13 @@ public class EncyclopediaManager : MonoBehaviour
     }
 
     public string ti;
+
+    public void ShowLoreNoteNotification()
+    {
+        if (newNoteCoroutine == null)
+            newNoteCoroutine = StartCoroutine(ShowNewNotification());
+    }
+
     public void OpenNewCreature(CreaturesBase openedCreature)
     {
         if (GM.IsTutorial)
@@ -456,7 +466,7 @@ public class EncyclopediaManager : MonoBehaviour
         coroutineToStop = null;
     }
 
-    private IEnumerator ShowNewNotification()
+    public IEnumerator ShowNewNotification()
     {
         NotesSource.volume = 1;
         NotesSource.clip = Notes[Random.Range(0, Notes.Length)];
@@ -464,6 +474,7 @@ public class EncyclopediaManager : MonoBehaviour
         NotesSource.Play();
         notificationImage.gameObject.SetActive(false);
         notificationHeader.gameObject.SetActive(false);
+        notificationLoreNoteImage.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
         {
@@ -472,11 +483,22 @@ public class EncyclopediaManager : MonoBehaviour
         }
         notificationImage.gameObject.SetActive(true);
         notificationHeader.gameObject.SetActive(true);
-        while (notificationsToShowUp.Count != 0)
+        while (notificationsToShowUp.Count != 0 || isLoreNoteShowingUp)
         {
-            CreaturesBase curCreature = notificationsToShowUp.Dequeue();
-            notificationImage.sprite = curCreature.imageSmall;
-            notificationCreature = curCreature;
+            if (isLoreNoteShowingUp)
+            {
+                notificationImage.gameObject.SetActive(false);
+                notificationLoreNoteImage.SetActive(true);
+                isLoreNoteShowingUp = false;
+            }
+            else
+            {
+                CreaturesBase curCreature = notificationsToShowUp.Dequeue();
+                notificationImage.sprite = curCreature.imageSmall;
+                notificationCreature = curCreature;
+                notificationImage.gameObject.SetActive(true);
+                notificationLoreNoteImage.SetActive(false);
+            }
             for (int i = 0; i < 4; i++)
             {
                 notificationHeader.colorGradientPreset = firstGradient;

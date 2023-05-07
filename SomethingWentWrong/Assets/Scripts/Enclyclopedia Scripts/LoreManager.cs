@@ -49,8 +49,13 @@ public class LoreManager : MonoBehaviour
 
     public void UnlockNote()
     {
-        isAvailable = true;
-        lockedIcon.SetActive(false);
-        recordToBeat.gameObject.SetActive(false);
+        if (!isAvailable)
+        {
+            isAvailable = true;
+            lockedIcon.SetActive(false);
+            recordToBeat.gameObject.SetActive(false);
+            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.isLoreNoteShowingUp = true;
+            GameManager.GM.UI.Encyclopedia.EncyclopediaScript.ShowLoreNoteNotification();
+        }
     }
 }
