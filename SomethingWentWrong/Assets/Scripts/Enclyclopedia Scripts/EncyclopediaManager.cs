@@ -52,6 +52,7 @@ public class EncyclopediaManager : MonoBehaviour
     Coroutine newNoteCoroutine;
     private Queue<CreaturesBase> notificationsToShowUp;
     public bool isLoreNoteShowingUp;
+    private bool isNotificationClosing = false;
     private Image notificationImage;
     private GameObject notificationLoreNoteImage;
     private TMPro.TextMeshProUGUI notificationHeader;
@@ -136,11 +137,17 @@ public class EncyclopediaManager : MonoBehaviour
     {
         Transform enemiesNotesMask = GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0);
         int childrenCount = enemiesNotesMask.childCount;
+        if (File.Exists(pathForSaves))
+            LoadBoolInfo();
         for (int i = 0; i < childrenCount; i++)
         {
             var temp = enemiesNotesMask.GetChild(i).GetComponent<NotesManager>();
             notes.Add(temp.creature.name, enemiesNotesMask.GetChild(i).gameObject);
-            boolSaves.Add(temp.creature.name, false);
+            if (!boolSaves.ContainsKey(temp.creature.name))
+            {
+                boolSaves.Add(temp.creature.name, false);
+                temp.creature.isOpenedInEcnyclopedia = false;
+            }
             temp.InitializeNote();
         }
         Transform plantsNotesMask = GM.UI.Encyclopedia.PlantsTab.transform.GetChild(0);
@@ -149,26 +156,32 @@ public class EncyclopediaManager : MonoBehaviour
         {
             var temp = plantsNotesMask.GetChild(i).GetComponent<NotesManager>();
             notes.Add(temp.creature.name, plantsNotesMask.GetChild(i).gameObject);
-            boolSaves.Add(temp.creature.name, false);
+            if (!boolSaves.ContainsKey(temp.creature.name))
+            {
+                boolSaves.Add(temp.creature.name, false);
+                temp.creature.isOpenedInEcnyclopedia = false;
+            }
             temp.InitializeNote();
         }
 
-        if (File.Exists(pathForSaves))
-            LoadBoolInfo();
-        else
+        if (!File.Exists(pathForSaves))
             SaveBoolInfo();
 
-        //Debug.Log(boolSaves["��"]);
         if (boolSaves.ContainsKey(ti) && boolSaves[ti])
             OpenPlayerInEncyclopedia();
     }
 
     public string ti;
-
+    
     public void ShowLoreNoteNotification()
     {
         if (newNoteCoroutine == null)
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
+        else if (isNotificationClosing)
+        {
+            StopCoroutine(newNoteCoroutine);
+            newNoteCoroutine = StartCoroutine(ShowNewNotification());
+        }
     }
 
     public void OpenNewCreature(CreaturesBase openedCreature)
@@ -183,6 +196,11 @@ public class EncyclopediaManager : MonoBehaviour
         notificationsToShowUp.Enqueue(openedCreature);
         if (newNoteCoroutine == null)
             newNoteCoroutine = StartCoroutine(ShowNewNotification());
+        else if (isNotificationClosing)
+        {
+            StopCoroutine(newNoteCoroutine);
+            newNoteCoroutine = StartCoroutine(ShowNewNotification());
+        }
     }
 
     public IEnumerator GoToNewCreatureCoroutine (CreaturesBase openedCreature)
@@ -507,6 +525,7 @@ public class EncyclopediaManager : MonoBehaviour
                 yield return new WaitForSeconds(0.5f);
             }
         }
+        isNotificationClosing = true;
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x >= 0.01)
         {
             GM.UI.Encyclopedia.NewNoteNotification.transform.localScale -= new Vector3(0.1f, 0.1f, 0);
@@ -516,6 +535,7 @@ public class EncyclopediaManager : MonoBehaviour
         notificationHeader.gameObject.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(false);
         newNoteCoroutine = null;
+        isNotificationClosing = false;
     }
 
     public void OpenPlantsTab()
