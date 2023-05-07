@@ -474,6 +474,7 @@ public class EncyclopediaManager : MonoBehaviour
         NotesSource.Play();
         notificationImage.gameObject.SetActive(false);
         notificationHeader.gameObject.SetActive(false);
+        notificationLoreNoteImage.SetActive(false);
         GM.UI.Encyclopedia.NewNoteNotification.SetActive(true);
         while (GM.UI.Encyclopedia.NewNoteNotification.transform.localScale.x <= 1)
         {
