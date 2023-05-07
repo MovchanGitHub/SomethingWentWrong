@@ -11,6 +11,7 @@ using static GameManager;
 
 public class EndScreen: MonoBehaviour
 {
+    private string scorePath;
     public Color TutorialWinColor;
     private GameObject endScreen;
     [HideInInspector] public bool isOpened;
@@ -32,16 +33,18 @@ public class EndScreen: MonoBehaviour
             isNewScoreAchieved = true;
         }
     }
-    private string scorePath;
     private bool isNewScoreAchieved = false;
 
+    private void Awake()
+    {
+        scorePath = Application.persistentDataPath + "/score.gamesave";
+        LoadScore();
+    }
     
     private void Start() {
         endScreen = GM.UI.EndScreen;
         windows = new[] { GM.UI.PauseMenu, GM.UI.SettingsMenu, GM.UI.ControlsMenu, GM.UI.SkillsMenu };
         newScoreTitle.gameObject.SetActive(false);
-        scorePath = Application.persistentDataPath + "/score.gamesave";
-        LoadScore();
     }
 
     public void HideDeathScreen() {
