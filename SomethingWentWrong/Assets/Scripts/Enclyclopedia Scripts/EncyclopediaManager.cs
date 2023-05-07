@@ -113,7 +113,7 @@ public class EncyclopediaManager : MonoBehaviour
         extraInfoEnemyDescription = GM.UI.Encyclopedia.ExtraInfoEnemyPanel.transform.GetChild(8).GetComponent<TMPro.TextMeshProUGUI>();
 
         notificationImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(2).GetComponent<Image>();
-        notificationLoreNoteImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(3).gameObject;
+        notificationLoreNoteImage = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(4).gameObject;
         notificationHeader = GM.UI.Encyclopedia.NewNoteNotification.transform.GetChild(1).GetComponent<TMPro.TextMeshProUGUI>();
         notificationCreature = GM.UI.Encyclopedia.NewNoteNotification.GetComponent<NewNoteNotificationFastEncOpen>().openedCreature;
 
