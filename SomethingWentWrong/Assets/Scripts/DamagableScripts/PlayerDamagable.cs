@@ -94,7 +94,7 @@ public class PlayerDamagable : DamagableCharacter
                     GM.GameOver("Исцарапан досмерти");
                     break;
                 case WeaponType.Bomb:
-                    if (GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0).childCount == 3)
+                    if (!GM.IsTutorial && GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0).childCount == 3)
                         GM.UI.Encyclopedia.EncyclopediaScript.OpenPlayerInEncyclopedia();
                     GM.GameOver("Смерть это не выход");
                     break;
