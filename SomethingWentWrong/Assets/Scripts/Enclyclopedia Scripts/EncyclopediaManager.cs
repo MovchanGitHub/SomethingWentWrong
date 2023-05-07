@@ -137,8 +137,7 @@ public class EncyclopediaManager : MonoBehaviour
     {
         Transform enemiesNotesMask = GM.UI.Encyclopedia.EnemiesTab.transform.GetChild(0);
         int childrenCount = enemiesNotesMask.childCount;
-        if (File.Exists(pathForSaves))
-            LoadBoolInfo();
+        
         for (int i = 0; i < childrenCount; i++)
         {
             var temp = enemiesNotesMask.GetChild(i).GetComponent<NotesManager>();
@@ -163,7 +162,8 @@ public class EncyclopediaManager : MonoBehaviour
             }
             temp.InitializeNote();
         }
-
+        if (File.Exists(pathForSaves))
+            LoadBoolInfo();
         if (!File.Exists(pathForSaves))
             SaveBoolInfo();
 
